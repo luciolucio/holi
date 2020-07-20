@@ -2,5 +2,9 @@
   (:require [clojure.test :refer :all]
             [com.piposaude.calendars.check :as check]))
 
-(deftest should
-  (is (= true (check/check-holiday-file "single-line-file.hol"))))
+(deftest should-get-holiday-file-errors-correctly
+  (are [expected filename]
+    (= expected (check/get-holiday-file-errors (str "test-resources/" filename)))
+    "Holiday file cannot be empty" "empty-file.hol"
+    "Holiday file cannot have blank lines" "blank-file.hol"
+    nil "single-line-valid-file.hol"))
