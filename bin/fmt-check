@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+clojure -A:cljfmt check src test
