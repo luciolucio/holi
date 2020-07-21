@@ -43,3 +43,31 @@
     [{:name "Easter" :date (t/date "2016-03-27")}] 2016
     [{:name "Easter" :date (t/date "2017-04-16")}] 2017
     [{:name "Easter" :date (t/date "2018-04-01")}] 2018))
+
+(deftest should-generate-brazil-holidays-correctly
+  (are [year expected]
+    (= expected (gen/holidays-for-year year (str "test-resources/generate/BR.hol")))
+    2012 [{:name "Confraternização Universal / Ano Novo" :date (t/date "2012-01-01")}
+          {:name "Segunda-feira de carnaval" :date (t/date "2012-02-20")}
+          {:name "Terça-feira de carnaval" :date (t/date "2012-02-21")}
+          {:name "Sexta-feira da Paixão" :date (t/date "2012-04-06")}
+          {:name "Tiradentes" :date (t/date "2012-04-21")}
+          {:name "Dia do Trabalho" :date (t/date "2012-05-01")}
+          {:name "Corpus Christi" :date (t/date "2012-06-07")}
+          {:name "Independência do Brasil" :date (t/date "2012-09-07")}
+          {:name "Nossa Senhora de Aparecida" :date (t/date "2012-10-12")}
+          {:name "Finados" :date (t/date "2012-11-02")}
+          {:name "Proclamação da República" :date (t/date "2012-11-15")}
+          {:name "Natal" :date (t/date "2012-12-25")}]
+    2019 [{:name "Confraternização Universal / Ano Novo" :date (t/date "2019-01-01")}
+          {:name "Segunda-feira de carnaval" :date (t/date "2019-03-04")}
+          {:name "Terça-feira de carnaval" :date (t/date "2019-03-05")}
+          {:name "Sexta-feira da Paixão" :date (t/date "2019-04-19")}
+          {:name "Tiradentes" :date (t/date "2019-04-21")}
+          {:name "Dia do Trabalho" :date (t/date "2019-05-01")}
+          {:name "Corpus Christi" :date (t/date "2019-06-20")}
+          {:name "Independência do Brasil" :date (t/date "2019-09-07")}
+          {:name "Nossa Senhora de Aparecida" :date (t/date "2019-10-12")}
+          {:name "Finados" :date (t/date "2019-11-02")}
+          {:name "Proclamação da República" :date (t/date "2019-11-15")}
+          {:name "Natal" :date (t/date "2019-12-25")}]))

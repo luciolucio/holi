@@ -22,7 +22,7 @@
     (throw (ex-info "Invalid year" {:year year}))
 
     (not (check/valid-holiday-file? holiday-file))
-    (throw (ex-info "Invalid holiday file" {:holiday-file holiday-file}))
+    (throw (ex-info "Invalid holiday file" {:holiday-file holiday-file :errors (check/get-errors holiday-file)}))
 
     :default
     (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))

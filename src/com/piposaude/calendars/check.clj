@@ -23,6 +23,11 @@
 (defn contains-bad-leap-dates [result]
   (some true? (map contains-bad-leap-date result)))
 
+(defn get-errors [filename]
+  (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
+        result (parser (slurp filename))]
+    (insta/get-failure result)))
+
 (defn valid-holiday-file? [filename]
   (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
         result (parser (slurp filename))]
