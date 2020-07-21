@@ -21,3 +21,14 @@
     [] 2014
     [] 2015
     [{:name "Leap Day" :date (t/date "2016-02-29")}] 2016))
+
+(deftest should-generate-holidays-correctly-ddmmyyyy
+  (are [expected year]
+    (= expected (gen/holidays-for-year year (str "test-resources/generate/ddmmmyyyy.hol")))
+    [] 2012
+    [] 2013
+    [] 2014
+    [{:name "Start of Scorpio Sign 2015" :date (t/date "2015-10-23")}] 2015
+    [] 2016
+    [] 2017
+    [] 2018))
