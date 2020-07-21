@@ -1,0 +1,33 @@
+<holidays> = <comment>? holiday+
+holiday = !comment-marker name <'|'> holiday-definition <newline>
+
+<name> = #'[^\n|]+'
+
+<holiday-definition> = date | expression
+
+<date> = ddmmm | ddmmmyyyy
+
+ddmmm = day-31 month-31 | day-30 month-30 | day-feb month-feb
+<day-31> = day-30 | '31'
+<day-30> = day-feb | '30'
+<day-feb> = '0'? non-zero-digit |
+            '10' | '11' | '12' | '13' | '14' | '15' | '16' | '17' | '18' | '19'
+            '20' | '21' | '22' | '23' | '24' | '25' | '26' | '27' | '28' | '29'
+<non-zero-digit> = '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+<digit> = '0' | non-zero-digit
+<month-31> = 'Jan' | 'Mar' | 'May' | 'Jul' | 'Aug' | 'Oct' | 'Dec'
+<month-30> = 'Apr' | 'Jun' | 'Sep' | 'Nov'
+<month-feb> = 'Feb'
+
+ddmmmyyyy = ddmmm yyyy
+yyyy = #'\d{4}'
+
+expression = supported-calculated-date expression-operator expression-operand
+<supported-calculated-date> = 'E'
+<expression-operator> = '+' | '-'
+<expression-operand> = #'\d+'
+
+comment = comment-marker #".*" newline
+comment-marker = ';'
+
+newline = '\n' | '\r\n'

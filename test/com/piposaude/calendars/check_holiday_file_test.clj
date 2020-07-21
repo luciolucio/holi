@@ -2,12 +2,22 @@
   (:require [clojure.test :refer :all]
             [com.piposaude.calendars.check :as check]))
 
-(deftest should-get-holiday-file-errors-correctly
-  (are [expected filename]
-    (= expected (check/get-holiday-file-errors (str "test-resources/" filename)))
-    "Holiday file cannot be empty" "empty.hol"
-    "Holiday file cannot have blank lines" "blank.hol"
-    "Holiday file cannot have blank lines" "blank2.hol"
-    "Holiday file cannot have blank lines" "blank3.hol"
-    "Line 1: holiday definition cannot have two pipes" "two-pipes.hol"
-    "Line 3: holiday definition cannot have two pipes" "two-pipes2.hol"))
+(deftest should-identify-invalid-holiday-files-correctly
+  (are [filename]
+    (= false (check/valid-holiday-file? (str "test-resources/" filename)))
+    "empty.hol"
+    "blank.hol"
+    "blank2.hol"
+    "blank3.hol"
+    "two-pipes.hol"
+    "bad-definition.hol"
+    "bad-definition2.hol"
+    "bad-definition3.hol"
+    "bad-definition4.hol"
+    "bad-definition5.hol"
+    "bad-definition6.hol"
+    "bad-definition7.hol"
+    "bad-definition8.hol"))
+
+(deftest should-identify-valid-holiday-file-correctly
+  (is (= true (check/valid-holiday-file? "test-resources/good.hol"))))

@@ -1,0 +1,5 @@
+; Good holiday file. A free comment on top, holidays below
+Holiday ddmmm|29Aug
+Holiday ddmmmyyyy|29Aug2019
+Holiday expression plus|E+40
+Holiday expression minus|E-20
