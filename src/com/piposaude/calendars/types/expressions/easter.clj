@@ -1,8 +1,14 @@
 (ns com.piposaude.calendars.types.expressions.easter
   (:require [com.piposaude.calendars.types.common :refer [holiday]]
-            [easter-day :as easter]))
+            [easter-day :as easter]
+            [tick.core :as t]
+            [clojure.edn :as edn]))
 
-(defn get-holiday-easter [year name operator operand]
+(defn get-holiday-easter [year name operator operand-str]
   (let [{:keys [day month]} (easter/easter-sunday year)
-        easter-holiday (holiday name (str day) (str month) year)]
-    easter-holiday))
+        easter-holiday (holiday name (str day) (str month) year)
+        operator-fn (condp = operator
+                      "+" t/+
+                      "-" t/-)
+        operand (edn/read-string operand-str)]
+    (update easter-holiday :date #(operator-fn % (t/new-period operand :days)))))
