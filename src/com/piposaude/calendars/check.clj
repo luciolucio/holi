@@ -1,6 +1,7 @@
 (ns com.piposaude.calendars.check
   (:require [instaparse.core :as insta]
-            [clojure.edn :as edn]))
+            [clojure.edn :as edn]
+            [com.piposaude.calendars.constants :refer [PARSER-GRAMMAR-FILENAME]]))
 
 (defn leap-year? [[_ year-str]]
   (let [year (edn/read-string year-str)]
@@ -23,7 +24,7 @@
   (some true? (map contains-bad-leap-date result)))
 
 (defn valid-holiday-file? [filename]
-  (let [parser (insta/parser (clojure.java.io/resource "holidays.bnf"))
+  (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
         result (parser (slurp filename))]
     (and
       (not (insta/failure? result))
