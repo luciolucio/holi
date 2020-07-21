@@ -9,7 +9,7 @@
 
 (defn get-holiday [year [_ name [type & args]]]
   (condp = type
-    :ddmmm (ddmm/get-holiday-ddmm year args)
+    :ddmmm (ddmm/get-holiday-ddmm year name args)
     nil))
 
 (defn holidays-for-year [year holiday-file]

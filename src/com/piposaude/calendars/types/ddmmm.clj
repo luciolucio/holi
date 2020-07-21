@@ -25,12 +25,15 @@
     (str "0" day)
     day))
 
-(defn get-holiday-ddmm [year [day month]]
+(defn- holiday [name date]
+  {:name name :date date})
+
+(defn get-holiday-ddmm [year name [day month]]
   (let [formatted-month (format-month month)
         formatted-day (format-day day)
         yyyy-mmm-dd (format "%s-%s-%s" year formatted-month formatted-day)]
     (try
-      (t/date yyyy-mmm-dd)
+      (holiday name (t/date yyyy-mmm-dd))
       (catch DateTimeParseException e
         (if (str/includes? (.getMessage e) "not a leap year")
           nil
