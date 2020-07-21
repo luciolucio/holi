@@ -15,16 +15,18 @@
    "Nov" "11"
    "Dec" "12"})
 
-(defn- format-month [month]
-  (month->month-number month))
+(defn- pad-with-zero [day-or-month]
+  (if (= 1 (count day-or-month))
+    (str "0" day-or-month)
+    day-or-month))
 
-(defn- format-day [day]
-  (if (= 1 (count day))
-    (str "0" day)
-    day))
+(defn- format-month [month]
+  (if (contains? month->month-number month)
+    (month->month-number month)
+    (pad-with-zero month)))
 
 (defn holiday [name day month year]
   (let [formatted-month (format-month month)
-        formatted-day (format-day day)
+        formatted-day (pad-with-zero day)
         yyyy-mmm-dd (format "%s-%s-%s" year formatted-month formatted-day)]
     {:name name :date (t/date yyyy-mmm-dd)}))

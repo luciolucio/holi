@@ -2,7 +2,8 @@
  :mvn/repos {"pipo-mvn" {:url "s3://pipo-mvn/releases"}}
  :deps      {org.clojure/clojure {:mvn/version "1.10.1"}
              instaparse          {:mvn/version "1.4.10"}
-             tick                {:mvn/version "0.4.26-alpha"}}
+             tick                {:mvn/version "0.4.26-alpha"}
+             easter-day          {:mvn/version "0.1.1"}}
  :aliases   {:dev    {:extra-paths ["test" "test-resources" "bin"]
                       :extra-deps  {eftest {:mvn/version "0.5.9"}}}
 
