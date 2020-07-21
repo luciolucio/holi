@@ -11,4 +11,4 @@
   (is (thrown-with-msg? ExceptionInfo #"Invalid year" (gen/holidays-for-year "a" nil))))
 
 (deftest should-generate-holidays-correctly-ddmmm
-  (= [(t/date "2020-01-01")] (gen/holidays-for-year 2020 "test-resources/generate/first-january.hol")))
+  (= [(t/date "2020-01-01")] (gen/holidays-for-year 2020 "test-resources/generate/ddmmm.hol")))
