@@ -1,29 +1,15 @@
 (ns com.piposaude.calendars.generate
   (:require [instaparse.core :as insta]
-            [tick.core :as t]
             [com.piposaude.calendars.check :as check]
+            [com.piposaude.calendars.types.ddmmm :as ddmm]
             [com.piposaude.calendars.constants :refer :all]))
 
 (defn valid-year? [year]
   (and (int? year) (<= MIN-YEAR year MAX-YEAR)))
 
-(defn format-month [month]
-  (month->month-number month))
-
-(defn format-day [day]
-  (if (= 1 (count day))
-    (str "0" day)
-    day))
-
-(defn get-holiday-ddmm [year [day month]]
-  (let [formatted-month (format-month month)
-        formatted-day (format-day day)
-        yyyy-mmm-dd (format "%s-%s-%s" year formatted-month formatted-day)]
-    (t/date yyyy-mmm-dd)))
-
 (defn get-holiday [year [_ name [type & args]]]
   (condp = type
-    :ddmmm (get-holiday-ddmm year args)
+    :ddmmm (ddmm/get-holiday-ddmm year args)
     nil))
 
 (defn holidays-for-year [year holiday-file]
