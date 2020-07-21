@@ -3,6 +3,7 @@
             [com.piposaude.calendars.check :as check]
             [com.piposaude.calendars.types.ddmmm :as ddmm]
             [com.piposaude.calendars.types.ddmmmyyyy :as ddmmyyyy]
+            [com.piposaude.calendars.types.expression :as expression]
             [com.piposaude.calendars.constants :refer :all]))
 
 (defn valid-year? [year]
@@ -12,6 +13,7 @@
   (condp = type
     :ddmmm (ddmm/get-holiday-ddmm year name args)
     :ddmmmyyyy (ddmmyyyy/get-holiday-ddmmyyyy year name args)
+    :expression (expression/get-holiday-expression year name args)
     nil))
 
 (defn holidays-for-year [year holiday-file]
