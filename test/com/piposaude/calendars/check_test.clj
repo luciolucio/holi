@@ -30,6 +30,7 @@
   (are [filename]
     (= true (check/valid-holiday-file? (str "test-resources/check/" filename)))
     "good.hol"
+    "good-all-numbers.hol"
     "include-base.hol"
     "include.hol"
     "include-with-space.hol"))
