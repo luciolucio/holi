@@ -1,5 +1,6 @@
 (ns com.piposaude.calendars.generate
   (:require [instaparse.core :as insta]
+            [com.piposaude.calendars.common :as common]
             [com.piposaude.calendars.check :as check]
             [com.piposaude.calendars.types.ddmmm :as ddmm]
             [com.piposaude.calendars.types.ddmmmyyyy :as ddmmyyyy]
@@ -27,4 +28,7 @@
     :default
     (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
           result (parser (slurp holiday-file))]
-      (keep (partial get-holiday year) result))))
+      (flatten (remove nil? (conj
+                              (keep (partial get-holiday year) (common/drop-include result))
+                              (when (common/holiday-was-included? result)
+                                (holidays-for-year year (common/included-filename holiday-file (second (first result)))))))))))

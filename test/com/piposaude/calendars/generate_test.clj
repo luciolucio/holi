@@ -52,7 +52,7 @@
 
 (deftest should-generate-brazil-holidays-correctly
   (are [year expected]
-    (= expected (gen/holidays-for-year year (str "test-resources/generate/BR.hol")))
+    (= expected (gen/holidays-for-year year "test-resources/generate/BR.hol"))
     2012 [{:name "Confraternização Universal / Ano Novo" :date (t/date "2012-01-01")}
           {:name "Segunda-feira de carnaval" :date (t/date "2012-02-20")}
           {:name "Terça-feira de carnaval" :date (t/date "2012-02-21")}
@@ -77,3 +77,21 @@
           {:name "Finados" :date (t/date "2019-11-02")}
           {:name "Proclamação da República" :date (t/date "2019-11-15")}
           {:name "Natal" :date (t/date "2019-12-25")}]))
+
+(deftest should-generate-sao-paulo-holidays-correctly
+  (are [year expected]
+    (= expected (gen/holidays-for-year year "test-resources/generate/SPO.hol"))
+    2012 [{:name "Confraternização Universal / Ano Novo" :date (t/date "2012-01-01")}
+          {:name "Segunda-feira de carnaval" :date (t/date "2012-02-20")}
+          {:name "Terça-feira de carnaval" :date (t/date "2012-02-21")}
+          {:name "Sexta-feira da Paixão" :date (t/date "2012-04-06")}
+          {:name "Tiradentes" :date (t/date "2012-04-21")}
+          {:name "Dia do Trabalho" :date (t/date "2012-05-01")}
+          {:name "Corpus Christi" :date (t/date "2012-06-07")}
+          {:name "Independência do Brasil" :date (t/date "2012-09-07")}
+          {:name "Nossa Senhora de Aparecida" :date (t/date "2012-10-12")}
+          {:name "Finados" :date (t/date "2012-11-02")}
+          {:name "Proclamação da República" :date (t/date "2012-11-15")}
+          {:name "Natal" :date (t/date "2012-12-25")}
+          {:name "Aniversário de São Paulo" :date (t/date "2012-01-25")}
+          {:name "Dia da Consciência Negra" :date (t/date "2012-11-20")}]))
