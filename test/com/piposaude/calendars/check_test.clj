@@ -22,6 +22,7 @@
     "include-before-comment.hol"
     "include-not-on-first-line.hol"
     "include-too-many-includes.hol"
+    "include-nonexistent-file.hol"
     "bad-include.hol"
     "bad-include2.hol"))
 

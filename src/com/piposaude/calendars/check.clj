@@ -23,6 +23,9 @@
 (defn contains-bad-leap-dates [result]
   (some true? (map contains-bad-leap-date result)))
 
+(defn contains-bad-includes [result]
+  (some true? (map contains-bad-include result)))
+
 (defn get-errors [filename]
   (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
         result (parser (slurp filename))]
@@ -33,4 +36,5 @@
         result (parser (slurp filename))]
     (and
       (not (insta/failure? result))
-      (not (contains-bad-leap-dates result)))))
+      (not (contains-bad-leap-dates result))
+      (not (contains-bad-includes result)))))
