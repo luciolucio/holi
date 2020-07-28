@@ -11,7 +11,13 @@
   (is (thrown-with-msg? ExceptionInfo #"Invalid year" (gen/holidays-for-year "a" nil))))
 
 (deftest should-generate-holidays-correctly-ddmmm
-  (= [{:name "New Year" :date (t/date "2020-01-01")}] (gen/holidays-for-year 2020 "test-resources/generate/ddmmm.hol")))
+  (are [expected year]
+    (= expected (gen/holidays-for-year year (str "test-resources/generate/ddmmm.hol")))
+    [{:name "New Year" :date (t/date "2012-01-01")}] 2012
+    [{:name "New Year" :date (t/date "2013-01-01")}] 2013
+    [{:name "New Year" :date (t/date "2014-01-01")}] 2014
+    [{:name "New Year" :date (t/date "2015-01-01")}] 2015
+    [{:name "New Year" :date (t/date "2016-01-01")}] 2016))
 
 (deftest should-generate-holidays-correctly-ddmmm-leap
   (are [expected year]
