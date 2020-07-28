@@ -95,3 +95,9 @@
           {:name "Natal" :date (t/date "2012-12-25")}
           {:name "Aniversário de São Paulo" :date (t/date "2012-01-25")}
           {:name "Dia da Consciência Negra" :date (t/date "2012-11-20")}]))
+
+(deftest should-generate-nested-included-holidays-correctly
+  (= [{:name "Holiday from include-first" :date (t/date "2012-01-25")}
+      {:name "Holiday from include-second" :date (t/date "2012-01-30")}
+      {:name "Holiday from include-third" :date (t/date "2012-02-01")}]
+     (gen/holidays-for-year 2012 "test-resources/generate/include-first.hol")))
