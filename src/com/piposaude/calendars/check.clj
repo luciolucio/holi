@@ -36,16 +36,18 @@
           false))
       true)))
 
-(defn get-errors [filename]
-  (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
-        result (parser (slurp filename))]
-    (insta/get-failure result)))
-
 (defn drop-include [result]
   (let [[type & _] (first result)]
     (if (= :include type)
       (rest result)
       result)))
+
+(defn get-errors [filename]
+  (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
+        result (parser (slurp filename))]
+    {:parse-errors (insta/get-failure result)
+     :contains-bad-leap-dates? (contains-bad-leap-dates (drop-include result))
+     :included-holiday-exists? (included-holiday-exists result filename)}))
 
 (defn valid-holiday-file? [filename]
   (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
