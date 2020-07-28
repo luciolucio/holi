@@ -18,11 +18,17 @@
     "bad-date5.hol"
     "bad-expression.hol"
     "bad-expression2.hol"
-    "bad-expression3.hol"))
+    "bad-expression3.hol"
+    "include-before-comment.hol"
+    "include-not-on-first-line.hol"
+    "include-too-many-includes.hol"
+    "bad-include.hol"
+    "bad-include2.hol"))
 
 (deftest should-identify-valid-holiday-file-correctly
   (are [filename]
     (= true (check/valid-holiday-file? (str "test-resources/check/" filename)))
     "good.hol"
     "include-base.hol"
-    "include.hol"))
+    "include.hol"
+    "include-with-space.hol"))

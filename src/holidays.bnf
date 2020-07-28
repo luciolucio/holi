@@ -1,7 +1,4 @@
 <holidays> = <comment>? include? holiday+
-include = <include-marker> <'include'> <' '> holiday-name <newline>
-include-marker = '#'
-<holiday-name> = #'[a-zA-Z][-a-zA-Z]+'
 holiday = !comment-marker !include-marker name <'|'> holiday-definition <newline>
 
 <name> = #'[^\n|]+'
@@ -32,5 +29,9 @@ expression = supported-calculated-date expression-operator expression-operand
 
 comment = comment-marker #".*" newline
 comment-marker = ';'
+
+include = <include-marker> <'include'> <#"\s+"> include-name <newline>
+include-marker = '#'
+<include-name> = #'[a-zA-Z][-a-zA-Z]+'
 
 newline = '\n' | '\r\n'
