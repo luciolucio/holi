@@ -20,9 +20,5 @@
     "bad-expression2.hol"
     "bad-expression3.hol"))
 
-; Parser results example from parsing good.hol
-; ([:holiday "Holiday ddmmm" [:ddmmm "29" "Aug"]]
-;  [:holiday "Holiday ddmmmyyyy" [:ddmmmyyyy [:ddmmm "29" "Aug"] [:yyyy "2019"]]]
-;  [:holiday "Holiday expression plus" [:expression "E" "+" "40"]])
 (deftest should-identify-valid-holiday-file-correctly
   (is (= true (check/valid-holiday-file? "test-resources/check/good.hol"))))
