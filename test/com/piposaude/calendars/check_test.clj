@@ -23,6 +23,8 @@
     "include-not-on-first-line.hol"
     "include-too-many-includes.hol"
     "include-nonexistent-file.hol"
+    "includes-invalid-holiday-file.hol"
+    "includes-holiday-that-includes-invalid.hol"
     "bad-include.hol"
     "bad-include2.hol"))
 
@@ -33,4 +35,5 @@
     "good-all-numbers.hol"
     "include-base.hol"
     "include.hol"
-    "include-with-space.hol"))
+    "include-with-space.hol"
+    "include-nested.hol"))
