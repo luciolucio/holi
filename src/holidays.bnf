@@ -1,5 +1,8 @@
-<holidays> = <comment>? holiday+
-holiday = !comment-marker name <'|'> holiday-definition <newline>
+<holidays> = <comment>? include? holiday+
+include = <include-marker> <'include'> <' '> holiday-name <newline>
+include-marker = '#'
+<holiday-name> = #'[a-zA-Z][-a-zA-Z]+'
+holiday = !comment-marker !include-marker name <'|'> holiday-definition <newline>
 
 <name> = #'[^\n|]+'
 

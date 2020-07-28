@@ -21,4 +21,8 @@
     "bad-expression3.hol"))
 
 (deftest should-identify-valid-holiday-file-correctly
-  (is (= true (check/valid-holiday-file? "test-resources/check/good.hol"))))
+  (are [filename]
+    (= true (check/valid-holiday-file? (str "test-resources/check/" filename)))
+    "good.hol"
+    "include-base.hol"
+    "include.hol"))
