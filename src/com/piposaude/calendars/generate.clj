@@ -17,7 +17,11 @@
     :expression (expression/get-holiday-expression year name args)
     nil))
 
-(defn holidays-for-year [year holiday-file]
+(defn remove-exceptions [holidays]
+  (let [exception-dates (set (map :date (filter :exception? holidays)))]
+    (remove #(some #{(:date %)} exception-dates) holidays)))
+
+(defn- holidays-for-year-with-exception-key [year holiday-file]
   (cond
     (not (valid-year? year))
     (throw (ex-info "Invalid year" {:year year}))
@@ -27,8 +31,14 @@
 
     :default
     (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
-          result (parser (slurp holiday-file))]
-      (flatten (remove nil? (conj
-                              (keep (partial get-holiday year) (common/drop-include result))
-                              (when (common/holiday-was-included? result)
-                                (holidays-for-year year (common/included-filename holiday-file (second (first result)))))))))))
+          result (parser (slurp holiday-file))
+          holidays (conj
+                     (keep (partial get-holiday year) (common/drop-include result))
+                     (when (common/holiday-was-included? result)
+                       (holidays-for-year-with-exception-key year (common/included-filename holiday-file (second (first result))))))]
+      (-> (remove nil? holidays)
+          flatten
+          remove-exceptions))))
+
+(defn holidays-for-year [year holiday-file]
+  (map #(select-keys % [:name :date]) (holidays-for-year-with-exception-key year holiday-file)))

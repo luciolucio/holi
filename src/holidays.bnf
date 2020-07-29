@@ -19,13 +19,15 @@ ddmmm = day-31 month-31 | day-30 month-30 | day-feb month-feb
 <month-30> = 'Apr' | 'Jun' | 'Sep' | 'Nov'
 <month-feb> = 'Feb'
 
-ddmmmyyyy = ddmmm yyyy
+ddmmmyyyy = ddmmm yyyy exception-marker?
 yyyy = #'\d{4}'
 
 expression = supported-calculated-date expression-operator expression-operand
 <supported-calculated-date> = 'E'
 <expression-operator> = '+' | '-'
 <expression-operand> = #'\d+'
+
+exception-marker = '-'
 
 comment = comment-marker #".*" newline
 comment-marker = ';'

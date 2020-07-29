@@ -2,6 +2,7 @@
 Holiday ddmmm|29Aug
 Holiday ddmmm single digit|2Oct
 Holiday ddmmmyyyy|29Aug2019
+Holiday ddmmmyyyy exception|30Sep2015-
 Holiday ddmmmyyyy single digit|2Oct2000
 Holiday ddmmmyyyy valid leap day|29Feb2012
 Holiday expression plus|E+40

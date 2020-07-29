@@ -25,8 +25,11 @@
     (month->month-number month)
     (pad-with-zero month)))
 
-(defn holiday [name day month year]
-  (let [formatted-month (format-month month)
-        formatted-day (pad-with-zero day)
-        yyyy-mmm-dd (format "%s-%s-%s" year formatted-month formatted-day)]
-    {:name name :date (t/date yyyy-mmm-dd)}))
+(defn holiday
+  ([name day month year]
+   (holiday name day month year false))
+  ([name day month year exception?]
+   (let [formatted-month (format-month month)
+         formatted-day (pad-with-zero day)
+         yyyy-mmm-dd (format "%s-%s-%s" year formatted-month formatted-day)]
+     {:name name :date (t/date yyyy-mmm-dd) :exception? exception?})))
