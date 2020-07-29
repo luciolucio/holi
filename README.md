@@ -7,10 +7,11 @@ Creates calendars in S3 to be used with `date-add-cal`
 ## Usage
 
 1. **Create** or **update** a calendar in `resources/calendars`
+1. Run `bin/check-calendars` to check syntax on all files and fix any errors
 1. Commit, push and create a **merge request**
 1. Once you **merge** your MR, the CI job will upsert any calendars in S3
 
-> NOTE: If your holiday file has any syntax errors, the job will fail
+> NOTE: If your holiday file has any syntax errors, a merge request check will fail
 
 ## Calendar file format
 Calendar files actually specify *holidays* and have the `.hol` extension. Each holiday occupies one line, and is formatted like so:

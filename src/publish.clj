@@ -1,4 +1,4 @@
-(ns gen-files
+(ns publish
   (:require [com.piposaude.components.store.impl.s3-store :as store]
             [com.piposaude.calendars.file :as file]
             [tick.alpha.api :as t]
