@@ -40,6 +40,9 @@
       (if (holiday-changed? store path holidays)
         (do
           (archive-current-holiday! store path today)
+          (log/info (format "Saving changed holiday %s" path))
           (store.api/store-object! store path holidays))
-        (log/info (format "Holiday %s did not change, not archiving" path)))
-      (store.api/store-object! store path holidays))))
+        (log/info (format "Holiday %s did not change, ignoring" path)))
+      (do
+        (log/info (format "Saving new holiday %s" path))
+        (store.api/store-object! store path holidays)))))
