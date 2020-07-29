@@ -94,5 +94,16 @@ Holiday Part 1|E+0
 
 This line gets ignored by the holiday generator
 
+## Internals
+The CI job will publish a file to the `pipo-holidays` S3 bucket for each calendar under `resources/calendars`.
+This file will contain an exhaustive list of holidays going back 50 years, and forward 50 years from today.
+Each holiday gets a line of its own, represented simply as `YYYYMMDD` (i.e., without the name), and the file is sorted.
+
+Other points worth mentioning:
+* An archive of the existing holiday will be made
+* If you publish twice the same day, the previous archive will be lost 
+* You can publish it yourself by running `clojure -Apublish`
+
 ## Next steps
+* FIX THE ARCHIVE VULNERABILITY
 * CI script
