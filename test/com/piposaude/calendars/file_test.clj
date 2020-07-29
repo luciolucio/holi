@@ -43,6 +43,6 @@
 (deftest should-not-create-archive-when-generate-with-holiday-not-changed
   (reset-store!)
   (store.api/store-object! store "FILE" "20190728\n20200728\n20210728")
-  (file/generate! store "test-resources/file/FILE.hol" 2020 1 (t/date "2020-07-29"))
+  (file/generate! store "test-resources/file/FILE.hol" 2020 1 (t/date "2020-04-10"))
   (is (= "20190728\n20200728\n20210728" (slurp (:input-stream (store.api/fetch-object store "FILE")))))
-  (is (not (store.api/does-object-exist? store "FILE-UNTIL-20200729"))))
+  (is (not (store.api/does-object-exist? store "FILE-UNTIL-20200410"))))

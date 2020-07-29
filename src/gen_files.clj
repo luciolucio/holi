@@ -10,6 +10,6 @@
   (let [store (store/map->S3Store {:settings {:s3-bucket bucket-name}})
         today (t/today)
         current-year (edn/read-string (t/format (tick.format/formatter "yyyy") today))
-        directory (clojure.java.io/file "resources/")
+        directory (clojure.java.io/file "resources/calendars")
         [_ & files] (file-seq directory)]
     (run! #(file/generate! store (str %) current-year (edn/read-string bracket-size) today) files)))
