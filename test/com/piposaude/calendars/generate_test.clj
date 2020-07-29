@@ -94,6 +94,7 @@
           {:name "Proclamação da República" :date (t/date "2012-11-15")}
           {:name "Natal" :date (t/date "2012-12-25")}
           {:name "Aniversário de São Paulo" :date (t/date "2012-01-25")}
+          {:name "Revolução Constitucionalista" :date (t/date "2012-07-09")}
           {:name "Dia da Consciência Negra" :date (t/date "2012-11-20")}]))
 
 (deftest should-generate-nested-included-holidays-correctly
