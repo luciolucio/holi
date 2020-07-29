@@ -12,4 +12,8 @@
              :cljfmt {:main-opts  ["-m" "cljfmt.main"]
                       :extra-deps {lein-cljfmt {:mvn/version "0.6.6"}}}
 
-             :prod   {}}}
+             :stag   {:extra-paths ["resources"]
+                      :main-opts   ["-m" "gen-files" "pipo-stag" 20]}
+
+             :prod   {:extra-paths ["resources"]
+                      :main-opts   ["-m" "gen-files" "pipo-prod" 20]}}}
