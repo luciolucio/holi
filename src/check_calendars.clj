@@ -22,8 +22,8 @@
     (let [errors (keep #(check-file (str %)) files)]
       (if (seq errors)
         (do
-         (run! log-errors errors)
-         (throw (ex-info "One or more holiday files have errors" {})))
+          (run! log-errors errors)
+          (throw (ex-info "One or more holiday files have errors" {})))
         (log/info "All holiday files formatted correctly")))
     (log/info "Check files finished")
     (log/info "-----------------------------------------------------------")))
