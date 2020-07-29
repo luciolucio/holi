@@ -2,7 +2,8 @@
   (:require [com.piposaude.components.store.api :as store.api]
             [com.piposaude.calendars.generate :as gen]
             [clojure.string :as str]
-            [tick.alpha.api :as t])
+            [tick.alpha.api :as t]
+            [clojure.tools.logging :as log])
   (:import (java.nio.file Paths)))
 
 (defn gen-store-path [holiday-file]
@@ -20,12 +21,15 @@
         holidays (flatten (map (partial get-holidays holiday-file) years))]
     (str/join "\n" (sort holidays))))
 
-(defn archive-current-holiday! [store path today]
-  (when (store.api/does-object-exist? store path)
-    (store.api/move-object! store path (str path "-UNTIL-" (format-YYYYMMDD today)))))
+(defn archive-current-holiday! [store path holidays today]
+  (let [existing-holidays (slurp (:input-stream (store.api/fetch-object store path)))]
+    (if (= holidays existing-holidays)
+      (log/info (format "Holiday %s did not change, not archiving" path))
+      (store.api/move-object! store path (str path "-UNTIL-" (format-YYYYMMDD today))))))
 
 (defn generate! [store holiday-file year bracket-size today]
   (let [holidays (gen-bracketed-holidays holiday-file year bracket-size)
-        store-path (gen-store-path holiday-file)]
-    (archive-current-holiday! store store-path today)
-    (store.api/store-object! store store-path holidays)))
+        path (gen-store-path holiday-file)]
+    (when (store.api/does-object-exist? store path)
+      (archive-current-holiday! store path holidays today))
+    (store.api/store-object! store path holidays)))

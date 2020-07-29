@@ -8,26 +8,41 @@
 
 (def store (component/start (store/map->InMemoryStore {:settings {}})))
 
+(defn reset-store! []
+  (store.api/delete-object! store "FILE")
+  (store.api/delete-object! store "INCLUDE"))
+
 (deftest should-generate-calendar-file-when-generate
+  (reset-store!)
   (file/generate! store "test-resources/file/FILE.hol" 2020 1 (t/today))
   (is (= "20190728\n20200728\n20210728" (slurp (:input-stream (store.api/fetch-object store "FILE"))))))
 
 (deftest should-generate-calendar-file-when-generate-with-larger-bracket
+  (reset-store!)
   (file/generate! store "test-resources/file/FILE.hol" 2020 2 (t/today))
   (is (= "20180728\n20190728\n20200728\n20210728\n20220728" (slurp (:input-stream (store.api/fetch-object store "FILE"))))))
 
 (deftest should-generate-calendar-file-in-sorted-order-when-generate-with-include
+  (reset-store!)
   (file/generate! store "test-resources/file/INCLUDE.hol" 2020 1 (t/today))
   (is (= "20190103\n20190728\n20200103\n20200728\n20210103\n20210728" (slurp (:input-stream (store.api/fetch-object store "INCLUDE"))))))
 
 (deftest should-move-existing-calendar-file-when-generate-with-existing-file
+  (reset-store!)
   (store.api/store-object! store "FILE" "anything")
 
+  (file/generate! store "test-resources/file/FILE.hol" 2020 1 (t/date "2030-01-10"))
+  (is (= "20190728\n20200728\n20210728" (slurp (:input-stream (store.api/fetch-object store "FILE")))))
+  (is (= "anything" (slurp (:input-stream (store.api/fetch-object store "FILE-UNTIL-20300110")))))
+
+  (file/generate! store "test-resources/file/FILE.hol" 2020 2 (t/date "2030-01-11"))
+  (is (= "20180728\n20190728\n20200728\n20210728\n20220728" (slurp (:input-stream (store.api/fetch-object store "FILE")))))
+  (is (= "20190728\n20200728\n20210728" (slurp (:input-stream (store.api/fetch-object store "FILE-UNTIL-20300111")))))
+  (is (= "anything" (slurp (:input-stream (store.api/fetch-object store "FILE-UNTIL-20300110"))))))
+
+(deftest should-not-create-archive-when-generate-with-holiday-not-changed
+  (reset-store!)
+  (store.api/store-object! store "FILE" "20190728\n20200728\n20210728")
   (file/generate! store "test-resources/file/FILE.hol" 2020 1 (t/date "2020-07-29"))
   (is (= "20190728\n20200728\n20210728" (slurp (:input-stream (store.api/fetch-object store "FILE")))))
-  (is (= "anything" (slurp (:input-stream (store.api/fetch-object store "FILE-UNTIL-20200729")))))
-
-  (file/generate! store "test-resources/file/FILE.hol" 2020 2 (t/date "2020-07-30"))
-  (is (= "20180728\n20190728\n20200728\n20210728\n20220728" (slurp (:input-stream (store.api/fetch-object store "FILE")))))
-  (is (= "20190728\n20200728\n20210728" (slurp (:input-stream (store.api/fetch-object store "FILE-UNTIL-20200730")))))
-  (is (= "anything" (slurp (:input-stream (store.api/fetch-object store "FILE-UNTIL-20200729"))))))
+  (is (not (store.api/does-object-exist? store "FILE-UNTIL-20200729"))))
