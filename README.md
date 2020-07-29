@@ -101,9 +101,8 @@ Each holiday gets a line of its own, represented simply as `YYYYMMDD` (i.e., wit
 
 Other points worth mentioning:
 * An archive of the existing holiday will be made
-* If you publish twice the same day, the previous archive will be lost 
+* If you publish twice the same day, the most recent file wins
 * You can publish it yourself by running `clojure -Apublish`
 
 ## Next steps
-* FIX THE ARCHIVE VULNERABILITY
 * CI script

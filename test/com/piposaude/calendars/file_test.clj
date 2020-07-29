@@ -26,7 +26,7 @@
   (file/generate! *store* "test-resources/file/INCLUDE.hol" 2020 1 (t/today))
   (is (= "20190103\n20190728\n20200103\n20200728\n20210103\n20210728" (slurp (:input-stream (store.api/fetch-object *store* "INCLUDE"))))))
 
-(deftest should-move-existing-calendar-file-when-generate-with-existing-file
+(deftest should-archive-existing-calendar-file-when-generate-with-existing-file
   (store.api/store-object! *store* "FILE" "anything")
 
   (file/generate! *store* "test-resources/file/FILE.hol" 2020 1 (t/date "2030-01-10"))
@@ -43,3 +43,10 @@
   (file/generate! *store* "test-resources/file/FILE.hol" 2020 1 (t/date "2020-04-10"))
   (is (= "20190728\n20200728\n20210728" (slurp (:input-stream (store.api/fetch-object *store* "FILE")))))
   (is (not (store.api/does-object-exist? *store* "FILE-UNTIL-20200410"))))
+
+(deftest should-not-overwrite-archive-when-generate-file-twice-on-the-same-day
+  (store.api/store-object! *store* "FILE" "anything")
+  (file/generate! *store* "test-resources/file/FILE.hol" 2020 2 (t/date "2020-04-10"))
+  (file/generate! *store* "test-resources/file/FILE.hol" 2020 1 (t/date "2020-04-10"))
+  (is (= "anything" (slurp (:input-stream (store.api/fetch-object *store* "FILE-UNTIL-20200410")))))
+  (is (= "20190728\n20200728\n20210728" (slurp (:input-stream (store.api/fetch-object *store* "FILE"))))))

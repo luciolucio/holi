@@ -25,9 +25,11 @@
   (store.api/does-object-exist? store path))
 
 (defn archive-current-holiday! [store path today]
-  (let [archive-filename (str path "-UNTIL-" (format-YYYYMMDD today))]
-    (log/info (format "Archiving %s to %s" path archive-filename))
-    (store.api/move-object! store path archive-filename)))
+  (let [archive-filename (str path "-UNTIL-" (format-YYYYMMDD today))
+        archive-exists? (store.api/does-object-exist? store archive-filename)]
+    (when-not archive-exists?
+      (log/info (format "Archiving %s to %s" path archive-filename))
+      (store.api/move-object! store path archive-filename))))
 
 (defn holiday-changed? [store path holidays]
   (let [existing-holidays (slurp (:input-stream (store.api/fetch-object store path)))]
