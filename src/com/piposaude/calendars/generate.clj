@@ -8,7 +8,7 @@
             [com.piposaude.calendars.constants :refer :all]))
 
 (defn valid-year? [year]
-  (and (int? year) (<= MIN-YEAR year MAX-YEAR)))
+  (and (integer? year) (<= MIN-YEAR year MAX-YEAR)))
 
 (defn get-holiday [year [_ name [type & args]]]
   (condp = type
@@ -24,10 +24,10 @@
 (defn- holidays-for-year-with-exception-key [year holiday-file]
   (cond
     (not (valid-year? year))
-    (throw (ex-info "Invalid year" {:year year}))
+    (throw (ex-info (str "Invalid year: " year) {:year year}))
 
     (not (check/valid-holiday-file? holiday-file))
-    (throw (ex-info "Invalid holiday file" {:holiday-file holiday-file :errors (check/get-errors holiday-file)}))
+    (throw (ex-info (str "Invalid holiday file: " holiday-file) {:holiday-file holiday-file :errors (check/get-errors holiday-file)}))
 
     :default
     (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))

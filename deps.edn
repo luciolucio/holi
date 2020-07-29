@@ -6,14 +6,11 @@
              easter-day                    {:mvn/version "0.1.1"}
              com.piposaude/components-api  {:mvn/version "0.36.5"}
              com.piposaude/components-impl {:mvn/version "0.36.5"}}
- :aliases   {:dev    {:extra-paths ["test" "test-resources" "bin"]
-                      :extra-deps  {eftest {:mvn/version "0.5.9"}}}
+ :aliases   {:dev     {:extra-paths ["test" "test-resources" "bin"]
+                       :extra-deps  {eftest {:mvn/version "0.5.9"}}}
 
-             :cljfmt {:main-opts  ["-m" "cljfmt.main"]
-                      :extra-deps {lein-cljfmt {:mvn/version "0.6.6"}}}
+             :cljfmt  {:main-opts  ["-m" "cljfmt.main"]
+                       :extra-deps {lein-cljfmt {:mvn/version "0.6.6"}}}
 
-             :stag   {:extra-paths ["resources"]
-                      :main-opts   ["-m" "gen-files" "pipo-stag" 20]}
-
-             :prod   {:extra-paths ["resources"]
-                      :main-opts   ["-m" "gen-files" "pipo-prod" 20]}}}
+             :publish {:extra-paths ["resources"]
+                       :main-opts   ["-m" "gen-files" 20]}}}

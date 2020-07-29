@@ -4,9 +4,11 @@
             [tick.alpha.api :as t]
             [clojure.edn :as edn]))
 
-(defn -main [[bucket-name bracket-size]]
+(def bucket-name "pipo-holidays")
+
+(defn -main [bracket-size]
   (let [store (store/map->S3Store {:settings {:s3-bucket bucket-name}})
-        directory (clojure.java.io/file "resources/")
         current-year (edn/read-string (t/format (tick.format/formatter "yyyy") (t/today)))
+        directory (clojure.java.io/file "resources/")
         [_ & files] (file-seq directory)]
-    (run! #(file/generate store (str %) current-year bracket-size "holidays/") files)))
+    (run! #(file/generate store (str %) current-year (edn/read-string bracket-size) "") files)))
