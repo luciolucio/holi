@@ -39,19 +39,19 @@
   (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
         result (parser (slurp filename))]
     (and
-      (not (insta/failure? result))
-      (not (contains-bad-leap-dates? (common/drop-include result)))
-      (included-holiday-exists? result filename)
-      (if-not (common/holiday-was-included? result)
-        true
-        (valid-holiday-file? (common/included-filename filename (second (first result))))))))
+     (not (insta/failure? result))
+     (not (contains-bad-leap-dates? (common/drop-include result)))
+     (included-holiday-exists? result filename)
+     (if-not (common/holiday-was-included? result)
+       true
+       (valid-holiday-file? (common/included-filename filename (second (first result))))))))
 
 (defn get-errors [filename]
   (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
         result (parser (slurp filename))]
     (merge
-      {:parse-errors             (insta/get-failure result)
-       :contains-bad-leap-dates? (contains-bad-leap-dates? (common/drop-include result))
-       :included-holiday-exists? (included-holiday-exists? result filename)}
-      (when (common/holiday-was-included? result)
-        {:included-holiday-valid? (valid-holiday-file? (common/included-filename filename (second (first result))))}))))
+     {:parse-errors             (insta/get-failure result)
+      :contains-bad-leap-dates? (contains-bad-leap-dates? (common/drop-include result))
+      :included-holiday-exists? (included-holiday-exists? result filename)}
+     (when (common/holiday-was-included? result)
+       {:included-holiday-valid? (valid-holiday-file? (common/included-filename filename (second (first result))))}))))

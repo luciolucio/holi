@@ -33,9 +33,9 @@
     (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
           result (parser (slurp holiday-file))
           holidays (conj
-                     (keep (partial get-holiday year) (common/drop-include result))
-                     (when (common/holiday-was-included? result)
-                       (holidays-for-year-with-exception-key year (common/included-filename holiday-file (second (first result))))))]
+                    (keep (partial get-holiday year) (common/drop-include result))
+                    (when (common/holiday-was-included? result)
+                      (holidays-for-year-with-exception-key year (common/included-filename holiday-file (second (first result))))))]
       (-> (remove nil? holidays)
           flatten
           remove-exceptions))))

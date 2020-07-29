@@ -12,7 +12,7 @@
 
 (deftest should-generate-holidays-when-holidays-for-year-with-ddmmm
   (are [expected year]
-    (= expected (gen/holidays-for-year year (str "test-resources/generate/ddmmm.hol")))
+       (= expected (gen/holidays-for-year year (str "test-resources/generate/ddmmm.hol")))
     [{:name "New Year" :date (t/date "2012-01-01")}] 2012
     [{:name "New Year" :date (t/date "2013-01-01")}] 2013
     [{:name "New Year" :date (t/date "2014-01-01")}] 2014
@@ -21,7 +21,7 @@
 
 (deftest should-generate-holidays-when-holidays-for-year-with-ddmmm-leap
   (are [expected year]
-    (= expected (gen/holidays-for-year year (str "test-resources/generate/ddmmm-leap.hol")))
+       (= expected (gen/holidays-for-year year (str "test-resources/generate/ddmmm-leap.hol")))
     [{:name "Leap Day" :date (t/date "2012-02-29")}] 2012
     [] 2013
     [] 2014
@@ -30,7 +30,7 @@
 
 (deftest should-generate-holidays-when-holidays-for-year-with-ddmmmyyyy
   (are [expected year]
-    (= expected (gen/holidays-for-year year (str "test-resources/generate/ddmmmyyyy.hol")))
+       (= expected (gen/holidays-for-year year (str "test-resources/generate/ddmmmyyyy.hol")))
     [] 2012
     [] 2013
     [] 2014
@@ -41,7 +41,7 @@
 
 (deftest should-generate-holidays-when-holidays-for-year-with-expressions
   (are [expected year]
-    (= expected (gen/holidays-for-year year (str "test-resources/generate/expression.hol")))
+       (= expected (gen/holidays-for-year year (str "test-resources/generate/expression.hol")))
     [{:name "Easter" :date (t/date "2012-04-08")}] 2012
     [{:name "Easter" :date (t/date "2013-03-31")}] 2013
     [{:name "Easter" :date (t/date "2014-04-20")}] 2014
@@ -58,21 +58,21 @@
 
 (deftest should-generate-holidays-when-holidays-for-year-with-exception-on-expression
   (are [expected year]
-    (= expected (gen/holidays-for-year year (str "test-resources/generate/exception-on-expression.hol")))
+       (= expected (gen/holidays-for-year year (str "test-resources/generate/exception-on-expression.hol")))
     [{:name "Easter" :date (t/date "2012-04-08")}] 2012
     [] 2013
     [{:name "Easter" :date (t/date "2014-04-20")}] 2014))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-exception-on-ddmmm
   (are [expected year]
-    (= expected (gen/holidays-for-year year (str "test-resources/generate/exception-on-ddmmm.hol")))
+       (= expected (gen/holidays-for-year year (str "test-resources/generate/exception-on-ddmmm.hol")))
     [{:name "NATIONAL PEANUT BUTTER AND JELLY DAY" :date (t/date "2012-04-02")}] 2012
     [] 2013
     [{:name "NATIONAL PEANUT BUTTER AND JELLY DAY" :date (t/date "2014-04-02")}] 2014))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-brazil-holidays
   (are [year expected]
-    (= expected (gen/holidays-for-year year "test-resources/generate/BR.hol"))
+       (= expected (gen/holidays-for-year year "test-resources/generate/BR.hol"))
     2012 [{:name "Confraternização Universal / Ano Novo" :date (t/date "2012-01-01")}
           {:name "Segunda-feira de carnaval" :date (t/date "2012-02-20")}
           {:name "Terça-feira de carnaval" :date (t/date "2012-02-21")}
@@ -100,7 +100,7 @@
 
 (deftest should-generate-holidays-when-holidays-for-year-with-sao-paulo-holidays
   (are [year expected]
-    (= expected (gen/holidays-for-year year "test-resources/generate/SPO.hol"))
+       (= expected (gen/holidays-for-year year "test-resources/generate/SPO.hol"))
     2012 [{:name "Confraternização Universal / Ano Novo" :date (t/date "2012-01-01")}
           {:name "Segunda-feira de carnaval" :date (t/date "2012-02-20")}
           {:name "Terça-feira de carnaval" :date (t/date "2012-02-21")}
