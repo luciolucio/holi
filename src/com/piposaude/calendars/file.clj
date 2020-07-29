@@ -19,7 +19,7 @@
 (defn gen-bracketed-holidays [holiday-file year bracket-size]
   (let [years (range (- year bracket-size) (+ year (inc bracket-size)))
         holidays (flatten (map (partial get-holidays holiday-file) years))]
-    (str/join "\n" holidays)))
+    (str/join "\n" (sort holidays))))
 
 (defn generate [store holiday-file year bracket-size output-path]
   (let [holidays (gen-bracketed-holidays holiday-file year bracket-size)
