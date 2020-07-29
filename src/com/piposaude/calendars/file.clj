@@ -5,23 +5,27 @@
             [tick.alpha.api :as t])
   (:import (java.nio.file Paths)))
 
-(defn gen-store-path [holiday-file output-path]
-  (let [filename (.toString (.getFileName (Paths/get holiday-file (into-array String []))))
-        filename-sans-extension (str/join "" (drop-last 4 filename))]
-    (.toString (Paths/get output-path (into-array String [filename-sans-extension])))))
+(defn gen-store-path [holiday-file]
+  (let [filename (.toString (.getFileName (Paths/get holiday-file (into-array String []))))]
+    (str/join "" (drop-last 4 filename))))
 
-(defn format-holiday [holiday]
-  (t/format (tick.format/formatter "yyyyMMdd") (:date holiday)))
+(defn format-YYYYMMDD [holiday]
+  (t/format (tick.format/formatter "yyyyMMdd") holiday))
 
 (defn get-holidays [holiday-file year]
-  (map format-holiday (gen/holidays-for-year year holiday-file)))
+  (map #(format-YYYYMMDD (:date %)) (gen/holidays-for-year year holiday-file)))
 
 (defn gen-bracketed-holidays [holiday-file year bracket-size]
   (let [years (range (- year bracket-size) (+ year (inc bracket-size)))
         holidays (flatten (map (partial get-holidays holiday-file) years))]
     (str/join "\n" (sort holidays))))
 
-(defn generate [store holiday-file year bracket-size output-path]
+(defn archive-current-holiday! [store path today]
+  (when (store.api/does-object-exist? store path)
+    (store.api/move-object! store path (str path "-UNTIL-" (format-YYYYMMDD today)))))
+
+(defn generate! [store holiday-file year bracket-size today]
   (let [holidays (gen-bracketed-holidays holiday-file year bracket-size)
-        store-path (gen-store-path holiday-file output-path)]
+        store-path (gen-store-path holiday-file)]
+    (archive-current-holiday! store store-path today)
     (store.api/store-object! store store-path holidays)))
