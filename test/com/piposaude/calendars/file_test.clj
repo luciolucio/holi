@@ -1,52 +1,16 @@
 (ns com.piposaude.calendars.file-test
   (:require [clojure.test :refer :all]
-            [com.piposaude.calendars.file :as file]
-            [com.stuartsierra.component :as component]
-            [com.piposaude.components.store.impl.in-memory-store :as store]
-            [com.piposaude.components.store.api :as store.api]
-            [tick.core :as t]))
+            [com.piposaude.calendars.file :as file]))
 
-(def ^:dynamic *store* {})
+(def output-path "test-resources/file/output")
 
-(defn setup [f]
-  (binding [*store* (component/start (store/map->InMemoryStore {:settings {}}))]
-    (f)))
+(defn run-generate-test-case [expected holiday-file year bracket-size]
+  (file/generate! (format "test-resources/file/%s.hol" holiday-file) output-path year bracket-size)
+  (is (= (slurp (format "test-resources/file/%s" expected)) (slurp (format "test-resources/file/output/%s" holiday-file)))))
 
-(use-fixtures :each setup)
-
-(deftest should-generate-calendar-file-when-generate
-  (file/generate! *store* "test-resources/file/FILE.hol" 2020 1 (t/today))
-  (is (= "20190728\n20200728\n20210728" (slurp (:input-stream (store.api/fetch-object *store* "FILE"))))))
-
-(deftest should-generate-calendar-file-when-generate-with-larger-bracket
-  (file/generate! *store* "test-resources/file/FILE.hol" 2020 2 (t/today))
-  (is (= "20180728\n20190728\n20200728\n20210728\n20220728" (slurp (:input-stream (store.api/fetch-object *store* "FILE"))))))
-
-(deftest should-generate-calendar-file-in-sorted-order-when-generate-with-include
-  (file/generate! *store* "test-resources/file/INCLUDE.hol" 2020 1 (t/today))
-  (is (= "20190103\n20190728\n20200103\n20200728\n20210103\n20210728" (slurp (:input-stream (store.api/fetch-object *store* "INCLUDE"))))))
-
-(deftest should-archive-existing-calendar-file-when-generate-with-existing-file
-  (store.api/store-object! *store* "FILE" "anything")
-
-  (file/generate! *store* "test-resources/file/FILE.hol" 2020 1 (t/date "2030-01-10"))
-  (is (= "20190728\n20200728\n20210728" (slurp (:input-stream (store.api/fetch-object *store* "FILE")))))
-  (is (= "anything" (slurp (:input-stream (store.api/fetch-object *store* "FILE-UNTIL-20300110")))))
-
-  (file/generate! *store* "test-resources/file/FILE.hol" 2020 2 (t/date "2030-01-11"))
-  (is (= "20180728\n20190728\n20200728\n20210728\n20220728" (slurp (:input-stream (store.api/fetch-object *store* "FILE")))))
-  (is (= "20190728\n20200728\n20210728" (slurp (:input-stream (store.api/fetch-object *store* "FILE-UNTIL-20300111")))))
-  (is (= "anything" (slurp (:input-stream (store.api/fetch-object *store* "FILE-UNTIL-20300110"))))))
-
-(deftest should-not-create-archive-when-generate-with-holiday-not-changed
-  (store.api/store-object! *store* "FILE" "20190728\n20200728\n20210728")
-  (file/generate! *store* "test-resources/file/FILE.hol" 2020 1 (t/date "2020-04-10"))
-  (is (= "20190728\n20200728\n20210728" (slurp (:input-stream (store.api/fetch-object *store* "FILE")))))
-  (is (not (store.api/does-object-exist? *store* "FILE-UNTIL-20200410"))))
-
-(deftest should-not-overwrite-archive-when-generate-file-twice-on-the-same-day
-  (store.api/store-object! *store* "FILE" "anything")
-  (file/generate! *store* "test-resources/file/FILE.hol" 2020 2 (t/date "2020-04-10"))
-  (file/generate! *store* "test-resources/file/FILE.hol" 2020 1 (t/date "2020-04-10"))
-  (is (= "anything" (slurp (:input-stream (store.api/fetch-object *store* "FILE-UNTIL-20200410")))))
-  (is (= "20190728\n20200728\n20210728" (slurp (:input-stream (store.api/fetch-object *store* "FILE"))))))
+(deftest blah
+  (are [expected holiday-file year bracket-size]
+    (run-generate-test-case expected holiday-file year bracket-size)
+    "FILE-EXPECTED" "FILE" 2020 1
+    "FILE2-EXPECTED" "FILE" 2020 2
+    "INCLUDE-EXPECTED" "INCLUDE" 2020 1))
