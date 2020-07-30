@@ -1,33 +1,13 @@
 image: piposaude/build-pipo-clj:1.1
 
-stages:
-  - merge-request-checks
-  - publish
-
 fmt-check:
-  stage: merge-request-checks
   script:
     - bin/fmt-check
   rules:
     - if: $CI_MERGE_REQUEST_IID
 
 unit-tests:
-  stage: merge-request-checks
   script:
     - bin/eftest
   rules:
     - if: $CI_MERGE_REQUEST_IID
-
-check-calendars:
-  stage: merge-request-checks
-  script:
-    - bin/check-calendars
-  rules:
-    - if: $CI_MERGE_REQUEST_IID
-
-publish:
-  stage: publish
-  script:
-    - bin/publish
-  rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
