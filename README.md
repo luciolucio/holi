@@ -101,6 +101,7 @@ This file will contain an exhaustive list of holidays going back 50 years, and f
 Each holiday gets a line of its own, represented simply as `YYYYMMDD` (i.e., without the name), and the file is sorted.
 
 Other points worth mentioning:
+
 * An archive of any existing holidays will be made
 * If you publish twice the same day, the most recent file wins
 * If the calculated holidays do not change (even if the definition changed), nothing changes on S3 
