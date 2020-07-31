@@ -7,10 +7,7 @@
 
 (defn leap-year? [[_ year-str]]
   (let [year (edn/read-string year-str)]
-    (cond (zero? (mod year 400)) true
-          (zero? (mod year 100)) false
-          (zero? (mod year 4)) true
-          :default false)))
+    (common/leap-year? year)))
 
 (defn leap-day? [[_ day month]]
   (and (= "29" day)
