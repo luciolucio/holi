@@ -1,4 +1,4 @@
-(ns com.piposaude.calendars.generate
+(ns com.piposaude.calendars.holidays
   (:require [instaparse.core :as insta]
             [com.piposaude.calendars.common :as common]
             [com.piposaude.calendars.check :as check]

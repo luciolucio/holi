@@ -1,7 +1,7 @@
-(ns com.piposaude.calendars.generate-test
+(ns com.piposaude.calendars.holidays-test
   (:require [clojure.test :refer :all]
             [tick.core :as t]
-            [com.piposaude.calendars.generate :as gen])
+            [com.piposaude.calendars.holidays :as gen])
   (:import (clojure.lang ExceptionInfo)))
 
 (deftest should-throw-when-holiday-file-is-invalid
