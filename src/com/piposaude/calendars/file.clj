@@ -6,7 +6,7 @@
   (:import (java.nio.file Paths)))
 
 (defn format-YYYYMMDD [holiday]
-  (t/format (tick.format/formatter "yyyyMMdd") holiday))
+  (t/format (tick.format/formatter "yyyy-MM-dd") holiday))
 
 (defn gen-path [holiday-file output-path]
   (let [filename (.toString (.getFileName (Paths/get holiday-file (into-array String []))))
@@ -18,7 +18,7 @@
 
 (defn gen-bracketed-holidays [holiday-file year bracket-size]
   (let [years (range (- year bracket-size) (+ year (inc bracket-size)))]
-    (flatten (map (partial get-holidays holiday-file) years))))
+    (sort (flatten (map (partial get-holidays holiday-file) years)))))
 
 (defn get-weekends [year]
   (let [start (t/new-date year 1 1)
@@ -34,6 +34,7 @@
 (defn generate! [holiday-file output-path year bracket-size]
   (let [holidays (gen-bracketed-holidays holiday-file year bracket-size)
         weekends (gen-bracketed-weekends year bracket-size)
-        non-business-days (dedupe (sort (concat holidays weekends)))
-        path (gen-path holiday-file output-path)]
-    (spit path (str/join "\n" non-business-days))))
+        path (gen-path holiday-file output-path)
+        weekend-path (gen-path "WEEKEND.hol" output-path)]
+    (spit path (str/join "\n" holidays))
+    (spit weekend-path (str/join "\n" weekends))))

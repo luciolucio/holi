@@ -14,3 +14,8 @@
     "FILE-EXPECTED" "FILE" 2020 1
     "FILE2-EXPECTED" "FILE" 2020 2
     "INCLUDE-EXPECTED" "INCLUDE" 2020 1))
+
+(deftest should-generate-weekend-file-when-generate
+  (file/generate! "test-resources/file/FILE.hol" output-path 2020 2)
+  (is (= (slurp "test-resources/file/FILE2-EXPECTED") (slurp "test-resources/file/output/FILE")))
+  (is (= (slurp "test-resources/file/WEEKEND2-EXPECTED") (slurp "test-resources/file/output/WEEKEND"))))
