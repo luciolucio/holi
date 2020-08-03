@@ -6,14 +6,14 @@ arithmetics around non-business days, that you define yourself with a simple DSL
 
 ## Usage
 
-Generate a new library using whether `curl` or `wget`:
+Create a new clojure deps project using whether `curl` or `wget`:
 
 ```
-curl -o- https://raw.githubusercontent.com/luciolucio/calenjars/v0.1.0/gen.sh | bash
+curl -o- https://raw.githubusercontent.com/luciolucio/calenjars/v0.1.0/new-project.sh | bash
 ```
 
 ```
-wget -qO- https://raw.githubusercontent.com/luciolucio/calenjars/v0.1.0/gen.sh | bash
+wget -qO- https://raw.githubusercontent.com/luciolucio/calenjars/v0.1.0/new-project.sh | bash
 ```
 
 > Note: the script will prompt you for the lib name and namespace to use
