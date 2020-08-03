@@ -24,7 +24,7 @@ your holiday calendar definition files and generate your jar
 
 When you import the generated jar as a dependency in your project, you'll be able to do things like:
 
-```
+```clj
 (ns my-awesome-app
   (:require [my.generated.lib.calendar :refer [relative-date-add]]))
 
@@ -35,7 +35,7 @@ When you import the generated jar as a dependency in your project, you'll be abl
 
 It goes backwards too (this time with [juxt/tick](https://www.juxt.land/tick/docs/index.html)):
 
-```
+```clj
 (ns my-awesome-app
   (:require [my.generated.lib.calendar :refer [relative-date-add]]
             [tick.core :as t]))
