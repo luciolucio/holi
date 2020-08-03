@@ -3,3 +3,5 @@
 dev/
 test-resources/file/output/
 output.txt
+target/
+calenjars.jar

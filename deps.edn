@@ -3,9 +3,11 @@
            instaparse          {:mvn/version "1.4.10"}
            tick                {:mvn/version "0.4.26-alpha"}
            easter-day          {:mvn/version "0.1.1"}}
- :aliases {:eftest {:extra-paths ["test" "test-resources" "bin"]
-                    :extra-deps  {eftest        {:mvn/version "0.5.9"}
-                                  cider/orchard {:mvn/version "0.5.4"}}}
+ :aliases {:eftest  {:extra-paths ["test" "test-resources" "bin"]
+                     :extra-deps  {eftest        {:mvn/version "0.5.9"}
+                                   cider/orchard {:mvn/version "0.5.4"}}}
 
-           :cljfmt {:main-opts  ["-m" "cljfmt.main"]
-                    :extra-deps {lein-cljfmt {:mvn/version "0.6.6"}}}}}
+           :cljfmt  {:main-opts  ["-m" "cljfmt.main"]
+                     :extra-deps {lein-cljfmt {:mvn/version "0.6.6"}}}
+
+           :depstar {:extra-deps {seancorfield/depstar {:mvn/version "0.5.2"}}}}}
