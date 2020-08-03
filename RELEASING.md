@@ -1,9 +1,28 @@
-How to release
+## How to release
 
-Change the version number in pom.xml and commit
+Change the version number in these places:
+
+* resources/template/resources/deps.edn
 
 ```
-<version>0.1.1</version>   <-- change this
+luciolucio/calenjars {:mvn/version "0.1.1"}}  <-- change here
+```
+
+* resources/template/resources/pom.xml
+
+```
+    <dependency>
+      <groupId>luciolucio</groupId>
+      <artifactId>calenjars</artifactId>
+      <version>0.1.1</version>              <-- change here
+    </dependency>
+```
+
+* main pom.xml
+```
+  <groupId>luciolucio</groupId>
+  <artifactId>calenjars</artifactId>
+  <version>0.1.1</version>                  <-- change here
 ```
 
 Make sure the clojars token is in the `servers` section of your `~/.m2/settings.xml`:
@@ -21,3 +40,15 @@ Run this:
 ```
 bin/release.sh
 ```
+
+Tag the new version in github, and change the README:
+
+```
+curl -o- https://raw.githubusercontent.com/luciolucio/calenjars/v0.1.1/new-project.sh | bash   <-- change here
+```
+
+```
+wget -qO- https://raw.githubusercontent.com/luciolucio/calenjars/v0.1.1/new-project.sh | bash   <-- change here
+```
+
+Push everything
