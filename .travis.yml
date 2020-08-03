@@ -1,3 +1,3 @@
 language: clojure
-install: ./bin/noop.sh
+install: ./bin/install-clojure.sh
 script: ./bin/build.sh
