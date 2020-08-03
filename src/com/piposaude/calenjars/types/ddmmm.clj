@@ -1,6 +1,6 @@
-(ns com.piposaude.calendars.types.ddmmm
+(ns com.piposaude.calenjars.types.ddmmm
   (:require [clojure.string :as str]
-            [com.piposaude.calendars.types.common :refer [holiday]])
+            [com.piposaude.calenjars.types.common :refer [holiday]])
   (:import (java.time.format DateTimeParseException)))
 
 (defn get-holiday-ddmm [year name [day month]]

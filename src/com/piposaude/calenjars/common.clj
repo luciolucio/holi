@@ -1,4 +1,4 @@
-(ns com.piposaude.calendars.common
+(ns com.piposaude.calenjars.common
   (:require [tick.alpha.api :as t])
   (:import (java.nio.file Paths)))
 

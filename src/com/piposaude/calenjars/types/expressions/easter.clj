@@ -1,5 +1,5 @@
-(ns com.piposaude.calendars.types.expressions.easter
-  (:require [com.piposaude.calendars.types.common :refer [holiday]]
+(ns com.piposaude.calenjars.types.expressions.easter
+  (:require [com.piposaude.calenjars.types.common :refer [holiday]]
             [easter-day :as easter]
             [tick.core :as t]
             [clojure.edn :as edn]))

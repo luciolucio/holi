@@ -1,6 +1,6 @@
-(ns com.piposaude.calendars.file-test
+(ns com.piposaude.calenjars.file-test
   (:require [clojure.test :refer :all]
-            [com.piposaude.calendars.file :as file]))
+            [com.piposaude.calenjars.file :as file]))
 
 (def output-path "test-resources/file/output")
 

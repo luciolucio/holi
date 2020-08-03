@@ -1,18 +1,18 @@
-# Calenjar
+# Calenjars
 
-Calenjar is a clojure jar generator, designed to allow creation of libraries for
-date arithmetics around non-business days, that you define yourself with a simple DSL.
+Calenjars is a clojure jar generator, designed to create libraries for date
+arithmetics around non-business days, that you define yourself with a simple DSL.
 
 ## Usage
 
 Generate a new library using whether `curl` or `wget`:
 
 ```
-curl -o- https://raw.githubusercontent.com/piposaude/calenjar/v0.1.0/gen.sh | bash
+curl -o- https://raw.githubusercontent.com/luciolucio/calenjars/v0.1.0/gen.sh | bash
 ```
 
 ```
-wget -qO- https://raw.githubusercontent.com/piposaude/calenjar/v0.1.0/gen.sh | bash
+wget -qO- https://raw.githubusercontent.com/luciolucio/calenjars/v0.1.0/gen.sh | bash
 ```
 
 > Note: the script will prompt you for the namespace to use

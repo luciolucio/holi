@@ -1,8 +1,8 @@
-(ns com.piposaude.calendars.check
+(ns com.piposaude.calenjars.check
   (:require [instaparse.core :as insta]
             [clojure.edn :as edn]
-            [com.piposaude.calendars.common :as common]
-            [com.piposaude.calendars.constants :refer [PARSER-GRAMMAR-FILENAME]])
+            [com.piposaude.calenjars.common :as common]
+            [com.piposaude.calenjars.constants :refer [PARSER-GRAMMAR-FILENAME]])
   (:import (java.io FileNotFoundException)))
 
 (defn leap-year? [[_ year-str]]

@@ -1,6 +1,6 @@
-(ns com.piposaude.calendars.check-test
+(ns com.piposaude.calenjars.check-test
   (:require [clojure.test :refer :all]
-            [com.piposaude.calendars.check :as check]))
+            [com.piposaude.calenjars.check :as check]))
 
 (deftest should-identify-invalid-holiday-files-correctly
   (are [filename]

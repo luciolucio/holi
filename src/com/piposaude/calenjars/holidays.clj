@@ -1,11 +1,11 @@
-(ns com.piposaude.calendars.holidays
+(ns com.piposaude.calenjars.holidays
   (:require [instaparse.core :as insta]
-            [com.piposaude.calendars.common :as common]
-            [com.piposaude.calendars.check :as check]
-            [com.piposaude.calendars.types.ddmmm :as ddmm]
-            [com.piposaude.calendars.types.ddmmmyyyy :as ddmmyyyy]
-            [com.piposaude.calendars.types.expression :as expression]
-            [com.piposaude.calendars.constants :refer :all]))
+            [com.piposaude.calenjars.common :as common]
+            [com.piposaude.calenjars.check :as check]
+            [com.piposaude.calenjars.types.ddmmm :as ddmm]
+            [com.piposaude.calenjars.types.ddmmmyyyy :as ddmmyyyy]
+            [com.piposaude.calenjars.types.expression :as expression]
+            [com.piposaude.calenjars.constants :refer :all]))
 
 (defn valid-year? [year]
   (and (integer? year) (<= MIN-YEAR year MAX-YEAR)))

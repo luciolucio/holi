@@ -1,6 +1,6 @@
-(ns com.piposaude.calendars.file
-  (:require [com.piposaude.calendars.common :as common]
-            [com.piposaude.calendars.holidays :as gen]
+(ns com.piposaude.calenjars.file
+  (:require [com.piposaude.calenjars.common :as common]
+            [com.piposaude.calenjars.holidays :as gen]
             [clojure.string :as str]
             [tick.alpha.api :as t])
   (:import (java.nio.file Paths)))

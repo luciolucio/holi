@@ -1,4 +1,4 @@
-(ns com.piposaude.calendars.types.common
+(ns com.piposaude.calenjars.types.common
   (:require [tick.core :as t]))
 
 (def month->month-number

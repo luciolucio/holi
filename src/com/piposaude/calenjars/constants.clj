@@ -1,4 +1,4 @@
-(ns com.piposaude.calendars.constants)
+(ns com.piposaude.calenjars.constants)
 
 (def PARSER-GRAMMAR-FILENAME "holidays.bnf")
 (def MIN-YEAR 1900)
