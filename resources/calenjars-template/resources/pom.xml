@@ -14,7 +14,7 @@
     <dependency>
       <groupId>luciolucio</groupId>
       <artifactId>calenjars</artifactId>
-      <version>0.1.1</version>
+      <version>0.1.2</version>
     </dependency>
   </dependencies>
   <build>
