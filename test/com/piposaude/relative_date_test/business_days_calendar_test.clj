@@ -54,3 +54,7 @@
     7 (t/date-time "2020-08-12T03:15")
     -1 (t/date-time "2020-07-31T03:15")
     -5 (t/date-time "2020-07-27T03:15")))
+
+(deftest should-calculate-correct-date-when-relative-date-add-with-holiday-coinciding-with-weekend
+  (= (t/date "2020-01-22") (relative-date-add (t/date "2020-01-18") 3 :business-days "HOLIDAY-ON-WEEKEND"))
+  (= (t/date-time "2020-01-22T03:15") (relative-date-add (t/date-time "2020-01-18T03:15") 3 :business-days "HOLIDAY-ON-WEEKEND")))

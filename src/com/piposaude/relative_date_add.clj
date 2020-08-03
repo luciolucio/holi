@@ -24,11 +24,14 @@
         (when holiday-strings
           (map t/date holiday-strings))))))
 
-(defn read-calendars [calendars]
-  (->> calendars
-       (keep read-calendar)
-       flatten
-       sort))
+(def read-calendars
+  (memoize
+    (fn [calendars]
+      (->> calendars
+           (keep read-calendar)
+           flatten
+           sort
+           dedupe))))
 
 (defn sign [n]
   (if (pos? n) 1 -1))
