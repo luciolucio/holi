@@ -2,13 +2,13 @@
 
 Change the version number in these places:
 
-* resources/template/resources/deps.edn
+* resources/calenjars-template/resources/deps.edn
 
 ```
 luciolucio/calenjars {:mvn/version "0.1.1"}}  <-- change here
 ```
 
-* resources/template/resources/pom.xml
+* resources/calenjars-template/resources/pom.xml
 
 ```
     <dependency>
@@ -45,8 +45,8 @@ Update `template.zip`
 
 ```
 cd resources
-zip template.zip template/**/*
-zip template.zip template/**/.*
+zip calenjars-template.zip calenjars-template/**/*
+zip calenjars-template.zip calenjars-template/**/.*
 ```
 
 Tag the new version in github, and change the README:
