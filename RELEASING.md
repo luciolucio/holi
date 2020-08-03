@@ -41,6 +41,14 @@ Run this:
 bin/release.sh
 ```
 
+Update `template.zip`
+
+```
+cd resources
+zip template.zip template/**/*
+zip template.zip template/**/.*
+```
+
 Tag the new version in github, and change the README:
 
 ```
