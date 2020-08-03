@@ -1,4 +1,5 @@
 # Calenjars
+[![Build Status](https://travis-ci.com/luciolucio/calenjars.svg?branch=master)](https://travis-ci.com/luciolucio/calenjars)
 
 Calenjars is a clojure jar generator, designed to create libraries for date
 arithmetics around non-business days, that you define yourself with a simple DSL.
