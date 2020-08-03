@@ -1,15 +1,50 @@
-# Calendars
+# Calenjar
 
-Generator of holiday-aware clojure libraries for date arithmetics
+Calenjar is a clojure jar generator, designed to allow creation of libraries for
+date arithmetics around non-business days, that you define yourself with a simple DSL.
 
 ## Usage
 
-1. **Create** or **update** a calendar in `resources/calendars`
-1. Run `bin/check-calendars` to check syntax on all files and fix any errors
-1. Commit, push and create a **merge request**
-1. Once you **merge** your MR, the CI job will upsert any calendars in S3
+Generate a new library using whether `curl` or `wget`:
 
-> NOTE: If your holiday file has any syntax errors, a merge request check will fail
+```
+curl -o- https://raw.githubusercontent.com/piposaude/calenjar/v0.1.0/gen.sh | bash
+```
+
+```
+wget -qO- https://raw.githubusercontent.com/piposaude/calenjar/v0.1.0/gen.sh | bash
+```
+
+> Note: the script will prompt you for the namespace to use
+
+
+Next, **create** your `.hol` files in the generated project's `calendars/` dir
+according to the calendar file format, then run:
+
+```
+clojure -A:depstar:calenjars -m hf.depstar.jar <jar-name.jar>
+```
+
+Import the generated jas as a dependency in your project and you'll be able to do things like:
+
+```
+(ns my-awesome-app
+  (:require [my.generated.lib :refer [relative-date-add]]))
+
+(relative-date-add (LocalDate/of 2020 10 9) 3 :business-days) ; -> 14Oct2020. Skips weekends.
+
+(relative-date-add (LocalDate/of 2020 10 9) 3 :business-days "YOUR-CAL") ; Will skip weekends and any holidays defined by YOUR-CAL
+```
+
+It goes backwards too (this time with [juxt/tick](https://www.juxt.land/tick/docs/index.html)):
+
+```
+(ns my-awesome-app
+  (:require [my.generated.lib :refer [relative-date-add]]
+            [tick.core :as t]))
+
+(relative-date-add (t/date "2020-10-12") -3 :business-days) ; -> 7Oct2020
+```
 
 ## Calendar file format
 Calendar files actually specify *holidays* and have the `.hol` extension. Each holiday occupies one line, and is formatted like so:
@@ -68,7 +103,18 @@ Will calculate a date based on expression `E`, and add 60 calendar days to it. I
 | :---:      |  :------:                    |
 | **E**      | Calculate the date of easter |
 
-## Including other calendars
+### Comments
+You may add a single line of comment at the top of your holiday definition file. It must start with `;`
+
+```
+; My awesome holiday file
+#include BOOGALOO
+Holiday Part 1|E+0
+```
+
+This line gets ignored by the holiday generator
+
+### Including other calendars
 You may include another calendar file in your holiday file. This is useful for example for national vs municipal holidays.
 
 ```
@@ -82,24 +128,9 @@ A holiday in addition to the ones included|5May
 * Only one include per file is allowed
 * You may include a file that includes another file, and so on
 
-## Comments
-You may add a single line of comment at the top of your holiday definition file. It must start with `;`
+## Roadmap
 
-```
-; My awesome holiday file
-#include BOOGALOO
-Holiday Part 1|E+0
-```
-
-This line gets ignored by the holiday generator
-
-## Internals
-The CI job will publish a file to the `pipo-holidays` S3 bucket for each calendar under `resources/calendars`.
-This file will contain an exhaustive list of holidays going back 50 years, and forward 50 years from today.
-Each holiday gets a line of its own, represented simply as `YYYYMMDD` (i.e., without the name), and the file is sorted.
-
-Other points worth mentioning:
-
-* An archive of any existing holidays will be made
-* If you publish twice the same day, the most recent file wins
-* If the calculated holidays do not change (even if the definition changed), nothing changes on S3 
+* `is-holiday?` fn
+* Expressions like 'n-th monday in December' or 'last monday in May'
+* Observed holidays (e.g. if holiday falls on a weekend, observe on Monday or Friday)
+* Non-saturday/sunday weekends
