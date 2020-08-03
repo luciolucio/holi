@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-LIB_NAME={{lib-name}}
+LIB_NAME="{{lib-name}}"
 
 rm -rf generated
 mkdir output

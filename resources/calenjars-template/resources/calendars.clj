@@ -1,4 +1,4 @@
-(ns {{lib-ns}}
+(ns {{lib-ns}}.{{lib-name}}
   (:require [com.piposaude.relative-date-add :as calenjars]))
 
 (defn relative-date-add [date n unit & calendars]

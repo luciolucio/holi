@@ -10,10 +10,9 @@ arithmetics around non-business days, that you define yourself with a simple DSL
 Create a new clojure deps project:
 
 ```
-curl -o- https://raw.githubusercontent.com/luciolucio/calenjars/v0.1.0/new-project.sh | bash
+curl -LO https://raw.githubusercontent.com/luciolucio/calenjars/v0.1.0/new-calenjars-project.sh
+bash new-calenjars-project.sh
 ```
-
-> Note: the script will prompt you for the lib name and namespace to use
 
 Next, follow the instructions in the README of the generated project to create
 your holiday calendar definition files and generate your jar
