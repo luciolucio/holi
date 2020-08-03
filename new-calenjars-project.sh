@@ -43,6 +43,7 @@ mkdir -p "$FULL_PATH"
 mv "$PROJECT_NAME/resources/calendars.clj" "$FULL_PATH/$PROJECT_NAME.clj"
 
 chmod a+x "$PROJECT_NAME/gen-lib.sh"
+mkdir "$PROJECT_NAME/calendars"
 
 echo ""
 echo "Project successfully generated at $PROJECT_NAME/"

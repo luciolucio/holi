@@ -4,7 +4,7 @@
   <groupId>{{lib-ns}}</groupId>
   <artifactId>{{lib-name}}</artifactId>
   <version>0.1.0</version>
-  <name>calendars</name>
+  <name>{{lib-name}}</name>
   <dependencies>
     <dependency>
       <groupId>org.clojure</groupId>
