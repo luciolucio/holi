@@ -5,13 +5,18 @@
             [tick.alpha.api :as t])
   (:import (java.nio.file Paths)))
 
+(def WEEKEND-FILE-NAME "WEEKEND")
+
 (defn format-YYYYMMDD [holiday]
   (t/format (tick.format/formatter "yyyy-MM-dd") holiday))
 
-(defn gen-path [holiday-file output-path]
+(defn gen-path [filename output-path]
+  (.toString (Paths/get output-path (into-array String [filename]))))
+
+(defn gen-holiday-file-path [holiday-file output-path]
   (let [filename (.toString (.getFileName (Paths/get holiday-file (into-array String []))))
         output-filename (str/join "" (drop-last 4 filename))]
-    (.toString (Paths/get output-path (into-array String [output-filename])))))
+    (gen-path output-filename output-path)))
 
 (defn get-holidays [holiday-file year]
   (map #(format-YYYYMMDD (:date %)) (gen/holidays-for-year year holiday-file)))
@@ -34,7 +39,7 @@
 (defn generate! [holiday-file output-path year bracket-size]
   (let [holidays (gen-bracketed-holidays holiday-file year bracket-size)
         weekends (gen-bracketed-weekends year bracket-size)
-        path (gen-path holiday-file output-path)
-        weekend-path (gen-path "WEEKEND.hol" output-path)]
+        path (gen-holiday-file-path holiday-file output-path)
+        weekend-path (gen-path WEEKEND-FILE-NAME output-path)]
     (spit path (str/join "\n" holidays))
     (spit weekend-path (str/join "\n" weekends))))
