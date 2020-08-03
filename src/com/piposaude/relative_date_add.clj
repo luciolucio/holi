@@ -4,6 +4,8 @@
             [clojure.string :as str])
   (:import (java.time LocalDate LocalDateTime)))
 
+(def WEEKEND-FILE-NAME "WEEKEND")
+
 (def units #{:days :weeks :months :years :business-days})
 
 (defn validate-input [date n unit]
@@ -50,7 +52,7 @@
     (+ days-added (sign n))))
 
 (defn add-with-calendars [date n calendars]
-  (let [non-business-days (read-calendars (set (conj calendars "WEEKEND")))
+  (let [non-business-days (read-calendars (set (conj calendars WEEKEND-FILE-NAME)))
         step (t/new-period (get-step n) :days)]
     (loop [candidate date
            days-added 0]

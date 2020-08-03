@@ -1,8 +1,6 @@
 # Calendars
 
-Creates calendars in S3 to be used with `date-add-cal`
-
-[[_TOC_]]
+Generator of holiday-aware clojure libraries for date arithmetics
 
 ## Usage
 
