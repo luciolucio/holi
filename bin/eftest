@@ -1,30 +1,8 @@
 #!/usr/bin/env bash
 
-deps='{:deps {eftest {:mvn/version "0.5.9"} cider/orchard {:mvn/version "0.5.4"}}}'
-
-args=()
-
-while :; do
-    case $1 in
-        -A*)
-	    args+=("$1")
-            shift
-            ;;
-        --)
-            shift
-            break
-            ;;
-        -?*)
-	    break
-            ;;
-        *)
-            break
-    esac
-done
-
 TEMP_FILENAME=output.txt
 
-clojure -A:dev "-J-Dlogback.configurationFile=$(dirname "$0")/.eftest.logback.xml" "${args[@]}" -Sdeps "$deps" "$(dirname "$0")/.eftest.clj" "$@" 2>&1 | tee $TEMP_FILENAME
+clojure -A:eftest "-J-Dlogback.configurationFile=$(dirname "$0")/.eftest.logback.xml" "$(dirname "$0")/.eftest.clj" "$@" 2>&1 | tee $TEMP_FILENAME
 ERROR_CODE=${PIPESTATUS[0]}
 
 if [[ $ERROR_CODE -ne 0 ]]; then

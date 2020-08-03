@@ -5,7 +5,7 @@
 
 (deftest should-calculate-correct-date-when-relative-date-add-date-with-years
   (are [days expected]
-    (= expected (relative-date-add (t/date "2020-02-29") days :years))
+       (= expected (relative-date-add (t/date "2020-02-29") days :years))
     0 (t/date "2020-02-29")
     1 (t/date "2021-02-28")
     11 (t/date "2031-02-28")
@@ -16,7 +16,7 @@
 
 (deftest should-calculate-correct-date-when-relative-date-add-date-time-with-years
   (are [days expected]
-    (= expected (relative-date-add (t/date-time "2020-02-29T10:15:00") days :years))
+       (= expected (relative-date-add (t/date-time "2020-02-29T10:15:00") days :years))
     0 (t/date-time "2020-02-29T10:15:00")
     1 (t/date-time "2021-02-28T10:15:00")
     11 (t/date-time "2031-02-28T10:15:00")

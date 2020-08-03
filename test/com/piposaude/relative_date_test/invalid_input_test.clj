@@ -5,7 +5,7 @@
 
 (deftest should-throw-on-illegal-n-argument
   (are [n]
-    (is (thrown-with-msg? IllegalArgumentException #"Illegal n: .*" (relative-date-add (t/date "2020-07-29") n :days)))
+       (is (thrown-with-msg? IllegalArgumentException #"Illegal n: .*" (relative-date-add (t/date "2020-07-29") n :days)))
     nil
     ""
     "3"
@@ -18,7 +18,7 @@
 
 (deftest should-throw-on-illegal-unit-argument
   (are [unit]
-    (is (thrown-with-msg? IllegalArgumentException #"Unrecognized unit: .*" (relative-date-add (t/date "2020-07-29") 1 unit)))
+       (is (thrown-with-msg? IllegalArgumentException #"Unrecognized unit: .*" (relative-date-add (t/date "2020-07-29") 1 unit)))
     nil
     ""
     "3"
@@ -33,7 +33,7 @@
 
 (deftest should-throw-on-illegal-date-argument
   (are [date]
-    (is (thrown-with-msg? IllegalArgumentException #"Illegal date: .*" (relative-date-add date 1 :days)))
+       (is (thrown-with-msg? IllegalArgumentException #"Illegal date: .*" (relative-date-add date 1 :days)))
     nil
     ""
     "2020-11-10"

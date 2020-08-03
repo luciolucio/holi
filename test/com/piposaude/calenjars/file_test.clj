@@ -10,7 +10,7 @@
 
 (deftest blah
   (are [expected holiday-file year bracket-size]
-    (run-generate-test-case expected holiday-file year bracket-size)
+       (run-generate-test-case expected holiday-file year bracket-size)
     "FILE-EXPECTED" "FILE" 2020 1
     "FILE2-EXPECTED" "FILE" 2020 2
     "INCLUDE-EXPECTED" "INCLUDE" 2020 1))

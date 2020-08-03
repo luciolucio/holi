@@ -18,22 +18,22 @@
 
 (def read-calendar
   (memoize
-    (fn [calendar]
-      (let [holiday (io/resource calendar)
-            holiday-strings (some-> holiday
-                                    slurp
-                                    (str/split #"\n"))]
-        (when holiday-strings
-          (map t/date holiday-strings))))))
+   (fn [calendar]
+     (let [holiday (io/resource calendar)
+           holiday-strings (some-> holiday
+                                   slurp
+                                   (str/split #"\n"))]
+       (when holiday-strings
+         (map t/date holiday-strings))))))
 
 (def read-calendars
   (memoize
-    (fn [calendars]
-      (->> calendars
-           (keep read-calendar)
-           flatten
-           sort
-           dedupe))))
+   (fn [calendars]
+     (->> calendars
+          (keep read-calendar)
+          flatten
+          sort
+          dedupe))))
 
 (defn sign [n]
   (if (pos? n) 1 -1))
