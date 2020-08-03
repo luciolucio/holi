@@ -16,7 +16,7 @@ curl -o- https://raw.githubusercontent.com/luciolucio/calenjars/v0.1.0/gen.sh | 
 wget -qO- https://raw.githubusercontent.com/luciolucio/calenjars/v0.1.0/gen.sh | bash
 ```
 
-> Note: the script will prompt you for the namespace to use
+> Note: the script will prompt you for the lib name and namespace to use
 
 
 Next, **create** your `.hol` files in the generated project's `calendars/` dir
