@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>luciolucio</groupId>
   <artifactId>calenjars</artifactId>
-  <version>0.1.2</version>
+  <version>0.1.3</version>
   <name>calenjars</name>
   <description>A clojure jar generator to create libraries for date arithmetics around non-business days</description>
   <url>https://github.com/luciolucio/calenjars</url>

@@ -9,7 +9,8 @@ cp resources/pom.xml output
 cp resources/deps.edn output
 
 cd output || exit
-clojure -A:calendars 80 "../calendars/" "../output/"
+mkdir calendars
+clojure -A:calendars 80 "../calendars/" "calendars"
 clojure -A:depstar -m hf.depstar.jar "${LIB_NAME}.jar"
 cd .. || exit
 mv "output/$LIB_NAME.jar" .

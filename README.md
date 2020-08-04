@@ -10,7 +10,7 @@ arithmetics around non-business days, that you define yourself with a simple DSL
 Create a new clojure deps project:
 
 ```
-curl -LO https://raw.githubusercontent.com/luciolucio/calenjars/0.1.2/new-calenjars-project.sh
+curl -LO https://raw.githubusercontent.com/luciolucio/calenjars/0.1.3/new-calenjars-project.sh
 bash new-calenjars-project.sh
 ```
 
