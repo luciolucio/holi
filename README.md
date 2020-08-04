@@ -10,7 +10,7 @@ arithmetics around non-business days, that you define yourself with a simple DSL
 Create a new clojure deps project:
 
 ```
-curl -LO https://raw.githubusercontent.com/luciolucio/calenjars/0.1.3/new-calenjars-project.sh
+curl -LO https://raw.githubusercontent.com/luciolucio/calenjars/0.2.0/new-calenjars-project.sh
 bash new-calenjars-project.sh
 ```
 
@@ -36,4 +36,25 @@ It goes backwards too (this time with [juxt/tick](https://www.juxt.land/tick/doc
             [tick.core :as t]))
 
 (relative-date-add (t/date "2020-10-12") -3 :business-days) ; -> 7Oct2020
+```
+
+Also check individual dates:
+
+```clj
+(ns my-awesome-app
+  (:require [my.generated.lib.calendar :refer [weekend? holiday? non-business-day? business-day?]]
+            [tick.core :as t]))
+
+(holiday? (t/date "2020-10-12") "BR") ; -> true
+(holiday? (t/date "2020-10-11") "BR") ; -> false
+(weekend? (t/date "2020-10-12")) ; -> false
+(weekend? (t/date "2020-10-11")) ; -> true
+(business-day? (t/date "2020-10-12")) ; -> true
+(business-day? (t/date "2020-10-12") "BR") ; -> false
+(business-day? (t/date "2020-10-11")) ; -> false
+(business-day? (t/date "2020-10-11") "BR") ; -> false
+(non-business-day? (t/date "2020-10-12")) ; -> false
+(non-business-day? (t/date "2020-10-12") "BR") ; -> true
+(non-business-day? (t/date "2020-10-11")) ; -> true
+(non-business-day? (t/date "2020-10-11") "BR") ; -> true
 ```

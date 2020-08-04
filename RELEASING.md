@@ -1,5 +1,12 @@
 ## How to release
 
+Describe your change in `CHANGELOG.md`
+
+```
+* <version number> - <date>
+  * Fixed such and such
+```
+
 Change the version number in these places:
 
 * main pom.xml

@@ -1,5 +1,12 @@
 # Changes
 
+* 0.2.0 - Aug 4, 2020
+  * Added new functions to check individual dates
+    * `weekend?`
+    * `holiday?`
+    * `business-day?`
+    * `non-business-day?`
+
 * 0.1.3 - Aug 3, 2020
   * Fix an issue with gen-lib that prevented the holidays from entering the jar
 
