@@ -1,6 +1,6 @@
 (ns com.piposaude.is-weekend-test
   (:require [clojure.test :refer :all]
-            [com.piposaude.relative-date-add :refer [weekend?]]
+            [com.piposaude.calenjars :refer [weekend?]]
             [tick.core :as t]))
 
 (deftest should-identify-weekends-when-weekend?-with-date

@@ -1,6 +1,6 @@
 (ns com.piposaude.is-holiday-test
   (:require [clojure.test :refer :all]
-            [com.piposaude.relative-date-add :refer [holiday?]]
+            [com.piposaude.calenjars :refer [holiday?]]
             [tick.core :as t]))
 
 (deftest should-identify-holidays-when-holiday?-with-date

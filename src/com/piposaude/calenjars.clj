@@ -1,4 +1,4 @@
-(ns com.piposaude.relative-date-add
+(ns com.piposaude.calenjars
   (:require [tick.core :as t]
             [clojure.java.io :as io]
             [clojure.string :as str])
@@ -8,7 +8,7 @@
 
 (def units #{:days :weeks :months :years :business-days})
 
-(defn validate-input [date n unit]
+(defn- validate-input [date n unit]
   (when-not (or (instance? LocalDate date) (instance? LocalDateTime date))
     (throw (IllegalArgumentException. (str "Illegal date: " date))))
   (when-not (integer? n)
@@ -35,26 +35,26 @@
           sort
           dedupe))))
 
-(defn sign [n]
+(defn- sign [n]
   (if (pos? n) 1 -1))
 
-(defn get-step [n]
+(defn- get-step [n]
   (if (zero? n)
     0
     (sign n)))
 
-(defn abs [x]
+(defn- abs [x]
   (if pos? x (- x)))
 
-(defn is-date-in-list? [date list]
+(defn- is-date-in-list? [date list]
   (boolean (some #{(t/date date)} list)))
 
-(defn inc-unless-holiday [date non-business-days days-added n]
+(defn- inc-unless-holiday [date non-business-days days-added n]
   (if (is-date-in-list? date non-business-days)
     days-added
     (+ days-added (sign n))))
 
-(defn add-with-calendars [date n calendars]
+(defn- add-with-calendars [date n calendars]
   (let [non-business-days (read-calendars (set (conj calendars WEEKEND-FILE-NAME)))
         step (t/new-period (get-step n) :days)]
     (loop [candidate date
