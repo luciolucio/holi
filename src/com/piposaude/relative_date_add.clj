@@ -46,8 +46,11 @@
 (defn abs [x]
   (if pos? x (- x)))
 
+(defn is-date-in-list? [date list]
+  (boolean (some #{(t/date date)} list)))
+
 (defn inc-unless-holiday [date non-business-days days-added n]
-  (if (some #{(t/date date)} non-business-days)
+  (if (is-date-in-list? date non-business-days)
     days-added
     (+ days-added (sign n))))
 
@@ -72,3 +75,24 @@
   (if (= unit :business-days)
     (add-with-calendars date n calendars)
     (t/+ date (t/new-period n unit))))
+
+(defn weekend? [date]
+  "Returns true only if date is in a weekend"
+  (let [weekend-days (read-calendar WEEKEND-FILE-NAME)]
+    (is-date-in-list? date weekend-days)))
+
+(defn holiday? [date calendar]
+  "Returns true only if date is a holiday in the given calendar"
+  (let [holidays (read-calendar calendar)]
+    (is-date-in-list? date holidays)))
+
+(defn non-business-day? [date & calendars]
+  "Returns true only if date is whether a weekend
+  or a holiday in one of the given calendars"
+  (let [non-business-days (read-calendars (set (conj calendars WEEKEND-FILE-NAME)))]
+    (is-date-in-list? date non-business-days)))
+
+(defn business-day? [date & calendars]
+  "Returns true only if date is not in a weekend
+  and also not a holiday in any of the given calendars"
+  (not (apply non-business-day? date calendars)))
