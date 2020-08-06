@@ -28,7 +28,7 @@ fi
 
 echo ""
 echo "Downloading template..."
-curl -LO https://github.com/luciolucio/calenjars/raw/master/resources/calenjars-template.zip
+curl -LO https://github.com/piposaude/calenjars/raw/master/resources/calenjars-template.zip
 
 echo ""
 echo "Decompressing template..."

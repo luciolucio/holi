@@ -1,6 +1,6 @@
 # Calenjars
-[![Build Status](https://travis-ci.com/luciolucio/calenjars.svg?branch=master)](https://travis-ci.com/luciolucio/calenjars)
-[![Clojars Project](https://img.shields.io/clojars/v/luciolucio/calenjars.svg)](https://clojars.org/luciolucio/calenjars)
+[![Build Status](https://travis-ci.com/piposaude/calenjars.svg?branch=master)](https://travis-ci.com/piposaude/calenjars)
+[![Clojars Project](https://img.shields.io/clojars/v/piposaude/calenjars.svg)](https://clojars.org/piposaude/calenjars)
 
 Calenjars is a clojure jar generator, designed to create libraries for date
 arithmetics around non-business days, that you define yourself with a simple DSL.
@@ -10,7 +10,7 @@ arithmetics around non-business days, that you define yourself with a simple DSL
 Create a new clojure deps project:
 
 ```
-curl -LO https://raw.githubusercontent.com/luciolucio/calenjars/0.2.0/new-calenjars-project.sh
+curl -LO https://raw.githubusercontent.com/piposaude/calenjars/0.2.0/new-calenjars-project.sh
 bash new-calenjars-project.sh
 ```
 
