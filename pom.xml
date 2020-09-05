@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>piposaude</groupId>
   <artifactId>calenjars</artifactId>
-  <version>0.2.0</version>
+  <version>0.3.0</version>
   <name>calenjars</name>
   <description>A clojure jar generator to create libraries for date arithmetics around non-business days</description>
   <url>https://github.com/piposaude/calenjars</url>

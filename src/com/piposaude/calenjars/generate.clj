@@ -12,5 +12,6 @@
     (println (format "Generating holidays for holiday files under %s" calendar-file-dir))
     (if (empty? files) (println "No holiday files to process"))
     (run! #(file/generate! (str %) output-path current-year (edn/read-string bracket-size)) files)
+    (file/generate-weekend! output-path current-year (edn/read-string bracket-size))
     (println "Holiday generation finished")
     (println "-----------------------------------------------------------")))

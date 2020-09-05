@@ -38,8 +38,10 @@
 
 (defn generate! [holiday-file output-path year bracket-size]
   (let [holidays (gen-bracketed-holidays holiday-file year bracket-size)
-        weekends (gen-bracketed-weekends year bracket-size)
-        path (gen-holiday-file-path holiday-file output-path)
+        path (gen-holiday-file-path holiday-file output-path)]
+    (spit path (str/join "\n" holidays))))
+
+(defn generate-weekend! [output-path year bracket-size]
+  (let [weekends (gen-bracketed-weekends year bracket-size)
         weekend-path (gen-path WEEKEND-FILE-NAME output-path)]
-    (spit path (str/join "\n" holidays))
     (spit weekend-path (str/join "\n" weekends))))

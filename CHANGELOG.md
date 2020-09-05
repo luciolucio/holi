@@ -1,5 +1,8 @@
 # Changes
 
+* 0.3.0 - Sep 5, 2020
+  * Fixed a bug when generating lib with no calendars
+
 * 0.2.0 - Aug 4, 2020
   * Added new functions to check individual dates
     * `weekend?`
