@@ -32,9 +32,6 @@
       <version>1.4.10</version>
     </dependency>
   </dependencies>
-  <build>
-    <sourceDirectory>src</sourceDirectory>
-  </build>
   <distributionManagement>
     <repository>
       <id>clojars</id>
