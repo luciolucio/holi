@@ -10,7 +10,7 @@ arithmetics around non-business days, that you define yourself with a simple DSL
 Create a new clojure deps project:
 
 ```
-curl -LO https://raw.githubusercontent.com/piposaude/calenjars/0.3.0/new-calenjars-project.sh
+curl -LO https://raw.githubusercontent.com/piposaude/calenjars/0.4.0/new-calenjars-project.sh
 bash new-calenjars-project.sh
 ```
 
@@ -36,6 +36,17 @@ It goes backwards too (this time with [juxt/tick](https://www.juxt.land/tick/doc
             [tick.core :as t]))
 
 (relative-date-add (t/date "2020-10-12") -3 :business-days) ; -> 7Oct2020
+```
+
+Use "zero" business days for getting the next business day:
+
+```clj
+(ns my-awesome-app
+  (:require [my.generated.lib.calendar :refer [relative-date-add]]))
+
+(relative-date-add (LocalDate/of 2020 8 1) 0 :business-days) ; -> 3Aug20, because 1Aug20 is a Saturday
+(relative-date-add (LocalDate/of 2020 8 2) 0 :business-days) ; -> 3Aug20, because 2Aug20 is a Sunday
+(relative-date-add (LocalDate/of 2020 8 3) 0 :business-days) ; -> 3Aug20, as it's a regular Monday
 ```
 
 Also check individual dates:

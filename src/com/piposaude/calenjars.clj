@@ -57,13 +57,17 @@
 (defn- add-with-calendars [date n calendars]
   (let [non-business-days (read-calendars (set (conj calendars WEEKEND-FILE-NAME)))
         step (t/new-period (get-step n) :days)]
-    (loop [candidate date
-           days-added 0]
-      (if (= (abs n) days-added)
-        candidate
-        (let [new-date (t/+ candidate step)
-              m (inc-unless-holiday new-date non-business-days days-added n)]
-          (recur new-date m))))))
+    (if (= n 0)
+      (if (is-date-in-list? date non-business-days)
+        (add-with-calendars date 1 calendars)
+        date)
+      (loop [candidate date
+             days-added 0]
+        (if (= (abs n) days-added)
+          candidate
+          (let [new-date (t/+ candidate step)
+                m (inc-unless-holiday new-date non-business-days days-added n)]
+            (recur new-date m)))))))
 
 (defn relative-date-add [date n unit & calendars]
   "Adds n 'unit's to date and returns a new date

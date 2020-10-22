@@ -1,5 +1,8 @@
 # Changes
 
+* 0.4.0 - Oct 22, 2020
+  * Added a way to find the next business day using "zero" business days
+
 * 0.3.0 - Sep 5, 2020
   * Fixed a bug when generating lib with no calendars
 
@@ -11,7 +14,7 @@
     * `non-business-day?`
 
 * 0.1.3 - Aug 3, 2020
-  * Fix an issue with gen-lib that prevented the holidays from entering the jar
+  * Fixed an issue with gen-lib that prevented the holidays from entering the jar
 
 * 0.1.2 -- Aug 3, 2020
   * First working version of new project script
