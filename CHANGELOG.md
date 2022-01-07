@@ -1,5 +1,8 @@
 # Changes
 
+* 0.5.0 - Jan 7, 2022
+  * Upgraded to tick 0.4.32
+
 * 0.4.0 - Oct 22, 2020
   * Added a way to find the next business day using "zero" business days
 
