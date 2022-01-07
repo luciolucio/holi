@@ -19,7 +19,7 @@
     <dependency>
       <groupId>tick</groupId>
       <artifactId>tick</artifactId>
-      <version>0.4.26-alpha</version>
+      <version>0.4.32</version>
     </dependency>
     <dependency>
       <groupId>easter-day</groupId>
