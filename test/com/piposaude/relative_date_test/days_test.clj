@@ -1,7 +1,7 @@
 (ns com.piposaude.relative-date-test.days-test
   (:require [clojure.test :refer :all]
             [com.piposaude.calenjars :refer [relative-date-add]]
-            [tick.core :as t]))
+            [tick.alpha.api :as t]))
 
 (deftest should-calculate-correct-date-when-relative-date-add-date-with-days
   (are [days expected]

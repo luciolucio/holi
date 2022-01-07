@@ -1,7 +1,7 @@
 (ns com.piposaude.relative-date-test.business-days-multi-calendar-test
   (:require [clojure.test :refer :all]
             [com.piposaude.calenjars :refer [relative-date-add]]
-            [tick.core :as t]))
+            [tick.alpha.api :as t]))
 
 (deftest should-calculate-correct-date-when-relative-date-add-date-with-business-days-multi-calendar
   (are [days expected]
@@ -53,7 +53,7 @@
 
 (deftest should-go-to-next-business-day-or-stay-when-relative-date-add-zero-days-with-business-days-multi-calendar
   (are [start-date expected-end-date]
-    (= (t/date expected-end-date) (relative-date-add (t/date start-date) 0 :business-days "DAY-THREE" "DAY-TWENTY-NINE"))
+       (= (t/date expected-end-date) (relative-date-add (t/date start-date) 0 :business-days "DAY-THREE" "DAY-TWENTY-NINE"))
     "2020-07-28" "2020-07-28"
     "2020-07-29" "2020-07-30"
     "2020-07-30" "2020-07-30"
@@ -65,7 +65,7 @@
 
 (deftest should-go-to-next-business-day-or-stay-when-relative-date-add-zero-days-date-time-with-business-days-multi-calendar
   (are [start-date expected-end-date]
-    (= (t/date-time (str expected-end-date "T03:15")) (relative-date-add (t/date-time (str start-date "T03:15")) 0 :business-days "DAY-THREE" "DAY-TWENTY-NINE"))
+       (= (t/date-time (str expected-end-date "T03:15")) (relative-date-add (t/date-time (str start-date "T03:15")) 0 :business-days "DAY-THREE" "DAY-TWENTY-NINE"))
     "2020-07-28" "2020-07-28"
     "2020-07-29" "2020-07-30"
     "2020-07-30" "2020-07-30"

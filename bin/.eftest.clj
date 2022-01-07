@@ -2,7 +2,6 @@
 (require '[eftest.report :refer [report-to-file]])
 (require 'eftest.report.progress)
 (require 'clojure.test)
-(require 'orchard.query)
 
 (def junit? (= (first *command-line-args*) "--junit"))
 (def junit-path (when junit?
@@ -19,10 +18,7 @@
         (report m)))))
 
 (let [summary (run-tests
-                (find-tests
-                  ;; This is slow, because requiring namespaces is slow
-                  (orchard.query/namespaces {:load-project-ns? true
-                                             :project? true}))
+                (find-tests "test")
                 {:report
                  (combined-reporter
                    eftest.report.progress/report

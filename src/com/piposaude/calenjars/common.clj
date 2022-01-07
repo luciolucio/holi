@@ -1,5 +1,4 @@
 (ns com.piposaude.calenjars.common
-  (:require [tick.alpha.api :as t])
   (:import (java.nio.file Paths)))
 
 (defn drop-include [result]

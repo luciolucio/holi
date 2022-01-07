@@ -1,5 +1,5 @@
 (ns com.piposaude.calenjars.types.common
-  (:require [tick.core :as t]))
+  (:require [tick.alpha.api :as t]))
 
 (def month->month-number
   {"Jan" "01"

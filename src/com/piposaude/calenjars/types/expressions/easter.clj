@@ -1,7 +1,7 @@
 (ns com.piposaude.calenjars.types.expressions.easter
   (:require [com.piposaude.calenjars.types.common :refer [holiday]]
             [easter-day :as easter]
-            [tick.core :as t]
+            [tick.alpha.api :as t]
             [clojure.edn :as edn]))
 
 (defn get-holiday-easter [year name operator operand-str]

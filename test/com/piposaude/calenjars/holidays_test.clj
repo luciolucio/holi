@@ -1,6 +1,6 @@
 (ns com.piposaude.calenjars.holidays-test
   (:require [clojure.test :refer :all]
-            [tick.core :as t]
+            [tick.alpha.api :as t]
             [com.piposaude.calenjars.holidays :as gen])
   (:import (clojure.lang ExceptionInfo)))
 

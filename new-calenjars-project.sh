@@ -4,7 +4,7 @@ echo "---------------------"
 echo "New calenjars project"
 echo "---------------------"
 echo ""
-echo "Enter a project name (e.g. calendars):"
+echo "Enter a project name (e.g. company-calendars):"
 
 read -r PROJECT_NAME
 

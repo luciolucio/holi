@@ -2,7 +2,7 @@
 
 TEMP_FILENAME=output.txt
 
-clojure -A:eftest "-J-Dlogback.configurationFile=$(dirname "$0")/.eftest.logback.xml" "$(dirname "$0")/.eftest.clj" "$@" 2>&1 | tee $TEMP_FILENAME
+clojure -J-Dlogback.configurationFile="$(dirname "$0")"/.eftest.logback.xml -M:eftest "$(dirname "$0")/.eftest.clj" "$@" 2>&1 | tee $TEMP_FILENAME
 ERROR_CODE=${PIPESTATUS[0]}
 
 if [[ $ERROR_CODE -ne 0 ]]; then

@@ -1,7 +1,7 @@
 (ns com.piposaude.relative-date-test.invalid-input-test
   (:require [clojure.test :refer :all]
             [com.piposaude.calenjars :refer [relative-date-add]]
-            [tick.core :as t]))
+            [tick.alpha.api :as t]))
 
 (deftest should-throw-on-illegal-n-argument
   (are [n]

@@ -1,5 +1,5 @@
 (ns com.piposaude.calenjars
-  (:require [tick.core :as t]
+  (:require [tick.alpha.api :as t]
             [clojure.java.io :as io]
             [clojure.string :as str])
   (:import (java.time LocalDate LocalDateTime)))

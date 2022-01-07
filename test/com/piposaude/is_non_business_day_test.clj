@@ -1,7 +1,7 @@
 (ns com.piposaude.is-non-business-day-test
   (:require [clojure.test :refer :all]
             [com.piposaude.calenjars :refer [non-business-day?]]
-            [tick.core :as t]))
+            [tick.alpha.api :as t]))
 
 (deftest should-identify-non-business-days-when-non-business-day?-with-date
   (are [date calendars expected]

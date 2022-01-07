@@ -1,7 +1,7 @@
 (ns com.piposaude.relative-date-test.business-days-test
   (:require [clojure.test :refer :all]
             [com.piposaude.calenjars :refer [relative-date-add]]
-            [tick.core :as t]))
+            [tick.alpha.api :as t]))
 
 (deftest should-calculate-correct-date-when-relative-date-add-date-with-business-days
   (are [days expected]
@@ -53,7 +53,7 @@
 
 (deftest should-go-to-next-business-day-or-stay-when-relative-date-add-zero-days-with-business-days
   (are [start-date expected-end-date]
-    (= (t/date expected-end-date) (relative-date-add (t/date start-date) 0 :business-days))
+       (= (t/date expected-end-date) (relative-date-add (t/date start-date) 0 :business-days))
     "2020-07-31" "2020-07-31"
     "2020-08-01" "2020-08-03"
     "2020-08-02" "2020-08-03"
@@ -62,7 +62,7 @@
 
 (deftest should-go-to-next-business-day-or-stay-when-relative-date-add-zero-days-date-time-with-business-days
   (are [start-date expected-end-date]
-    (= (t/date-time (str expected-end-date "T03:15")) (relative-date-add (t/date-time (str start-date "T03:15")) 0 :business-days))
+       (= (t/date-time (str expected-end-date "T03:15")) (relative-date-add (t/date-time (str start-date "T03:15")) 0 :business-days))
     "2020-07-31" "2020-07-31"
     "2020-08-01" "2020-08-03"
     "2020-08-02" "2020-08-03"

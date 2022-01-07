@@ -28,7 +28,7 @@
     (if (common/holiday-was-included? result)
       (try
         (boolean (clojure.java.io/reader included-filename))
-        (catch FileNotFoundException e
+        (catch FileNotFoundException _
           false))
       true)))
 
