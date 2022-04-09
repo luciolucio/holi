@@ -1,6 +1,0 @@
-language: clojure
-cache:
-  directories:
-    - $HOME/.m2
-install: ./bin/install-clojure.sh
-script: ./bin/build.sh
