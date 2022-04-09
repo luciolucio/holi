@@ -1,10 +1,10 @@
-name: pull-request-checks
+name: build-and-test
+
 on:
   pull_request:
       branches:
         - main
   workflow_dispatch:
-
 
 jobs:
   format-check:
