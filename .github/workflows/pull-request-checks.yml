@@ -8,13 +8,13 @@ on:
 
 jobs:
   format-check:
-    name: Setup and run
+    name: 'Format Check'
     uses: ./.github/workflows/setup-and-run-script.yml
     with:
       script: ./bin/fmt-check
 
   unit-test:
-    name: Setup and run
+    name: 'Unit Tests'
     uses: ./.github/workflows/setup-and-run-script.yml
     with:
       script: ./bin/eftest
