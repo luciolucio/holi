@@ -1,5 +1,5 @@
 # Calenjars
-[![Build Status](https://travis-ci.com/piposaude/calenjars.svg?branch=master)](https://travis-ci.com/piposaude/calenjars)
+![build](https://github.com/piposaude/main/actions/workflows/pull-request-checks/badge.svg)
 [![Clojars Project](https://img.shields.io/clojars/v/piposaude/calenjars.svg)](https://clojars.org/piposaude/calenjars)
 
 Calenjars is a clojure jar generator, designed to create libraries for date
