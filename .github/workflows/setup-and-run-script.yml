@@ -1,0 +1,31 @@
+name: setup-and-run
+on:
+  workflow_call:
+    inputs:
+      script:
+        required: true
+        type: string
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v3.1.0
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+
+      - name: Setup Clojure
+        uses: DeLaGuardo/setup-clojure@5.0
+        with:
+          cli: 1.10.1.693
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: X
+        run: ${{ inputs.script }}
+        shell: bash

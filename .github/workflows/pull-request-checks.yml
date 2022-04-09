@@ -1,0 +1,26 @@
+name: pull-request-checks
+on:
+  pull_request:
+      branches:
+        - main
+  workflow_dispatch:
+
+
+jobs:
+  format-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup and run
+        uses: ./.github/workflows/setup-and-run-script.yml
+        with:
+          script: ./bin/fmt-check
+
+  unit-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup and run
+        uses: ./.github/workflows/setup-and-run-script.yml
+        with:
+          script: ./bin/eftest
