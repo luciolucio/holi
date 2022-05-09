@@ -52,7 +52,7 @@
 
 (deftest should-generate-holidays-when-holidays-for-year-with-nth-day-of-week-rule
   (are [expected year]
-    (= expected (gen/holidays-for-year year "test-resources/generate/nth-day-of-week-rule.hol"))
+    (= expected (gen/holidays-for-year year "test-resources/generate/rule-nth-day-of-week.hol"))
     [{:name "Thanksgiving" :date (t/date "2016-11-24")}] 2016
     [{:name "Thanksgiving" :date (t/date "2017-11-23")}] 2017
     [{:name "Thanksgiving" :date (t/date "2018-11-22")}] 2018

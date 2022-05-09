@@ -4,6 +4,7 @@
             [com.piposaude.calenjars.check :as check]
             [com.piposaude.calenjars.types.ddmmm :as ddmm]
             [com.piposaude.calenjars.types.ddmmmyyyy :as ddmmyyyy]
+            [com.piposaude.calenjars.types.rule :as rule]
             [com.piposaude.calenjars.types.expression :as expression]
             [com.piposaude.calenjars.constants :refer :all]))
 
@@ -14,7 +15,8 @@
   (condp = type
     :ddmmm (ddmm/get-holiday-ddmm year name args)
     :ddmmmyyyy (ddmmyyyy/get-holiday-ddmmyyyy year name args)
-    :expression (expression/get-holiday-expression year name args)
+    :rule (rule/get-holiday-rule year name (first args))
+    :expression (expression/get-holiday-expression year name (first args))
     nil))
 
 (defn remove-exceptions [holidays]
@@ -33,7 +35,7 @@
     (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
           result (parser (slurp holiday-file))
           holidays (conj
-                    (keep (partial get-holiday year) (common/drop-include result))
+                    (keep #(get-holiday year %) (common/drop-include result))
                     (when (common/holiday-was-included? result)
                       (holidays-for-year-with-exception-key year (common/included-filename holiday-file (second (first result))))))]
       (-> (remove nil? holidays)

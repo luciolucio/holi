@@ -1,7 +1,9 @@
 (ns com.piposaude.calenjars.types.expression
   (:require [com.piposaude.calenjars.types.expressions.easter :as easter]))
 
-(defn get-holiday-expression [year name [expression operator operand]]
-  (condp = expression
-    "E" (easter/get-holiday-easter year name operator operand)
+(defn get-holiday-expression [year name args]
+  (condp = (first args)
+    :easter
+    (easter/get-holiday-easter year name (rest args))
+
     nil))

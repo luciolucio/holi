@@ -3,7 +3,7 @@ holiday = !comment-marker !include-marker name <'|'> holiday-definition <newline
 
 <name> = #'[^\n|]+'
 
-<holiday-definition> = date | expression
+<holiday-definition> = date | rule | expression
 
 <date> = ddmmm | ddmmmyyyy
 
@@ -22,8 +22,16 @@ ddmmm = day-31 month-31 | day-30 month-30 | day-feb month-feb
 ddmmmyyyy = ddmmm yyyy exception-marker?
 yyyy = #'\d{4}'
 
-expression = supported-calculated-date expression-operator expression-operand
-<supported-calculated-date> = 'E'
+rule = nth-day-of-week
+
+nth-day-of-week = day-of-week-nth day-of-week any-month
+<day-of-week-nth> = '1' | '2' | '3' | '4' | '5'
+<day-of-week> = 'Sun' | 'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat'
+<any-month> = month-31 | month-30 | month-feb
+
+expression = easter
+
+easter = 'E' expression-operator expression-operand
 <expression-operator> = '+' | '-'
 <expression-operand> = #'\d+'
 
