@@ -14,16 +14,19 @@
    "Sat" t/SATURDAY})
 
 (defn get-holiday-nth-day-of-week [^Integer year holiday-name [i day-of-week-str month]]
-  (let [^int month-as-int (-> month common/month->month-number edn/read-string)
+  (let [^Integer month-as-int (-> month common/month->month-number edn/read-string)
         i-as-int (edn/read-string i)
-        intvl (t/bounds (t/year-month (LocalDate/of year month-as-int 1)))
+        month-bounds (t/bounds (t/year-month (LocalDate/of year month-as-int 1)))
         week-beginnings (t/range
-                         (t/date (t/beginning intvl))
-                         (t/date (t/end intvl))
+                         (t/date (t/beginning month-bounds))
+                         (t/date (t/end month-bounds))
                          (t/new-period 1 :weeks))
         days-in-week (t/range
                       (nth week-beginnings (dec i-as-int))
                       (nth week-beginnings i-as-int)
                       (t/new-period 1 :days))
-        day (first (filter #(= (t/day-of-week %) (day-of-week-str->day-of-week day-of-week-str)) days-in-week))]
-    (common/holiday holiday-name (str (t/day-of-month day)) (str month-as-int) year)))
+        day-of-week (day-of-week-str->day-of-week day-of-week-str)
+        holiday (->> days-in-week
+                     (filter #(= (t/day-of-week %) day-of-week))
+                     first)]
+    (common/holiday holiday-name (str (t/day-of-month holiday)) (str month-as-int) year)))
