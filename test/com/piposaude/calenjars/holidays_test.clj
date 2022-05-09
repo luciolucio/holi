@@ -53,11 +53,16 @@
 (deftest should-generate-holidays-when-holidays-for-year-with-nth-day-of-week-rule
   (are [expected year]
        (= expected (gen/holidays-for-year year "test-resources/generate/rule-nth-day-of-week.hol"))
-    [{:name "Thanksgiving" :date (t/date "2016-11-24")}] 2016
-    [{:name "Thanksgiving" :date (t/date "2017-11-23")}] 2017
-    [{:name "Thanksgiving" :date (t/date "2018-11-22")}] 2018
-    [{:name "Thanksgiving" :date (t/date "2019-11-28")}] 2019
-    [{:name "Thanksgiving" :date (t/date "2020-11-26")}] 2020))
+    [{:name "Thanksgiving" :date (t/date "2016-11-24")}
+     {:name "Columbus Day" :date (t/date "2016-10-10")}] 2016
+    [{:name "Thanksgiving" :date (t/date "2017-11-23")}
+     {:name "Columbus Day" :date (t/date "2017-10-09")}] 2017
+    [{:name "Thanksgiving" :date (t/date "2018-11-22")}
+     {:name "Columbus Day" :date (t/date "2018-10-08")}] 2018
+    [{:name "Thanksgiving" :date (t/date "2019-11-28")}
+     {:name "Columbus Day" :date (t/date "2019-10-14")}] 2019
+    [{:name "Thanksgiving" :date (t/date "2020-11-26")}
+     {:name "Columbus Day" :date (t/date "2020-10-12")}] 2020))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-nested-includes
   (= [{:name "Holiday from include-first" :date (t/date "2012-01-25")}
