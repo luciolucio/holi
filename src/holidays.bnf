@@ -25,7 +25,7 @@ yyyy = #'\d{4}'
 rule = nth-day-of-week
 
 nth-day-of-week = day-of-week-nth day-of-week any-month
-<day-of-week-nth> = '1' | '2' | '3' | '4' | '5'
+<day-of-week-nth> = '1' | '2' | '3' | '4' | '5' | '-1' | '-2' | '-3' | '-4' | '-5'
 <day-of-week> = 'Sun' | 'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat'
 <any-month> = month-31 | month-30 | month-feb
 
