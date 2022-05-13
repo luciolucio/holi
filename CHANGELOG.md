@@ -1,5 +1,8 @@
 # Changes
 
+* UNRELEASED
+  * Added support for nth-day-of-the-week holidays
+
 * 0.5.0 - Jan 7, 2022
   * Upgraded to tick 0.4.32
 
