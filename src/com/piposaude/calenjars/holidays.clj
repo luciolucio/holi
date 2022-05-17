@@ -11,9 +11,9 @@
 (defn valid-year? [year]
   (and (integer? year) (<= MIN-YEAR year MAX-YEAR)))
 
-(defn get-holiday [year [_ name [type & args]]]
+(defn get-holiday [year [_ name [type & args] observed?]]
   (condp = type
-    :ddmmm (ddmm/get-holiday-ddmm year name args)
+    :ddmmm (ddmm/get-holiday-ddmm year name args observed?)
     :ddmmmyyyy (ddmmyyyy/get-holiday-ddmmyyyy year name args)
     :rule (rule/get-holiday-rule year name (first args))
     :expression (expression/get-holiday-expression year name (first args))

@@ -90,6 +90,16 @@
      {:name "Inexistent Holiday -3" :date (t/date "2019-05-13")}
      {:name "Inexistent Holiday -4" :date (t/date "2019-05-06")}] 2019))
 
+(deftest should-generate-holidays-when-holidays-for-year-with-observance-rule
+  (are [expected year]
+       (= expected (gen/holidays-for-year year "test-resources/generate/rule-observed.hol"))
+    [{:name "Independence Day" :date (t/date "2016-07-04")}] 2016
+    [{:name "Independence Day" :date (t/date "2017-07-04")}] 2017
+    [{:name "Independence Day" :date (t/date "2018-07-04")}] 2018
+    [{:name "Independence Day" :date (t/date "2019-07-04")}] 2019
+    [{:name "Independence Day" :date (t/date "2020-07-03")}] 2020
+    [{:name "Independence Day" :date (t/date "2021-07-05")}] 2021))
+
 (deftest should-generate-holidays-when-holidays-for-year-with-nested-includes
   (= [{:name "Holiday from include-first" :date (t/date "2012-01-25")}
       {:name "Holiday from include-second" :date (t/date "2012-01-30")}
