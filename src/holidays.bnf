@@ -43,7 +43,7 @@ easter = 'E' expression-operator expression-operand
 <expression-operator> = '+' | '-'
 <expression-operand> = #'\d+'
 
-expression-opts = limit-clause?
+expression-opts = observed? limit-clause? | limit-clause? observed?
 
 exception-marker = '-'
 
