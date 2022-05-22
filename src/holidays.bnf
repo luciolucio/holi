@@ -3,7 +3,7 @@ holiday = !comment-marker !include-marker name <'|'> holiday-definition <newline
 
 <name> = #'[^\n|]+'
 
-<holiday-definition> = date | rule | expression
+<holiday-definition> = date | rule | expression expression-opts?
 
 <date> = ddmmm ddmm-opts? | ddmmmyyyy
 
@@ -42,6 +42,8 @@ expression = easter
 easter = 'E' expression-operator expression-operand
 <expression-operator> = '+' | '-'
 <expression-operand> = #'\d+'
+
+expression-opts = limit-clause?
 
 exception-marker = '-'
 
