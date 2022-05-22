@@ -12,21 +12,20 @@
 (defn valid-year? [year]
   (and (integer? year) (<= MIN-YEAR year MAX-YEAR)))
 
+(defmulti opt-value (fn [opt-kw _args] opt-kw))
+
+(defmethod opt-value :observed [_ _] true)
+(defmethod opt-value :start-year [_ args] (edn/read-string (first args)))
+(defmethod opt-value :end-year [_ args] (edn/read-string (first args)))
+
 (defn parse-holiday-opts [[_ & opts]]
-  (reduce (fn [parsed-opts [opt-kw & args]]
-            (case opt-kw
-              :observed
-              (assoc parsed-opts :observed? true)
-
-              :start-year
-              (assoc parsed-opts :start-year (edn/read-string (first args)))
-
-              parsed-opts)) {} opts))
+  (reduce (fn [holiday-opts [opt-kw & args]]
+            (assoc holiday-opts opt-kw (opt-value opt-kw args))) {} opts))
 
 (defn get-holiday [year [_ name [type & args] opts]]
-  (let [{:keys [observed? start-year]} (parse-holiday-opts opts)]
+  (let [{:keys [observed start-year end-year]} (parse-holiday-opts opts)]
     (condp = type
-      :ddmmm (ddmm/get-holiday-ddmm year name args observed? start-year)
+      :ddmmm (ddmm/get-holiday-ddmm year name args observed start-year end-year)
       :ddmmmyyyy (ddmmyyyy/get-holiday-ddmmyyyy year name args)
       :nth-day-of-week (nth-day-of-week/get-holiday-nth-day-of-week year name args start-year)
       :expression (expression/get-holiday-by-expression year name (first args))

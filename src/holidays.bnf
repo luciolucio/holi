@@ -19,9 +19,11 @@ ddmmm = day-31 month-31 | day-30 month-30 | day-feb month-feb
 <month-30> = 'Apr' | 'Jun' | 'Sep' | 'Nov'
 <month-feb> = 'Feb'
 
-ddmm-opts = observed? start-year? | start-year? observed?
+ddmm-opts = observed? limit-clause? | limit-clause? observed?
 observed = <'|'> 'observed'
+<limit-clause> = start-year | end-year
 start-year = <'|'> #'\d{4}' <'->'>
+end-year = <'|'> <'->'> #'\d{4}'
 
 ddmmmyyyy = ddmmm yyyy exception-marker?
 yyyy = #'\d{4}'

@@ -5,17 +5,20 @@
             [tick.alpha.api :as t])
   (:import (java.time.format DateTimeParseException)))
 
-(defn get-holiday-ddmm [year name [day month] observed? start-year]
+(defn get-holiday-ddmm [year name [day month] observed start-year end-year]
   (try
     (let [holiday (common/holiday name day month year)]
       (cond
         (and start-year (< year start-year))
         nil
 
-        (and observed? (= t/SATURDAY (t/day-of-week (:date holiday))))
+        (and end-year (> year end-year))
+        nil
+
+        (and observed (= t/SATURDAY (t/day-of-week (:date holiday))))
         (update holiday :date #(t/- % (t/new-period 1 :days)))
 
-        (and observed? (= t/SUNDAY (t/day-of-week (:date holiday))))
+        (and observed (= t/SUNDAY (t/day-of-week (:date holiday))))
         (update holiday :date #(t/+ % (t/new-period 1 :days)))
 
         :else
