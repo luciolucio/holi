@@ -3,9 +3,7 @@ holiday = !comment-marker !include-marker name <'|'> holiday-definition <newline
 
 <name> = #'[^\n|]+'
 
-<holiday-definition> = date | rule | expression expression-opts?
-
-<date> = ddmmm ddmm-opts? | ddmmmyyyy
+<holiday-definition> = ddmmm ddmmm-opts? | ddmmmyyyy | nth-day-of-week nth-day-of-week-opts? | expression expression-opts?
 
 ddmmm = day-31 month-31 | day-30 month-30 | day-feb month-feb
 <day-31> = day-30 | '31'
@@ -19,7 +17,7 @@ ddmmm = day-31 month-31 | day-30 month-30 | day-feb month-feb
 <month-30> = 'Apr' | 'Jun' | 'Sep' | 'Nov'
 <month-feb> = 'Feb'
 
-ddmm-opts = observed? limit-clause? | limit-clause? observed?
+ddmmm-opts = observed? limit-clause? | limit-clause? observed?
 observed = <'|'> 'observed'
 <limit-clause> = start-year | end-year
 start-year = <'|'> #'\d{4}' <'->'>
@@ -27,8 +25,6 @@ end-year = <'|'> <'->'> #'\d{4}'
 
 ddmmmyyyy = ddmmm yyyy exception-marker?
 yyyy = #'\d{4}'
-
-<rule> = nth-day-of-week nth-day-of-week-opts?
 
 nth-day-of-week = day-of-week-nth day-of-week any-month
 <day-of-week-nth> = '1' | '2' | '3' | '4' | '5' | '-1' | '-2' | '-3' | '-4' | '-5'
