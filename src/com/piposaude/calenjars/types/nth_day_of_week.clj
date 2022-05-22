@@ -24,12 +24,17 @@
                     (t/new-period 1 :days))
         month-days-that-are-day-of-week (filterv #(= (t/day-of-week %) day-of-week) month-days)
         index-nth (if (pos? i-as-int) (dec i-as-int) (+ (count month-days-that-are-day-of-week) i-as-int))
-        holiday (when (contains? month-days-that-are-day-of-week index-nth) (nth month-days-that-are-day-of-week index-nth))]
-    (when holiday
-      (cond
-        start-year
-        (when (>= year start-year)
-          (common/holiday holiday-name (str (t/day-of-month holiday)) (str month-as-int) year))
+        holiday-date (when (contains? month-days-that-are-day-of-week index-nth) (nth month-days-that-are-day-of-week index-nth))
+        holiday (when holiday-date (common/holiday holiday-name (str (t/day-of-month holiday-date)) (str month-as-int) year))]
+    (cond
+      (not holiday-date)
+      nil
 
-        :else
-        (common/holiday holiday-name (str (t/day-of-month holiday)) (str month-as-int) year)))))
+      (not start-year)
+      holiday
+
+      (>= year start-year)
+      holiday
+
+      :else
+      nil)))

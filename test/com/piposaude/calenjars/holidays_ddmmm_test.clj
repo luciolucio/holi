@@ -23,14 +23,14 @@
 
 (deftest should-generate-holidays-when-holidays-for-year-with-exception-on-ddmmm
   (are [expected year]
-    (= expected (gen/holidays-for-year year "test-resources/generate/exception-on-ddmmm.hol"))
+       (= expected (gen/holidays-for-year year "test-resources/generate/exception-on-ddmmm.hol"))
     [{:name "NATIONAL PEANUT BUTTER AND JELLY DAY" :date (t/date "2012-04-02")}] 2012
     [] 2013
     [{:name "NATIONAL PEANUT BUTTER AND JELLY DAY" :date (t/date "2014-04-02")}] 2014))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-observance-rule-on-ddmmm
   (are [expected year]
-    (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-observed.hol"))
+       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-observed.hol"))
     [{:name "Independence Day" :date (t/date "2016-07-04")}] 2016
     [{:name "Independence Day" :date (t/date "2017-07-04")}] 2017
     [{:name "Independence Day" :date (t/date "2018-07-04")}] 2018
@@ -49,7 +49,7 @@
 
 (deftest should-generate-holidays-when-holidays-for-year-with-observance-rule-and-start-clause-on-ddmmm
   (are [expected year]
-    (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-observed-start.hol"))
+       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-observed-start.hol"))
     [] 2016
     [] 2017
     [{:name "Independence Day" :date (t/date "2018-07-04")}] 2018
@@ -58,7 +58,7 @@
     [{:name "Independence Day" :date (t/date "2021-07-05")}] 2021)
 
   (are [expected year]
-    (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-observed-start-reverse-order.hol"))
+       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-observed-start-reverse-order.hol"))
     [] 2016
     [] 2017
     [{:name "Independence Day" :date (t/date "2018-07-04")}] 2018
