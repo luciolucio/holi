@@ -52,7 +52,7 @@
     [] 2019
     [{:name "Memorial Day" :date (t/date "2020-05-25")}] 2020))
 
-(deftest should-generate-holidays-only-after-specified-yer-when-holidays-for-year-with-nth-day-of-week-rule-and-start-clause
+(deftest should-generate-holidays-only-after-specified-year-when-holidays-for-year-with-nth-day-of-week-rule-and-start-clause
   (are [expected year]
        (= expected (gen/holidays-for-year year "test-resources/generate/nth-day-of-week-start.hol"))
     [] 2016
@@ -61,11 +61,29 @@
     [{:name "Memorial Day" :date (t/date "2019-05-27")}] 2019
     [{:name "Memorial Day" :date (t/date "2020-05-25")}] 2020))
 
-(deftest should-generate-holidays-only-after-specified-yer-when-holidays-for-year-with-nth-day-of-week-rule-and-start-clause-and-exception
+(deftest should-generate-holidays-only-after-specified-year-when-holidays-for-year-with-nth-day-of-week-rule-and-start-clause-and-exception
   (are [expected year]
        (= expected (gen/holidays-for-year year "test-resources/generate/nth-day-of-week-start-exception.hol"))
     [] 2016
     [] 2017
     [{:name "Memorial Day" :date (t/date "2018-05-28")}] 2018
     [{:name "Memorial Day" :date (t/date "2019-05-27")}] 2019
+    [] 2020))
+
+(deftest should-generate-holidays-only-after-specified-year-when-holidays-for-year-with-nth-day-of-week-rule-and-end-clause
+  (are [expected year]
+       (= expected (gen/holidays-for-year year "test-resources/generate/nth-day-of-week-end.hol"))
+    [{:name "Memorial Day" :date (t/date "2016-05-30")}] 2016
+    [{:name "Memorial Day" :date (t/date "2017-05-29")}] 2017
+    [{:name "Memorial Day" :date (t/date "2018-05-28")}] 2018
+    [] 2019
+    [] 2020))
+
+(deftest should-generate-holidays-only-after-specified-year-when-holidays-for-year-with-nth-day-of-week-rule-and-end-clause-and-exception
+  (are [expected year]
+       (= expected (gen/holidays-for-year year "test-resources/generate/nth-day-of-week-end-exception.hol"))
+    [] 2016
+    [{:name "Memorial Day" :date (t/date "2017-05-29")}] 2017
+    [{:name "Memorial Day" :date (t/date "2018-05-28")}] 2018
+    [] 2019
     [] 2020))

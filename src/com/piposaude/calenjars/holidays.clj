@@ -27,7 +27,7 @@
     (condp = type
       :ddmmm (ddmm/get-holiday-ddmm year name args observed start-year end-year)
       :ddmmmyyyy (ddmmyyyy/get-holiday-ddmmyyyy year name args)
-      :nth-day-of-week (nth-day-of-week/get-holiday-nth-day-of-week year name args start-year)
+      :nth-day-of-week (nth-day-of-week/get-holiday-nth-day-of-week year name args start-year end-year)
       :expression (expression/get-holiday-by-expression year name (first args))
       nil)))
 

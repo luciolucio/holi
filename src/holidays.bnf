@@ -35,7 +35,7 @@ nth-day-of-week = day-of-week-nth day-of-week any-month
 <day-of-week> = 'Sun' | 'Mon' | 'Tue' | 'Wed' | 'Thu' | 'Fri' | 'Sat'
 <any-month> = month-31 | month-30 | month-feb
 
-nth-day-of-week-opts = start-year?
+nth-day-of-week-opts = limit-clause?
 
 expression = easter
 
