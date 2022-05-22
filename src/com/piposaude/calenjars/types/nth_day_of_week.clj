@@ -1,4 +1,4 @@
-(ns com.piposaude.calenjars.types.rules.nth-day-of-week
+(ns com.piposaude.calenjars.types.nth-day-of-week
   (:require [clojure.edn :as edn]
             [com.piposaude.calenjars.types.common :as common]
             [tick.alpha.api :as t])
@@ -13,7 +13,7 @@
    "Fri" t/FRIDAY
    "Sat" t/SATURDAY})
 
-(defn get-holiday-nth-day-of-week [^Integer year holiday-name [i day-of-week-str month]]
+(defn get-holiday-nth-day-of-week [^Integer year holiday-name [i day-of-week-str month] start-year]
   (let [i-as-int (edn/read-string i)
         day-of-week (day-of-week-str->day-of-week day-of-week-str)
         ^Integer month-as-int (-> month common/month->month-number edn/read-string)
@@ -23,7 +23,13 @@
                     (t/date (t/end month-bounds))
                     (t/new-period 1 :days))
         month-days-that-are-day-of-week (filterv #(= (t/day-of-week %) day-of-week) month-days)
-        index (if (pos? i-as-int) (dec i-as-int) (+ (count month-days-that-are-day-of-week) i-as-int))
-        holiday (when (contains? month-days-that-are-day-of-week index) (nth month-days-that-are-day-of-week index))]
+        index-nth (if (pos? i-as-int) (dec i-as-int) (+ (count month-days-that-are-day-of-week) i-as-int))
+        holiday (when (contains? month-days-that-are-day-of-week index-nth) (nth month-days-that-are-day-of-week index-nth))]
     (when holiday
-      (common/holiday holiday-name (str (t/day-of-month holiday)) (str month-as-int) year))))
+      (cond
+        start-year
+        (when (>= year start-year)
+          (common/holiday holiday-name (str (t/day-of-month holiday)) (str month-as-int) year))
+
+        :else
+        (common/holiday holiday-name (str (t/day-of-month holiday)) (str month-as-int) year)))))

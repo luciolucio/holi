@@ -28,6 +28,15 @@
     [] 2015
     [{:name "Leap Day" :date (t/date "2016-02-29")}] 2016))
 
+(deftest should-generate-holidays-only-after-specified-year-when-holidays-for-year-with-ddmmm-with-start-clause
+  (are [expected year]
+       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-start.hol"))
+    [] 2012
+    [] 2013
+    [{:name "New Year" :date (t/date "2014-01-01")}] 2014
+    [{:name "New Year" :date (t/date "2015-01-01")}] 2015
+    [{:name "New Year" :date (t/date "2016-01-01")}] 2016))
+
 (deftest should-generate-holidays-when-holidays-for-year-with-ddmmmyyyy
   (are [expected year]
        (= expected (gen/holidays-for-year year "test-resources/generate/ddmmmyyyy.hol"))

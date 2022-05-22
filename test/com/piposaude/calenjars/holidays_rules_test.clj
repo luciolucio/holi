@@ -44,11 +44,39 @@
      {:name "Inexistent Holiday -3" :date (t/date "2019-05-13")}
      {:name "Inexistent Holiday -4" :date (t/date "2019-05-06")}] 2019))
 
+(deftest should-generate-holidays-only-after-specified-yer-when-holidays-for-year-with-nth-day-of-week-rule-and-start-clause
+  (are [expected year]
+       (= expected (gen/holidays-for-year year "test-resources/generate/rule-nth-day-of-week-start.hol"))
+    [] 2016
+    [] 2017
+    [{:name "Memorial Day" :date (t/date "2018-05-28")}] 2018
+    [{:name "Memorial Day" :date (t/date "2019-05-27")}] 2019
+    [{:name "Memorial Day" :date (t/date "2020-05-25")}] 2020))
+
 (deftest should-generate-holidays-when-holidays-for-year-with-observance-rule
   (are [expected year]
        (= expected (gen/holidays-for-year year "test-resources/generate/rule-observed.hol"))
     [{:name "Independence Day" :date (t/date "2016-07-04")}] 2016
     [{:name "Independence Day" :date (t/date "2017-07-04")}] 2017
+    [{:name "Independence Day" :date (t/date "2018-07-04")}] 2018
+    [{:name "Independence Day" :date (t/date "2019-07-04")}] 2019
+    [{:name "Independence Day" :date (t/date "2020-07-03")}] 2020
+    [{:name "Independence Day" :date (t/date "2021-07-05")}] 2021))
+
+(deftest should-generate-holidays-only-after-specified-year-when-holidays-for-year-with-observance-rule-and-start-clause
+  (are [expected year]
+       (= expected (gen/holidays-for-year year "test-resources/generate/rule-observed-start.hol"))
+    [] 2016
+    [] 2017
+    [{:name "Independence Day" :date (t/date "2018-07-04")}] 2018
+    [{:name "Independence Day" :date (t/date "2019-07-04")}] 2019
+    [{:name "Independence Day" :date (t/date "2020-07-03")}] 2020
+    [{:name "Independence Day" :date (t/date "2021-07-05")}] 2021)
+
+  (are [expected year]
+       (= expected (gen/holidays-for-year year "test-resources/generate/rule-observed-start-reverse-order.hol"))
+    [] 2016
+    [] 2017
     [{:name "Independence Day" :date (t/date "2018-07-04")}] 2018
     [{:name "Independence Day" :date (t/date "2019-07-04")}] 2019
     [{:name "Independence Day" :date (t/date "2020-07-03")}] 2020
