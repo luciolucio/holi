@@ -21,7 +21,7 @@
     [] 2013
     [{:name "Easter" :date (t/date "2014-04-20")}] 2014))
 
-(deftest should-generate-holidays-when-holidays-for-year-with-easter-expression-and-start-clausex
+(deftest should-generate-holidays-when-holidays-for-year-with-easter-expression-and-start-clause
   (are [expected year]
        (= expected (gen/holidays-for-year year "test-resources/generate/expression-easter-start.hol"))
     [] 2012
@@ -31,11 +31,6 @@
     [{:name "Easter" :date (t/date "2016-03-27")}] 2016
     [{:name "Easter" :date (t/date "2017-04-16")}] 2017
     [{:name "Easter" :date (t/date "2018-04-01")}] 2018))
-
-(deftest should-generate-holidays-when-holidays-for-year-with-easter-expression-and-start-clause
-  (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/expression-easter-start.hol"))
-    [{:name "Easter" :date (t/date "2014-04-20")}] 2014))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-easter-expression-and-start-clause-and-exception
   (are [expected year]
