@@ -16,7 +16,7 @@
 
 (deftest should-generate-holidays-when-holidays-for-year-with-exception-on-expression
   (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/exception-on-expression.hol"))
+       (= expected (gen/holidays-for-year year "test-resources/generate/expression-exception.hol"))
     [{:name "Easter" :date (t/date "2012-04-08")}] 2012
     [] 2013
     [{:name "Easter" :date (t/date "2014-04-20")}] 2014))

@@ -44,7 +44,7 @@
     (not (check/valid-holiday-file? holiday-file))
     (throw (ex-info (str "Invalid holiday file: " holiday-file) {:holiday-file holiday-file :errors (check/get-errors holiday-file)}))
 
-    :default
+    :else
     (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
           result (parser (slurp holiday-file))
           holidays (conj

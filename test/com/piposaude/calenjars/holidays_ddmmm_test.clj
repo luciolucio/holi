@@ -23,7 +23,7 @@
 
 (deftest should-generate-holidays-when-holidays-for-year-with-exception-on-ddmmm
   (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/exception-on-ddmmm.hol"))
+       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-exception.hol"))
     [{:name "NATIONAL PEANUT BUTTER AND JELLY DAY" :date (t/date "2012-04-02")}] 2012
     [] 2013
     [{:name "NATIONAL PEANUT BUTTER AND JELLY DAY" :date (t/date "2014-04-02")}] 2014))
@@ -45,6 +45,15 @@
     [] 2013
     [{:name "New Year" :date (t/date "2014-01-01")}] 2014
     [{:name "New Year" :date (t/date "2015-01-01")}] 2015
+    [{:name "New Year" :date (t/date "2016-01-01")}] 2016))
+
+(deftest should-generate-holidays-when-holidays-for-year-with-start-clause-and-exception-on-ddmmm
+  (are [expected year]
+       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-start-exception.hol"))
+    [] 2012
+    [] 2013
+    [{:name "New Year" :date (t/date "2014-01-01")}] 2014
+    [] 2015
     [{:name "New Year" :date (t/date "2016-01-01")}] 2016))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-observance-rule-and-start-clause-on-ddmmm
