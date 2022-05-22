@@ -1,4 +1,4 @@
-(ns com.piposaude.calenjars.check-test
+(ns com.piposaude.calenjars.validate-holiday-file-test
   (:require [clojure.test :refer :all]
             [com.piposaude.calenjars.check :as check]))
 

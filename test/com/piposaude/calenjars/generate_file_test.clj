@@ -1,4 +1,4 @@
-(ns com.piposaude.calenjars.file-test
+(ns com.piposaude.calenjars.generate-file-test
   (:require [clojure.test :refer :all]
             [com.piposaude.calenjars.file :as file]))
 

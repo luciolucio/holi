@@ -1,4 +1,4 @@
-(ns com.piposaude.calenjars.holidays-test
+(ns com.piposaude.calenjars.holidays-general-test
   (:require [clojure.test :refer :all]
             [tick.alpha.api :as t]
             [com.piposaude.calenjars.holidays :as gen])
@@ -10,74 +10,11 @@
 (deftest should-throw-when-year-is-invalid
   (is (thrown-with-msg? ExceptionInfo #"Invalid year" (gen/holidays-for-year "a" nil))))
 
-(deftest should-generate-holidays-when-holidays-for-year-with-ddmmm
-  (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm.hol"))
-    [{:name "New Year" :date (t/date "2012-01-01")}] 2012
-    [{:name "New Year" :date (t/date "2013-01-01")}] 2013
-    [{:name "New Year" :date (t/date "2014-01-01")}] 2014
-    [{:name "New Year" :date (t/date "2015-01-01")}] 2015
-    [{:name "New Year" :date (t/date "2016-01-01")}] 2016))
-
-(deftest should-generate-holidays-when-holidays-for-year-with-ddmmm-leap
-  (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-leap.hol"))
-    [{:name "Leap Day" :date (t/date "2012-02-29")}] 2012
-    [] 2013
-    [] 2014
-    [] 2015
-    [{:name "Leap Day" :date (t/date "2016-02-29")}] 2016))
-
-(deftest should-generate-holidays-only-after-specified-year-when-holidays-for-year-with-ddmmm-with-start-clause
-  (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-start.hol"))
-    [] 2012
-    [] 2013
-    [{:name "New Year" :date (t/date "2014-01-01")}] 2014
-    [{:name "New Year" :date (t/date "2015-01-01")}] 2015
-    [{:name "New Year" :date (t/date "2016-01-01")}] 2016))
-
-(deftest should-generate-holidays-when-holidays-for-year-with-ddmmmyyyy
-  (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmmyyyy.hol"))
-    [] 2012
-    [] 2013
-    [] 2014
-    [{:name "Start of Scorpio Sign 2015" :date (t/date "2015-10-23")}] 2015
-    [] 2016
-    [] 2017
-    [] 2018))
-
-(deftest should-generate-holidays-when-holidays-for-year-with-easter-expression
-  (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/expression-easter.hol"))
-    [{:name "Easter" :date (t/date "2012-04-08")}] 2012
-    [{:name "Easter" :date (t/date "2013-03-31")}] 2013
-    [{:name "Easter" :date (t/date "2014-04-20")}] 2014
-    [{:name "Easter" :date (t/date "2015-04-05")}] 2015
-    [{:name "Easter" :date (t/date "2016-03-27")}] 2016
-    [{:name "Easter" :date (t/date "2017-04-16")}] 2017
-    [{:name "Easter" :date (t/date "2018-04-01")}] 2018))
-
 (deftest should-generate-holidays-when-holidays-for-year-with-nested-includes
   (= [{:name "Holiday from include-first" :date (t/date "2012-01-25")}
       {:name "Holiday from include-second" :date (t/date "2012-01-30")}
       {:name "Holiday from include-third" :date (t/date "2012-02-01")}]
      (gen/holidays-for-year 2012 "test-resources/generate/include-first.hol")))
-
-(deftest should-generate-holidays-when-holidays-for-year-with-exception-on-expression
-  (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/exception-on-expression.hol"))
-    [{:name "Easter" :date (t/date "2012-04-08")}] 2012
-    [] 2013
-    [{:name "Easter" :date (t/date "2014-04-20")}] 2014))
-
-(deftest should-generate-holidays-when-holidays-for-year-with-exception-on-ddmmm
-  (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/exception-on-ddmmm.hol"))
-    [{:name "NATIONAL PEANUT BUTTER AND JELLY DAY" :date (t/date "2012-04-02")}] 2012
-    [] 2013
-    [{:name "NATIONAL PEANUT BUTTER AND JELLY DAY" :date (t/date "2014-04-02")}] 2014))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-brazil-holidays
   (are [year expected]
