@@ -2,8 +2,19 @@
 [![build](https://github.com/piposaude/calenjars/workflows/build-and-test/badge.svg)](https://github.com/piposaude/calenjars/actions/workflows/build-and-test.yml)
 [![Clojars Project](https://img.shields.io/clojars/v/piposaude/calenjars.svg)](https://clojars.org/piposaude/calenjars)
 
-Calenjars is a clojure jar generator, designed to create libraries for date
-arithmetics around non-business days, that you define yourself with a simple DSL.
+Calenjars is a clojure library for date arithmetics around non-business days, and is
+especially useful when working with holidays so you can answer questions like:
+
+* What day is three business days from now, considering the US holiday calendar?
+* Is this particular date a UK bank holiday?
+* Is date X a business day in Brazil?
+* If I consider business days for both the UK and the US, what day is one business day from today?
+
+It ships with a few useful calendars (see below), but if what you need is not available
+you have two options:
+
+* Create your own library derived from this one, where you define your calendars yourself with a simple DSL
+* Send us a pull request (see [CONTRIBUTING](CONTRIBUTING.md))
 
 ## Usage
 
