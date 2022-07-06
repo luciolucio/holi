@@ -14,7 +14,7 @@
 
 (defmulti opt-value (fn [opt-kw _args] opt-kw))
 
-(defmethod opt-value :observed [_ _] true)
+(defmethod opt-value :observation-rule [_ args] (keyword (first args)))
 (defmethod opt-value :start-year [_ args] (edn/read-string (first args)))
 (defmethod opt-value :end-year [_ args] (edn/read-string (first args)))
 
@@ -23,12 +23,12 @@
             (assoc holiday-opts opt-kw (opt-value opt-kw args))) {} opts))
 
 (defn get-holiday [year [_ name [type & args] opts]]
-  (let [{:keys [observed start-year end-year]} (parse-holiday-opts opts)]
+  (let [{:keys [observation-rule start-year end-year]} (parse-holiday-opts opts)]
     (condp = type
-      :ddmmm (ddmm/get-holiday-ddmm year name args observed start-year end-year)
+      :ddmmm (ddmm/get-holiday-ddmm year name args observation-rule start-year end-year)
       :ddmmmyyyy (ddmmyyyy/get-holiday-ddmmyyyy year name args)
       :nth-day-of-week (nth-day-of-week/get-holiday-nth-day-of-week year name args start-year end-year)
-      :expression (expression/get-holiday-by-expression year name (first args) observed start-year end-year)
+      :expression (expression/get-holiday-by-expression year name (first args) observation-rule start-year end-year)
       nil)))
 
 (defn remove-exceptions [holidays]

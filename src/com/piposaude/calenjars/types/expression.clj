@@ -9,7 +9,7 @@
 
     nil))
 
-(defn get-holiday-by-expression [year name args observed start-year end-year]
+(defn get-holiday-by-expression [year name args observation-rule start-year end-year]
   (let [holiday (make-holiday year name args)]
     (cond
       (and start-year (< year start-year))
@@ -18,11 +18,14 @@
       (and end-year (> year end-year))
       nil
 
-      (and observed (= t/SATURDAY (t/day-of-week (:date holiday))))
+      (and (= observation-rule :observed) (= t/SATURDAY (t/day-of-week (:date holiday))))
       (update holiday :date #(t/- % (t/new-period 1 :days)))
 
-      (and observed (= t/SUNDAY (t/day-of-week (:date holiday))))
+      (and (= observation-rule :observed) (= t/SUNDAY (t/day-of-week (:date holiday))))
       (update holiday :date #(t/+ % (t/new-period 1 :days)))
+
+      (and (= observation-rule :observed-monday-tuesday) (contains? #{t/SATURDAY t/SUNDAY} (t/day-of-week (:date holiday))))
+      (update holiday :date #(t/+ % (t/new-period 2 :days)))
 
       :else
       holiday)))

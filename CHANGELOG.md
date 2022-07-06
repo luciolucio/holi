@@ -2,7 +2,7 @@
 
 * UNRELEASED
   * Added support for nth-day-of-the-week holidays
-  * Now supports observed holidays
+  * Now supports observed holidays, including UK Christmas/Boxing Day Monday/Tuesday rule
   * You can now specify a holiday to begin or end only after a certain year
 
 * 0.5.0 - Jan 7, 2022

@@ -17,8 +17,9 @@ ddmmm = day-31 month-31 | day-30 month-30 | day-feb month-feb
 <month-30> = 'Apr' | 'Jun' | 'Sep' | 'Nov'
 <month-feb> = 'Feb'
 
-ddmmm-opts = observed? limit-clause? | limit-clause? observed?
-observed = <'|'> 'observed'
+ddmmm-opts = observation-rule? limit-clause? | limit-clause? observation-rule?
+observation-rule = <'|'> observation-rule-option
+<observation-rule-option> = 'observed' | 'observed-monday-tuesday'
 <limit-clause> = start-year | end-year
 start-year = <'|'> #'\d{4}' <'->'>
 end-year = <'|'> <'->'> #'\d{4}'
@@ -39,7 +40,7 @@ easter = 'E' expression-operator expression-operand
 <expression-operator> = '+' | '-'
 <expression-operand> = #'\d+'
 
-expression-opts = observed? limit-clause? | limit-clause? observed?
+expression-opts = observation-rule? limit-clause? | limit-clause? observation-rule?
 
 exception-marker = '-'
 

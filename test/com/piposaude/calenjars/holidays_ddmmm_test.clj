@@ -38,6 +38,24 @@
     [{:name "Independence Day" :date (t/date "2020-07-03")}] 2020
     [{:name "Independence Day" :date (t/date "2021-07-05")}] 2021))
 
+(deftest should-generate-holidays-when-holidays-for-year-with-monday-tuesday-observance-rule-on-ddmmm
+  (are [expected year]
+       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-observed-monday-tuesday.hol"))
+    [{:name "Christmas" :date (t/date "2016-12-27")}
+     {:name "Boxing Day" :date (t/date "2016-12-26")}] 2016
+    [{:name "Christmas" :date (t/date "2017-12-25")}
+     {:name "Boxing Day" :date (t/date "2017-12-26")}] 2017
+    [{:name "Christmas" :date (t/date "2018-12-25")}
+     {:name "Boxing Day" :date (t/date "2018-12-26")}] 2018
+    [{:name "Christmas" :date (t/date "2019-12-25")}
+     {:name "Boxing Day" :date (t/date "2019-12-26")}] 2019
+    [{:name "Christmas" :date (t/date "2020-12-25")}
+     {:name "Boxing Day" :date (t/date "2020-12-28")}] 2020
+    [{:name "Christmas" :date (t/date "2021-12-27")}
+     {:name "Boxing Day" :date (t/date "2021-12-28")}] 2021
+    [{:name "Christmas" :date (t/date "2022-12-27")}
+     {:name "Boxing Day" :date (t/date "2022-12-26")}] 2022))
+
 (deftest should-generate-holidays-when-holidays-for-year-with-start-clause-on-ddmmm
   (are [expected year]
        (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-start.hol"))
@@ -75,6 +93,25 @@
     [{:name "Independence Day" :date (t/date "2020-07-03")}] 2020
     [{:name "Independence Day" :date (t/date "2021-07-05")}] 2021))
 
+(deftest should-generate-holidays-when-holidays-for-year-with-monday-tuesday-observance-rule-and-start-clause-on-ddmmm
+  (are [expected year]
+       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-observed-monday-tuesday-start.hol"))
+    [] 2016
+    [] 2017
+    [{:name "Christmas" :date (t/date "2018-12-25")}] 2018
+    [{:name "Christmas" :date (t/date "2019-12-25")}] 2019
+    [{:name "Christmas" :date (t/date "2020-12-25")}] 2020
+    [{:name "Christmas" :date (t/date "2021-12-27")}] 2021)
+
+  (are [expected year]
+       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-observed-monday-tuesday-start-reverse-order.hol"))
+    [] 2016
+    [] 2017
+    [{:name "Christmas" :date (t/date "2018-12-25")}] 2018
+    [{:name "Christmas" :date (t/date "2019-12-25")}] 2019
+    [{:name "Christmas" :date (t/date "2020-12-25")}] 2020
+    [{:name "Christmas" :date (t/date "2021-12-27")}] 2021))
+
 (deftest should-generate-holidays-when-holidays-for-year-with-end-clause-on-ddmmm
   (are [expected year]
        (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-end.hol"))
@@ -109,5 +146,24 @@
     [{:name "Independence Day" :date (t/date "2017-07-04")}] 2017
     [{:name "Independence Day" :date (t/date "2018-07-04")}] 2018
     [{:name "Independence Day" :date (t/date "2019-07-04")}] 2019
+    [] 2020
+    [] 2021))
+
+(deftest should-generate-holidays-when-holidays-for-year-with-monday-tuesday-observance-rule-and-end-clause-on-ddmmm
+  (are [expected year]
+       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-observed-monday-tuesday-end.hol"))
+    [{:name "Christmas" :date (t/date "2016-12-27")}] 2016
+    [{:name "Christmas" :date (t/date "2017-12-25")}] 2017
+    [{:name "Christmas" :date (t/date "2018-12-25")}] 2018
+    [{:name "Christmas" :date (t/date "2019-12-25")}] 2019
+    [] 2020
+    [] 2021)
+
+  (are [expected year]
+       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmm-observed-monday-tuesday-end-reverse-order.hol"))
+    [{:name "Christmas" :date (t/date "2016-12-27")}] 2016
+    [{:name "Christmas" :date (t/date "2017-12-25")}] 2017
+    [{:name "Christmas" :date (t/date "2018-12-25")}] 2018
+    [{:name "Christmas" :date (t/date "2019-12-25")}] 2019
     [] 2020
     [] 2021))
