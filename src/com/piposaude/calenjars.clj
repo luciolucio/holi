@@ -69,8 +69,8 @@
                 m (inc-unless-holiday new-date non-business-days days-added n)]
             (recur new-date m)))))))
 
-(defn relative-date-add [date n unit & calendars]
-  "Adds n 'unit's to date and returns a new date
+(defn add [date n unit & calendars]
+  "Adds n units to date and returns a new date
 
   date must be an instance of java.time.LocalDate
   or java.time.LocalDateTime, n must be an integer

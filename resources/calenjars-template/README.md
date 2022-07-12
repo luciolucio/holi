@@ -85,7 +85,7 @@ A holiday in addition to the ones included|5May
 ```
 
 * Remember not to write the `.hol` extension in the `#include` directive
-* The directive must be on the first line, except when a comment is present (see below)
+* The directive must be on the first line (only comments may come before it)
 * The included file must be in the same directory
 * Only one include per file is allowed
 * You may include a file that includes another file, and so on

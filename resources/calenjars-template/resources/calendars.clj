@@ -1,8 +1,8 @@
 (ns {{lib-ns}}.{{lib-name}}
   (:require [com.piposaude.calenjars :as calenjars]))
 
-(defn relative-date-add [date n unit & calendars]
-  (apply calenjars/relative-date-add date n unit calendars))
+(defn add [date n unit & calendars]
+  (apply calenjars/add date n unit calendars))
 
 (defn weekend? [date]
   (calenjars/weekend? date))
