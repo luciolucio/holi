@@ -24,9 +24,15 @@ Calenjars is a clojure library for working with non-business days
 (calendar/holiday? (t/date "2019-07-04") "US") ; -> true
 ```
 
+## Usage
+
+* Import the latest version from [clojars](https://clojars.org/piposaude/calenjars) in your project
+* Require the `piposaude.calenjars` namespace
+* Ready to go!
+
 ## API
 
-### Add
+### add
 
 ```clojure
 (add [date n unit & calendars])
@@ -34,20 +40,81 @@ Calenjars is a clojure library for working with non-business days
 
 Adds `n` of `unit` to `date` and returns a new date. Skips holidays in `calendars` when `unit` is `:business-days`.
 
+| Parameter   | Description                                                                | Example                                                 |
+|-------------|----------------------------------------------------------------------------|---------------------------------------------------------|
+| `date`      | An instance of `java.time.LocalDate` or `java.time.LocalDateTime`          | `(LocalDate/of 2020 10 9)`                              |
+| `n`         | An integer                                                                 | `2`, `-1`, `0`                                          |
+| `unit`      | Unit of `n`                                                                | `:days` `:weeks` `:months` `:years` or `:business-days` |
+| `calendars` | One or more strings representing holiday calendars (`:business-days` only) | `"US"`, `"BR"`                                          |
+
+#### Notes
+1. Types are preserved, i.e., passing a `LocalDate` in will return a `LocalDate`
+2. The time portion is never altered on a `LocalDateTime` instance
+
+### weekend?
+
+```clojure
+(weekend? [date])
+```
+
+Returns true if date is in a weekend, and false otherwise
+
+| Parameter   | Description                                                                | Example                    |
+|-------------|----------------------------------------------------------------------------|----------------------------|
+| `date`      | An instance of `java.time.LocalDate` or `java.time.LocalDateTime`          | `(LocalDate/of 2020 10 9)` |
+
+#### Notes
+
+1. Weekend days are assumed to be Saturday and Sunday
+
+### holiday?
+
+```clojure
+(holiday? [date calendar])
+```
+
+Returns true if date is a holiday in the given calendar, and false otherwise
+
+| Parameter  | Description                                                       | Example                    |
+|------------|-------------------------------------------------------------------|----------------------------|
+| `date`     | An instance of `java.time.LocalDate` or `java.time.LocalDateTime` | `(LocalDate/of 2020 10 9)` |
+| `calendar` | A string representing a holiday calendar                          | `"US"`, `"BR"`             |
+
+### non-business-day?
+
+```clojure
+(non-business-day? [date & calendars])
+```
+
+Returns true only if date is whether in a weekend or a holiday in one of the given calendars. Returns false otherwise.
+
 | Parameter   | Description                                                       | Example                                                 |
 |-------------|-------------------------------------------------------------------|---------------------------------------------------------|
-| `date`      | An instance of `java.time.LocalDate` or `java.time.LocalDateTime` | `(LocalDate/of 2020 10 9)  `                            |
-| `n`         | An integer                                                        | `2`, `-1`, `0`                                          |
-| `unit`      | Unit of `n`                                                       | `:days` `:weeks` `:months` `:years` or `:business-days` |
+| `date`      | An instance of `java.time.LocalDate` or `java.time.LocalDateTime` | `(LocalDate/of 2020 10 9)`                              |
 | `calendars` | One or more strings representing holiday calendars                | `"US"`, `"BR"`                                          |
 
-Note that passing a `LocalDate` will get you another `LocalDate` in return. Same goes for `LocalDateTime` (the time component won't be changed).
+### business-day?
+
+```clojure
+(business-day? [date & calendars])
+```
+
+Returns true only if date is not in a weekend and also not a holiday in any of the given calendars. Returns false otherwise.
+
+| Parameter   | Description                                                       | Example                                                 |
+|-------------|-------------------------------------------------------------------|---------------------------------------------------------|
+| `date`      | An instance of `java.time.LocalDate` or `java.time.LocalDateTime` | `(LocalDate/of 2020 10 9)`                              |
+| `calendars` | One or more strings representing holiday calendars                | `"US"`, `"BR"`                                          |
+
 
 ## Tips and tricks
 
-### "Next" business day
+### "Same or next" business day
 
-Use `n = 0` to get the _next_ business day. This could be the same day that was passed in.
+Use `n = 0` to get _same or next_ semantics, that is:
+
+- If the date is a business day already, just return the same date
+- Otherwise it's as if you had used `n = 1`
 
 ```clojure
 (ns my-app
@@ -59,9 +126,24 @@ Use `n = 0` to get the _next_ business day. This could be the same day that was 
 (calendar/add (t/date "2022-07-08") 0 :business-days) ; -> 8Jul22, as it's a regular Monday
 ```
 
+One way this is useful is for things like "This is due next month, on the same day of the month, but if it's a weekend then it's the following business day":
+
+```clojure
+(-> (t/date "2022-06-06")
+    (calendar/add 1 :months)         ; 6Jul22, Sat
+    (calendar/add 0 :business-days)) ; 8Jul22, Mon
+```
+
 ## Available holiday calendars
 
 | Holiday calendar | Description                     |
 |------------------|---------------------------------|
 | US               | Official United States holidays |
 | BR               | Brazilian holidays              |
+
+## There is no holiday calendar for &lt;insert location here&gt;!
+
+You have two options:
+
+* **Contribute** a new calendar to the project (see [CONTRIBUTING.md](CONTRIBUTING.md))
+* Build yourself a **custom library** with your own holiday calendars (it's easy! See [CUSTOM.md](CUSTOM.md]))
