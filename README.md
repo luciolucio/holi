@@ -6,7 +6,7 @@ Holi is a clojure library for working with non-business days
 
 ```clojure
 (ns my-app
-  (:require [holi.core :as holi]
+  (:require [luciolucio.holi.core :as holi]
             [tick.core :as t]))
 
 ;      July 2019
@@ -118,7 +118,7 @@ Use `n = 0` to get _same or next_ semantics, that is:
 
 ```clojure
 (ns my-app
-  (:require [holi.core :as holi]
+  (:require [luciolucio.holi.core :as holi]
     [tick.core :as t]))
 
 (holi/add (t/date "2022-07-06") 0 :business-days) ; -> 8Jul22, because 6Jul22 is a Saturday

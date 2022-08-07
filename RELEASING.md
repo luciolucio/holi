@@ -11,7 +11,7 @@ Change the version number in these places:
 
 * main pom.xml
 ```
-  <groupId>luciolucio</groupId>
+  <groupId>io.github.luciolucio</groupId>
   <artifactId>holi</artifactId>
   <version>0.1.1</version>                  <-- change here
 ```
@@ -19,14 +19,14 @@ Change the version number in these places:
 * resources/holi-template/resources/deps.edn
 
 ```
-luciolucio/holi {:mvn/version "0.1.1"}}  <-- change here
+io.github.luciolucio/holi {:mvn/version "0.1.1"}}  <-- change here
 ```
 
 * resources/holi-template/resources/pom.xml
 
 ```
     <dependency>
-      <groupId>luciolucio</groupId>
+      <groupId>io.github.luciolucio</groupId>
       <artifactId>holi</artifactId>
       <version>0.1.1</version>              <-- change here
     </dependency>
