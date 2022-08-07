@@ -6,14 +6,25 @@
 
 (def WEEKEND-FILE-NAME "WEEKEND")
 
-(def units #{:days :weeks :months :years :business-days})
+(def unit->tick-unit {:days          :days
+                      :weeks         :weeks
+                      :months        :months
+                      :years         :years
+                      :business-days :business-days
+                      :day           :days
+                      :week          :weeks
+                      :month         :months
+                      :year          :years
+                      :business-day  :business-days})
+
+(def valid-units (set (keys unit->tick-unit)))
 
 (defn- validate-input [date n unit]
   (when-not (or (instance? LocalDate date) (instance? LocalDateTime date))
     (throw (IllegalArgumentException. (str "Illegal date: " date))))
   (when-not (integer? n)
     (throw (IllegalArgumentException. (str "Illegal n: " n))))
-  (when-not (contains? units unit)
+  (when-not (contains? valid-units unit)
     (throw (IllegalArgumentException. (str "Unrecognized unit: " unit)))))
 
 (def read-calendar
@@ -76,9 +87,9 @@
   or java.time.LocalDateTime, n must be an integer
   and valid units are found in the units set"
   (validate-input date n unit)
-  (if (= unit :business-days)
+  (if (contains? #{:business-days :business-day} unit)
     (add-with-calendars date n calendars)
-    (t/+ date (t/new-period n unit))))
+    (t/+ date (t/new-period n (get unit->tick-unit unit)))))
 
 (defn weekend? [date]
   "Returns true only if date is in a weekend"

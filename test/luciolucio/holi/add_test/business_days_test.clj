@@ -5,7 +5,7 @@
 
 (deftest should-calculate-correct-date-when-add-date-with-business-days
   (are [days expected]
-       (= expected (holi/add (t/date "2020-07-30") days :business-days))
+       (= expected (holi/add (t/date "2020-07-30") days :business-days) (holi/add (t/date "2020-07-30") days :business-day))
     2 (t/date "2020-08-03")
     1 (t/date "2020-07-31")
     5 (t/date "2020-08-06")
@@ -13,7 +13,7 @@
 
 (deftest should-calculate-correct-date-when-add-date-time-with-business-days
   (are [days expected]
-       (= expected (holi/add (t/date-time "2020-07-30T11:11:00") days :business-days))
+       (= expected (holi/add (t/date-time "2020-07-30T11:11:00") days :business-days) (holi/add (t/date-time "2020-07-30T11:11:00") days :business-day))
     2 (t/date-time "2020-08-03T11:11:00")
     1 (t/date-time "2020-07-31T11:11:00")
     5 (t/date-time "2020-08-06T11:11:00")
