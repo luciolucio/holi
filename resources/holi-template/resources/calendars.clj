@@ -1,5 +1,5 @@
 (ns {{lib-ns}}.{{lib-name}}
-  (:require [luciolucio.holi.core :as holi]))
+  (:require [luciolucio.holi :as holi]))
 
 (defn add [date n unit & calendars]
   (apply holi/add date n unit calendars))
