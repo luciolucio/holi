@@ -12,9 +12,9 @@
       <version>1.10.1</version>
     </dependency>
     <dependency>
-      <groupId>luciolucio</groupId>
+      <groupId>io.github.luciolucio</groupId>
       <artifactId>holi</artifactId>
-      <version>0.5.0</version>
+      <version>0.6.0</version>
     </dependency>
   </dependencies>
   <build>

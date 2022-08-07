@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>luciolucio</groupId>
+  <groupId>io.github.luciolucio</groupId>
   <artifactId>holi</artifactId>
-  <version>0.5.0</version>
+  <version>0.6.0</version>
   <name>holi</name>
   <description>Tool for date arithmetics around non-business days</description>
   <url>https://github.com/luciolucio/holi</url>
@@ -29,7 +29,7 @@
     <dependency>
       <groupId>instaparse</groupId>
       <artifactId>instaparse</artifactId>
-      <version>1.4.10</version>
+      <version>1.4.12</version>
     </dependency>
   </dependencies>
   <distributionManagement>
