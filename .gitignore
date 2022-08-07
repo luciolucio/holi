@@ -5,3 +5,4 @@ test-resources/file/output/
 output.txt
 target/
 holi.jar
+resources/calendars-generated
