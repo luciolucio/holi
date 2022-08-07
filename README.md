@@ -24,7 +24,9 @@ Holi is a clojure library for working with non-business days
 (holi/holiday? (t/date "2019-07-04") "US") ; -> true
 ```
 
-Just import the latest version from [clojars](https://clojars.org/io.github.luciolucio/holi) and you're ready to go!
+## Usage
+
+Just import the latest version from [clojars](https://clojars.org/io.github.luciolucio/holi) into your project dependencies
 
 ## API
 
