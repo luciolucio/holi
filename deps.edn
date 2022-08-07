@@ -12,4 +12,4 @@
            :depstar  {:extra-paths ["resources/calendars-generated"]
                       :extra-deps  {seancorfield/depstar {:mvn/version "0.5.2"}}}
 
-           :generate {:main-opts ["-m" "holi.generate"]}}}
+           :generate {:main-opts ["-m" "luciolucio.holi.generate"]}}}

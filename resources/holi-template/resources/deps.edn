@@ -3,4 +3,4 @@
            io.github.luciolucio/holi {:mvn/version "0.6.0"}}
  :aliases {:depstar   {:extra-paths ["calendars"]
                        :extra-deps  {seancorfield/depstar {:mvn/version "0.5.2"}}}
-           :calendars {:main-opts ["-m" "holi.generate"]}}}
+           :calendars {:main-opts ["-m" "luciolucio.holi.generate"]}}}
