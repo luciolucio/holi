@@ -54,7 +54,7 @@ zip holi-template.zip holi-template/**/*
 zip holi-template.zip holi-template/**/.*
 ```
 
-Tag the new version in github, and change the README:
+Tag the new version in github, and change CUSTOM.md:
 
 ```
 curl -LO https://raw.githubusercontent.com/luciolucio/holi/v0.1.0/new-holi-project.sh   <-- change here
