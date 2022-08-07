@@ -1,17 +1,17 @@
 (ns {{lib-ns}}.{{lib-name}}
-  (:require [com.piposaude.calenjars :as calenjars]))
+  (:require [holi.core :as holi]))
 
 (defn add [date n unit & calendars]
-  (apply calenjars/add date n unit calendars))
+  (apply holi/add date n unit calendars))
 
 (defn weekend? [date]
-  (calenjars/weekend? date))
+  (holi/weekend? date))
 
 (defn holiday? [date calendar]
-  (calenjars/holiday? date calendar))
+  (holi/holiday? date calendar))
 
 (defn non-business-day? [date & calendars]
-  (apply calenjars/non-business-day? date calendars))
+  (apply holi/non-business-day? date calendars))
 
 (defn business-day? [date & calendars]
-  (apply calenjars/business-day? date calendars))
+  (apply holi/business-day? date calendars))

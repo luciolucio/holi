@@ -1,12 +1,12 @@
-# Calenjars
-[![build](https://github.com/piposaude/calenjars/workflows/build-and-test/badge.svg)](https://github.com/piposaude/calenjars/actions/workflows/build-and-test.yml)
-[![Clojars Project](https://img.shields.io/clojars/v/piposaude/calenjars.svg)](https://clojars.org/piposaude/calenjars)
+# Holi
+[![build](https://github.com/luciolucio/holi/workflows/build-and-test/badge.svg)](https://github.com/luciolucio/holi/actions/workflows/build-and-test.yml)
+[![Clojars Project](https://img.shields.io/clojars/v/luciolucio/holi.svg)](https://clojars.org/luciolucio/holi)
 
-Calenjars is a clojure library for working with non-business days
+Holi is a clojure library for working with non-business days
 
 ```clojure
 (ns my-app
-  (:require [piposaude.calenjars :as calendar]
+  (:require [holi.core :as holi]
             [tick.core :as t]))
 
 ;      July 2019
@@ -17,17 +17,17 @@ Calenjars is a clojure library for working with non-business days
 ; 21 22 23 24 25 26 27
 ; 28 29 30 31
 
-(calendar/add (t/date "2019-07-12") 3 :business-days) ; 17Jul2020 (skips weekends)
-(calendar/add (t/date "2019-07-03") 1 :business-days "US") ; 5Jul2019 (skips 4th of July as a US holiday)
+(holi/add (t/date "2019-07-12") 3 :business-days) ; 17Jul2020 (skips weekends)
+(holi/add (t/date "2019-07-03") 1 :business-days "US") ; 5Jul2019 (skips 4th of July as a US holiday)
 
-(calendar/weekend? (t/date "2019-07-06")) ; -> true
-(calendar/holiday? (t/date "2019-07-04") "US") ; -> true
+(holi/weekend? (t/date "2019-07-06")) ; -> true
+(holi/holiday? (t/date "2019-07-04") "US") ; -> true
 ```
 
 ## Usage
 
-* Import the latest version from [clojars](https://clojars.org/piposaude/calenjars) in your project
-* Require the `piposaude.calenjars` namespace
+* Import the latest version from [clojars](https://clojars.org/luciolucio/holi) in your project
+* Require the `holi.core` namespace
 * Ready to go!
 
 ## API
@@ -118,20 +118,20 @@ Use `n = 0` to get _same or next_ semantics, that is:
 
 ```clojure
 (ns my-app
-  (:require [piposaude.calenjars :as calendar]
+  (:require [holi.core :as holi]
     [tick.core :as t]))
 
-(calendar/add (t/date "2022-07-06") 0 :business-days) ; -> 8Jul22, because 6Jul22 is a Saturday
-(calendar/add (t/date "2022-07-07") 0 :business-days) ; -> 8Jul22, because 7Jul22 is a Sunday
-(calendar/add (t/date "2022-07-08") 0 :business-days) ; -> 8Jul22, as it's a regular Monday
+(holi/add (t/date "2022-07-06") 0 :business-days) ; -> 8Jul22, because 6Jul22 is a Saturday
+(holi/add (t/date "2022-07-07") 0 :business-days) ; -> 8Jul22, because 7Jul22 is a Sunday
+(holi/add (t/date "2022-07-08") 0 :business-days) ; -> 8Jul22, as it's a regular Monday
 ```
 
 One way this is useful is for things like "This is due next month, on the same day of the month, but if it's a weekend then it's the following business day":
 
 ```clojure
 (-> (t/date "2022-06-06")
-    (calendar/add 1 :months)         ; 6Jul22, Sat
-    (calendar/add 0 :business-days)) ; 8Jul22, Mon
+    (holi/add 1 :months)         ; 6Jul22, Sat
+    (holi/add 0 :business-days)) ; 8Jul22, Mon
 ```
 
 ## Available holiday calendars

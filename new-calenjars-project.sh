@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "---------------------"
-echo "New calenjars project"
+echo "New holi project"
 echo "---------------------"
 echo ""
 echo "Enter a project name (e.g. company-calendars):"
@@ -28,12 +28,12 @@ fi
 
 echo ""
 echo "Downloading template..."
-curl -LO https://github.com/piposaude/calenjars/raw/master/resources/calenjars-template.zip
+curl -LO https://github.com/luciolucio/holi/raw/master/resources/holi-template.zip
 
 echo ""
 echo "Decompressing template..."
-unzip calenjars-template.zip
-mv calenjars-template "$PROJECT_NAME"
+unzip holi-template.zip
+mv holi-template "$PROJECT_NAME"
 
 sed -i '' "s/{{lib-name}}/$PROJECT_NAME/g" "$PROJECT_NAME/README.md" "$PROJECT_NAME/gen-lib.sh" "$PROJECT_NAME/resources/calendars.clj" "$PROJECT_NAME/resources/pom.xml"
 sed -i '' "s/{{lib-ns}}/$NAMESPACE/g" "$PROJECT_NAME/resources/calendars.clj" "$PROJECT_NAME/resources/pom.xml"

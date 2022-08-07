@@ -1,6 +1,6 @@
 # Contributing
 
-Thanks for your interest in contributing to calenjars! It's as simple as it gets:
+Thanks for your interest in contributing to holi! It's as simple as it gets:
 
 1. Fork the repo
 2. Make your changes
