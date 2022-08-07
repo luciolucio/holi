@@ -1,11 +1,11 @@
 (ns luciolucio.holi.is-holiday-test
   (:require [clojure.test :refer :all]
-            [luciolucio.holi :refer [holiday?]]
+            [luciolucio.holi :as holi]
             [tick.alpha.api :as t]))
 
 (deftest should-identify-holidays-when-holiday?-with-date
   (are [date calendar expected]
-       (= expected (holiday? date calendar))
+       (= expected (holi/holiday? date calendar))
     (t/date "2020-08-01") "X" false
     (t/date "2020-08-03") "X" false
     (t/date "2020-07-29") "DAY-TWENTY-NINE" true
@@ -15,7 +15,7 @@
 
 (deftest should-identify-holidays-when-holiday?-with-date-time
   (are [date calendar expected]
-       (= expected (holiday? date calendar))
+       (= expected (holi/holiday? date calendar))
     (t/date-time "2020-08-01T00:00:00") "X" false
     (t/date-time "2020-08-03T11:11:11") "X" false
     (t/date-time "2020-07-29T22:22:22") "DAY-TWENTY-NINE" true

@@ -7,10 +7,10 @@
             [luciolucio.holi.types.ddmmmyyyy :as ddmmyyyy]
             [luciolucio.holi.types.expression :as expression]
             [luciolucio.holi.types.nth-day-of-week :as nth-day-of-week]
-            [luciolucio.holi.constants :refer :all]))
+            [luciolucio.holi.constants :as constants]))
 
 (defn valid-year? [year]
-  (and (integer? year) (<= MIN-YEAR year MAX-YEAR)))
+  (and (integer? year) (<= constants/MIN-YEAR year constants/MAX-YEAR)))
 
 (defmulti opt-value (fn [opt-kw _args] opt-kw))
 
@@ -44,7 +44,7 @@
     (throw (ex-info (str "Invalid holiday file: " holiday-file) {:holiday-file holiday-file :errors (check/get-errors holiday-file)}))
 
     :else
-    (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
+    (let [parser (insta/parser (clojure.java.io/resource constants/PARSER-GRAMMAR-FILENAME))
           result (parser (slurp holiday-file))
           holidays (conj
                     (keep #(get-holiday year %) (common/drop-include result))

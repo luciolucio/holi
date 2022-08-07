@@ -1,11 +1,10 @@
 (ns luciolucio.holi.file
   (:require [luciolucio.holi.common :as common]
             [luciolucio.holi.holidays :as gen]
+            [luciolucio.holi.constants :as constants]
             [clojure.string :as str]
             [tick.alpha.api :as t])
   (:import (java.nio.file Paths)))
-
-(def WEEKEND-FILE-NAME "WEEKEND")
 
 (defn format-YYYYMMDD [holiday]
   (t/format (tick.format/formatter "yyyy-MM-dd") holiday))
@@ -43,5 +42,5 @@
 
 (defn generate-weekend! [output-path year bracket-size]
   (let [weekends (gen-bracketed-weekends year bracket-size)
-        weekend-path (gen-path WEEKEND-FILE-NAME output-path)]
+        weekend-path (gen-path constants/WEEKEND-FILE-NAME output-path)]
     (spit weekend-path (str/join "\n" weekends))))
