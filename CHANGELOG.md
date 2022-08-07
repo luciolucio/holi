@@ -2,6 +2,7 @@
 
 * UNRELEASED
   * Now supports singular versions of :days :weeks :months :years and :business-days
+  * Cleaned up the namespace, moving internal fns somewhere else to avoid confusion
 
 * 0.6.0 - 7Aug22
   * Goodbye `calenjars`, hello `holi`!

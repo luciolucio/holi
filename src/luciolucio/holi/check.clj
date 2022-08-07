@@ -2,7 +2,7 @@
   (:require [instaparse.core :as insta]
             [clojure.edn :as edn]
             [luciolucio.holi.common :as common]
-            [luciolucio.holi.constants :refer [PARSER-GRAMMAR-FILENAME]])
+            [luciolucio.holi.constants :as constants])
   (:import (java.io FileNotFoundException)))
 
 (defn leap-year? [[_ year-str]]
@@ -33,7 +33,7 @@
       true)))
 
 (defn valid-holiday-file? [filename]
-  (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
+  (let [parser (insta/parser (clojure.java.io/resource constants/PARSER-GRAMMAR-FILENAME))
         result (parser (slurp filename))]
     (and
      (not (insta/failure? result))
@@ -44,7 +44,7 @@
        (valid-holiday-file? (common/included-filename filename (second (first result))))))))
 
 (defn get-errors [filename]
-  (let [parser (insta/parser (clojure.java.io/resource PARSER-GRAMMAR-FILENAME))
+  (let [parser (insta/parser (clojure.java.io/resource constants/PARSER-GRAMMAR-FILENAME))
         result (parser (slurp filename))]
     (merge
      {:parse-errors             (insta/get-failure result)
