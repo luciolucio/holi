@@ -1,6 +1,6 @@
 # Holi
 [![build](https://github.com/luciolucio/holi/workflows/build-and-test/badge.svg)](https://github.com/luciolucio/holi/actions/workflows/build-and-test.yml)
-[![Clojars Project](https://img.shields.io/clojars/v/luciolucio/holi.svg)](https://clojars.org/luciolucio/holi)
+[![Clojars Project](https://img.shields.io/clojars/v/io.github.luciolucio/holi.svg)](https://clojars.org/io.github.luciolucio/holi)
 
 Holi is a clojure library for working with non-business days
 
