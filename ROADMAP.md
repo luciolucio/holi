@@ -1,6 +1,5 @@
 ## Roadmap
 
-* Start using [tools.build](https://clojure.org/guides/tools_build)
 * Use make for tests, fmt-fix, build, install, release
 * Automate the release
 * Add a few sensible default calendars

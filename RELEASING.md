@@ -7,13 +7,11 @@ Describe your change in `CHANGELOG.md`
   * Fixed such and such
 ```
 
-Change the version number in these places:
+Change the version number in the following places:
 
-* main pom.xml
+* build.clj
 ```
-  <groupId>io.github.luciolucio</groupId>
-  <artifactId>holi</artifactId>
-  <version>0.1.1</version>                  <-- change here
+  (def version "0.1.1")                  <-- change here
 ```
 
 * resources/holi-template/resources/deps.edn
