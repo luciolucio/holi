@@ -11,23 +11,23 @@ Change the version number in these places:
 
 * main pom.xml
 ```
-  <groupId>piposaude</groupId>
-  <artifactId>calenjars</artifactId>
+  <groupId>luciolucio</groupId>
+  <artifactId>holi</artifactId>
   <version>0.1.1</version>                  <-- change here
 ```
 
-* resources/calenjars-template/resources/deps.edn
+* resources/holi-template/resources/deps.edn
 
 ```
-piposaude/calenjars {:mvn/version "0.1.1"}}  <-- change here
+luciolucio/holi {:mvn/version "0.1.1"}}  <-- change here
 ```
 
-* resources/calenjars-template/resources/pom.xml
+* resources/holi-template/resources/pom.xml
 
 ```
     <dependency>
-      <groupId>piposaude</groupId>
-      <artifactId>calenjars</artifactId>
+      <groupId>luciolucio</groupId>
+      <artifactId>holi</artifactId>
       <version>0.1.1</version>              <-- change here
     </dependency>
 ```
@@ -37,7 +37,7 @@ Make sure the clojars token is in the `servers` section of your `~/.m2/settings.
 ```
     <server>
         <id>clojars</id>
-        <username>piposaude</username>
+        <username>luciolucio</username>
         <password>CLOJARS-TOKEN-HERE</password>
     </server>
 ```
@@ -52,14 +52,14 @@ Update `template.zip`
 
 ```
 cd resources
-zip calenjars-template.zip calenjars-template/**/*
-zip calenjars-template.zip calenjars-template/**/.*
+zip holi-template.zip holi-template/**/*
+zip holi-template.zip holi-template/**/.*
 ```
 
 Tag the new version in github, and change the README:
 
 ```
-curl -LO https://raw.githubusercontent.com/piposaude/calenjars/v0.1.0/new-calenjars-project.sh   <-- change here
+curl -LO https://raw.githubusercontent.com/luciolucio/holi/v0.1.0/new-holi-project.sh   <-- change here
 ```
 
 Push everything

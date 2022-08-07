@@ -3,8 +3,8 @@
 Create a new clojure deps project:
 
 ```
-curl -LO https://raw.githubusercontent.com/piposaude/calenjars/0.5.0/new-calenjars-project.sh
-bash new-calenjars-project.sh
+curl -LO https://raw.githubusercontent.com/luciolucio/holi/0.5.0/new-holi-project.sh
+bash new-holi-project.sh
 ```
 
 Next, follow the instructions in the README of the generated project to create

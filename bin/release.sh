@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-LIB_NAME="calenjars"
+LIB_NAME="holi"
 
 echo Creating uberjar: "${LIB_NAME}.jar"
 clojure -A:depstar -m hf.depstar.jar "${LIB_NAME}.jar"
