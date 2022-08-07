@@ -1,6 +1,6 @@
 (ns luciolucio.holi.add-test.invalid-input-test
   (:require [clojure.test :refer :all]
-            [luciolucio.holi.core :as holi]
+            [luciolucio.holi :as holi]
             [tick.alpha.api :as t]))
 
 (deftest should-throw-on-illegal-n-argument

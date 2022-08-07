@@ -1,6 +1,6 @@
 (ns luciolucio.holi.add-test.months-test
   (:require [clojure.test :refer :all]
-            [luciolucio.holi.core :as holi]
+            [luciolucio.holi :as holi]
             [tick.alpha.api :as t]))
 
 (deftest should-calculate-correct-date-when-add-date-with-months

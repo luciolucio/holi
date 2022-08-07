@@ -1,6 +1,6 @@
 (ns luciolucio.holi.is-business-day-test
   (:require [clojure.test :refer :all]
-            [luciolucio.holi.core :refer [business-day?]]
+            [luciolucio.holi :refer [business-day?]]
             [tick.alpha.api :as t]))
 
 (deftest should-identify-business-days-when-business-days?-with-date

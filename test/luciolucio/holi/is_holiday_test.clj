@@ -1,6 +1,6 @@
 (ns luciolucio.holi.is-holiday-test
   (:require [clojure.test :refer :all]
-            [luciolucio.holi.core :refer [holiday?]]
+            [luciolucio.holi :refer [holiday?]]
             [tick.alpha.api :as t]))
 
 (deftest should-identify-holidays-when-holiday?-with-date

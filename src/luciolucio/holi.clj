@@ -1,4 +1,4 @@
-(ns luciolucio.holi.core
+(ns luciolucio.holi
   (:require [tick.alpha.api :as t]
             [clojure.java.io :as io]
             [clojure.string :as str])

@@ -1,6 +1,6 @@
 (ns luciolucio.holi.is-weekend-test
   (:require [clojure.test :refer :all]
-            [luciolucio.holi.core :refer [weekend?]]
+            [luciolucio.holi :refer [weekend?]]
             [tick.alpha.api :as t]))
 
 (deftest should-identify-weekends-when-weekend?-with-date
