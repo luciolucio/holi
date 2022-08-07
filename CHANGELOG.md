@@ -1,5 +1,8 @@
 # Changes
 
+* UNRELEASED
+  * Now supports singular versions of :days :weeks :months :years and :business-days
+
 * 0.6.0 - 7Aug22
   * Goodbye `calenjars`, hello `holi`!
   * The main API function has been simplified greatly: `relative-date-add` is now just `add`

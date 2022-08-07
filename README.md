@@ -50,6 +50,7 @@ Adds `n` of `unit` to `date` and returns a new date. Skips holidays in `calendar
 #### Notes
 1. Types are preserved, i.e., passing a `LocalDate` in will return a `LocalDate`
 2. The time portion is never altered on a `LocalDateTime` instance
+3. `unit` will accept both `:weeks` and `:week` etc. That way you can say `1 :week` or `1 :business-day`.
 
 ### weekend?
 

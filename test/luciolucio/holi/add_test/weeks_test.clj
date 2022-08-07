@@ -5,7 +5,7 @@
 
 (deftest should-calculate-correct-date-when-add-date-with-weeks
   (are [days expected]
-       (= expected (holi/add (t/date "2020-07-29") days :weeks))
+       (= expected (holi/add (t/date "2020-07-29") days :weeks) (holi/add (t/date "2020-07-29") days :week))
     0 (t/date "2020-07-29")
     1 (t/date "2020-08-05")
     11 (t/date "2020-10-14")
@@ -16,7 +16,7 @@
 
 (deftest should-calculate-correct-date-when-add-date-time-with-weeks
   (are [days expected]
-       (= expected (holi/add (t/date-time "2020-07-29T10:15:00") days :weeks))
+       (= expected (holi/add (t/date-time "2020-07-29T10:15:00") days :weeks) (holi/add (t/date-time "2020-07-29T10:15:00") days :week))
     0 (t/date-time "2020-07-29T10:15:00")
     1 (t/date-time "2020-08-05T10:15:00")
     11 (t/date-time "2020-10-14T10:15:00")
