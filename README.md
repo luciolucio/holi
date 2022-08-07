@@ -26,7 +26,7 @@ Holi is a clojure library for working with non-business days
 
 ## Usage
 
-* Import the latest version from [clojars](https://clojars.org/luciolucio/holi) in your project
+* Import the latest version from [clojars](https://clojars.org/io.github.luciolucio/holi) in your project
 * Require the `luciolucio.holi.core` namespace
 * Ready to go!
 
