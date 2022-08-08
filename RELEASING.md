@@ -7,6 +7,8 @@ Describe your change in `CHANGELOG.md`
   * Fixed such and such
 ```
 
+Copy the change description to `tag.txt`
+
 Change the version number in the following places:
 
 * build.clj
@@ -54,7 +56,13 @@ zip holi-template.zip holi-template/**/*
 zip holi-template.zip holi-template/**/.*
 ```
 
-Tag the new version in github, and change CUSTOM.md:
+Tag the new version
+
+```
+git tag 0.1.0 -F tag.txt        <-- Use the new version here
+```
+
+and change CUSTOM.md:
 
 ```
 curl -LO https://raw.githubusercontent.com/luciolucio/holi/v0.1.0/new-holi-project.sh   <-- change here
