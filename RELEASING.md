@@ -16,6 +16,13 @@ Change the version number in the following places:
   (def version "0.1.1")                  <-- change here
 ```
 
+* new-holi-project.sh
+
+```
+  echo "Downloading template..."
+  curl -LO https://github.com/luciolucio/holi/raw/0.1.1/resources/holi-template.zip     <-- change here
+```
+
 * resources/holi-template/resources/deps.edn
 
 ```
@@ -60,14 +67,14 @@ zip holi-template.zip holi-template/**/.*
 Tag the new version
 
 ```
-git tag 0.1.0 -F tag.txt        <-- Use the new version here and in the line below
-git push origin 0.1.0
+git tag 0.1.1 -F tag.txt        <-- Use the new version here and in the line below
+git push origin 0.1.1
 ```
 
 and change CUSTOM.md:
 
 ```
-curl -LO https://raw.githubusercontent.com/luciolucio/holi/v0.1.0/new-holi-project.sh   <-- change here
+curl -LO https://raw.githubusercontent.com/luciolucio/holi/v0.1.1/new-holi-project.sh   <-- change here
 ```
 
 Push everything
