@@ -5,17 +5,17 @@ LIB_NAME="{{lib-name}}"
 rm -rf generated
 mkdir output
 cp -R resources/src/ output/src
-cp resources/pom.xml output
+cp resources/build.clj output
 cp resources/deps.edn output
 
 cd output || exit
-mkdir calendars
-clojure -A:calendars 80 "../calendars/" "calendars"
-clojure -A:depstar -m hf.depstar.jar "${LIB_NAME}.jar"
+mkdir -p calendars-generated
+clojure -M:calendars 80 "../calendars/" "calendars-generated"
+clojure -T:build jar :build-root . :jar-file "${LIB_NAME}.jar"
 cd .. || exit
 mv "output/$LIB_NAME.jar" .
 rm -rf output
 mkdir generated
 mv "$LIB_NAME.jar" generated
 
-printf "%s.jar generated successfully\n" $LIB_NAME
+printf "%s.jar generated successfully under generated/\n" $LIB_NAME

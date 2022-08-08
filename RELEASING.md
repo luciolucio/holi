@@ -29,16 +29,6 @@ Change the version number in the following places:
 io.github.luciolucio/holi {:mvn/version "0.1.1"}}  <-- change here
 ```
 
-* resources/holi-template/resources/pom.xml
-
-```
-    <dependency>
-      <groupId>io.github.luciolucio</groupId>
-      <artifactId>holi</artifactId>
-      <version>0.1.1</version>              <-- change here and NOT in the <version> after <artifactId>
-    </dependency>
-```
-
 Make sure the clojars token is in the `servers` section of your `~/.m2/settings.xml`:
 
 ```

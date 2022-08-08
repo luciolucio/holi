@@ -35,8 +35,8 @@ echo "Decompressing template..."
 unzip holi-template.zip
 mv holi-template "$PROJECT_NAME"
 
-sed -i '' "s/{{lib-name}}/$PROJECT_NAME/g" "$PROJECT_NAME/README.md" "$PROJECT_NAME/gen-lib.sh" "$PROJECT_NAME/resources/calendars.clj" "$PROJECT_NAME/resources/pom.xml"
-sed -i '' "s/{{lib-ns}}/$NAMESPACE/g" "$PROJECT_NAME/resources/calendars.clj" "$PROJECT_NAME/resources/pom.xml"
+sed -i '' "s/{{lib-name}}/$PROJECT_NAME/g" "$PROJECT_NAME/README.md" "$PROJECT_NAME/gen-lib.sh" "$PROJECT_NAME/resources/calendars.clj" "$PROJECT_NAME/resources/build.clj"
+sed -i '' "s/{{lib-ns}}/$NAMESPACE/g" "$PROJECT_NAME/resources/calendars.clj" "$PROJECT_NAME/resources/build.clj"
 
 NAMESPACE_UNDERSCORED="${NAMESPACE//-/_}"
 FULL_PATH="$PROJECT_NAME/resources/src/${NAMESPACE_UNDERSCORED//\.//}"
