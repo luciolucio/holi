@@ -35,7 +35,7 @@ io.github.luciolucio/holi {:mvn/version "0.1.1"}}  <-- change here
     <dependency>
       <groupId>io.github.luciolucio</groupId>
       <artifactId>holi</artifactId>
-      <version>0.1.1</version>              <-- change here
+      <version>0.1.1</version>              <-- change here and NOT in the <version> after <artifactId>
     </dependency>
 ```
 
