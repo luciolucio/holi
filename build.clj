@@ -9,7 +9,7 @@
 (defn clean [_]
   (b/delete {:path "target"}))
 
-(defn jar [{:keys [build-root jar-file] :as biroska}]
+(defn jar [{:keys [build-root jar-file]}]
   (let [class-dir (str build-root "/" "classes")]
     (b/write-pom {:class-dir class-dir
                   :lib       lib
