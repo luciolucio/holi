@@ -52,6 +52,7 @@ Update `template.zip`
 
 ```
 cd resources
+rm holi-template.zip
 zip holi-template.zip holi-template/**/*
 zip holi-template.zip holi-template/**/.*
 ```
@@ -59,7 +60,8 @@ zip holi-template.zip holi-template/**/.*
 Tag the new version
 
 ```
-git tag 0.1.0 -F tag.txt        <-- Use the new version here
+git tag 0.1.0 -F tag.txt        <-- Use the new version here and in the line below
+git push origin 0.1.0
 ```
 
 and change CUSTOM.md:
