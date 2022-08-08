@@ -44,14 +44,12 @@ and change CUSTOM.md:
 curl -LO https://raw.githubusercontent.com/luciolucio/holi/v0.1.1/new-holi-project.sh   <-- change here
 ```
 
-Commit, then tag the new version
+Commit, push, get it to main, then tag the new version and push it
 
 ```
 git tag 0.1.1 -F tag.txt        <-- Use the new version here and in the line below
 git push origin 0.1.1
 ```
-
-Push everything
 
 Make sure the clojars token is in the `servers` section of your `~/.m2/settings.xml`:
 
