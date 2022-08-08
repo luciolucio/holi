@@ -29,6 +29,30 @@ Change the version number in the following places:
 io.github.luciolucio/holi {:mvn/version "0.1.1"}}  <-- change here
 ```
 
+Update `template.zip`
+
+```
+cd resources
+rm holi-template.zip
+zip holi-template.zip holi-template/**/*
+zip holi-template.zip holi-template/**/.*
+```
+
+and change CUSTOM.md:
+
+```
+curl -LO https://raw.githubusercontent.com/luciolucio/holi/v0.1.1/new-holi-project.sh   <-- change here
+```
+
+Commit, then tag the new version
+
+```
+git tag 0.1.1 -F tag.txt        <-- Use the new version here and in the line below
+git push origin 0.1.1
+```
+
+Push everything
+
 Make sure the clojars token is in the `servers` section of your `~/.m2/settings.xml`:
 
 ```
@@ -39,32 +63,8 @@ Make sure the clojars token is in the `servers` section of your `~/.m2/settings.
     </server>
 ```
 
-Run this:
+Then run this:
 
 ```
 bin/release.sh
 ```
-
-Update `template.zip`
-
-```
-cd resources
-rm holi-template.zip
-zip holi-template.zip holi-template/**/*
-zip holi-template.zip holi-template/**/.*
-```
-
-Tag the new version
-
-```
-git tag 0.1.1 -F tag.txt        <-- Use the new version here and in the line below
-git push origin 0.1.1
-```
-
-and change CUSTOM.md:
-
-```
-curl -LO https://raw.githubusercontent.com/luciolucio/holi/v0.1.1/new-holi-project.sh   <-- change here
-```
-
-Push everything
