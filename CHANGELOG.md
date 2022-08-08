@@ -1,5 +1,8 @@
 # Changes
 
+* 0.8.0 - 7Aug22
+  * Custom build now uses `tools.build`
+
 * 0.7.0 - 7Aug22
   * Now supports singular versions of :days :weeks :months :years and :business-days
   * Cleaned up the namespace, moving internal fns somewhere else to avoid confusion
