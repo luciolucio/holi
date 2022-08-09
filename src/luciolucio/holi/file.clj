@@ -9,13 +9,15 @@
 (defn format-YYYYMMDD [holiday]
   (t/format (tick.format/formatter "yyyy-MM-dd") holiday))
 
-(defn gen-path [filename output-path]
-  (.toString (Paths/get output-path (into-array String [filename]))))
+(defn gen-datelist-path [filename output-path]
+  (-> (Paths/get output-path (into-array String [filename]))
+      .toString
+      (str constants/DATELIST-EXTENSION)))
 
-(defn gen-holiday-file-path [holiday-file output-path]
+(defn gen-datelist-file-path [holiday-file output-path]
   (let [filename (.toString (.getFileName (Paths/get holiday-file (into-array String []))))
         output-filename (str/join "" (drop-last 4 filename))]
-    (gen-path output-filename output-path)))
+    (gen-datelist-path output-filename output-path)))
 
 (defn get-holidays [holiday-file year]
   (map #(format-YYYYMMDD (:date %)) (gen/holidays-for-year year holiday-file)))
@@ -35,12 +37,12 @@
   (let [years (range (- year bracket-size) (+ year (inc bracket-size)))]
     (flatten (map get-weekends years))))
 
-(defn generate! [holiday-file output-path year bracket-size]
+(defn generate-datelist! [holiday-file output-path year bracket-size]
   (let [holidays (gen-bracketed-holidays holiday-file year bracket-size)
-        path (gen-holiday-file-path holiday-file output-path)]
+        path (gen-datelist-file-path holiday-file output-path)]
     (spit path (str/join "\n" holidays))))
 
-(defn generate-weekend! [output-path year bracket-size]
+(defn generate-weekend-datelist! [output-path year bracket-size]
   (let [weekends (gen-bracketed-weekends year bracket-size)
-        weekend-path (gen-path constants/WEEKEND-FILE-NAME output-path)]
+        weekend-path (gen-datelist-path constants/WEEKEND-FILE-NAME output-path)]
     (spit weekend-path (str/join "\n" weekends))))

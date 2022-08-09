@@ -1,6 +1,6 @@
 ## Roadmap
 
-* Use suffixes or directory structure in generated holiday files to avoid clashes
+* Support nested calendars like "brazil/sao-paulo"
 * Improve performance of multi-calendar generation
 * Use make for tests, fmt-fix, build, install, release
 * Automate the release
