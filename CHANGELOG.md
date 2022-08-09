@@ -1,5 +1,8 @@
 # Changes
 
+* 0.9.0 - 9Aug22
+  * Generated files now have extensions to avoid collisions with actual namespaces when generating custom jars
+
 * 0.8.0 - 7Aug22
   * Custom build now uses `tools.build`
 
