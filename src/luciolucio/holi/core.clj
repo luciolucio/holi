@@ -29,7 +29,7 @@
 (def read-calendar
   (memoize
    (fn [calendar]
-     (let [holiday (io/resource calendar)
+     (let [holiday (io/resource (str calendar constants/DATELIST-EXTENSION))
            holiday-strings (some-> holiday
                                    slurp
                                    (str/split #"\n"))]
