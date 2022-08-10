@@ -7,7 +7,8 @@
 (def basis (b/create-basis {:project "deps.edn"}))
 
 (defn clean [_]
-  (b/delete {:path "target"}))
+  (b/delete {:path "target"})
+  (b/delete {:path "resources/calendars-generated"}))
 
 (defn jar [{:keys [build-root jar-file]}]
   (let [class-dir (str build-root "/" "classes")]
