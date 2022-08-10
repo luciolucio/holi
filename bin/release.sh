@@ -12,8 +12,8 @@ clojure -M:generate 80 $CALENDAR_SOURCE_DIR $CALENDAR_OUTPUT_DIR
 
 echo Creating jar: "${BUILD_ROOT}/${JAR_NAME}"
 clojure -T:build jar :build-root "$BUILD_ROOT" :jar-file "$JAR_NAME"
-cp target/classes/META-INF/maven/io.github.luciolucio/holi/pom.xml target
-cp target/classes/META-INF/maven/io.github.luciolucio/holi/pom.properties target
+cp target/classes/META-INF/maven/io.github.luciolucio/holi/pom.xml "$BUILD_ROOT"
+cp target/classes/META-INF/maven/io.github.luciolucio/holi/pom.properties "$BUILD_ROOT"
 
 echo Deploying to clojars
 mvn deploy:deploy-file -Dfile="${BUILD_ROOT}/${JAR_NAME}" -DpomFile="${BUILD_ROOT}/pom.xml" -DrepositoryId=clojars -Durl=https://clojars.org/repo
