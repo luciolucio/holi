@@ -89,3 +89,4 @@ A holiday in addition to the ones included|5May
 * The included file must be in the same directory
 * Only one include per file is allowed
 * You may include a file that includes another file, and so on
+* You cannot create a holiday file called `WEEKEND.hol` as that is a protected name and lib generation will fail.
