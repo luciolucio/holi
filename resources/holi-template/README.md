@@ -85,8 +85,7 @@ A holiday in addition to the ones included|5May
 ```
 
 * Remember not to write the `.hol` extension in the `#include` directive
-* The directive must be on the first line (only comments may come before it)
-* The included file must be in the same directory
-* Only one include per file is allowed
-* You may include a file that includes another file, and so on
-* You cannot create a holiday file called `WEEKEND.hol` as that is a protected name and lib generation will fail.
+* The directive must be on the first line (only a comment may come before it)
+* The path of the included file is always relative to the root calendar path, i.e. `#include foo/bar` includes the same file regardless of where it's found
+* Only one include per file is allowed, but you may nest includes
+* You cannot create a holiday file called `WEEKEND.hol` as that is a protected name and lib generation will fail

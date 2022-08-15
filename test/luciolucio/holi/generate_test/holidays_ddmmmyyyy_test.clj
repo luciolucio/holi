@@ -1,11 +1,12 @@
 (ns luciolucio.holi.generate-test.holidays-ddmmmyyyy-test
   (:require [clojure.test :refer :all]
             [tick.alpha.api :as t]
-            [luciolucio.holi.holidays :as gen]))
+            [luciolucio.holi.holidays :as gen]
+            [luciolucio.holi.generate-test.generate-test-constants :as constants]))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-ddmmmyyyy
   (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/ddmmmyyyy.hol"))
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/ddmmmyyyy.hol"))
     [] 2012
     [] 2013
     [] 2014

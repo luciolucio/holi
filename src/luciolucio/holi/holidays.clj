@@ -35,13 +35,13 @@
   (let [exception-dates (set (map :date (filter :exception? holidays)))]
     (remove #(some #{(:date %)} exception-dates) holidays)))
 
-(defn- holidays-for-year-with-exception-key [year holiday-file]
+(defn- holidays-for-year-with-exception-key [year root-path holiday-file]
   (cond
     (not (valid-year? year))
     (throw (ex-info (str "Invalid year: " year) {:year year}))
 
-    (not (check/valid-holiday-file? holiday-file))
-    (throw (ex-info (str "Invalid holiday file: " holiday-file) {:holiday-file holiday-file :errors (check/get-errors holiday-file)}))
+    (not (check/valid-holiday-file? root-path holiday-file))
+    (throw (ex-info (str "Invalid holiday file: " holiday-file) {:holiday-file holiday-file :errors (check/get-errors root-path holiday-file)}))
 
     :else
     (let [parser (insta/parser (clojure.java.io/resource constants/PARSER-GRAMMAR-FILENAME))
@@ -49,10 +49,10 @@
           holidays (conj
                     (keep #(get-holiday year %) (common/drop-include result))
                     (when (common/holiday-was-included? result)
-                      (holidays-for-year-with-exception-key year (common/included-filename holiday-file (second (first result))))))]
+                      (holidays-for-year-with-exception-key year root-path (common/included-filename root-path (second (first result))))))]
       (-> (remove nil? holidays)
           flatten
           remove-exceptions))))
 
-(defn holidays-for-year [year holiday-file]
-  (map #(select-keys % [:name :date]) (holidays-for-year-with-exception-key year holiday-file)))
+(defn holidays-for-year [year root-path holiday-file]
+  (map #(select-keys % [:name :date]) (holidays-for-year-with-exception-key year root-path holiday-file)))

@@ -1,24 +1,25 @@
 (ns luciolucio.holi.generate-test.holidays-general-test
   (:require [clojure.test :refer :all]
             [tick.alpha.api :as t]
-            [luciolucio.holi.holidays :as gen])
+            [luciolucio.holi.holidays :as gen]
+            [luciolucio.holi.generate-test.generate-test-constants :as constants])
   (:import (clojure.lang ExceptionInfo)))
 
 (deftest should-throw-when-holiday-file-is-invalid
-  (is (thrown-with-msg? ExceptionInfo #"Invalid holiday file" (gen/holidays-for-year 2020 "test-resources/check/bad-date.hol"))))
+  (is (thrown-with-msg? ExceptionInfo #"Invalid holiday file" (gen/holidays-for-year 2020 constants/TEST-ROOT "test-resources/check/bad-date.hol"))))
 
 (deftest should-throw-when-year-is-invalid
-  (is (thrown-with-msg? ExceptionInfo #"Invalid year" (gen/holidays-for-year "a" nil))))
+  (is (thrown-with-msg? ExceptionInfo #"Invalid year" (gen/holidays-for-year "a" constants/TEST-ROOT nil))))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-nested-includes
   (= [{:name "Holiday from include-first" :date (t/date "2012-01-25")}
       {:name "Holiday from include-second" :date (t/date "2012-01-30")}
       {:name "Holiday from include-third" :date (t/date "2012-02-01")}]
-     (gen/holidays-for-year 2012 "test-resources/generate/include-first.hol")))
+     (gen/holidays-for-year 2012 constants/TEST-ROOT "test-resources/generate/include-first.hol")))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-brazil-holidays
   (are [year expected]
-       (= expected (gen/holidays-for-year year "test-resources/generate/BR.hol"))
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/BR.hol"))
     2012 [{:name "Confraternização Universal / Ano Novo" :date (t/date "2012-01-01")}
           {:name "Segunda-feira de carnaval" :date (t/date "2012-02-20")}
           {:name "Terça-feira de carnaval" :date (t/date "2012-02-21")}
@@ -46,7 +47,7 @@
 
 (deftest should-generate-holidays-when-holidays-for-year-with-sao-paulo-holidays
   (are [year expected]
-       (= expected (gen/holidays-for-year year "test-resources/generate/SPO.hol"))
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/SPO.hol"))
     2012 [{:name "Confraternização Universal / Ano Novo" :date (t/date "2012-01-01")}
           {:name "Segunda-feira de carnaval" :date (t/date "2012-02-20")}
           {:name "Terça-feira de carnaval" :date (t/date "2012-02-21")}
