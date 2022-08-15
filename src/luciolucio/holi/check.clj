@@ -1,8 +1,7 @@
 (ns luciolucio.holi.check
   (:require [instaparse.core :as insta]
             [clojure.edn :as edn]
-            [luciolucio.holi.common :as common]
-            [luciolucio.holi.constants :as constants])
+            [luciolucio.holi.common :as common])
   (:import (java.io FileNotFoundException)))
 
 (defn leap-year? [[_ year-str]]
@@ -33,8 +32,7 @@
       true)))
 
 (defn valid-holiday-file? [root-path filename]
-  (let [parser (insta/parser (clojure.java.io/resource constants/PARSER-GRAMMAR-FILENAME))
-        result (parser (slurp filename))]
+  (let [result (common/parser (slurp filename))]
     (and
      (not (insta/failure? result))
      (not (contains-bad-leap-dates? (common/drop-include result)))
@@ -44,8 +42,7 @@
        (valid-holiday-file? root-path (common/included-filename root-path (second (first result))))))))
 
 (defn get-errors [root-path filename]
-  (let [parser (insta/parser (clojure.java.io/resource constants/PARSER-GRAMMAR-FILENAME))
-        result (parser (slurp filename))]
+  (let [result (common/parser (slurp filename))]
     (merge
      {:parse-errors             (insta/get-failure result)
       :contains-bad-leap-dates? (contains-bad-leap-dates? (common/drop-include result))
