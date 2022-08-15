@@ -16,7 +16,8 @@
     "FILE-EXPECTED.datelist" "FILE" 2020 1
     "FILE2-EXPECTED.datelist" "FILE" 2020 2
     "INCLUDE-EXPECTED.datelist" "INCLUDE" 2020 1
-    "SUBDIR-FILE-EXPECTED.datelist" "subdir/FILE" 2020 1))
+    "SUBDIR-FILE-EXPECTED.datelist" "subdir/FILE" 2020 1
+    "INCLUDE-SUBDIR-EXPECTED.datelist" "INCLUDE-SUBDIR" 2020 1))
 
 (deftest should-generate-weekend-file-when-generate-weekend-datelist!
   (file/generate-weekend-datelist! output-path 2020 2)

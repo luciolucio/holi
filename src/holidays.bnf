@@ -49,6 +49,6 @@ comment-marker = ';'
 
 include = <include-marker> <'include'> <#"\s+"> include-name <newline>
 include-marker = '#'
-<include-name> = #'[a-zA-Z][-a-zA-Z]+'
+<include-name> = #'[a-zA-Z][-a-zA-Z]+/?([a-zA-Z][-a-zA-Z]+)?'
 
 newline = '\n' | '\r\n'
