@@ -1,5 +1,9 @@
 # Changes
 
+* UNRELEASED
+  * Now supports holiday files in subdirectories
+  * Improved file generation performance greatly
+
 * 0.9.0 - 9Aug22
   * Generated files now have extensions to avoid collisions with actual namespaces when generating custom jars
 
