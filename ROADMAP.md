@@ -1,6 +1,5 @@
 ## Roadmap
 
-* Improve performance of multi-calendar generation
 * Use make for tests, fmt-fix, build, install, release
 * Add clj-kondo and fix any problems
 * Use `:as cstr` instead of `:as str` for `clojure.string`
