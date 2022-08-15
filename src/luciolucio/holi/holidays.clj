@@ -1,6 +1,5 @@
 (ns luciolucio.holi.holidays
   (:require [clojure.edn :as edn]
-            [instaparse.core :as insta]
             [luciolucio.holi.common :as common]
             [luciolucio.holi.check :as check]
             [luciolucio.holi.types.ddmmm :as ddmm]
@@ -44,8 +43,7 @@
     (throw (ex-info (str "Invalid holiday file: " holiday-file) {:holiday-file holiday-file :errors (check/get-errors root-path holiday-file)}))
 
     :else
-    (let [parser (insta/parser (clojure.java.io/resource constants/PARSER-GRAMMAR-FILENAME))
-          result (parser (slurp holiday-file))
+    (let [result (common/parser (slurp holiday-file))
           holidays (conj
                     (keep #(get-holiday year %) (common/drop-include result))
                     (when (common/holiday-was-included? result)
