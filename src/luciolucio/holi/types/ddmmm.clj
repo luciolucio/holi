@@ -1,6 +1,5 @@
 (ns luciolucio.holi.types.ddmmm
-  (:require [clojure.edn :as edn]
-            [clojure.string :as str]
+  (:require [clojure.string :as cstr]
             [luciolucio.holi.types.common :as common]
             [tick.alpha.api :as t])
   (:import (java.time.format DateTimeParseException)))
@@ -27,6 +26,6 @@
         :else
         holiday))
     (catch DateTimeParseException e
-      (if (str/includes? (.getMessage e) "not a leap year")
+      (if (cstr/includes? (.getMessage e) "not a leap year")
         nil
         (throw e)))))

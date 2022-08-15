@@ -1,6 +1,6 @@
 (ns luciolucio.holi.core
   (:require [clojure.java.io :as io]
-            [clojure.string :as str]
+            [clojure.string :as cstr]
             [luciolucio.holi.constants :as constants]
             [tick.alpha.api :as t])
   (:import (java.time LocalDate LocalDateTime)))
@@ -32,7 +32,7 @@
      (let [holiday (io/resource (str calendar constants/DATELIST-EXTENSION))
            holiday-strings (some-> holiday
                                    slurp
-                                   (str/split #"\n"))]
+                                   (cstr/split #"\n"))]
        (when holiday-strings
          (map t/date holiday-strings))))))
 
