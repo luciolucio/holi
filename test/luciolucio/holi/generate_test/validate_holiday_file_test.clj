@@ -2,9 +2,11 @@
   (:require [clojure.test :refer :all]
             [luciolucio.holi.check :as check]))
 
+(def TEST-ROOT "test-resources/check")
+
 (deftest should-identify-invalid-holiday-files-correctly
   (are [filename]
-       (= false (check/valid-holiday-file? (str "test-resources/check/" filename)))
+       (= false (check/valid-holiday-file? TEST-ROOT (str "test-resources/check/" filename)))
     "empty.hol"
     "blank.hol"
     "blank2.hol"
@@ -30,10 +32,11 @@
 
 (deftest should-identify-valid-holiday-file-correctly
   (are [filename]
-       (= true (check/valid-holiday-file? (str "test-resources/check/" filename)))
+       (= true (check/valid-holiday-file? TEST-ROOT (str "test-resources/check/" filename)))
     "good.hol"
     "good-all-numbers.hol"
     "include-base.hol"
     "include.hol"
+    "include-subdir.hol"
     "include-with-space.hol"
     "include-nested.hol"))

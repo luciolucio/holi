@@ -22,9 +22,9 @@
 (defn contains-bad-leap-dates? [result]
   (some true? (map contains-bad-leap-date result)))
 
-(defn included-holiday-exists? [result including-file]
+(defn included-holiday-exists? [result root-path]
   (let [included-holiday-name (second (first result))
-        included-filename (common/included-filename including-file included-holiday-name)]
+        included-filename (common/included-filename root-path included-holiday-name)]
     (if (common/holiday-was-included? result)
       (try
         (boolean (clojure.java.io/reader included-filename))
@@ -32,23 +32,23 @@
           false))
       true)))
 
-(defn valid-holiday-file? [filename]
+(defn valid-holiday-file? [root-path filename]
   (let [parser (insta/parser (clojure.java.io/resource constants/PARSER-GRAMMAR-FILENAME))
         result (parser (slurp filename))]
     (and
      (not (insta/failure? result))
      (not (contains-bad-leap-dates? (common/drop-include result)))
-     (included-holiday-exists? result filename)
+     (included-holiday-exists? result root-path)
      (if-not (common/holiday-was-included? result)
        true
-       (valid-holiday-file? (common/included-filename filename (second (first result))))))))
+       (valid-holiday-file? root-path (common/included-filename root-path (second (first result))))))))
 
-(defn get-errors [filename]
+(defn get-errors [root-path filename]
   (let [parser (insta/parser (clojure.java.io/resource constants/PARSER-GRAMMAR-FILENAME))
         result (parser (slurp filename))]
     (merge
      {:parse-errors             (insta/get-failure result)
       :contains-bad-leap-dates? (contains-bad-leap-dates? (common/drop-include result))
-      :included-holiday-exists? (included-holiday-exists? result filename)}
+      :included-holiday-exists? (included-holiday-exists? result root-path)}
      (when (common/holiday-was-included? result)
-       {:included-holiday-valid? (valid-holiday-file? (common/included-filename filename (second (first result))))}))))
+       {:included-holiday-valid? (valid-holiday-file? root-path (common/included-filename root-path (second (first result))))}))))

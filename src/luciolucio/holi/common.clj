@@ -11,9 +11,8 @@
   (let [[type & _] (first result)]
     (= :include type)))
 
-(defn included-filename [including-file included-holiday-name]
-  (let [including-file-path (.toString (.getParent (Paths/get including-file (into-array String []))))]
-    (.toString (Paths/get including-file-path (into-array String [(str included-holiday-name ".hol")])))))
+(defn included-filename [root-path included-holiday-name]
+  (.toString (Paths/get root-path (into-array String [(str included-holiday-name ".hol")]))))
 
 (defn leap-year? [year]
   (cond (zero? (mod year 400)) true

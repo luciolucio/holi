@@ -1,11 +1,12 @@
 (ns luciolucio.holi.generate-test.nth-day-of-week-test
   (:require [clojure.test :refer :all]
             [tick.alpha.api :as t]
-            [luciolucio.holi.holidays :as gen]))
+            [luciolucio.holi.holidays :as gen]
+            [luciolucio.holi.generate-test.generate-test-constants :as constants]))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-nth-day-of-week-rule
   (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/nth-day-of-week.hol"))
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/nth-day-of-week.hol"))
     [{:name "Memorial Day" :date (t/date "2016-05-30")}
      {:name "Thanksgiving" :date (t/date "2016-11-24")}
      {:name "Columbus Day" :date (t/date "2016-10-10")}] 2016
@@ -23,7 +24,7 @@
      {:name "Columbus Day" :date (t/date "2020-10-12")}] 2020)
 
   (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/nth-day-of-week-limit-cases.hol"))
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/nth-day-of-week-limit-cases.hol"))
     [{:name "Inexistent Holiday 1" :date (t/date "2021-05-03")}
      {:name "Inexistent Holiday 2" :date (t/date "2021-05-10")}
      {:name "Inexistent Holiday 3" :date (t/date "2021-05-17")}
@@ -45,7 +46,7 @@
 
 (deftest should-generate-holidays-when-holidays-for-year-with-nth-day-of-week-rule-and-exception
   (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/nth-day-of-week-exception.hol"))
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/nth-day-of-week-exception.hol"))
     [{:name "Memorial Day" :date (t/date "2016-05-30")}] 2016
     [{:name "Memorial Day" :date (t/date "2017-05-29")}] 2017
     [{:name "Memorial Day" :date (t/date "2018-05-28")}] 2018
@@ -54,7 +55,7 @@
 
 (deftest should-generate-holidays-only-after-specified-year-when-holidays-for-year-with-nth-day-of-week-rule-and-start-clause
   (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/nth-day-of-week-start.hol"))
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/nth-day-of-week-start.hol"))
     [] 2016
     [] 2017
     [{:name "Memorial Day" :date (t/date "2018-05-28")}] 2018
@@ -63,7 +64,7 @@
 
 (deftest should-generate-holidays-only-after-specified-year-when-holidays-for-year-with-nth-day-of-week-rule-and-start-clause-and-exception
   (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/nth-day-of-week-start-exception.hol"))
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/nth-day-of-week-start-exception.hol"))
     [] 2016
     [] 2017
     [{:name "Memorial Day" :date (t/date "2018-05-28")}] 2018
@@ -72,7 +73,7 @@
 
 (deftest should-generate-holidays-only-after-specified-year-when-holidays-for-year-with-nth-day-of-week-rule-and-end-clause
   (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/nth-day-of-week-end.hol"))
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/nth-day-of-week-end.hol"))
     [{:name "Memorial Day" :date (t/date "2016-05-30")}] 2016
     [{:name "Memorial Day" :date (t/date "2017-05-29")}] 2017
     [{:name "Memorial Day" :date (t/date "2018-05-28")}] 2018
@@ -81,7 +82,7 @@
 
 (deftest should-generate-holidays-only-after-specified-year-when-holidays-for-year-with-nth-day-of-week-rule-and-end-clause-and-exception
   (are [expected year]
-       (= expected (gen/holidays-for-year year "test-resources/generate/nth-day-of-week-end-exception.hol"))
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/nth-day-of-week-end-exception.hol"))
     [] 2016
     [{:name "Memorial Day" :date (t/date "2017-05-29")}] 2017
     [{:name "Memorial Day" :date (t/date "2018-05-28")}] 2018

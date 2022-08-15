@@ -25,12 +25,12 @@
         output-filename (str/join "" (drop-last 4 (.toString filename)))]
     (make-datelist-path! output-filename output-path)))
 
-(defn get-holidays [holiday-file year]
-  (map #(format-YYYYMMDD (:date %)) (gen/holidays-for-year year holiday-file)))
+(defn get-holidays [root-path holiday-file year]
+  (map #(format-YYYYMMDD (:date %)) (gen/holidays-for-year year root-path holiday-file)))
 
-(defn gen-bracketed-holidays [holiday-file year bracket-size]
+(defn gen-bracketed-holidays [root-path holiday-file year bracket-size]
   (let [years (range (- year bracket-size) (+ year (inc bracket-size)))]
-    (sort (flatten (map (partial get-holidays holiday-file) years)))))
+    (sort (flatten (map #(get-holidays root-path holiday-file %) years)))))
 
 (defn get-weekends [year]
   (let [start (t/new-date year 1 1)
@@ -46,7 +46,7 @@
 (defn generate-datelist! [root-path holiday-file output-path year bracket-size]
   (if (str/ends-with? (str/lower-case holiday-file) "weekend.hol")
     (throw (ex-info "WEEKEND.hol is not allowed" {:error :weekend-dot-hol-present}))
-    (let [holidays (gen-bracketed-holidays holiday-file year bracket-size)
+    (let [holidays (gen-bracketed-holidays root-path holiday-file year bracket-size)
           path (make-datelist-file-path! root-path holiday-file output-path)]
       (spit path (str/join "\n" holidays)))))
 
