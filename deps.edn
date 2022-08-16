@@ -9,6 +9,9 @@
            :cljfmt   {:main-opts  ["-m" "cljfmt.main"]
                       :extra-deps {lein-cljfmt/lein-cljfmt {:mvn/version "0.8.0"}}}
 
+           :lint     {:main-opts  ["-m" "clj-kondo.main" "--lint"]
+                      :extra-deps {clj-kondo/clj-kondo {:mvn/version "2022.08.03"}}}
+
            :build    {:extra-deps {io.github.clojure/tools.build {:git/tag "v0.8.3" :git/sha "0d20256"}}
                       :ns-default build}
 
