@@ -1,4 +1,5 @@
 .cpcache/
+.clj-kondo/.cache
 .nrepl-port
 dev/
 test-resources/file/output/

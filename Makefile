@@ -14,6 +14,7 @@ clean:     ## Clean up CP cache and generated files
 test:      ## Run tests
 fmt-check: ## Check code formatting
 fix:       ## Fix code formatting automatically
+lint:      ## Run clj-kondo for linting
 jar:       ## Build jar
 install:   ## Build jar and install it to the local Maven cache
 release:   ## Build jar and push it to Clojars
@@ -33,6 +34,9 @@ fmt-check:
 
 fix:
 	@clojure -M:cljfmt -- fix ${SRC_AND_TEST}
+
+lint:
+	@clojure -M:lint ${SRC_AND_TEST}
 
 gen-holidays:
 	@echo "Starting holiday generation"
