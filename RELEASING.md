@@ -64,5 +64,5 @@ Make sure the clojars token is in the `servers` section of your `~/.m2/settings.
 Then run this:
 
 ```
-bin/release.sh
+make release
 ```
