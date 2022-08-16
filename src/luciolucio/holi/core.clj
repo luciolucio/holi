@@ -53,9 +53,6 @@
     0
     (sign n)))
 
-(defn- abs [x]
-  (if pos? x (- x)))
-
 (defn is-date-in-list? [date list]
   (boolean (some #{(t/date date)} list)))
 

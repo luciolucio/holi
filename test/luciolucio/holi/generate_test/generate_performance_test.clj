@@ -1,6 +1,6 @@
 (ns luciolucio.holi.generate-test.generate-performance-test
   (:require [clojure.test :refer :all]
-            [luciolucio.holi.file :as file]))
+            #_[luciolucio.holi.file :as file]))
 
 (def root-path "test-resources/file/performance")
 (def output-path "test-resources/file/output")

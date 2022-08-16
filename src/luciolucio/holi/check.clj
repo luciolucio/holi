@@ -1,7 +1,8 @@
 (ns luciolucio.holi.check
   (:require [instaparse.core :as insta]
             [clojure.edn :as edn]
-            [luciolucio.holi.common :as common])
+            [luciolucio.holi.common :as common]
+            [clojure.java.io :as io])
   (:import (java.io FileNotFoundException)))
 
 (defn leap-year? [[_ year-str]]
@@ -26,7 +27,7 @@
         included-filename (common/included-filename root-path included-holiday-name)]
     (if (common/holiday-was-included? result)
       (try
-        (boolean (clojure.java.io/reader included-filename))
+        (boolean (io/reader included-filename))
         (catch FileNotFoundException _
           false))
       true)))

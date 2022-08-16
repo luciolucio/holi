@@ -12,10 +12,10 @@
   (is (thrown-with-msg? ExceptionInfo #"Invalid year" (gen/holidays-for-year "a" constants/TEST-ROOT nil))))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-nested-includes
-  (= [{:name "Holiday from include-first" :date (t/date "2012-01-25")}
-      {:name "Holiday from include-second" :date (t/date "2012-01-30")}
-      {:name "Holiday from include-third" :date (t/date "2012-02-01")}]
-     (gen/holidays-for-year 2012 constants/TEST-ROOT "test-resources/generate/include-first.hol")))
+  (is (= [{:name "Holiday from include-first" :date (t/date "2012-01-25")}
+          {:name "Holiday from include-second" :date (t/date "2012-01-30")}
+          {:name "Holiday from include-third" :date (t/date "2012-02-01")}]
+         (gen/holidays-for-year 2012 constants/TEST-ROOT "test-resources/generate/include-first.hol"))))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-brazil-holidays
   (are [year expected]
