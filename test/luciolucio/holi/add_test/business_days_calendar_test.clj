@@ -70,5 +70,5 @@
     "2020-08-04" "2020-08-04"))
 
 (deftest should-calculate-correct-date-when-add-with-holiday-coinciding-with-weekend
-  (= (t/date "2020-01-22") (holi/add (t/date "2020-01-18") 3 :business-days "HOLIDAY-ON-WEEKEND"))
-  (= (t/date-time "2020-01-22T03:15") (holi/add (t/date-time "2020-01-18T03:15") 3 :business-days "HOLIDAY-ON-WEEKEND")))
+  (is (= (t/date "2020-01-22") (holi/add (t/date "2020-01-18") 3 :business-days "HOLIDAY-ON-WEEKEND")))
+  (is (= (t/date-time "2020-01-22T03:15") (holi/add (t/date-time "2020-01-18T03:15") 3 :business-days "HOLIDAY-ON-WEEKEND"))))

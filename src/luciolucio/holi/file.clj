@@ -4,7 +4,8 @@
             [luciolucio.holi.constants :as constants]
             [clojure.string :as cstr]
             [tick.alpha.api :as t]
-            [clojure.java.io :as io])
+            [clojure.java.io :as io]
+            [tick.format])
   (:import (java.nio.file Paths)))
 
 (defn format-YYYYMMDD [holiday]

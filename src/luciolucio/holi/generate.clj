@@ -1,14 +1,15 @@
 (ns luciolucio.holi.generate
   (:require [luciolucio.holi.file :as file]
             [tick.alpha.api :as t]
-            [clojure.edn :as edn])
+            [clojure.edn :as edn]
+            [clojure.java.io :as io])
   (:import (java.time LocalDate)
            (clojure.lang ExceptionInfo)))
 
 (defn -main [bracket calendar-file-dir output-path]
   (let [^LocalDate today (t/today)
         current-year (.getYear today)
-        directory (clojure.java.io/file calendar-file-dir)
+        directory (io/file calendar-file-dir)
         [_ & files] (file-seq directory)
         bracket-size (edn/read-string bracket)]
     (println "-----------------------------------------------------------")

@@ -1,9 +1,10 @@
 (ns luciolucio.holi.common
   (:require [instaparse.core :as insta]
-            [luciolucio.holi.constants :as constants])
+            [luciolucio.holi.constants :as constants]
+            [clojure.java.io :as io])
   (:import (java.nio.file Paths)))
 
-(defonce parser (insta/parser (clojure.java.io/resource constants/PARSER-GRAMMAR-FILENAME)))
+(defonce parser (insta/parser (io/resource constants/PARSER-GRAMMAR-FILENAME)))
 
 (defn drop-include [result]
   (let [[type & _] (first result)]
