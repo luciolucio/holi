@@ -11,10 +11,10 @@ jobs:
     name: 'Format Check'
     uses: ./.github/workflows/setup-and-run-script.yml
     with:
-      script: ./bin/fmt-check
+      script: make fmt-check
 
   unit-test:
     name: 'Unit Tests'
     uses: ./.github/workflows/setup-and-run-script.yml
     with:
-      script: ./bin/eftest
+      script: make test
