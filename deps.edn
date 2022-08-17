@@ -1,5 +1,5 @@
 {:paths   ["src"]
- :deps    {org.clojure/clojure   {:mvn/version "1.10.1"}
+ :deps    {org.clojure/clojure   {:mvn/version "1.11.1"}
            instaparse/instaparse {:mvn/version "1.4.12"}
            tick/tick             {:mvn/version "0.4.32"}
            easter-day/easter-day {:mvn/version "0.1.1"}}
