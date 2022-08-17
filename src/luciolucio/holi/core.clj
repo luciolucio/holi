@@ -61,7 +61,7 @@
     days-added
     (+ days-added (sign n))))
 
-(defn- abs [n]
+(defn- absolute [n]
   (if pos? n (- n)))
 
 (defn add-with-calendars [date n calendars]
@@ -73,7 +73,7 @@
         date)
       (loop [candidate date
              days-added 0]
-        (if (= (abs n) days-added)
+        (if (= (absolute n) days-added)
           candidate
           (let [new-date (t/+ candidate step)
                 m (inc-unless-holiday new-date non-business-days days-added n)]
