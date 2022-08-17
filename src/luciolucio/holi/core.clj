@@ -61,6 +61,9 @@
     days-added
     (+ days-added (sign n))))
 
+(defn- abs [n]
+  (if pos? n (- n)))
+
 (defn add-with-calendars [date n calendars]
   (let [non-business-days (read-calendars (set (conj calendars constants/WEEKEND-FILE-NAME)))
         step (t/new-period (get-step n) :days)]
