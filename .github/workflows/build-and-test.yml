@@ -13,6 +13,12 @@ jobs:
     with:
       script: make fmt-check
 
+  lint:
+    name: 'Lint'
+    uses: ./.github/workflows/setup-and-run-script.yml
+    with:
+      script: make lint
+
   unit-test:
     name: 'Unit Tests'
     uses: ./.github/workflows/setup-and-run-script.yml
