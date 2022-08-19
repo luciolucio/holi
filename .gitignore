@@ -3,6 +3,7 @@
 .nrepl-port
 dev/
 test-resources/file/output/
+tag.txt
 output.txt
 target/
 holi.jar
