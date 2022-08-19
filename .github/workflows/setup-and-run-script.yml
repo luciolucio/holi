@@ -22,7 +22,7 @@ jobs:
       - name: Setup Clojure
         uses: DeLaGuardo/setup-clojure@9.4
         with:
-          cli: 1.11.1
+          cli: 1.11.1.1155
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - run: ${{ inputs.script }}
