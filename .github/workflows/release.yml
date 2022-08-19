@@ -1,0 +1,13 @@
+name: release
+
+on:
+  push:
+    tags:
+    - '*'
+
+jobs:
+  release:
+    name: 'Release'
+    uses: ./.github/workflows/setup-and-run-script.yml
+    with:
+      script: make release

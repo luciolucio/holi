@@ -19,6 +19,7 @@ lint:          ## Run clj-kondo for linting
 jar:           ## Build jar
 install:       ## Build jar and install it to the local Maven cache
 prepare:       ## Prepare the release by updating the version number in the right places
+tag:           ## Tag a version (Note: this will trigger a release)
 release:       ## Build jar and push it to Clojars
 help:          ## Show this help
 	@fgrep -h "##" ${MAKEFILE_LIST} | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
@@ -60,6 +61,9 @@ install: jar
 
 prepare:
 	@bin/prepare.sh ${VERSION_NUMBER}
+
+tag:
+	@bin/tag.sh
 
 release: jar
 	@mvn deploy:deploy-file -Dfile="${BUILD_ROOT}/${JAR_NAME}" -DpomFile="${BUILD_ROOT}/pom.xml" -DrepositoryId=clojars -Durl=https://clojars.org/repo
