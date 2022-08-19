@@ -18,6 +18,7 @@ fix:           ## Fix code formatting automatically
 lint:          ## Run clj-kondo for linting
 jar:           ## Build jar
 install:       ## Build jar and install it to the local Maven cache
+prepare:       ## Prepare the release by updating the version number in the right places
 release:       ## Build jar and push it to Clojars
 help:          ## Show this help
 	@fgrep -h "##" ${MAKEFILE_LIST} | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
@@ -56,6 +57,9 @@ jar: gen-holidays
 
 install: jar
 	@mvn install:install-file -Dfile="${BUILD_ROOT}/${JAR_NAME}" -DpomFile="${BUILD_ROOT}/pom.xml"
+
+prepare:
+	@bin/prepare.sh ${VERSION_NUMBER}
 
 release: jar
 	@mvn deploy:deploy-file -Dfile="${BUILD_ROOT}/${JAR_NAME}" -DpomFile="${BUILD_ROOT}/pom.xml" -DrepositoryId=clojars -Durl=https://clojars.org/repo

@@ -7,18 +7,8 @@
   * Fixed such and such
 ```
 
-2. Run bin/prepare.sh VERSION_NUMBER
+2. Run `VERSION_NUMBER=x.x.x make prepare`
 
-3. Check and merge the proposed changes
+3. Merge the proposed changes to main
 
-4. Run bin/tag.sh VERSION_NUMBER
-
-
-Update `template.zip`
-
-```
-cd resources
-rm holi-template.zip
-zip holi-template.zip holi-template/**/*
-zip holi-template.zip holi-template/**/.*
-```
+4. Run `make tag`
