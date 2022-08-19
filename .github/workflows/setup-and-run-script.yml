@@ -20,9 +20,9 @@ jobs:
           java-version: '11'
 
       - name: Setup Clojure
-        uses: DeLaGuardo/setup-clojure@5.0
+        uses: DeLaGuardo/setup-clojure@9.4
         with:
-          cli: 1.10.1.693
+          cli: 1.11.1
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - run: ${{ inputs.script }}
