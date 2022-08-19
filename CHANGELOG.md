@@ -1,6 +1,6 @@
 # Changes
 
-* UNRELEASED
+* 0.10.0 - 19Aug22
   * Now supports holiday files in subdirectories
   * Improved file generation performance greatly
 
