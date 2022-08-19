@@ -1,33 +1,18 @@
 ## How to release
 
-Describe your change in `CHANGELOG.md`
+1. Describe your change in `CHANGELOG.md`
 
 ```
 * <version number> - <date>
   * Fixed such and such
 ```
 
-Copy the change description to `tag.txt`
+2. Run bin/prepare.sh VERSION_NUMBER
 
-Change the version number in the following places:
+3. Check and merge the proposed changes
 
-* build.clj
-```
-  (def version "0.1.1")                  <-- change here
-```
+4. Run bin/tag.sh VERSION_NUMBER
 
-* new-holi-project.sh
-
-```
-  echo "Downloading template..."
-  curl -LO https://github.com/luciolucio/holi/raw/0.1.1/resources/holi-template.zip     <-- change here
-```
-
-* resources/holi-template/resources/deps.edn
-
-```
-io.github.luciolucio/holi {:mvn/version "0.1.1"}}  <-- change here
-```
 
 Update `template.zip`
 
@@ -36,33 +21,4 @@ cd resources
 rm holi-template.zip
 zip holi-template.zip holi-template/**/*
 zip holi-template.zip holi-template/**/.*
-```
-
-and change CUSTOM.md:
-
-```
-curl -LO https://raw.githubusercontent.com/luciolucio/holi/v0.1.1/new-holi-project.sh   <-- change here
-```
-
-Commit, push, get it to main, then tag the new version and push it
-
-```
-git tag 0.1.1 -F tag.txt        <-- Use the new version here and in the line below
-git push origin 0.1.1
-```
-
-Make sure the clojars token is in the `servers` section of your `~/.m2/settings.xml`:
-
-```
-    <server>
-        <id>clojars</id>
-        <username>luciolucio</username>
-        <password>CLOJARS-TOKEN-HERE</password>
-    </server>
-```
-
-Then run this:
-
-```
-make release
 ```

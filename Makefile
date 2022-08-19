@@ -10,21 +10,25 @@ DEFAULT_BRACKET=80
 SRC_AND_TEST := src test
 
 
-clean:     ## Clean up CP cache and generated files
-test:      ## Run tests
-fmt-check: ## Check code formatting
-fix:       ## Fix code formatting automatically
-lint:      ## Run clj-kondo for linting
-jar:       ## Build jar
-install:   ## Build jar and install it to the local Maven cache
-release:   ## Build jar and push it to Clojars
-help:      ## Show this help
+clean:         ## Clean up CP cache and generated files
+clean-prepare: ## Clean up files changed via prepare.sh
+test:          ## Run tests
+fmt-check:     ## Check code formatting
+fix:           ## Fix code formatting automatically
+lint:          ## Run clj-kondo for linting
+jar:           ## Build jar
+install:       ## Build jar and install it to the local Maven cache
+release:       ## Build jar and push it to Clojars
+help:          ## Show this help
 	@fgrep -h "##" ${MAKEFILE_LIST} | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
 clean:
 	@rm -rf .cpcache/
 	@rm -rf ${BUILD_ROOT}
 	@rm -rf ${CALENDAR_OUTPUT_DIR}
+
+clean-prepare:
+	@git checkout -- build.clj new-holi-project.sh resources/holi-template/resources/deps.edn CUSTOM.md resources/holi-template.zip
 
 test:
 	@bin/eftest
