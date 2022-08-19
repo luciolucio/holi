@@ -39,10 +39,10 @@ NAMES=`git diff --name-only`
 if (echo $NAMES | grep build.clj) \
    && (echo $NAMES | grep new-holi-project.sh) \
    && (echo $NAMES | grep resources/holi-template/resources/deps.edn) \
-   && (echo $NAMES | grep CUSTOM.md)
+   && (echo $NAMES | grep CUSTOM.md) \
    && (echo $NAMES | grep resources/holi-template.zip)
 then
-  print "DONE"
+  print "...DONE"
   exit 0
 else
   printf "Missing expected changes - failed to prepare the release"
