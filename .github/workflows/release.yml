@@ -6,10 +6,30 @@ on:
     - '*'
 
 jobs:
-  release:
-    name: 'Release'
-    uses: ./.github/workflows/setup-and-run-script.yml
-    with:
-      script: make release
-      username: ${{ secrets.CLOJARS_USERNAME }}
-      token: ${{ secrets.CLOJARS_TOKEN }}
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Java JDK
+        uses: actions/setup-java@v3.1.0
+        with:
+          distribution: 'zulu'
+          java-version: '11'
+          server-id: clojars
+          server-username: MAVEN_USERNAME
+          server-password: MAVEN_TOKEN
+
+      - name: Setup Clojure
+        uses: DeLaGuardo/setup-clojure@9.4
+        with:
+          cli: 1.11.1.1155
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: make release
+        shell: bash
+        env:
+          MAVEN_USERNAME: ${{ secrets.CLOJARS_USERNAME }}
+          MAVEN_TOKEN:    ${{ secrets.CLOJARS_TOKEN }}
