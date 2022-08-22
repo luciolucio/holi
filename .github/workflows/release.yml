@@ -11,3 +11,5 @@ jobs:
     uses: ./.github/workflows/setup-and-run-script.yml
     with:
       script: make release
+      username: ${{ secrets.CLOJARS_USERNAME }}
+      token: ${{ secrets.CLOJARS_TOKEN }}

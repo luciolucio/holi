@@ -31,5 +31,5 @@ jobs:
       - run: ${{ inputs.script }}
         shell: bash
         env:
-          MAVEN_USERNAME: ${{ secrets.CLOJARS_USERNAME }}
-          MAVEN_TOKEN:    ${{ secrets.CLOJARS_TOKEN }}
+          MAVEN_USERNAME: ${{ inputs.username }}
+          MAVEN_TOKEN:    ${{ inputs.token }}
