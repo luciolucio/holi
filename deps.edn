@@ -3,8 +3,8 @@
            instaparse/instaparse {:mvn/version "1.4.12"}
            tick/tick             {:mvn/version "0.4.32"}
            easter-day/easter-day {:mvn/version "0.1.1"}}
- :aliases {:eftest   {:extra-paths ["test" "test-resources" "bin"]
-                      :extra-deps  {eftest/eftest {:mvn/version "0.5.9"}}}
+ :aliases {:test     {:extra-paths ["test" "test-resources"]
+                      :extra-deps  {lambdaisland/kaocha {:mvn/version "1.69.1069"}}}
 
            :cljfmt   {:main-opts  ["-m" "cljfmt.main"]
                       :extra-deps {lein-cljfmt/lein-cljfmt {:mvn/version "0.8.0"}}}
