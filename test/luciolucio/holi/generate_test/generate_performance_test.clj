@@ -3,7 +3,7 @@
             #_[luciolucio.holi.file :as file]))
 
 (def root-path "test-resources/file/performance")
-(def output-path "test-resources/file/output")
+(def output-path "test-output")
 
 ; Run this by uncommenting when testing performance
 #_(deftest should-perform-well

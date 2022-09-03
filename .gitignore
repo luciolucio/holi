@@ -2,7 +2,7 @@
 .clj-kondo/.cache
 .nrepl-port
 dev/
-test-resources/file/output/
+test-output/
 tag.txt
 output.txt
 target/
