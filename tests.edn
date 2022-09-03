@@ -1,3 +1,7 @@
 #kaocha/v1
-        {:reporter #profile {:default kaocha.report/dots
+        {:tests    [{:id        :unit
+                     :skip-meta [:performance]}
+                    {:id         :performance
+                     :focus-meta [:performance]}]
+         :reporter #profile {:default kaocha.report/dots
                              :ci      kaocha.report/documentation}}
