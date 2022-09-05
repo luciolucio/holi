@@ -6,8 +6,8 @@
 (def output-path "test-output")
 
 (deftest ^:performance should-perform-well
-    (time
-     (dotimes [_ 10]
-       (file/generate-datelist! root-path "test-resources/file/performance/BR.hol" output-path 2020 80)))
+  (time
+   (dotimes [_ 10]
+     (file/generate-datelist! root-path "test-resources/file/performance/BR.hol" output-path 2020 80)))
 
-    (is (= 1 1)))
+  (is (= 1 1)))
