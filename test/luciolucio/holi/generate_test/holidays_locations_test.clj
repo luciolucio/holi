@@ -34,7 +34,8 @@
                {:name "Nossa Senhora de Aparecida" :date (t/date "2019-10-12")}
                {:name "Finados" :date (t/date "2019-11-02")}
                {:name "Proclamação da República" :date (t/date "2019-11-15")}
-               {:name "Natal" :date (t/date "2019-12-25")}]))
+               {:name "Natal" :date (t/date "2019-12-25")}]
+    "US" 2022 [{:name "New Year's Day" :date (t/date "2022-01-01")}]))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-specific-cities
   (are [city-name year expected]
