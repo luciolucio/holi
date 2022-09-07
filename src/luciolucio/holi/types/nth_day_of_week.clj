@@ -13,10 +13,24 @@
    "Fri" t/FRIDAY
    "Sat" t/SATURDAY})
 
+(def month->month-as-int
+  {"Jan" 1
+   "Feb" 2
+   "Mar" 3
+   "Apr" 4
+   "May" 5
+   "Jun" 6
+   "Jul" 7
+   "Aug" 8
+   "Sep" 9
+   "Oct" 10
+   "Nov" 11
+   "Dec" 12})
+
 (defn get-holiday-nth-day-of-week [^Integer year holiday-name [i day-of-week-str month] start-year end-year]
   (let [i-as-int (edn/read-string i)
         day-of-week (day-of-week-str->day-of-week day-of-week-str)
-        ^Integer month-as-int (-> month common/month->month-number edn/read-string)
+        ^Integer month-as-int (-> month month->month-as-int) ; TODO: Improve nth-day-of-week tests to catch this
         month-bounds (t/bounds (t/year-month (LocalDate/of year month-as-int 1)))
         month-days (t/range
                     (t/date (t/beginning month-bounds))
