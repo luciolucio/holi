@@ -35,7 +35,17 @@
                {:name "Finados" :date (t/date "2019-11-02")}
                {:name "Proclamação da República" :date (t/date "2019-11-15")}
                {:name "Natal" :date (t/date "2019-12-25")}]
-    "US" 2022 [{:name "New Year's Day" :date (t/date "2022-01-01")}]))
+    "US" 2022 [{:name "New Year's Day" :date (t/date "2022-01-01")}
+               {:name "Martin Luther King Jr. Day" :date (t/date "2022-01-17")}
+               {:name "President's Day" :date (t/date "2022-02-21")}
+               {:name "Memorial Day" :date (t/date "2022-05-30")}
+               {:name "Juneteenth" :date (t/date "2022-06-20")}
+               {:name "Independence Day" :date (t/date "2022-07-04")}
+               {:name "Labor Day" :date (t/date "2022-09-05")}
+               {:name "Columbus Day" :date (t/date "2022-10-10")}
+               {:name "Veterans Day" :date (t/date "2022-11-11")}
+               {:name "Thanksgiving" :date (t/date "2022-11-24")}
+               {:name "Christmas" :date (t/date "2022-12-26")}]))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-specific-cities
   (are [city-name year expected]

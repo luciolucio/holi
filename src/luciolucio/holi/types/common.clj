@@ -1,7 +1,7 @@
 (ns luciolucio.holi.types.common
   (:require [tick.alpha.api :as t]))
 
-(def month->month-number
+(def ^:private month->month-number
   {"Jan" "01"
    "Feb" "02"
    "Mar" "03"

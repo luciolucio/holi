@@ -1,2 +1,12 @@
 ; United States holidays
 New Year's Day|1Jan
+Martin Luther King Jr. Day|3MonJan
+President's Day|3MonFeb
+Memorial Day|-1MonMay
+Juneteenth|19Jun|observed
+Independence Day|4Jul|observed
+Labor Day|1MonSep
+Columbus Day|2MonOct
+Veterans Day|11Nov|observed
+Thanksgiving|4ThuNov
+Christmas|25Dec|observed
