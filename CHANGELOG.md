@@ -1,5 +1,9 @@
 # Changes
 
+* UNRELEASED
+  * Added US calendar
+  * Fixed a bug that caused nth-day-of-week holidays in August or September to fail holiday generation
+
 * 0.10.0 - 19Aug22
   * Now supports holiday files in subdirectories
   * Improved file generation performance greatly
