@@ -24,6 +24,21 @@
      {:name "Columbus Day" :date (t/date "2020-10-12")}] 2020)
 
   (are [expected year]
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/nth-day-of-week-months-and-days-of-week.hol"))
+    [{:name "Jan Holiday" :date (t/date "2022-01-03")}
+     {:name "Feb Holiday" :date (t/date "2022-02-01")}
+     {:name "Mar Holiday" :date (t/date "2022-03-02")}
+     {:name "Apr Holiday" :date (t/date "2022-04-07")}
+     {:name "May Holiday" :date (t/date "2022-05-06")}
+     {:name "Jun Holiday" :date (t/date "2022-06-04")}
+     {:name "Jul Holiday" :date (t/date "2022-07-03")}
+     {:name "Aug Holiday" :date (t/date "2022-08-01")}
+     {:name "Sep Holiday" :date (t/date "2022-09-05")}
+     {:name "Oct Holiday" :date (t/date "2022-10-03")}
+     {:name "Nov Holiday" :date (t/date "2022-11-07")}
+     {:name "Dec Holiday" :date (t/date "2022-12-05")}] 2022)
+
+  (are [expected year]
        (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/nth-day-of-week-limit-cases.hol"))
     [{:name "Inexistent Holiday 1" :date (t/date "2021-05-03")}
      {:name "Inexistent Holiday 2" :date (t/date "2021-05-10")}
