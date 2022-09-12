@@ -56,7 +56,39 @@
                {:name "Columbus Day" :date (t/date "2022-10-10")}
                {:name "Veterans Day" :date (t/date "2022-11-11")}
                {:name "Thanksgiving" :date (t/date "2022-11-24")}
-               {:name "Christmas" :date (t/date "2022-12-26")}]))
+               {:name "Christmas" :date (t/date "2022-12-26")}]
+    "GB" 2019 [{:name "New Year's Day" :date (t/date "2019-01-01")}
+               {:name "Good Friday" :date (t/date "2019-04-19")}
+               {:name "Early May Bank Holiday" :date (t/date "2019-05-06")}
+               {:name "Spring Bank Holiday" :date (t/date "2019-05-27")}
+               {:name "Christmas" :date (t/date "2019-12-25")}
+               {:name "Boxing Day" :date (t/date "2019-12-26")}]
+    "GB" 2020 [{:name "New Year's Day" :date (t/date "2020-01-01")}
+               {:name "Good Friday" :date (t/date "2020-04-10")}
+               {:name "Early May Bank Holiday / VE Day" :date (t/date "2020-05-08")}
+               {:name "Spring Bank Holiday" :date (t/date "2020-05-25")}
+               {:name "Christmas" :date (t/date "2020-12-25")}
+               {:name "Boxing Day" :date (t/date "2020-12-28")}]
+    "GB" 2021 [{:name "New Year's Day" :date (t/date "2021-01-01")}
+               {:name "Good Friday" :date (t/date "2021-04-02")}
+               {:name "Early May Bank Holiday" :date (t/date "2021-05-03")}
+               {:name "Spring Bank Holiday" :date (t/date "2021-05-31")}
+               {:name "Christmas" :date (t/date "2021-12-27")}
+               {:name "Boxing Day" :date (t/date "2021-12-28")}]
+    "GB" 2022 [{:name "New Year's Day" :date (t/date "2022-01-03")}
+               {:name "Good Friday" :date (t/date "2022-04-15")}
+               {:name "Early May Bank Holiday" :date (t/date "2022-05-02")}
+               {:name "Spring Bank Holiday" :date (t/date "2022-06-02")}
+               {:name "Queen's Platinum Jubilee" :date (t/date "2022-06-03")}
+               {:name "Queen Elizabeth's Funeral Day" :date (t/date "2022-09-19")}
+               {:name "Christmas" :date (t/date "2022-12-27")}
+               {:name "Boxing Day" :date (t/date "2022-12-26")}]
+    "GB" 2023 [{:name "New Year's Day" :date (t/date "2023-01-02")}
+               {:name "Good Friday" :date (t/date "2023-04-07")}
+               {:name "Early May Bank Holiday" :date (t/date "2023-05-01")}
+               {:name "Spring Bank Holiday" :date (t/date "2023-05-29")}
+               {:name "Christmas" :date (t/date "2023-12-25")}
+               {:name "Boxing Day" :date (t/date "2023-12-26")}]))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-specific-cities
   (are [city-name year expected]
