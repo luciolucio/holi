@@ -3,10 +3,10 @@
             [tick.alpha.api :as t]
             [luciolucio.holi.holidays :as gen]))
 
-(def LOCATIONS-TEST-ROOT "test-resources/generate/locations")
+(def LOCATIONS-TEST-ROOT "resources/calendars-source")
 
 (defn calendar-filename [location]
-  (format "test-resources/generate/locations/%s.hol" location))
+  (format "resources/calendars-source/%s.hol" location))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-specific-countries
   (are [country-name year expected]
