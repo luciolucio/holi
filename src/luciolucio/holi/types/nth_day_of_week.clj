@@ -30,7 +30,7 @@
 (defn get-holiday-nth-day-of-week [^Integer year holiday-name [i day-of-week-str month] start-year end-year]
   (let [i-as-int (edn/read-string i)
         day-of-week (day-of-week-str->day-of-week day-of-week-str)
-        ^Integer month-as-int (-> month month->month-as-int) ; TODO: Improve nth-day-of-week tests to catch this
+        ^Integer month-as-int (-> month month->month-as-int)
         month-bounds (t/bounds (t/year-month (LocalDate/of year month-as-int 1)))
         month-days (t/range
                     (t/date (t/beginning month-bounds))
