@@ -35,7 +35,18 @@
                {:name "Finados" :date (t/date "2019-11-02")}
                {:name "Proclamação da República" :date (t/date "2019-11-15")}
                {:name "Natal" :date (t/date "2019-12-25")}]
-    "US" 2022 [{:name "New Year's Day" :date (t/date "2022-01-01")}
+    "US" 2021 [{:name "New Year's Day" :date (t/date "2021-01-01")}
+               {:name "Martin Luther King Jr. Day" :date (t/date "2021-01-18")}
+               {:name "President's Day" :date (t/date "2021-02-15")}
+               {:name "Memorial Day" :date (t/date "2021-05-31")}
+               {:name "Juneteenth" :date (t/date "2021-06-18")}
+               {:name "Independence Day" :date (t/date "2021-07-05")}
+               {:name "Labor Day" :date (t/date "2021-09-06")}
+               {:name "Columbus Day" :date (t/date "2021-10-11")}
+               {:name "Veterans Day" :date (t/date "2021-11-11")}
+               {:name "Thanksgiving" :date (t/date "2021-11-25")}
+               {:name "Christmas" :date (t/date "2021-12-24")}]
+    "US" 2022 [{:name "New Year's Day" :date (t/date "2021-12-31")}
                {:name "Martin Luther King Jr. Day" :date (t/date "2022-01-17")}
                {:name "President's Day" :date (t/date "2022-02-21")}
                {:name "Memorial Day" :date (t/date "2022-05-30")}
