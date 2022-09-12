@@ -1,8 +1,9 @@
 # Changes
 
 * UNRELEASED
-  * Added US calendar
+  * Added US and GB calendars
   * Added brazil/sao-paulo calendar
+  * Now supports a 'forward-only' observance rule where a weekend holiday always gets pushed to Monday
   * Fixed a bug that caused nth-day-of-week holidays in August or September to fail holiday generation
 
 * 0.10.0 - 19Aug22
