@@ -33,6 +33,24 @@
     [{:name "Easter On Monday" :date (t/date "2017-04-17")}] 2017
     [{:name "Easter On Monday" :date (t/date "2018-04-02")}] 2018))
 
+(deftest should-generate-holidays-when-holidays-for-year-with-easter-expression-and-monday-observance-rule
+  (are [expected year]
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/expression-easter-observed-monday.hol"))
+    [{:name "Easter On Monday" :date (t/date "2012-04-09")}
+     {:name "Easter On Monday Again" :date (t/date "2012-04-09")}] 2012
+    [{:name "Easter On Monday" :date (t/date "2013-04-01")}
+     {:name "Easter On Monday Again" :date (t/date "2013-04-01")}] 2013
+    [{:name "Easter On Monday" :date (t/date "2014-04-21")}
+     {:name "Easter On Monday Again" :date (t/date "2014-04-21")}] 2014
+    [{:name "Easter On Monday" :date (t/date "2015-04-06")}
+     {:name "Easter On Monday Again" :date (t/date "2015-04-06")}] 2015
+    [{:name "Easter On Monday" :date (t/date "2016-03-28")}
+     {:name "Easter On Monday Again" :date (t/date "2016-03-28")}] 2016
+    [{:name "Easter On Monday" :date (t/date "2017-04-17")}
+     {:name "Easter On Monday Again" :date (t/date "2017-04-17")}] 2017
+    [{:name "Easter On Monday" :date (t/date "2018-04-02")}
+     {:name "Easter On Monday Again" :date (t/date "2018-04-02")}] 2018))
+
 (deftest should-generate-holidays-when-holidays-for-year-with-easter-expression-and-monday-tuesday-observance-rule
   (are [expected year]
        (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/expression-easter-observed-monday-tuesday.hol"))
@@ -86,6 +104,35 @@
     [{:name "Easter On Monday" :date (t/date "2016-03-28")}] 2016
     [{:name "Easter On Monday" :date (t/date "2017-04-17")}] 2017
     [{:name "Easter On Monday" :date (t/date "2018-04-02")}] 2018))
+
+(deftest should-generate-holidays-when-holidays-for-year-with-easter-expression-with-monday-observance-rule-and-start-clause
+  (are [expected year]
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/expression-easter-observed-monday-start.hol"))
+    [] 2012
+    [] 2013
+    [] 2014
+    [{:name "Easter On Monday" :date (t/date "2015-04-06")}
+     {:name "Easter On Monday Again" :date (t/date "2015-04-06")}] 2015
+    [{:name "Easter On Monday" :date (t/date "2016-03-28")}
+     {:name "Easter On Monday Again" :date (t/date "2016-03-28")}] 2016
+    [{:name "Easter On Monday" :date (t/date "2017-04-17")}
+     {:name "Easter On Monday Again" :date (t/date "2017-04-17")}] 2017
+    [{:name "Easter On Monday" :date (t/date "2018-04-02")}
+     {:name "Easter On Monday Again" :date (t/date "2018-04-02")}] 2018)
+
+  (are [expected year]
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/expression-easter-observed-monday-start-reverse-order.hol"))
+    [] 2012
+    [] 2013
+    [] 2014
+    [{:name "Easter On Monday" :date (t/date "2015-04-06")}
+     {:name "Easter On Monday Again" :date (t/date "2015-04-06")}] 2015
+    [{:name "Easter On Monday" :date (t/date "2016-03-28")}
+     {:name "Easter On Monday Again" :date (t/date "2016-03-28")}] 2016
+    [{:name "Easter On Monday" :date (t/date "2017-04-17")}
+     {:name "Easter On Monday Again" :date (t/date "2017-04-17")}] 2017
+    [{:name "Easter On Monday" :date (t/date "2018-04-02")}
+     {:name "Easter On Monday Again" :date (t/date "2018-04-02")}] 2018))
 
 (deftest should-generate-holidays-when-holidays-for-year-with-easter-expression-with-monday-tuesday-observance-rule-and-start-clause
   (are [expected year]
@@ -148,6 +195,37 @@
     [{:name "Easter On Monday" :date (t/date "2014-04-21")}] 2014
     [{:name "Easter On Monday" :date (t/date "2015-04-06")}] 2015
     [{:name "Easter On Monday" :date (t/date "2016-03-28")}] 2016
+    [] 2017
+    [] 2018))
+
+(deftest should-generate-holidays-when-holidays-for-year-with-easter-expression-with-monday-observance-rule-and-end-clause
+  (are [expected year]
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/expression-easter-observed-monday-end.hol"))
+    [{:name "Easter On Monday" :date (t/date "2012-04-09")}
+     {:name "Easter On Monday Again" :date (t/date "2012-04-09")}] 2012
+    [{:name "Easter On Monday" :date (t/date "2013-04-01")}
+     {:name "Easter On Monday Again" :date (t/date "2013-04-01")}] 2013
+    [{:name "Easter On Monday" :date (t/date "2014-04-21")}
+     {:name "Easter On Monday Again" :date (t/date "2014-04-21")}] 2014
+    [{:name "Easter On Monday" :date (t/date "2015-04-06")}
+     {:name "Easter On Monday Again" :date (t/date "2015-04-06")}] 2015
+    [{:name "Easter On Monday" :date (t/date "2016-03-28")}
+     {:name "Easter On Monday Again" :date (t/date "2016-03-28")}] 2016
+    [] 2017
+    [] 2018)
+
+  (are [expected year]
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT "test-resources/generate/expression-easter-observed-monday-end-reverse-order.hol"))
+    [{:name "Easter On Monday" :date (t/date "2012-04-09")}
+     {:name "Easter On Monday Again" :date (t/date "2012-04-09")}] 2012
+    [{:name "Easter On Monday" :date (t/date "2013-04-01")}
+     {:name "Easter On Monday Again" :date (t/date "2013-04-01")}] 2013
+    [{:name "Easter On Monday" :date (t/date "2014-04-21")}
+     {:name "Easter On Monday Again" :date (t/date "2014-04-21")}] 2014
+    [{:name "Easter On Monday" :date (t/date "2015-04-06")}
+     {:name "Easter On Monday Again" :date (t/date "2015-04-06")}] 2015
+    [{:name "Easter On Monday" :date (t/date "2016-03-28")}
+     {:name "Easter On Monday Again" :date (t/date "2016-03-28")}] 2016
     [] 2017
     [] 2018))
 

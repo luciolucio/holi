@@ -105,6 +105,27 @@
     [{:name "Independence Day" :date (t/date "2020-07-03")}] 2020
     [{:name "Independence Day" :date (t/date "2021-07-05")}] 2021))
 
+(deftest should-generate-holidays-when-holidays-for-year-with-monday-observance-rule-and-start-clause-on-ddmmm
+  (are [expected year]
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT  "test-resources/generate/ddmmm-observed-monday-start.hol"))
+    [] 2016
+    [] 2017
+    [{:name "New Year's Day" :date (t/date "2018-01-01")}] 2018
+    [{:name "New Year's Day" :date (t/date "2019-01-01")}] 2019
+    [{:name "New Year's Day" :date (t/date "2020-01-01")}] 2020
+    [{:name "New Year's Day" :date (t/date "2021-01-01")}] 2021
+    [{:name "New Year's Day" :date (t/date "2022-01-03")}] 2022)
+
+  (are [expected year]
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT  "test-resources/generate/ddmmm-observed-monday-start-reverse-order.hol"))
+    [] 2016
+    [] 2017
+    [{:name "New Year's Day" :date (t/date "2018-01-01")}] 2018
+    [{:name "New Year's Day" :date (t/date "2019-01-01")}] 2019
+    [{:name "New Year's Day" :date (t/date "2020-01-01")}] 2020
+    [{:name "New Year's Day" :date (t/date "2021-01-01")}] 2021
+    [{:name "New Year's Day" :date (t/date "2022-01-03")}] 2022))
+
 (deftest should-generate-holidays-when-holidays-for-year-with-monday-tuesday-observance-rule-and-start-clause-on-ddmmm
   (are [expected year]
        (= expected (gen/holidays-for-year year constants/TEST-ROOT  "test-resources/generate/ddmmm-observed-monday-tuesday-start.hol"))
@@ -158,6 +179,25 @@
     [{:name "Independence Day" :date (t/date "2017-07-04")}] 2017
     [{:name "Independence Day" :date (t/date "2018-07-04")}] 2018
     [{:name "Independence Day" :date (t/date "2019-07-04")}] 2019
+    [] 2020
+    [] 2021))
+
+(deftest should-generate-holidays-when-holidays-for-year-with-monday-observance-rule-and-end-clause-on-ddmmm
+  (are [expected year]
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT  "test-resources/generate/ddmmm-observed-monday-end.hol"))
+    [{:name "New Year's Day" :date (t/date "2016-01-01")}] 2016
+    [{:name "New Year's Day" :date (t/date "2017-01-02")}] 2017
+    [{:name "New Year's Day" :date (t/date "2018-01-01")}] 2018
+    [{:name "New Year's Day" :date (t/date "2019-01-01")}] 2019
+    [] 2020
+    [] 2021)
+
+  (are [expected year]
+       (= expected (gen/holidays-for-year year constants/TEST-ROOT  "test-resources/generate/ddmmm-observed-monday-end-reverse-order.hol"))
+    [{:name "New Year's Day" :date (t/date "2016-01-01")}] 2016
+    [{:name "New Year's Day" :date (t/date "2017-01-02")}] 2017
+    [{:name "New Year's Day" :date (t/date "2018-01-01")}] 2018
+    [{:name "New Year's Day" :date (t/date "2019-01-01")}] 2019
     [] 2020
     [] 2021))
 
