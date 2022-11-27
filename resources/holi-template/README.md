@@ -2,9 +2,9 @@
 
 How to generate a custom jar with your own holidays
 
-## Usage
+## Steps
 1. Create a `calendars/` folder
-2. Create `.hol` files inside of `calendars`
+2. Create `.hol` files inside of `calendars/`
     * See file format below, and examples in `examples/`
     * The name `WEEKEND.hol` is reserved and cannot be used
 3. Run `gen-lib.sh`
@@ -14,10 +14,10 @@ How to generate a custom jar with your own holidays
 Files with the `.hol` extension specify *holidays* and have the `.hol` extension. Each holiday occupies one line, and is formatted like so:
 
 ```
-Holiday name|Holiday calculation rule
+Holiday name|Holiday calculation rule|modifier(s)
 ```
 
-You can use any of the calculation rules demonstrated below
+You can use any of the calculation rules demonstrated below. Modifiers are optional.
 
 
 ### Yearly holiday
@@ -58,7 +58,7 @@ No modifiers are accepted for specific date holidays
 
 
 ### Specific date exception
-To exclude a date that otherwise would have been generated, use a minus sign (`-`) at the end
+To exclude a date that would otherwise have been generated, use a minus sign (`-`) at the end
 
 ```
 Spring Bank Holiday Moved For Jubilee Long Weekend|30May2022-
@@ -78,11 +78,13 @@ President's Day|3MonFeb
 ```
 
 That is, the third (`3`) Monday (`Mon`) of February (`Feb`). Use common three-letter abbreviations for days of the week and months.
-Note that you may also specify "next to last" with `-1`, like this:
+Note that you may also specify "last" with `-1`, "next-to-last" with `-2` and so on. For example:
 
 ```
 Memorial Day|-1MonMay
 ```
+
+will generate a holiday on the last Monday of May every year
 
 #### Modifiers
 Accepted modifiers for nth day of the week holidays are:
@@ -124,7 +126,7 @@ Accepted modifiers for expression holidays are:
 
 
 ### Comments
-You may add a single line of comment at the top of your holiday definition file. It must start with `;`
+You may add a single comment line at the very top of your holiday definition file. It must start with a semicolon `;`
 
 ```
 ; My awesome holiday file
@@ -145,5 +147,5 @@ A holiday in addition to the ones included|5May
 
 * Remember not to write the `.hol` extension in the `#include` directive
 * The directive must be on the first line (only a comment may come before it)
-* The path of the included file is always relative to the root calendar path, i.e. `#include foo/bar` includes the same file regardless of where it's found
+* The path of the included file is always relative to the root calendar path, i.e. `#include foo/bar` always includes the same file
 * Only one include per file is allowed, but you may nest includes
