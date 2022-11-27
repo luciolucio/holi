@@ -10,7 +10,7 @@ cp resources/deps.edn output
 
 cd output || exit
 mkdir -p calendars-generated
-clojure -M:calendars 80 "../calendars/" "calendars-generated"
+clojure -M:generate 80 "../calendars/" "calendars-generated"
 clojure -T:build jar :build-root . :jar-file "${LIB_NAME}.jar"
 cd .. || exit
 mv "output/$LIB_NAME.jar" .
