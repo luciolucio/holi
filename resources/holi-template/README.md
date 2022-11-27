@@ -3,12 +3,11 @@
 How to generate a custom jar with your own holidays
 
 ## Steps
-1. Create a `calendars/` folder
-2. Create `.hol` files inside of `calendars/`
+1. Create `.hol` files in `calendars/`
     * See file format below, and examples in `examples/`
     * The name `WEEKEND.hol` is reserved and cannot be used
-3. Run `gen-lib.sh`
-4. Your jar file will be in `generated/{{lib-name}}.jar`
+2. Run `gen-lib.sh`
+3. Your jar file will be in `generated/{{lib-name}}.jar`
 
 ## .hol file format
 Files with the `.hol` extension specify *holidays* and have the `.hol` extension. Each holiday occupies one line, and is formatted like so:
