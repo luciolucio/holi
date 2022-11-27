@@ -1,6 +1,6 @@
 # Changes
 
-* UNRELEASED
+* 0.11.0 - 27Nov2022
   * Added US and GB calendars
   * Added brazil/sao-paulo calendar
   * Now supports a 'forward-only' observance rule where a weekend holiday always gets pushed to Monday
