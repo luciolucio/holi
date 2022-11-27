@@ -6,21 +6,21 @@
   * Now supports a 'forward-only' observance rule where a weekend holiday always gets pushed to Monday
   * Fixed a bug that caused nth-day-of-week holidays in August or September to fail holiday generation
 
-* 0.10.0 - 19Aug22
+* 0.10.0 - 19Aug2022
   * Now supports holiday files in subdirectories
   * Improved file generation performance greatly
 
-* 0.9.0 - 9Aug22
+* 0.9.0 - 9Aug2022
   * Generated files now have extensions to avoid collisions with actual namespaces when generating custom jars
 
-* 0.8.0 - 7Aug22
+* 0.8.0 - 7Aug2022
   * Custom build now uses `tools.build`
 
-* 0.7.0 - 7Aug22
+* 0.7.0 - 7Aug2022
   * Now supports singular versions of :days :weeks :months :years and :business-days
   * Cleaned up the namespace, moving internal fns somewhere else to avoid confusion
 
-* 0.6.0 - 7Aug22
+* 0.6.0 - 7Aug2022
   * Goodbye `calenjars`, hello `holi`!
   * The main API function has been simplified greatly: `relative-date-add` is now just `add`
   * Library now ships with the BR calendar, no need to generate anything
