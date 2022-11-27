@@ -6,8 +6,8 @@ How to generate a custom jar with your own holidays
 1. Create `.hol` files in `calendars/`
     * See file format below, and examples in `examples/`
     * The name `WEEKEND.hol` is reserved and cannot be used
-1. Run `gen-lib.sh`
-1. Your jar file will be in `generated/{{lib-name}}.jar`
+2. Run `gen-lib.sh`
+3. Your jar file will be in `generated/{{lib-name}}.jar`
 
 ## .hol file format
 Files with the `.hol` extension specify *holidays* and have the `.hol` extension. Each holiday occupies one line, and is formatted like so:
@@ -106,9 +106,9 @@ Corpus Christi|E+60
 Will calculate a date based on expression `E`, and add 60 calendar days to it. If you want `EXPRESSION` with no changes, use `+0`.
 
 #### Supported Expressions
-| Expression | Meaning                      |
-| :---:      |  :------:                    |
-| **E**      | Calculate the date of easter |
+| Expression |           Meaning            |
+|:----------:|:----------------------------:|
+|   **E**    | Calculate the date of easter |
 
 #### Modifiers
 Accepted modifiers for expression holidays are:
