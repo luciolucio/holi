@@ -10,7 +10,8 @@
   (let [^LocalDate today (t/today)
         current-year (.getYear today)
         directory (io/file calendar-file-dir)
-        [_ & files] (file-seq directory)
+        [_ & files-and-dirs] (file-seq directory)
+        files (filterv #(.isFile %) files-and-dirs)
         bracket-size (edn/read-string bracket)]
     (println "-----------------------------------------------------------")
     (println (format "Generating holidays for holiday files under %s" calendar-file-dir))
