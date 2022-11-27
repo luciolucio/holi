@@ -135,14 +135,18 @@ One way this is useful is for things like "This is due next month, on the same d
 
 ## Available holiday calendars
 
-| Holiday calendar | Description                     |
-|------------------|---------------------------------|
-| US               | Official United States holidays |
-| BR               | Brazilian holidays              |
+| Holiday calendar | Description             |
+|------------------|-------------------------|
+| US               | United States holidays  |
+| GB               | Great Britain holidays  |
+| BR               | Brazilian holidays      |
+| brazil/sao-paulo | São Paulo city holidays |
 
-## There is no holiday calendar for &lt;insert location here&gt;!
+## FAQ
+
+**What do I do if a date is wrong or a holiday calendar is missing for &lt;insert location here&gt;?**
 
 You have two options:
 
-* **Contribute** a new calendar to the project (see [CONTRIBUTING.md](CONTRIBUTING.md))
+* **Contribute** a fix or a new calendar to the project (see [CONTRIBUTING.md](CONTRIBUTING.md))
 * Build yourself a **custom library** with your own holiday calendars (it's easy! See [CUSTOM.md](CUSTOM.md))
