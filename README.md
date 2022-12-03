@@ -1,8 +1,11 @@
 # Holi
+
+Holi is a clojure library for working with non-business days
+
 [![build](https://github.com/luciolucio/holi/workflows/build-and-test/badge.svg)](https://github.com/luciolucio/holi/actions/workflows/build-and-test.yml)
 [![Clojars Project](https://img.shields.io/clojars/v/io.github.luciolucio/holi.svg)](https://clojars.org/io.github.luciolucio/holi)
 
-Holi is a clojure library for working with non-business days
+## Examples
 
 ```clojure
 (ns my-app
@@ -26,7 +29,7 @@ Holi is a clojure library for working with non-business days
 
 ## Usage
 
-Just import the latest version from [clojars](https://clojars.org/io.github.luciolucio/holi) into your project dependencies
+Import the latest version from [clojars](https://clojars.org/io.github.luciolucio/holi) into your project dependencies
 
 ## API
 
@@ -148,5 +151,5 @@ One way this is useful is for things like "This is due next month, on the same d
 
 You have two options:
 
-* **Contribute** a fix or a new calendar to the project (see [CONTRIBUTING.md](CONTRIBUTING.md))
-* Build yourself a **custom library** with your own holiday calendars (it's easy! See [CUSTOM.md](CUSTOM.md))
+* **Contribute** a fix, or a new calendar to the project (see [CONTRIBUTING.md](CONTRIBUTING.md))
+* Build yourself a **custom library**, with your own holiday calendars (it's easy! See [CUSTOM.md](CUSTOM.md))
