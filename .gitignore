@@ -8,3 +8,6 @@ output.txt
 target/
 holi.jar
 resources/calendars-generated
+out/
+node_modules/
+.shadow-cljs/

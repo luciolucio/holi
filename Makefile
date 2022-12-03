@@ -13,6 +13,7 @@ SRC_AND_TEST := src test
 clean:         ## Clean up CP cache and generated files
 clean-prepare: ## Clean up files changed via prepare.sh
 test:          ## Run tests
+test-cljs:     ## Run cljs tests
 perftest:      ## Run performance tests
 watch:         ## Run tests and start watch
 fmt-check:     ## Check code formatting
@@ -36,6 +37,11 @@ clean-prepare:
 
 test:
 	@bin/kaocha :unit
+
+test-cljs:
+	@yarn install
+	@clojure -M:test:shadow-cljs compile test
+	@node out/tests.js
 
 perftest:
 	@bin/kaocha :performance
