@@ -1,0 +1,26 @@
+{
+  "name": "holi",
+  "version": "1.0.0",
+  "description": "Holi is a clojure library for working with non-business days",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luciolucio/holi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luciolucio/holi/issues"
+  },
+  "homepage": "https://github.com/luciolucio/holi#readme",
+  "devDependencies": {
+    "shadow-cljs": "^2.20.13"
+  }
+}
