@@ -3,16 +3,19 @@
            instaparse/instaparse {:mvn/version "1.4.12"}
            tick/tick             {:mvn/version "0.4.32"}
            easter-day/easter-day {:mvn/version "0.1.1"}}
- :aliases {:test     {:extra-paths ["test" "test-resources"]
-                      :extra-deps  {lambdaisland/kaocha {:mvn/version "1.69.1069"}}}
+ :aliases {:test        {:extra-paths ["test" "test-resources"]
+                         :extra-deps  {lambdaisland/kaocha {:mvn/version "1.69.1069"}}}
 
-           :cljfmt   {:main-opts  ["-m" "cljfmt.main"]
-                      :extra-deps {lein-cljfmt/lein-cljfmt {:mvn/version "0.8.0"}}}
+           :cljfmt      {:main-opts  ["-m" "cljfmt.main"]
+                         :extra-deps {lein-cljfmt/lein-cljfmt {:mvn/version "0.8.0"}}}
 
-           :lint     {:main-opts  ["-m" "clj-kondo.main" "--lint"]
-                      :extra-deps {clj-kondo/clj-kondo {:mvn/version "2022.08.03"}}}
+           :lint        {:main-opts  ["-m" "clj-kondo.main" "--lint"]
+                         :extra-deps {clj-kondo/clj-kondo {:mvn/version "2022.08.03"}}}
 
-           :build    {:extra-deps {io.github.clojure/tools.build {:git/tag "v0.8.3" :git/sha "0d20256"}}
-                      :ns-default build}
+           :build       {:extra-deps {io.github.clojure/tools.build {:git/tag "v0.8.3" :git/sha "0d20256"}}
+                         :ns-default build}
 
-           :generate {:main-opts ["-m" "luciolucio.holi.generate"]}}}
+           :shadow-cljs {:extra-deps {thheller/shadow-cljs {:mvn/version "2.20.13"}}
+                         :main-opts  ["-m" "shadow.cljs.devtools.cli"]}
+
+           :generate    {:main-opts ["-m" "luciolucio.holi.generate"]}}}
