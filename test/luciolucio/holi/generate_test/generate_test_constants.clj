@@ -1,4 +1,3 @@
-(ns luciolucio.holi.generate-test.generate-test-constants
-  (:require [clojure.test :refer :all]))
+(ns luciolucio.holi.generate-test.generate-test-constants)
 
 (def TEST-ROOT "test-resources/generate")

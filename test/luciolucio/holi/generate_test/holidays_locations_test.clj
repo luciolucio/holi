@@ -1,5 +1,5 @@
 (ns luciolucio.holi.generate-test.holidays-locations-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :as ct]
             [tick.alpha.api :as t]
             [luciolucio.holi.holidays :as gen]))
 
@@ -8,9 +8,9 @@
 (defn calendar-filename [location]
   (format "resources/calendars-source/%s.hol" location))
 
-(deftest should-generate-holidays-when-holidays-for-year-with-specific-countries
-  (are [country-name year expected]
-       (= expected (gen/holidays-for-year year LOCATIONS-TEST-ROOT (calendar-filename country-name)))
+(ct/deftest should-generate-holidays-when-holidays-for-year-with-specific-countries
+  (ct/are [country-name year expected]
+          (= expected (gen/holidays-for-year year LOCATIONS-TEST-ROOT (calendar-filename country-name)))
     "BR" 2012 [{:name "Confraternização Universal / Ano Novo" :date (t/date "2012-01-01")}
                {:name "Segunda-feira de carnaval" :date (t/date "2012-02-20")}
                {:name "Terça-feira de carnaval" :date (t/date "2012-02-21")}
@@ -90,9 +90,9 @@
                {:name "Christmas" :date (t/date "2023-12-25")}
                {:name "Boxing Day" :date (t/date "2023-12-26")}]))
 
-(deftest should-generate-holidays-when-holidays-for-year-with-specific-cities
-  (are [city-name year expected]
-       (= expected (gen/holidays-for-year year LOCATIONS-TEST-ROOT (calendar-filename city-name)))
+(ct/deftest should-generate-holidays-when-holidays-for-year-with-specific-cities
+  (ct/are [city-name year expected]
+          (= expected (gen/holidays-for-year year LOCATIONS-TEST-ROOT (calendar-filename city-name)))
     "brazil/sao-paulo" 2012 [{:name "Confraternização Universal / Ano Novo" :date (t/date "2012-01-01")}
                              {:name "Segunda-feira de carnaval" :date (t/date "2012-02-20")}
                              {:name "Terça-feira de carnaval" :date (t/date "2012-02-21")}
