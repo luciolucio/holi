@@ -1,11 +1,11 @@
 (ns luciolucio.holi.is-business-day-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
             [tick.alpha.api :as t]))
 
-(deftest should-identify-business-days-when-business-days?-with-date
-  (are [date calendars expected]
-       (= expected (apply holi/business-day? date calendars))
+(ct/deftest should-identify-business-days-when-business-days?-with-date
+  (ct/are [date calendars expected]
+          (= expected (apply holi/business-day? date calendars))
     (t/date "2020-08-01") [] false
     (t/date "2020-08-03") [] true
     (t/date "2020-07-29") ["DAY-THREE"] true
@@ -14,9 +14,9 @@
     (t/date "2020-08-01") ["DAY-THREE"] false
     (t/date "2020-08-03") ["DAY-THREE"] false))
 
-(deftest should-identify-business-days-when-business-days?-with-date-time
-  (are [date-time calendars expected]
-       (= expected (apply holi/business-day? date-time calendars))
+(ct/deftest should-identify-business-days-when-business-days?-with-date-time
+  (ct/are [date-time calendars expected]
+          (= expected (apply holi/business-day? date-time calendars))
     (t/date-time "2020-08-01T00:00:00") [] false
     (t/date-time "2020-08-03T11:10:15") [] true
     (t/date-time "2020-07-29T00:11:22") ["DAY-THREE"] true

@@ -1,2 +1,1 @@
-{:linters {:refer-all {:exclude [clojure.test]}}
- :output  {:progress true}}
+{:output  {:progress true}}

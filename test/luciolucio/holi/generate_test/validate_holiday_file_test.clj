@@ -1,12 +1,12 @@
 (ns luciolucio.holi.generate-test.validate-holiday-file-test
-  (:require [clojure.test :refer :all]
+  (:require [clojure.test :as ct]
             [luciolucio.holi.check :as check]))
 
 (def TEST-ROOT "test-resources/check")
 
-(deftest should-identify-invalid-holiday-files-correctly
-  (are [filename]
-       (= false (check/valid-holiday-file? TEST-ROOT (str "test-resources/check/" filename)))
+(ct/deftest should-identify-invalid-holiday-files-correctly
+  (ct/are [filename]
+          (= false (check/valid-holiday-file? TEST-ROOT (str "test-resources/check/" filename)))
     "empty.hol"
     "blank.hol"
     "blank2.hol"
@@ -30,9 +30,9 @@
     "bad-include.hol"
     "bad-include2.hol"))
 
-(deftest should-identify-valid-holiday-file-correctly
-  (are [filename]
-       (= true (check/valid-holiday-file? TEST-ROOT (str "test-resources/check/" filename)))
+(ct/deftest should-identify-valid-holiday-file-correctly
+  (ct/are [filename]
+          (= true (check/valid-holiday-file? TEST-ROOT (str "test-resources/check/" filename)))
     "good.hol"
     "good-all-numbers.hol"
     "include-base.hol"
