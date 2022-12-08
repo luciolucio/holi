@@ -1,7 +1,7 @@
 (ns luciolucio.holi.add-test.years-test
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
-            [tick.alpha.api :as t]))
+            [tick.core :as t]))
 
 (ct/deftest should-calculate-correct-date-when-add-date-with-years
   (ct/are [days expected]

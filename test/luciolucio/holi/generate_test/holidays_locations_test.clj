@@ -1,6 +1,6 @@
 (ns luciolucio.holi.generate-test.holidays-locations-test
   (:require [clojure.test :as ct]
-            [tick.alpha.api :as t]
+            [tick.core :as t]
             [luciolucio.holi.holidays :as gen]))
 
 (def LOCATIONS-TEST-ROOT "resources/calendars-source")

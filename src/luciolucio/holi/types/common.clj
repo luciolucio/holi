@@ -1,5 +1,5 @@
 (ns luciolucio.holi.types.common
-  (:require [tick.alpha.api :as t]))
+  (:require [tick.core :as t]))
 
 (def ^:private month->month-number
   {"Jan" "01"

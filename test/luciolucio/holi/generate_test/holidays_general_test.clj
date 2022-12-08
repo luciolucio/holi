@@ -1,6 +1,6 @@
 (ns luciolucio.holi.generate-test.holidays-general-test
   (:require [clojure.test :as ct]
-            [tick.alpha.api :as t]
+            [tick.core :as t]
             [luciolucio.holi.holidays :as gen]
             [luciolucio.holi.generate-test.generate-test-constants :as constants])
   (:import (clojure.lang ExceptionInfo)))

@@ -1,7 +1,7 @@
 (ns luciolucio.holi.is-weekend-test
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
-            [tick.alpha.api :as t]))
+            [tick.core :as t]))
 
 (ct/deftest should-identify-weekends-when-weekend?-with-date
   (ct/are [date expected]

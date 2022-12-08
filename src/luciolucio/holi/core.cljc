@@ -2,7 +2,7 @@
   (:require [clojure.java.io :as io]
             [clojure.string :as cstr]
             [luciolucio.holi.constants :as constants]
-            [tick.alpha.api :as t])
+            [tick.core :as t])
   (:import (java.time LocalDate LocalDateTime)))
 
 (def unit->tick-unit {:days          :days
@@ -75,6 +75,6 @@
              days-added 0]
         (if (= (absolute n) days-added)
           candidate
-          (let [new-date (t/+ candidate step)
+          (let [new-date (t/>> candidate step)
                 m (inc-unless-holiday new-date non-business-days days-added n)]
             (recur new-date m)))))))
