@@ -1,6 +1,6 @@
 (ns luciolucio.holi.generate
   (:require [luciolucio.holi.file :as file]
-            [tick.alpha.api :as t]
+            [tick.core :as t]
             [clojure.edn :as edn]
             [clojure.java.io :as io])
   (:import (java.time LocalDate)

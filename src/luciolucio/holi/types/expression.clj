@@ -1,6 +1,6 @@
 (ns luciolucio.holi.types.expression
   (:require [luciolucio.holi.types.expressions.easter :as easter]
-            [tick.alpha.api :as t]))
+            [tick.core :as t]))
 
 (defn make-holiday [year name args]
   (case (first args)
@@ -19,19 +19,19 @@
       nil
 
       (and (= observation-rule :observed) (= t/SATURDAY (t/day-of-week (:date holiday))))
-      (update holiday :date #(t/- % (t/new-period 1 :days)))
+      (update holiday :date #(t/<< % (t/new-period 1 :days)))
 
       (and (= observation-rule :observed) (= t/SUNDAY (t/day-of-week (:date holiday))))
-      (update holiday :date #(t/+ % (t/new-period 1 :days)))
+      (update holiday :date #(t/>> % (t/new-period 1 :days)))
 
       (and (= observation-rule :observed-monday) (= t/SATURDAY (t/day-of-week (:date holiday))))
-      (update holiday :date #(t/+ % (t/new-period 2 :days)))
+      (update holiday :date #(t/>> % (t/new-period 2 :days)))
 
       (and (= observation-rule :observed-monday) (= t/SUNDAY (t/day-of-week (:date holiday))))
-      (update holiday :date #(t/+ % (t/new-period 1 :days)))
+      (update holiday :date #(t/>> % (t/new-period 1 :days)))
 
       (and (= observation-rule :observed-monday-tuesday) (contains? #{t/SATURDAY t/SUNDAY} (t/day-of-week (:date holiday))))
-      (update holiday :date #(t/+ % (t/new-period 2 :days)))
+      (update holiday :date #(t/>> % (t/new-period 2 :days)))
 
       :else
       holiday)))

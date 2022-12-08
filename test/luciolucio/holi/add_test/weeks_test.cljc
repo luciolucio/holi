@@ -1,7 +1,7 @@
 (ns luciolucio.holi.add-test.weeks-test
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
-            [tick.alpha.api :as t]))
+            [tick.core :as t]))
 
 (ct/deftest should-calculate-correct-date-when-add-date-with-weeks
   (ct/are [days expected]

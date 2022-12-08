@@ -1,7 +1,7 @@
 (ns luciolucio.holi
   (:require [luciolucio.holi.core :as core]
             [luciolucio.holi.constants :as constants]
-            [tick.alpha.api :as t]))
+            [tick.core :as t]))
 
 (defn add
   "Adds n units to date and returns a new date
@@ -13,7 +13,7 @@
   (core/validate-input date n unit)
   (if (contains? #{:business-days :business-day} unit)
     (core/add-with-calendars date n calendars)
-    (t/+ date (t/new-period n (get core/unit->tick-unit unit)))))
+    (t/>> date (t/new-period n (get core/unit->tick-unit unit)))))
 
 (defn weekend?
   "Returns true only if date is in a weekend"

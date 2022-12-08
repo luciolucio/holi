@@ -3,13 +3,12 @@
             [luciolucio.holi.holidays :as gen]
             [luciolucio.holi.constants :as constants]
             [clojure.string :as cstr]
-            [tick.alpha.api :as t]
-            [clojure.java.io :as io]
-            [tick.format])
+            [tick.core :as t]
+            [clojure.java.io :as io])
   (:import (java.nio.file Paths)))
 
 (defn format-YYYYMMDD [holiday]
-  (t/format (tick.format/formatter "yyyy-MM-dd") holiday))
+  (t/format (t/formatter "yyyy-MM-dd") holiday))
 
 (defn make-datelist-path! [filename output-path]
   (let [final-path (Paths/get output-path (into-array String [filename]))]
@@ -36,7 +35,7 @@
 (defn get-weekends [year]
   (let [start (t/new-date year 1 1)
         days (if (common/leap-year? year) 366 365)
-        interval (iterate #(t/+ % (t/new-period 1 :days)) start)
+        interval (iterate #(t/>> % (t/new-period 1 :days)) start)
         weekends (filter #(#{t/SATURDAY t/SUNDAY} (t/day-of-week %)) (take days interval))]
     (map format-YYYYMMDD weekends)))
 

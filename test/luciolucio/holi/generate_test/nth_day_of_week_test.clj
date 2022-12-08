@@ -1,6 +1,6 @@
 (ns luciolucio.holi.generate-test.nth-day-of-week-test
   (:require [clojure.test :as ct]
-            [tick.alpha.api :as t]
+            [tick.core :as t]
             [luciolucio.holi.holidays :as gen]
             [luciolucio.holi.generate-test.generate-test-constants :as constants]))
 
