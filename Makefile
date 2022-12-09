@@ -35,10 +35,10 @@ clean:
 clean-prepare:
 	@git checkout -- build.clj new-holi-project.sh resources/holi-template/resources/deps.edn CUSTOM.md resources/holi-template.zip
 
-test:
+test: gen-holidays
 	@bin/kaocha :unit
 
-test-cljs:
+test-cljs: gen-holidays
 	@yarn install
 	@clojure -M:test:shadow-cljs compile test
 	@node out/tests.js

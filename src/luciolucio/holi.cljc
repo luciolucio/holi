@@ -7,8 +7,10 @@
   "Adds n units to date and returns a new date
 
   date must be an instance of java.time.LocalDate
-  or java.time.LocalDateTime, n must be an integer
-  and valid units are found in the units set"
+  or java.time.LocalDateTime (or their equivalent
+  in js-joda when in a cljs setting), n must be an
+  integer and valid units are found in the set
+  at luciolucio.holi.core/valid-units"
   [date n unit & calendars]
   (core/validate-input date n unit)
   (if (contains? #{:business-days :business-day} unit)
