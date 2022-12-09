@@ -1,9 +1,8 @@
 (ns luciolucio.holi.core
-  (:require [clojure.java.io :as io]
-            [clojure.string :as cstr]
+  (:require [clojure.string :as cstr]
             [luciolucio.holi.constants :as constants]
-            [tick.core :as t])
-  (:import (java.time LocalDate LocalDateTime)))
+            [tick.core :as t]
+            [shadow.resource :as rc]))
 
 (def unit->tick-unit {:days          :days
                       :weeks         :weeks
@@ -19,19 +18,25 @@
 (def valid-units (set (keys unit->tick-unit)))
 
 (defn validate-input [date n unit]
-  (when-not (or (instance? LocalDate date) (instance? LocalDateTime date))
-    (throw (IllegalArgumentException. (str "Illegal date: " date))))
+  (when-not (or (t/date? date) (t/date-time? date))
+    (throw (ex-info (str "Illegal date: " date) {})))
   (when-not (integer? n)
-    (throw (IllegalArgumentException. (str "Illegal n: " n))))
+    (throw (ex-info (str "Illegal n: " n) {})))
   (when-not (contains? valid-units unit)
-    (throw (IllegalArgumentException. (str "Unrecognized unit: " unit)))))
+    (throw (ex-info (str "Unrecognized unit: " unit) {}))))
+
+(def holiday-strings
+  ; TODO: Generate this at build time
+  {"WEEKEND"          (rc/inline "calendars-generated/WEEKEND.datelist")
+   "US"               (rc/inline "calendars-generated/BR.datelist")
+   "GB"               (rc/inline "calendars-generated/GB.datelist")
+   "BR"               (rc/inline "calendars-generated/BR.datelist")
+   "brazil/sao-paulo" (rc/inline "calendars-generated/brazil/sao-paulo.datelist")})
 
 (def read-calendar
   (memoize
    (fn [calendar]
-     (let [holiday (io/resource (str calendar constants/DATELIST-EXTENSION))
-           holiday-strings (some-> holiday
-                                   slurp
+     (let [holiday-strings (some-> (holiday-strings calendar)
                                    (cstr/split #"\n"))]
        (when holiday-strings
          (map t/date holiday-strings))))))
