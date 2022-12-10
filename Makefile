@@ -38,10 +38,15 @@ clean-prepare:
 test:
 	@bin/kaocha :unit
 
-test-cljs:
+yarn-install:
 	@yarn install
+
+test-cljs: yarn-install
 	@clojure -M:test:shadow-cljs compile test
 	@node out/tests.js
+
+repl-cljs: yarn-install
+	@clojure -M:test:shadow-cljs watch repl
 
 perftest:
 	@bin/kaocha :performance

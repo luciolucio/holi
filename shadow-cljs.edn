@@ -1,5 +1,10 @@
 ;; shadow-cljs configuration
-{:deps   true
- :builds {:test {:target    :node-test
-                 :output-to "out/tests.js"
-                 :ns-regexp "-test$"}}}
+{:deps     true
+ :dev-http {8080 "public"}
+ :nrepl    {:port 11011}
+ :builds   {:test {:target    :node-test
+                   :output-to "out/tests.js"
+                   :ns-regexp "-test$"}
+            :repl {:target     :browser
+                   :output-dir "public/js"
+                   :modules    {:main {:entries [luciolucio.holi]}}}}}
