@@ -1,7 +1,10 @@
 (ns luciolucio.holi.is-holiday-test
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
+            [luciolucio.holi.test-setup :as setup]
             [tick.core :as t]))
+
+(ct/use-fixtures :each setup/test-datelist-fixture)
 
 (ct/deftest should-identify-holidays-when-holiday?-with-date
   (ct/are [date calendar expected]

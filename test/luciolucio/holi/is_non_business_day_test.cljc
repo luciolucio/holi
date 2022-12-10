@@ -1,7 +1,10 @@
 (ns luciolucio.holi.is-non-business-day-test
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
+            [luciolucio.holi.test-setup :as setup]
             [tick.core :as t]))
+
+(ct/use-fixtures :each setup/test-datelist-fixture)
 
 (ct/deftest should-identify-non-business-days-when-non-business-day?-with-date
   (ct/are [date calendars expected]
