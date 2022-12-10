@@ -11,3 +11,4 @@ resources/calendars-generated
 out/
 node_modules/
 .shadow-cljs/
+public/js
