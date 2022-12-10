@@ -2,7 +2,7 @@
   (:require [clojure.string :as cstr]
             [luciolucio.holi.constants :as constants]
             [tick.core :as t]
-            [shadow.resource :as rc]))
+            #_[shadow.resource :as rc]))
 
 (def unit->tick-unit {:days          :days
                       :weeks         :weeks
@@ -27,28 +27,27 @@
 
 (def holiday-strings
   ; TODO: Generate this at build time
-  {"WEEKEND"          (rc/inline "calendars-generated/WEEKEND.datelist")
-   "US"               (rc/inline "calendars-generated/BR.datelist")
-   "GB"               (rc/inline "calendars-generated/GB.datelist")
-   "BR"               (rc/inline "calendars-generated/BR.datelist")
-   "brazil/sao-paulo" (rc/inline "calendars-generated/brazil/sao-paulo.datelist")})
+  {}
+  #_{"WEEKEND"          (rc/inline "calendars-generated/WEEKEND.datelist")
+     "US"               (rc/inline "calendars-generated/US.datelist")
+     "GB"               (rc/inline "calendars-generated/GB.datelist")
+     "BR"               (rc/inline "calendars-generated/BR.datelist")
+     "brazil/sao-paulo" (rc/inline "calendars-generated/brazil/sao-paulo.datelist")})
 
 (def read-calendar
-  (memoize
-   (fn [calendar]
-     (let [holiday-strings (some-> (holiday-strings calendar)
-                                   (cstr/split #"\n"))]
-       (when holiday-strings
-         (map t/date holiday-strings))))))
+  (fn [calendar]
+    (let [holiday-strings (some-> (holiday-strings calendar)
+                                  (cstr/split #"\n"))]
+      (when holiday-strings
+        (map t/date holiday-strings)))))
 
 (def read-calendars
-  (memoize
-   (fn [calendars]
-     (->> calendars
-          (keep read-calendar)
-          flatten
-          sort
-          dedupe))))
+  (fn [calendars]
+    (->> calendars
+         (keep read-calendar)
+         flatten
+         sort
+         dedupe)))
 
 (defn- sign [n]
   (if (pos? n) 1 -1))

@@ -1,7 +1,10 @@
 (ns luciolucio.holi.add-test.business-days-missing-calendar-test
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
+            [luciolucio.holi.test-setup :as setup]
             [tick.core :as t]))
+
+(ct/use-fixtures :each setup/test-datelist-fixture)
 
 (ct/deftest should-calculate-correct-date-when-add-date-with-business-days-unknown-calendar
   (ct/are [days expected]
