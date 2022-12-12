@@ -2,15 +2,15 @@
 
 declare -a pairs
 
-cd resources || exit
+cd resources/calendars-generated || exit
 
-for full_path in calendars-generated/**/*.datelist
+for full_path in **/*.datelist
 do
-  key=$(echo "$full_path" | sed "s/.*calendars-generated\///;s/\.datelist.*//")
-  pairs+=("\"$key\"+\"$full_path\"")
+  key=${full_path/\.datelist/}
+  pairs+=("\"$key\"+(rc/inline+\"$full_path\")")
 done
 
-cd ..
+cd ../..
 
 formatted_key_value_pairs=$(echo "${pairs[@]}" | tr ' ' '\n' | tr '+' ' ')
 print "(def holiday-strings\n{$formatted_key_value_pairs})" > holiday-strings-code
