@@ -2,6 +2,7 @@
 
 * UNRELEASED
   * Now supports cljs!
+  * Upgraded to tick 0.5.0
 
 * 0.11.0 - 27Nov2022
   * Added US and GB calendars
