@@ -2,7 +2,7 @@
   (:require [clojure.edn :as edn]
             [luciolucio.holi.types.common :as common]
             [tick.core :as t]
-            [tick.alpha.interval :as ti])
+            [tick.alpha.interval :as t.i])
   (:import (java.time LocalDate)))
 
 (def day-of-week-str->day-of-week
@@ -32,7 +32,7 @@
   (let [i-as-int (edn/read-string i)
         day-of-week (day-of-week-str->day-of-week day-of-week-str)
         ^Integer month-as-int (-> month month->month-as-int)
-        month-bounds (ti/bounds (t/year-month (LocalDate/of year month-as-int 1)))
+        month-bounds (t.i/bounds (t/year-month (LocalDate/of year month-as-int 1)))
         month-days (t/range
                     (t/date (t/beginning month-bounds))
                     (t/date (t/end month-bounds))
