@@ -69,7 +69,11 @@ gen-holidays:
 	@mkdir -p ${CALENDAR_OUTPUT_DIR}
 	@clojure -M:generate ${DEFAULT_BRACKET} ${CALENDAR_SOURCE_DIR} ${CALENDAR_OUTPUT_DIR}
 
-jar: gen-holidays
+gen-holiday-strings:
+	@echo "Gen'ing holiday strings"
+
+jar: gen-holidays gen-holiday-strings
+	@echo "Doing the jar"
 	@echo Creating jar: "${BUILD_ROOT}/${JAR_NAME}"
 	@clojure -T:build jar :build-root ${BUILD_ROOT} :jar-file ${JAR_NAME}
 	@cp target/classes/META-INF/maven/io.github.luciolucio/holi/pom.xml ${BUILD_ROOT}
