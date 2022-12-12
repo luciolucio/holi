@@ -2,7 +2,7 @@
   (:require [clojure.string :as cstr]
             [luciolucio.holi.constants :as constants]
             [tick.core :as t]
-            #_[shadow.resource :as rc]))
+            [shadow.resource :as rc]))
 
 (def unit->tick-unit {:days          :days
                       :weeks         :weeks
@@ -26,13 +26,13 @@
     (throw (ex-info (str "Unrecognized unit: " unit) {}))))
 
 (def holiday-strings
-  ; TODO: Generate this at build time
-  {}
-  #_{"WEEKEND"          (rc/inline "calendars-generated/WEEKEND.datelist")
-     "US"               (rc/inline "calendars-generated/US.datelist")
-     "GB"               (rc/inline "calendars-generated/GB.datelist")
-     "BR"               (rc/inline "calendars-generated/BR.datelist")
-     "brazil/sao-paulo" (rc/inline "calendars-generated/brazil/sao-paulo.datelist")})
+  ; The below is just a placeholder so that we can run this code in a REPL if we want to.
+  ; During the release, this map gets replaced based on available calendars
+  {"WEEKEND"          (rc/inline "calendars-generated/WEEKEND.datelist")
+   "US"               (rc/inline "calendars-generated/US.datelist")
+   "GB"               (rc/inline "calendars-generated/GB.datelist")
+   "BR"               (rc/inline "calendars-generated/BR.datelist")
+   "brazil/sao-paulo" (rc/inline "calendars-generated/brazil/sao-paulo.datelist")})
 
 (def read-calendar
   (fn [calendar]
