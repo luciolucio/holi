@@ -26,14 +26,9 @@
     (throw (ex-info (str "Unrecognized unit: " unit) {}))))
 
 ;; HOLIDAY-STRINGS-BEGIN
-(def holiday-strings
-  ; The below is just a placeholder so that we can run this code in a REPL if we want to.
-  ; During the release, this map gets replaced based on available calendars
-  {"WEEKEND"          (rc/inline "calendars-generated/WEEKEND.datelist")
-   "US"               (rc/inline "calendars-generated/US.datelist")
-   "GB"               (rc/inline "calendars-generated/GB.datelist")
-   "BR"               (rc/inline "calendars-generated/BR.datelist")
-   "brazil/sao-paulo" (rc/inline "calendars-generated/brazil/sao-paulo.datelist")})
+; This is just a placeholder. During the release, this map gets replaced based on available calendars
+; If you want to run this code in a REPL with actual calendars, run `make gen-holiday-strings`
+(def holiday-strings {"Placeholder" (rc/inline "logback.xml")})
 ;; HOLIDAY-STRINGS-END
 
 (def read-calendar
