@@ -6,7 +6,7 @@ CALENDAR_OUTPUT_DIR="resources/calendars-generated"
 BUILD_ROOT="target"
 DEFAULT_BRACKET=80
 
-.PHONY: clean test perftest watch fmt-check fix gen-holidays gen-holiday-strings jar install release
+.PHONY: clean test yarn-install test-cljs repl-cljs perftest watch fmt-check fix gen-holidays gen-holiday-strings jar install release
 SRC_AND_TEST := src test
 
 
