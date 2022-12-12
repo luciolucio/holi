@@ -70,7 +70,8 @@ gen-holidays:
 	@clojure -M:generate ${DEFAULT_BRACKET} ${CALENDAR_SOURCE_DIR} ${CALENDAR_OUTPUT_DIR}
 
 gen-holiday-strings:
-	@echo "Gen'ing holiday strings"
+	@echo "Generating holiday strings"
+	@bin/gen-holiday-strings.sh
 
 jar: gen-holidays gen-holiday-strings
 	@echo "Doing the jar"
