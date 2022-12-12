@@ -2,7 +2,7 @@
 
 VERSION_NUMBER=${1?"Usage: prepare.sh VERSION_NUMBER"}
 
-CHANGELOG=`awk -v ver="$VERSION_NUMBER" '/^[*] / { if (p) { exit }; if ($2 == ver) { p=1 } } p && NF' CHANGELOG.md`
+CHANGELOG=$(awk -v ver="$VERSION_NUMBER" '/^[*] / { if (p) { exit }; if ($2 == ver) { p=1 } } p && NF' CHANGELOG.md)
 
 if [ -z "$CHANGELOG" ]
 then
@@ -28,19 +28,19 @@ sed "s|holi/.*/new|holi/$VERSION_NUMBER/new|g" CUSTOM.md > new-custom.md
 mv new-custom.md CUSTOM.md
 
 print "Updating custom project template"
-cd resources
+cd resources || exit
 rm holi-template.zip
 zip holi-template.zip holi-template/**/*
 zip holi-template.zip holi-template/**/.*
 
 print "Verifying updates..."
-NAMES=`git diff --name-only`
+NAMES=$(git diff --name-only)
 
-if (echo $NAMES | grep build.clj) \
-   && (echo $NAMES | grep new-holi-project.sh) \
-   && (echo $NAMES | grep resources/holi-template/resources/deps.edn) \
-   && (echo $NAMES | grep CUSTOM.md) \
-   && (echo $NAMES | grep resources/holi-template.zip)
+if (echo "$NAMES" | grep build.clj) \
+   && (echo "$NAMES" | grep new-holi-project.sh) \
+   && (echo "$NAMES" | grep resources/holi-template/resources/deps.edn) \
+   && (echo "$NAMES" | grep CUSTOM.md) \
+   && (echo "$NAMES" | grep resources/holi-template.zip)
 then
   print "...DONE"
   exit 0
