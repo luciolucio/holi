@@ -24,3 +24,9 @@ jobs:
     uses: ./.github/workflows/setup-and-run-script.yml
     with:
       script: make test
+
+  test-cljs:
+    name: 'Unit Tests for cljs'
+    uses: ./.github/workflows/setup-and-run-script.yml
+    with:
+      script: make test-cljs
