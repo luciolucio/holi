@@ -14,6 +14,7 @@ clean:         ## Clean up CP cache and generated files
 clean-prepare: ## Clean up files changed via prepare.sh
 test:          ## Run tests
 test-cljs:     ## Run cljs tests
+repl-cljs:     ## Start a ClojureScript REPL
 perftest:      ## Run performance tests
 watch:         ## Run tests and start watch
 fmt-check:     ## Check code formatting
