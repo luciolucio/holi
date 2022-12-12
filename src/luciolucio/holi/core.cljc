@@ -25,6 +25,7 @@
   (when-not (contains? valid-units unit)
     (throw (ex-info (str "Unrecognized unit: " unit) {}))))
 
+;; HOLIDAY-STRINGS-BEGIN
 (def holiday-strings
   ; The below is just a placeholder so that we can run this code in a REPL if we want to.
   ; During the release, this map gets replaced based on available calendars
@@ -33,6 +34,7 @@
    "GB"               (rc/inline "calendars-generated/GB.datelist")
    "BR"               (rc/inline "calendars-generated/BR.datelist")
    "brazil/sao-paulo" (rc/inline "calendars-generated/brazil/sao-paulo.datelist")})
+;; HOLIDAY-STRINGS-END
 
 (def read-calendar
   (fn [calendar]
