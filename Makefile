@@ -5,6 +5,8 @@ CALENDAR_SOURCE_DIR="resources/calendars-source"
 CALENDAR_OUTPUT_DIR="resources/calendars-generated"
 BUILD_ROOT="target"
 DEFAULT_BRACKET=80
+CLJ_TEST_LIB_TARGET="test-lib/clj/target/"
+CLJS_TEST_LIB_TARGET="test-lib/cljs/target/"
 
 .PHONY: clean test yarn-install test-cljs repl-cljs perftest watch fmt-check fix gen-holidays gen-holiday-strings jar install release
 SRC_AND_TEST := src test
@@ -80,6 +82,18 @@ jar: gen-holidays gen-holiday-strings
 	@clojure -T:build jar :build-root ${BUILD_ROOT} :jar-file ${JAR_NAME}
 	@cp target/classes/META-INF/maven/io.github.luciolucio/holi/pom.xml ${BUILD_ROOT}
 	@cp target/classes/META-INF/maven/io.github.luciolucio/holi/pom.properties ${BUILD_ROOT}
+
+test-lib-clj: jar
+	@echo "Testing CLJ lib"
+	@mkdir -p "${CLJ_TEST_LIB_TARGET}"
+	@cp "${BUILD_ROOT}/${JAR_NAME}" "${CLJ_TEST_LIB_TARGET}"
+	@bin/test-lib-clj.sh
+
+test-lib-cljs: jar
+	@echo "Testing CLJS lib"
+	@mkdir -p "${CLJS_TEST_LIB_TARGET}"
+	@cp "${BUILD_ROOT}/${JAR_NAME}" "${CLJS_TEST_LIB_TARGET}"
+	@bin/test-lib-cljs.sh
 
 install: jar
 	@mvn install:install-file -Dfile="${BUILD_ROOT}/${JAR_NAME}" -DpomFile="${BUILD_ROOT}/pom.xml"
