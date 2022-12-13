@@ -1,6 +1,6 @@
 # Holi
 
-Holi is a clojure library for working with non-business days
+Holi is a Clojure and ClojureScript library for working with non-business days
 
 [![build](https://github.com/luciolucio/holi/workflows/build-and-test/badge.svg)](https://github.com/luciolucio/holi/actions/workflows/build-and-test.yml)
 [![Clojars Project](https://img.shields.io/clojars/v/io.github.luciolucio/holi.svg)](https://clojars.org/io.github.luciolucio/holi)
@@ -27,11 +27,13 @@ Holi is a clojure library for working with non-business days
 (holi/holiday? (t/date "2019-07-04") "US") ; -> true
 ```
 
-## Usage
+Use of [juxt/tick](https://github.com/juxt/tick) is not required, but highly recommended.
+
+## Installation
 
 Import the latest version from [clojars](https://clojars.org/io.github.luciolucio/holi) into your project dependencies
 
-## API
+## Usage
 
 ### add
 
