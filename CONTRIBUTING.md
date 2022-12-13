@@ -17,6 +17,8 @@ To run clj tests, run `make test` (or `make watch` if you want the test runner t
 
 To run cljs tests, run `make test-cljs`
 
+To run tests against the candidate jar, run `make test-all-libs`
+
 ### Code formatting
 
 Run `make fmt-check` to see if code formatting is ok, and `make fix` to fix formatting automatically
@@ -41,6 +43,7 @@ To contribute a new calendar:
   * For **cities**, create folders and files to match the [timeanddate.com holidays API](https://dev.timeanddate.com/docs/available-locations) list of available locations (e.g. `usa/anchorage`), or something along those lines if not avalable
 * Write your file according to the `.hol file format` section at [resources/holi-template/README.md](resources/holi-template/README.md#hol-file-format)
 * Add tests for a few years' worth of holidays in the `luciolucio.holi.generate-test.holidays-locations-test` namespace
+* Add one holiday for every added file in both `test-lib/clj/src/holi_test.clj` and `test-lib/cljs/src/holi_test.cljs`
 * Send a pull request
 
 > NOTE: If you'd like to contribute a new calendar or a correction to an existing one, please
