@@ -17,6 +17,5 @@ print "(def holiday-strings\n{$formatted_key_value_pairs})" > holiday-strings-co
 
 sed -e '/^;; HOLIDAY-STRINGS-END/r holiday-strings-code' -e '/^;; HOLIDAY-STRINGS-BEGIN/,/^;; HOLIDAY-STRINGS-END/d' src/luciolucio/holi/core.cljc > temp
 
-rm src/luciolucio/holi/core.cljc
 mv temp src/luciolucio/holi/core.cljc
 rm holiday-strings-code

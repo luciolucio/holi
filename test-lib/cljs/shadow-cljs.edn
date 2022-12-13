@@ -1,0 +1,5 @@
+;; shadow-cljs configuration
+{:deps   true
+ :builds {:test {:target    :node-test
+                 :output-to "out/tests.js"
+                 :ns-regexp "-test$"}}}

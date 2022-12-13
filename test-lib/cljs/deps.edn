@@ -1,0 +1,6 @@
+{:paths   ["src"]
+ :deps    {org.clojure/clojurescript {:mvn/version "1.11.60"}
+           io.github.luciolucio/holi {:local/root "target/holi.jar"}
+           tick/tick                 {:mvn/version "0.5.0"}
+           thheller/shadow-cljs      {:mvn/version "2.20.14"}}
+ :aliases {:shadow-cljs {:main-opts ["-m" "shadow.cljs.devtools.cli"]}}}
