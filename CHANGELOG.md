@@ -1,6 +1,6 @@
 # Changes
 
-* UNRELEASED
+* 0.12.0 - 13Dec2022
   * Now supports cljs!
   * Upgraded to tick 0.5.0
 
