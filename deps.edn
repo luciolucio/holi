@@ -3,7 +3,7 @@
            instaparse/instaparse {:mvn/version "1.4.12"}
            tick/tick             {:mvn/version "0.5.0"}
            easter-day/easter-day {:mvn/version "0.1.1"}
-           thheller/shadow-cljs  {:mvn/version "2.20.13"}}
+           thheller/shadow-cljs  {:mvn/version "2.20.14"}}
  :aliases {:test        {:extra-paths ["test" "test-resources"]
                          :extra-deps  {lambdaisland/kaocha {:mvn/version "1.71.1119"}}}
 
