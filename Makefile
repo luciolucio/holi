@@ -23,6 +23,7 @@ fmt-check:     ## Check code formatting
 fix:           ## Fix code formatting automatically
 lint:          ## Run clj-kondo for linting
 jar:           ## Build jar
+test-all-libs: ## Run clj and cljs tests against generated jar
 install:       ## Build jar and install it to the local Maven cache
 prepare:       ## Prepare the release by updating the version number in the right places
 tag:           ## Tag a version (Note: this will trigger a release)
@@ -94,6 +95,8 @@ test-lib-cljs: jar
 	@mkdir -p "${CLJS_TEST_LIB_TARGET}"
 	@cp "${BUILD_ROOT}/${JAR_NAME}" "${CLJS_TEST_LIB_TARGET}"
 	@bin/test-lib-cljs.sh
+
+test-all-libs: test-lib-clj test-lib-cljs
 
 install: jar
 	@mvn install:install-file -Dfile="${BUILD_ROOT}/${JAR_NAME}" -DpomFile="${BUILD_ROOT}/pom.xml"
