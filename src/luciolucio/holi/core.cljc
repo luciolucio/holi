@@ -27,7 +27,7 @@
 
 ;; HOLIDAY-STRINGS-BEGIN
 ; This is just a placeholder. During the release, this map gets replaced based on available calendars
-; If you want to run this code in a REPL with actual calendars, run `make gen-holiday-strings`
+; If you want to run this code in a REPL with actual calendars, run `make gen-local-holiday-strings`
 (def holiday-strings {"Placeholder" (rc/inline "logback.xml")})
 ;; HOLIDAY-STRINGS-END
 
