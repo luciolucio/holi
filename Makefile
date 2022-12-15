@@ -49,7 +49,7 @@ test-cljs: yarn-install
 	@clojure -M:test:shadow-cljs compile test
 	@node out/tests.js
 
-repl-cljs: yarn-install
+repl-cljs: yarn-install gen-holidays gen-local-holiday-strings
 	@clojure -M:test:shadow-cljs watch repl
 
 perftest:
@@ -76,6 +76,10 @@ gen-holidays:
 gen-holiday-strings:
 	@echo "Generating holiday strings"
 	@bin/gen-holiday-strings.sh
+
+gen-local-holiday-strings:
+	@echo "Generating holiday strings for local (repl) use"
+	@bin/gen-holiday-strings.sh local
 
 jar: gen-holidays gen-holiday-strings
 	@echo "Doing the jar"
