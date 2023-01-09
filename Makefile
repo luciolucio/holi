@@ -8,7 +8,7 @@ DEFAULT_BRACKET=80
 CLJ_TEST_LIB_TARGET="test-lib/clj/target/"
 CLJS_TEST_LIB_TARGET="test-lib/cljs/target/"
 
-.PHONY: clean test yarn-install test-cljs repl-cljs perftest watch fmt-check fix gen-holidays gen-holiday-strings jar install release
+.PHONY: clean test yarn-install test-cljs repl-cljs perftest watch fmt-check fix gen-holidays jar install release
 SRC_AND_TEST := src test
 
 
@@ -49,7 +49,7 @@ test-cljs: yarn-install
 	@clojure -M:test:shadow-cljs compile test
 	@node out/tests.js
 
-repl-cljs: yarn-install gen-holidays gen-local-holiday-strings
+repl-cljs: yarn-install gen-holidays
 	@clojure -M:test:shadow-cljs watch repl
 
 perftest:
@@ -73,15 +73,7 @@ gen-holidays:
 	@mkdir -p ${CALENDAR_OUTPUT_DIR}
 	@clojure -M:generate ${DEFAULT_BRACKET} ${CALENDAR_SOURCE_DIR} ${CALENDAR_OUTPUT_DIR}
 
-gen-holiday-strings:
-	@echo "Generating holiday strings"
-	@bin/gen-holiday-strings.sh
-
-gen-local-holiday-strings:
-	@echo "Generating holiday strings for local (repl) use"
-	@bin/gen-holiday-strings.sh local
-
-jar: gen-holidays gen-holiday-strings
+jar: gen-holidays
 	@echo "Doing the jar"
 	@echo Creating jar: "${BUILD_ROOT}/${JAR_NAME}"
 	@clojure -T:build jar :build-root ${BUILD_ROOT} :jar-file ${JAR_NAME}
