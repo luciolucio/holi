@@ -2,7 +2,7 @@
   (:require [clojure.string :as cstr]
             [luciolucio.holi.constants :as constants]
             [tick.core :as t]
-            [shadow.resource :as rc]))
+            [luciolucio.holi.util :as util :include-macros true]))
 
 (def unit->tick-unit {:days          :days
                       :weeks         :weeks
@@ -25,11 +25,12 @@
   (when-not (contains? valid-units unit)
     (throw (ex-info (str "Unrecognized unit: " unit) {}))))
 
-;; HOLIDAY-STRINGS-BEGIN
-; This is just a placeholder. During the release, this map gets replaced based on available calendars
-; If you want to run this code in a REPL with actual calendars, run `make gen-local-holiday-strings`
-(def holiday-strings {"Placeholder" (rc/inline "logback.xml")})
-;; HOLIDAY-STRINGS-END
+(def holiday-strings
+  {"WEEKEND"          (util/slurp-resource "WEEKEND.datelist")
+   "US"               (util/slurp-resource "US.datelist")
+   "GB"               (util/slurp-resource "GB.datelist")
+   "BR"               (util/slurp-resource "BR.datelist")
+   "brazil/sao-paulo" (util/slurp-resource "brazil/sao-paulo.datelist")})
 
 (def read-calendar
   (fn [calendar]
