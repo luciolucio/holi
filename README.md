@@ -33,6 +33,11 @@ Use of [juxt/tick](https://github.com/juxt/tick) is not required, but highly rec
 
 Import the latest version from [clojars](https://clojars.org/io.github.luciolucio/holi) into your project dependencies
 
+### Usage in ClojureScript
+
+Holi has been successfully tested when built with shadow-cljs and run on a browser. If you have issues with other setups,
+hit me up on clojurians Slack: `@Lucio Assis`
+
 ## Usage
 
 ### add

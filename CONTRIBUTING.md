@@ -2,7 +2,7 @@
 
 Thanks for your interest in contributing to holi!
 
-You will find relevant info below. If you have any questions, you can reach me at `luciolucio at gmail`.
+You will find relevant info below. If you have any questions, ping me in clojurians Slack: `@Lucio Assis`
 
 ## General development
 
