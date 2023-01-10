@@ -26,6 +26,9 @@
     (throw (ex-info (str "Unrecognized unit: " unit) {}))))
 
 (def holiday-strings
+  "Map from holiday name to datelist file
+
+  Run `make gen-holidays` to generate these files"
   {"WEEKEND"          (util/slurp-resource "calendars-generated/WEEKEND.datelist")
    "US"               (util/slurp-resource "calendars-generated/US.datelist")
    "GB"               (util/slurp-resource "calendars-generated/GB.datelist")
