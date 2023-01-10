@@ -1,5 +1,8 @@
 # Changes
 
+* UNRELEASED
+  * Shadow-cljs is no longer a runtime dependency, since the use of `shadow.resource/inline` is now gone
+
 * 0.12.0 - 13Dec2022
   * Now supports cljs!
   * Upgraded to tick 0.5.0
