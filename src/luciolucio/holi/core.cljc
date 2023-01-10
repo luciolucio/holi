@@ -26,11 +26,11 @@
     (throw (ex-info (str "Unrecognized unit: " unit) {}))))
 
 (def holiday-strings
-  {"WEEKEND"          (util/slurp-resource "WEEKEND.datelist")
-   "US"               (util/slurp-resource "US.datelist")
-   "GB"               (util/slurp-resource "GB.datelist")
-   "BR"               (util/slurp-resource "BR.datelist")
-   "brazil/sao-paulo" (util/slurp-resource "brazil/sao-paulo.datelist")})
+  {"WEEKEND"          (util/slurp-resource "calendars-generated/WEEKEND.datelist")
+   "US"               (util/slurp-resource "calendars-generated/US.datelist")
+   "GB"               (util/slurp-resource "calendars-generated/GB.datelist")
+   "BR"               (util/slurp-resource "calendars-generated/BR.datelist")
+   "brazil/sao-paulo" (util/slurp-resource "calendars-generated/brazil/sao-paulo.datelist")})
 
 (def read-calendar
   (fn [calendar]

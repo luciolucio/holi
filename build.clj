@@ -17,7 +17,9 @@
                   :version   version
                   :basis     basis
                   :src-dirs  ["src"]})
-    (b/copy-dir {:src-dirs   ["src" "resources/calendars-generated"]
+    (b/copy-dir {:src-dirs   ["src"]
                  :target-dir class-dir})
+    (b/copy-dir {:src-dirs   ["resources/calendars-generated"]
+                 :target-dir (str class-dir "/" "calendars-generated")})
     (b/jar {:class-dir class-dir
             :jar-file  (str build-root "/" jar-file)})))
