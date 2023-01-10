@@ -42,6 +42,7 @@ To contribute a new calendar:
   * For **countries**, name your file after its two-letter code according to the [timeanddate.com holidays API](https://dev.timeanddate.com/docs/available-countries) list of available countries, or [ISO-3166](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) if not available in the API
   * For **cities**, create folders and files to match the [timeanddate.com holidays API](https://dev.timeanddate.com/docs/available-locations) list of available locations (e.g. `usa/anchorage`), or something along those lines if not avalable
 * Write your file according to the `.hol file format` section at [resources/holi-template/README.md](resources/holi-template/README.md#hol-file-format)
+* Add it to `luciolucio.holi.core/holiday-strings`
 * Add tests for a few years' worth of holidays in the `luciolucio.holi.generate-test.holidays-locations-test` namespace
 * Add one holiday for every added file in both `test-lib/clj/src/holi_test.clj` and `test-lib/cljs/src/holi_test.cljs`
 * Add it to the `Available holiday calendars` section of the [README](README.md#available-holiday-calendars)
