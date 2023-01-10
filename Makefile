@@ -5,8 +5,10 @@ CALENDAR_SOURCE_DIR="resources/calendars-source"
 CALENDAR_OUTPUT_DIR="resources/calendars-generated"
 BUILD_ROOT="target"
 DEFAULT_BRACKET=80
-CLJ_TEST_LIB_TARGET="test-lib/clj/target/"
-CLJS_TEST_LIB_TARGET="test-lib/cljs/target/"
+CLJ_TEST_LIB_HOME="test-lib/clj"
+CLJ_TEST_LIB_TARGET="${CLJ_TEST_LIB_HOME}/target"
+CLJS_TEST_LIB_HOME="test-lib/cljs"
+CLJS_TEST_LIB_TARGET="${CLJS_TEST_LIB_HOME}/target"
 
 .PHONY: clean test yarn-install test-cljs repl-cljs perftest watch fmt-check fix gen-holidays jar install release
 SRC_AND_TEST := src test
@@ -33,8 +35,16 @@ help:          ## Show this help
 
 clean:
 	@rm -rf .cpcache/
+	@rm -rf .shadow-cljs/
+	@rm -rf out/
 	@rm -rf ${BUILD_ROOT}
 	@rm -rf ${CALENDAR_OUTPUT_DIR}
+	@rm -rf ${CLJ_TEST_LIB_TARGET}
+	@rm -rf "${CLJ_TEST_LIB_HOME}/.cpcache"
+	@rm -rf ${CLJS_TEST_LIB_TARGET}
+	@rm -rf "${CLJS_TEST_LIB_HOME}/.cpcache"
+	@rm -rf "${CLJS_TEST_LIB_HOME}/.shadow-cljs"
+	@rm -rf "${CLJS_TEST_LIB_HOME}/out"
 
 clean-prepare:
 	@git checkout -- build.clj new-holi-project.sh resources/holi-template/resources/deps.edn CUSTOM.md resources/holi-template.zip
