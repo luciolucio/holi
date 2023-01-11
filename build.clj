@@ -16,6 +16,10 @@
                   :lib       lib
                   :version   version
                   :basis     basis
+                  :scm       {:url                 "https://github.com/luciolucio/holi"
+                              :connection          "scm:git:git://github.com/luciolucio/holi.git"
+                              :developerConnection "scm:git:ssh://git@github.com/luciolucio/holi.git"
+                              :tag                 version}
                   :src-dirs  ["src"]})
     (b/copy-dir {:src-dirs   ["src"]
                  :target-dir class-dir})
