@@ -3,7 +3,7 @@
 Create a new clojure deps project:
 
 ```
-curl -LO https://raw.githubusercontent.com/luciolucio/holi/0.13.0/new-holi-project.sh
+curl -LO https://raw.githubusercontent.com/luciolucio/holi/0.13.1/new-holi-project.sh
 bash new-holi-project.sh
 ```
 

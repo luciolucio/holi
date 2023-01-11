@@ -1,5 +1,8 @@
 # Changes
 
+* 0.13.1 - 10Jan2023
+  * Set things up so that cljdoc can reach the source
+
 * 0.13.0 - 10Jan2023
   * Shadow-cljs is no longer a runtime dependency, since the use of `shadow.resource/inline` is now gone
 
