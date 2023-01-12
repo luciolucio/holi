@@ -1,4 +1,4 @@
-(ns luciolucio.holi.types.common
+(ns ^:no-doc luciolucio.holi.types.common
   (:require [tick.core :as t]))
 
 (def ^:private month->month-number

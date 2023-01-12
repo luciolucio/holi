@@ -1,4 +1,4 @@
-(ns luciolucio.holi.file
+(ns ^:no-doc luciolucio.holi.file
   (:require [luciolucio.holi.common :as common]
             [luciolucio.holi.holidays :as gen]
             [luciolucio.holi.constants :as constants]

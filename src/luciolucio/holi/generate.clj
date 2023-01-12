@@ -1,4 +1,4 @@
-(ns luciolucio.holi.generate
+(ns ^:no-doc luciolucio.holi.generate
   (:require [luciolucio.holi.file :as file]
             [tick.core :as t]
             [clojure.edn :as edn]

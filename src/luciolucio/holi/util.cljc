@@ -1,4 +1,4 @@
-(ns luciolucio.holi.util
+(ns ^:no-doc luciolucio.holi.util
   #?(:clj (:require [clojure.java.io :as io])))
 
 #?(:clj

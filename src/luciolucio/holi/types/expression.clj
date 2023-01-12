@@ -1,4 +1,4 @@
-(ns luciolucio.holi.types.expression
+(ns ^:no-doc luciolucio.holi.types.expression
   (:require [luciolucio.holi.types.expressions.easter :as easter]
             [tick.core :as t]))
 

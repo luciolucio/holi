@@ -1,4 +1,4 @@
-(ns luciolucio.holi.types.expressions.easter
+(ns ^:no-doc luciolucio.holi.types.expressions.easter
   (:require [luciolucio.holi.types.common :as common]
             [easter-day :as easter]
             [tick.core :as t]
