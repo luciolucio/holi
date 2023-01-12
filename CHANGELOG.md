@@ -1,5 +1,9 @@
 # Changes
 
+* 0.13.2 - 12Jan2023
+  * No functionality change, but major documentation improvements
+    * Must release a minor version since namespace metadata for cljdoc is changing.
+
 * 0.13.1 - 10Jan2023
   * Set things up so that cljdoc can reach the source
 
