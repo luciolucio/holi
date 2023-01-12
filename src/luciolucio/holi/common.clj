@@ -1,4 +1,4 @@
-(ns luciolucio.holi.common
+(ns ^:no-doc luciolucio.holi.common
   (:require [instaparse.core :as insta]
             [luciolucio.holi.constants :as constants]
             [clojure.java.io :as io])

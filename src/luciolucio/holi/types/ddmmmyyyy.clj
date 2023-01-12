@@ -1,4 +1,4 @@
-(ns luciolucio.holi.types.ddmmmyyyy
+(ns ^:no-doc luciolucio.holi.types.ddmmmyyyy
   (:require [clojure.edn :as edn]
             [luciolucio.holi.types.common :as common]))
 

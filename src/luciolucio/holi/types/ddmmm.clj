@@ -1,4 +1,4 @@
-(ns luciolucio.holi.types.ddmmm
+(ns ^:no-doc luciolucio.holi.types.ddmmm
   (:require [clojure.string :as cstr]
             [luciolucio.holi.types.common :as common]
             [tick.core :as t])

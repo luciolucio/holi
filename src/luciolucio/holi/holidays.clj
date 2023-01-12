@@ -1,4 +1,4 @@
-(ns luciolucio.holi.holidays
+(ns ^:no-doc luciolucio.holi.holidays
   (:require [clojure.edn :as edn]
             [luciolucio.holi.common :as common]
             [luciolucio.holi.check :as check]

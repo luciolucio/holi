@@ -1,4 +1,4 @@
-(ns luciolucio.holi.constants)
+(ns ^:no-doc luciolucio.holi.constants)
 
 (def DATELIST-EXTENSION ".datelist")
 (def WEEKEND-FILE-NAME "WEEKEND")

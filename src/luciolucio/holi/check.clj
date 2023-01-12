@@ -1,4 +1,4 @@
-(ns luciolucio.holi.check
+(ns ^:no-doc luciolucio.holi.check
   (:require [instaparse.core :as insta]
             [clojure.edn :as edn]
             [luciolucio.holi.common :as common]

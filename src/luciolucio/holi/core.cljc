@@ -1,4 +1,4 @@
-(ns luciolucio.holi.core
+(ns ^:no-doc luciolucio.holi.core
   (:require [clojure.string :as cstr]
             [luciolucio.holi.constants :as constants]
             [tick.core :as t]

@@ -1,4 +1,4 @@
-(ns luciolucio.holi.types.nth-day-of-week
+(ns ^:no-doc luciolucio.holi.types.nth-day-of-week
   (:require [clojure.edn :as edn]
             [luciolucio.holi.types.common :as common]
             [tick.core :as t]
