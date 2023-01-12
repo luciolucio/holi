@@ -1,4 +1,5 @@
 {:cljdoc/languages ["clj" "cljs"]
  :cljdoc.doc/tree
  [["Readme" {:file "README.md"}]
-  ["Changes" {:file "CHANGELOG.md"}]]}
+  ["Changes" {:file "CHANGELOG.md"}]
+  ["Creating custom holidays" {:file "CUSTOM.md"}]]}
