@@ -4,14 +4,14 @@
             [tick.core :as t]))
 
 (defn add
-  "Adds `n` of `unit` to `date` and returns a new date. Skips holidays in `calendars` when `unit` is `:business-days`.
+  "Adds `n` of `unit` to `date` and returns a new date. Skips any holidays in `calendars` when `unit` is `:business-days`.
 
   | Parameter   | Description                                                                | Example                                                 |
   |-------------|----------------------------------------------------------------------------|---------------------------------------------------------|
   | `date`      | An instance of `java.time.LocalDate` or `java.time.LocalDateTime`          | `(LocalDate/of 2020 10 9)`                              |
   | `n`         | An integer                                                                 | `2`, `-1`, `0`                                          |
   | `unit`      | Unit of `n`                                                                | `:days` `:weeks` `:months` `:years` or `:business-days` |
-  | `calendars` | One or more strings representing holiday calendars (`:business-days` only) | `" US "`, `" BR "`                                          |
+  | `calendars` | One or more strings representing holiday calendars (`:business-days` only) | `\" US \"`, `\" BR \"`                                  |
 
   **Notes**
   1. Types are preserved, i.e., passing a `LocalDate` in will return a `LocalDate`
@@ -42,7 +42,7 @@
   | Parameter  | Description                                                       | Example                    |
   |------------|-------------------------------------------------------------------|----------------------------|
   | `date`     | An instance of `java.time.LocalDate` or `java.time.LocalDateTime` | `(LocalDate/of 2020 10 9)` |
-  | `calendar` | A string representing a holiday calendar                          | `" US "`, `" BR "`             |"
+  | `calendar` | A string representing a holiday calendar                          | `\" US \"`, `\" BR \"`     |"
   [date calendar]
   (let [holidays (core/read-calendar calendar)]
     (core/is-date-in-list? date holidays)))
@@ -53,7 +53,7 @@
   | Parameter   | Description                                                       | Example                    |
   |-------------|-------------------------------------------------------------------|----------------------------|
   | `date`      | An instance of `java.time.LocalDate` or `java.time.LocalDateTime` | `(LocalDate/of 2020 10 9)` |
-  | `calendars` | One or more strings representing holiday calendars                | `" US "`, `" BR "`             |"
+  | `calendars` | One or more strings representing holiday calendars                | `\" US \"`, `\" BR \"`     |"
   [date & calendars]
   (let [non-business-days (core/read-calendars (set (conj calendars constants/WEEKEND-FILE-NAME)))]
     (core/is-date-in-list? date non-business-days)))
@@ -64,6 +64,6 @@
   | Parameter   | Description                                                       | Example                    |
   |-------------|-------------------------------------------------------------------|----------------------------|
   | `date`      | An instance of `java.time.LocalDate` or `java.time.LocalDateTime` | `(LocalDate/of 2020 10 9)` |
-  | `calendars` | One or more strings representing holiday calendars                | `" US "`, `" BR "`             |"
+  | `calendars` | One or more strings representing holiday calendars                | `\" US \"`, `\" BR \"`     |"
   [date & calendars]
   (not (apply non-business-day? date calendars)))
