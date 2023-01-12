@@ -41,7 +41,7 @@ hit me up on [Slack](http://clojurians.slack.com): `@Lucio Assis`
 
 ## Usage
 
-Visit [cljdoc](https://cljdoc.org/d/io.github.luciolucio/holi/0.13.1/api/luciolucio.holi) for the public API docs
+Visit [cljdoc](https://cljdoc.org/d/io.github.luciolucio/holi/0.13.2/api/luciolucio.holi) for the public API docs
 
 ## Tips and tricks
 
