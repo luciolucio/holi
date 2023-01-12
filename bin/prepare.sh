@@ -27,6 +27,10 @@ print "Updating custom project instructions..."
 sed "s|holi/.*/new|holi/$VERSION_NUMBER/new|g" CUSTOM.md > new-custom.md
 mv new-custom.md CUSTOM.md
 
+print "Updating readme..."
+sed "s|holi/.*/api|holi/$VERSION_NUMBER/api|g" README.md > new-readme.md
+mv new-readme.md README.md
+
 print "Updating custom project template"
 cd resources || exit
 rm holi-template.zip
@@ -40,7 +44,8 @@ if (echo "$NAMES" | grep build.clj) \
    && (echo "$NAMES" | grep new-holi-project.sh) \
    && (echo "$NAMES" | grep resources/holi-template/resources/deps.edn) \
    && (echo "$NAMES" | grep CUSTOM.md) \
-   && (echo "$NAMES" | grep resources/holi-template.zip)
+   && (echo "$NAMES" | grep resources/holi-template.zip) \
+   && (echo "$NAMES" | grep README.md)
 then
   print "...DONE"
   exit 0
