@@ -24,7 +24,9 @@ sed "s|io.github.luciolucio/holi {:mvn/version \".*\"}}|io.github.luciolucio/hol
 mv new-deps.edn resources/holi-template/resources/deps.edn
 
 print "Updating custom project instructions..."
-sed "s|holi/.*/new|holi/$VERSION_NUMBER/new|g" doc/04-CUSTOM.md > new-custom.md
+sed "s|holi/.*/new|holi/$VERSION_NUMBER/new|g" doc/04-CUSTOM.md > new-custom-1.md
+sed "s|holi/.*/api|holi/$VERSION_NUMBER/api|g" new-custom-1.md > new-custom.md
+rm new-custom-1.md
 mv new-custom.md doc/04-CUSTOM.md
 
 print "Updating readmes..."

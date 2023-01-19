@@ -3,10 +3,10 @@
 Generate a new clojure deps project:
 
 ```
-curl -LO https://raw.githubusercontent.com/luciolucio/holi/0.13.2/new-holi-project.sh
+curl -LO https://raw.githubusercontent.com/luciolucio/holi/0.13.3/new-holi-project.sh
 bash new-holi-project.sh
 ```
 
 Follow the instructions in its README to create holiday calendar files of your own and generate
-a jar. It will expose the [same API as holi](https://cljdoc.org/d/io.github.luciolucio/holi/0.13.2/api/luciolucio.holi)
+a jar. It will expose the [same API as holi](https://cljdoc.org/d/io.github.luciolucio/holi/0.13.3/api/luciolucio.holi)
 but your holidays will be available instead.
