@@ -24,8 +24,8 @@ sed "s|io.github.luciolucio/holi {:mvn/version \".*\"}}|io.github.luciolucio/hol
 mv new-deps.edn resources/holi-template/resources/deps.edn
 
 print "Updating custom project instructions..."
-sed "s|holi/.*/new|holi/$VERSION_NUMBER/new|g" CUSTOM.md > new-custom.md
-mv new-custom.md CUSTOM.md
+sed "s|holi/.*/new|holi/$VERSION_NUMBER/new|g" doc/CUSTOM.md > new-custom.md
+mv new-custom.md doc/CUSTOM.md
 
 print "Updating readme..."
 sed "s|holi/.*/api|holi/$VERSION_NUMBER/api|g" README.md > new-readme.md
@@ -43,7 +43,7 @@ NAMES=$(git diff --name-only)
 if (echo "$NAMES" | grep build.clj) \
    && (echo "$NAMES" | grep new-holi-project.sh) \
    && (echo "$NAMES" | grep resources/holi-template/resources/deps.edn) \
-   && (echo "$NAMES" | grep CUSTOM.md) \
+   && (echo "$NAMES" | grep doc/CUSTOM.md) \
    && (echo "$NAMES" | grep resources/holi-template.zip) \
    && (echo "$NAMES" | grep README.md)
 then

@@ -47,7 +47,7 @@ clean:
 	@rm -rf "${CLJS_TEST_LIB_HOME}/out"
 
 clean-prepare:
-	@git checkout -- build.clj new-holi-project.sh resources/holi-template/resources/deps.edn CUSTOM.md resources/holi-template.zip
+	@git checkout -- build.clj new-holi-project.sh resources/holi-template/resources/deps.edn doc/CUSTOM.md resources/holi-template.zip
 
 test: gen-holidays
 	@bin/kaocha :unit

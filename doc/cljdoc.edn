@@ -2,4 +2,4 @@
  :cljdoc.doc/tree
  [["Readme" {:file "README.md"}]
   ["Changes" {:file "CHANGELOG.md"}]
-  ["Creating custom holidays" {:file "CUSTOM.md"}]]}
+  ["Custom holidays" {:file "doc/CUSTOM.md"}]]}
