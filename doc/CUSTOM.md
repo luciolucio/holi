@@ -7,7 +7,5 @@ curl -LO https://raw.githubusercontent.com/luciolucio/holi/0.13.2/new-holi-proje
 bash new-holi-project.sh
 ```
 
-Next, follow the instructions in the README of the generated project to create
-your holiday calendar definition files and generate your jar
-
-Import the generated jar as a dependency into your project, it will expose the same API as holi
+Open the generated project and follow the instructions in its README to create holiday definition files
+of your own and generate a jar. It will expose the same API as holi.
