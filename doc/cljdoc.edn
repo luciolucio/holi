@@ -1,6 +1,6 @@
 {:cljdoc/languages ["clj" "cljs"]
  :cljdoc.doc/tree
- [["Readme" {:file "01-README.md"}]
+ [["Readme" {:file "doc/01-README.md"}]
   ["Changes" {:file "CHANGELOG.md"}]
   ["Tips and Tricks" {:file "doc/02-TIPS.md"}]
   ["Available calendars" {:file "doc/03-CALENDARS.md"}]
