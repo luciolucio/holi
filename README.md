@@ -86,4 +86,4 @@ One way this is useful is for things like "This is due next month, on the same d
 You have two options:
 
 * **Contribute** a fix, or a new calendar to the project (see [CONTRIBUTING.md](CONTRIBUTING.md))
-* Build yourself a **custom library**, with your own holiday calendars (it's easy! See [CUSTOM.md](CUSTOM.md))
+* Build yourself a **custom library**, with your own holiday calendars (it's easy! See [CUSTOM.md](doc/CUSTOM.md))
