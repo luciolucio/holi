@@ -1,8 +1,14 @@
 # Contributing
 
-Thanks for your interest in contributing to holi!
+Thanks for your interest in contributing to holi! If you have any questions, ping me on [Slack](http://clojurians.slack.com): `@Lucio Assis`
 
-You will find relevant info below. If you have any questions, ping me on [Slack](http://clojurians.slack.com): `@Lucio Assis`
+## Guidelines
+
+* No pull requests without tests
+* No calendars without external references to back it up
+* Opening an [issue](https://github.com/luciolucio/holi/issues) is also a form of contribution!
+
+That's it! See below for some practical stuff.
 
 ## General development
 
@@ -50,7 +56,3 @@ To contribute a new calendar:
 
 > NOTE: If you'd like to contribute a new calendar or a correction to an existing one, please
 include any references that can be used to verify and document your change.
-
-## Any other fixes, requests, bugs etc
-
-Send a pull request, or open an [issue](https://github.com/luciolucio/holi/issues).
