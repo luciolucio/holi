@@ -24,12 +24,14 @@ sed "s|io.github.luciolucio/holi {:mvn/version \".*\"}}|io.github.luciolucio/hol
 mv new-deps.edn resources/holi-template/resources/deps.edn
 
 print "Updating custom project instructions..."
-sed "s|holi/.*/new|holi/$VERSION_NUMBER/new|g" doc/CUSTOM.md > new-custom.md
-mv new-custom.md doc/CUSTOM.md
+sed "s|holi/.*/new|holi/$VERSION_NUMBER/new|g" doc/04-CUSTOM.md > new-custom.md
+mv new-custom.md doc/04-CUSTOM.md
 
-print "Updating readme..."
-sed "s|holi/.*/api|holi/$VERSION_NUMBER/api|g" README.md > new-readme.md
+print "Updating readmes..."
+sed "s|holi/.*/doc|holi/$VERSION_NUMBER/doc|g" README.md > new-readme.md
 mv new-readme.md README.md
+sed "s|holi/.*/api|holi/$VERSION_NUMBER/api|g" doc/01-README.md > new-readme.md
+mv new-readme.md doc/01-README.md
 
 print "Updating custom project template"
 cd resources || exit
@@ -43,9 +45,10 @@ NAMES=$(git diff --name-only)
 if (echo "$NAMES" | grep build.clj) \
    && (echo "$NAMES" | grep new-holi-project.sh) \
    && (echo "$NAMES" | grep resources/holi-template/resources/deps.edn) \
-   && (echo "$NAMES" | grep doc/CUSTOM.md) \
+   && (echo "$NAMES" | grep doc/04-CUSTOM.md) \
    && (echo "$NAMES" | grep resources/holi-template.zip) \
-   && (echo "$NAMES" | grep README.md)
+   && (echo "$NAMES" | grep README.md) \
+   && (echo "$NAMES" | grep doc/01-README.md)
 then
   print "...DONE"
   exit 0

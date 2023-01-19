@@ -13,19 +13,19 @@ You will find relevant info below. If you have any questions, ping me on [Slack]
 
 ### Running tests
 
-To run clj tests, run `make test` (or `make watch` if you want the test runner to run tests as you write code)
+To run clj tests, run `make test` (or `make watch` if you want the test runner to run tests as you write code).
 
-To run cljs tests, run `make test-cljs`
+To run cljs tests, run `make test-cljs`.
 
-To run tests against the candidate jar, run `make test-all-libs`
+To run tests against the candidate jar, run `make test-all-libs`.
 
 ### Code formatting
 
-Run `make fmt-check` to see if code formatting is ok, and `make fix` to fix formatting automatically
+Run `make fmt-check` to see if code formatting is ok, and `make fix` to fix formatting automatically.
 
 ### Linting
 
-Your code should have no `clj-kondo` warnings, which you can run with `make lint`
+Your code should have no `clj-kondo` warnings, which you can run with `make lint`.
 
 ### Starting a ClojureScript REPL
 To start a cljs REPL:
@@ -53,4 +53,4 @@ include any references that can be used to verify and document your change.
 
 ## Any other fixes, requests, bugs etc
 
-Feel free to send a pull request, or to open an [issue](https://github.com/luciolucio/holi/issues)
+Send a pull request, or open an [issue](https://github.com/luciolucio/holi/issues).

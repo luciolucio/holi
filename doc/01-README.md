@@ -2,16 +2,12 @@
 
 Holi is a Clojure and ClojureScript library for working with non-business days
 
-[![build](https://github.com/luciolucio/holi/workflows/build-and-test/badge.svg)](https://github.com/luciolucio/holi/actions/workflows/build-and-test.yml)
-[![Clojars Project](https://img.shields.io/clojars/v/io.github.luciolucio/holi.svg)](https://clojars.org/io.github.luciolucio/holi)
-[![cljdoc badge](https://cljdoc.org/badge/io.github.luciolucio/holi)](https://cljdoc.org/d/io.github.luciolucio/holi)
-
 ## Examples
 
 ```clojure
 (ns my-app
   (:require [luciolucio.holi :as holi]
-            [tick.core :as t]))
+    [tick.core :as t]))
 
 ;      July 2019
 ; Su Mo Tu We Th Fr Sa
@@ -38,15 +34,15 @@ ClojureScript is supported, but holi has only been tested when built with shadow
 browser. It should still work otherwise, but if you have issues with other setups, feel free to hit me up
 on [Slack](http://clojurians.slack.com): `@Lucio Assis`
 
-## Docs
+## Usage
 
-[Full holi documentation](https://cljdoc.org/d/io.github.luciolucio/holi/CURRENT)
+See the [API docs](https://cljdoc.org/d/io.github.luciolucio/holi/0.13.2/api/luciolucio.holi) for detail on holi's
+utilities: `add`, `weekend?`, `holiday?`, `business-day?` and `non-business-day?`.
 
-## I found a problem
+## A note on terminology
 
-Contribute a fix, or a new calendar to the project - see [CONTRIBUTING.md](CONTRIBUTING.md).
-
-## I want a calendar that holi doesn't have
-
-Build yourself a [custom library](https://cljdoc.org/d/io.github.luciolucio/holi/0.13.2/doc/custom-holidays), with your
-own holiday calendars.
+The term `holiday calendar` does not mean a calendar proper, as in "The 2022 calendar". For example, the
+`US holiday calendar` contains a rule that says "July 4th is a holiday, unless it falls on a weekend.
+If it's a Saturday (Sunday), the holiday will be observed the previous Friday (next Monday)". Apply that to 2022 and
+you get July 4th proper as a holiday, but for 2021 you'll get July 5th. A `holiday calendar` is not a collection of
+dates, but **a set of rules that specify certain dates as holidays on any given year**.

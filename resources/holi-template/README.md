@@ -125,7 +125,7 @@ Accepted modifiers for expression holidays are:
 
 
 ### Comments
-You may add a single comment line at the very top of your holiday definition file. It must start with a semicolon `;`
+You may add a single comment line at the very top of your holiday calendar file. It must start with a semicolon `;`
 
 ```
 ; My awesome holiday file
