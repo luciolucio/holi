@@ -25,8 +25,8 @@
   (when-not (contains? valid-units unit)
     (throw (ex-info (str "Unrecognized unit: " unit) {}))))
 
-(def holiday-strings
-  "Map from holiday name to datelist file
+(def holiday-datelists
+  "Map from holiday name to datelists
 
   Run `make gen-holidays` to generate these files"
   {"WEEKEND"          (util/slurp-resource "calendars-generated/WEEKEND.datelist")
@@ -35,12 +35,34 @@
    "BR"               (util/slurp-resource "calendars-generated/BR.datelist")
    "brazil/sao-paulo" (util/slurp-resource "calendars-generated/brazil/sao-paulo.datelist")})
 
+(defn ms-timestamp->date [timestamp]
+  (t/>> (t/date constants/MS-TIMESTAMP-REFERENCE-DATE) (t/new-period (dec timestamp) :days)))
+
+(defn remove-leading-zeroes [s]
+  (cstr/replace s #"^0+" ""))
+
+(def HOLIDAY-STRING-LENGTH 7)
+(def HOLIDAY-STRING-TIMESTAMP-BEGIN 0)
+(def HOLIDAY-STRING-TIMESTAMP-LENGTH 5)
+
+(defn hex->int [s]
+  #?(:clj (Integer/parseInt s 16) :cljs (js/parseInt s 16)))
+
+(defn parse-date [holiday-string]
+  (-> (subs holiday-string HOLIDAY-STRING-TIMESTAMP-BEGIN HOLIDAY-STRING-TIMESTAMP-LENGTH)
+      remove-leading-zeroes
+      hex->int
+      ms-timestamp->date))
+
 (def read-calendar
   (fn [calendar]
-    (let [holiday-strings (some-> (holiday-strings calendar)
-                                  (cstr/split #"\n"))]
+    (let [lines (some-> (holiday-datelists calendar)
+                        (cstr/split #"\n"))
+          holiday-strings (some->> (first lines)
+                                   (partition HOLIDAY-STRING-LENGTH)
+                                   (map cstr/join))]
       (when holiday-strings
-        (map t/date holiday-strings)))))
+        (map parse-date holiday-strings)))))
 
 (def read-calendars
   (fn [calendars]
