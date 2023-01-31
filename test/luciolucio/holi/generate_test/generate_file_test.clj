@@ -6,8 +6,8 @@
 (def root-path "test-resources/file/")
 (def output-path "test-output")
 
-(defn run-generate-datelist-test-case [expected holiday-file year bracket-size]
-  (file/generate-datelist! root-path (format "test-resources/file/%s.hol" holiday-file) output-path year bracket-size)
+(defn run-generate-datelist-test-case [expected holiday-file central-year bracket-size]
+  (file/generate-datelist! root-path (format "test-resources/file/%s.hol" holiday-file) output-path central-year bracket-size)
   (ct/is (= (slurp (format "test-resources/file/%s" expected)) (slurp (format "test-output/%s.datelist" holiday-file)))))
 
 (ct/deftest should-generate-expected-files-when-generate-datelist!

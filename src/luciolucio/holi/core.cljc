@@ -36,7 +36,7 @@
    "brazil/sao-paulo" (util/slurp-resource "calendars-generated/brazil/sao-paulo.datelist")})
 
 (defn ms-timestamp->date [timestamp]
-  (t/>> (t/date constants/MS-TIMESTAMP-REFERENCE-DATE) (t/new-period (dec timestamp) :days)))
+  (t/>> constants/MS-TIMESTAMP-REFERENCE-DATE (t/new-period (dec timestamp) :days)))
 
 (defn remove-leading-zeroes [s]
   (cstr/replace s #"^0+" ""))
