@@ -1,5 +1,8 @@
 # Changes
 
+* UNRELEASED
+  * Date lists are now about 46% smaller. Great for the bundle, and it also links dates and holiday names
+
 * 0.13.3 - 19Jan2023
   * No functionality change again, more documentation improvements
 

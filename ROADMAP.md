@@ -5,6 +5,7 @@
   * Like `(holi/list 2023 "US")`
   * Returns a collection like `[{:date X1 :description Y1} {:date X2 :description Y2} ...]`
   * Hardcode list of existing countries/cities
+* Add boundary checks against the .datelist limits
 * Test cljs with advanced compilation
 * Improve docs with js date types
 * Improve docs to show how to use the holi api with strings instead of LocalDate instances (except for `add`)

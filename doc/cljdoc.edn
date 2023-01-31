@@ -4,4 +4,5 @@
   ["Changes" {:file "CHANGELOG.md"}]
   ["Tips and Tricks" {:file "doc/02-TIPS.md"}]
   ["Available calendars" {:file "doc/03-CALENDARS.md"}]
-  ["Custom holidays" {:file "doc/04-CUSTOM.md"}]]}
+  ["Custom holidays" {:file "doc/04-CUSTOM.md"}]
+  ["How holi works" {:file "doc/05-INTERNALS.md"}]]}
