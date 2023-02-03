@@ -22,13 +22,13 @@
         output-filename (cstr/join "" (drop-last 4 (.toString filename)))]
     (make-datelist-path! output-filename output-path)))
 
-(def TIMESTAMP-FORMAT "%5s")
+(def TIMESTAMP-FORMAT "%4s")
 
-(defn date->ms-timestamp [date]
-  (inc (.until constants/MS-TIMESTAMP-REFERENCE-DATE (t/date date) (t/unit-map :days))))
+(defn date->timestamp [date]
+  (inc (.until constants/TIMESTAMP-REFERENCE-DATE (t/date date) (t/unit-map :days))))
 
 (defn encode-holiday [holiday index-by-name]
-  (let [timestamp (date->ms-timestamp (:date holiday))
+  (let [timestamp (date->timestamp (:date holiday))
         formatted-timestamp (format TIMESTAMP-FORMAT (cstr/upper-case (Integer/toString timestamp 16)))
         zero-padded-timestamp (cstr/replace formatted-timestamp #" " "0")
         holiday-index (get index-by-name (:name holiday))]
@@ -53,7 +53,7 @@
         days (if (common/leap-year? year) 366 365)
         interval (iterate #(t/>> % (t/new-period 1 :days)) start)
         weekends (filter #(#{t/SATURDAY t/SUNDAY} (t/day-of-week %)) (take days interval))]
-    (map #(encode-holiday {:name "Weekend" :date %} {"Weekend" "00"}) weekends)))
+    (map #(encode-holiday {:date %} nil) weekends)))
 
 (defn gen-bracketed-weekends [year bracket-size]
   (let [years (range (- year bracket-size) (+ year (inc bracket-size)))]
