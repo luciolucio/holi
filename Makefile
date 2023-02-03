@@ -49,13 +49,13 @@ clean:
 clean-prepare:
 	@git checkout -- build.clj new-holi-project.sh resources/holi-template/resources/deps.edn doc/04-CUSTOM.md resources/holi-template.zip README.md doc/01-README.md
 
-test: gen-holidays
+test: gen-holidays # Holidays are needed so that `luciolucio.holi.core/holiday-datelists` can load, but are not used in tests
 	@bin/kaocha :unit
 
 yarn-install:
 	@yarn install
 
-test-cljs: yarn-install gen-holidays
+test-cljs: yarn-install gen-holidays # Holidays are needed so that `luciolucio.holi.core/holiday-datelists` can load, but are not used in tests
 	@clojure -M:test:shadow-cljs compile test
 	@node out/tests.js
 

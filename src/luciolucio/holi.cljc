@@ -33,7 +33,7 @@
   **Notes**
   1. Weekend days are assumed to be Saturday and Sunday"
   [date]
-  (let [weekend-days (core/read-calendar constants/WEEKEND-FILE-NAME)]
+  (let [weekend-days (core/read-dates constants/WEEKEND-FILE-NAME)]
     (core/is-date-in-list? date weekend-days)))
 
 (defn holiday?
@@ -44,7 +44,7 @@
   | `date`     | An instance of `java.time.LocalDate` or `java.time.LocalDateTime` | `(LocalDate/of 2020 10 9)` |
   | `calendar` | A string representing a holiday calendar                          | `\"US\"`, `\"BR\"`         |"
   [date calendar]
-  (let [holidays (core/read-calendar calendar)]
+  (let [holidays (core/read-dates calendar)]
     (core/is-date-in-list? date holidays)))
 
 (defn non-business-day?
@@ -55,7 +55,7 @@
   | `date`      | An instance of `java.time.LocalDate` or `java.time.LocalDateTime` | `(LocalDate/of 2020 10 9)` |
   | `calendars` | One or more strings representing holiday calendars                | `\"US\"`, `\"BR\"`         |"
   [date & calendars]
-  (let [non-business-days (core/read-calendars (set (conj calendars constants/WEEKEND-FILE-NAME)))]
+  (let [non-business-days (core/read-dates (set (conj calendars constants/WEEKEND-FILE-NAME)))]
     (core/is-date-in-list? date non-business-days)))
 
 (defn business-day?
@@ -67,3 +67,10 @@
   | `calendars` | One or more strings representing holiday calendars                | `\"US\"`, `\"BR\"`         |"
   [date & calendars]
   (not (apply non-business-day? date calendars)))
+
+(defn list-holidays
+  "Returns a collection of maps of the form `{:name \"Name\" :date java.time.LocalDate}`
+  where every item of the collection represents a holiday in the given year according
+  to the given holiday calendar"
+  [year calendar]
+  (core/read-calendar calendar year))
