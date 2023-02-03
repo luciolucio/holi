@@ -2,7 +2,6 @@
 
 * Add docs that showcase the actual calendars
   * Hardcode list of existing countries/cities
-* Improve docs with js date types
 * Add boundary checks against the .datelist limits
 * Test cljs with advanced compilation
 * Improve docs to show how to use the holi api with strings instead of LocalDate instances (except for `add`)
