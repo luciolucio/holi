@@ -6,7 +6,8 @@
   {"WEEKEND"            (util/slurp-resource "TEST-WEEKEND.datelist")
    "DAY-THREE"          (util/slurp-resource "DAY-THREE.datelist")
    "DAY-TWENTY-NINE"    (util/slurp-resource "DAY-TWENTY-NINE.datelist")
-   "HOLIDAY-ON-WEEKEND" (util/slurp-resource "HOLIDAY-ON-WEEKEND.datelist")})
+   "HOLIDAY-ON-WEEKEND" (util/slurp-resource "HOLIDAY-ON-WEEKEND.datelist")
+   "TEST-US"            (util/slurp-resource "TEST-US.datelist")})
 
 (defn test-datelist-fixture [f]
   (with-redefs [luciolucio.holi.core/holiday-datelists holiday-datelists]
