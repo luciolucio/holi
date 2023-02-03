@@ -15,6 +15,7 @@
           (run-generate-datelist-test-case expected holiday-file year bracket-size)
     "FILE-EXPECTED.datelist" "FILE" 2020 1
     "FILE2-EXPECTED.datelist" "FILE" 2020 2
+    "MANY-HOLIDAYS-EXPECTED.datelist" "MANY-HOLIDAYS" 2020 1
     "INCLUDE-EXPECTED.datelist" "INCLUDE" 2020 1
     "NESTED-EXPECTED.datelist" "NESTED" 2020 1
     "SUBDIR-FILE-EXPECTED.datelist" "subdir/FILE" 2020 1
