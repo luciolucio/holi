@@ -58,14 +58,22 @@
       hex->int
       timestamp->date))
 
+(defn- read-holiday-lines [calendar]
+  (some-> (holiday-datelists calendar)
+          (cstr/split #"\n")))
+
+(defn- read-holiday-strings [calendar-or-lines partition-size]
+  (let [lines (if (string? calendar-or-lines)
+                (read-holiday-lines calendar-or-lines)
+                calendar-or-lines)]
+    (some->> (first lines)
+             (partition partition-size)
+             (map cstr/join))))
+
 (def ^:private read-dates-single
   (fn [calendar]
-    (let [lines (some-> (holiday-datelists calendar)
-                        (cstr/split #"\n"))
-          partition-size (if (= calendar constants/WEEKEND-FILE-NAME) WEEKEND-STRING-LENGTH HOLIDAY-STRING-LENGTH)
-          holiday-strings (some->> (first lines)
-                                   (partition partition-size)
-                                   (map cstr/join))]
+    (let [partition-size (if (= calendar constants/WEEKEND-FILE-NAME) WEEKEND-STRING-LENGTH HOLIDAY-STRING-LENGTH)
+          holiday-strings (read-holiday-strings calendar partition-size)]
       (when holiday-strings
         (map parse-date holiday-strings)))))
 
@@ -83,20 +91,13 @@
     (read-dates-multi cal-or-cals)))
 
 (defn parse-date-with-holiday [holiday-string holiday-names]
-  {:date (-> (subs holiday-string HOLIDAY-STRING-TIMESTAMP-BEGIN HOLIDAY-STRING-TIMESTAMP-END)
-             remove-leading-zeroes
-             hex->int
-             timestamp->date)
+  {:date (parse-date holiday-string)
    :name (->> (subs holiday-string HOLIDAY-STRING-INDICATOR-BEGIN HOLIDAY-STRING-INDICATOR-END)
               (get holiday-names))})
 
 (defn read-calendar [calendar year]
-  (let [lines (some-> (holiday-datelists calendar)
-                      (cstr/split #"\n"))
-        partition-size HOLIDAY-STRING-LENGTH
-        holiday-strings (some->> (first lines)
-                                 (partition partition-size)
-                                 (map cstr/join))
+  (let [lines (read-holiday-lines calendar)
+        holiday-strings (read-holiday-strings lines HOLIDAY-STRING-LENGTH)
         holiday-names (->> (rest lines)
                            (map (fn [s] [(subs s 0 HOLIDAY-STRING-INDICATOR-LENGTH) (subs s HOLIDAY-STRING-INDICATOR-LENGTH)]))
                            flatten
