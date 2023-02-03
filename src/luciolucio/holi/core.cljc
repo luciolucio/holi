@@ -35,15 +35,16 @@
    "BR"               (util/slurp-resource "calendars-generated/BR.datelist")
    "brazil/sao-paulo" (util/slurp-resource "calendars-generated/brazil/sao-paulo.datelist")})
 
-(defn ms-timestamp->date [timestamp]
-  (t/>> constants/MS-TIMESTAMP-REFERENCE-DATE (t/new-period (dec timestamp) :days)))
+(defn timestamp->date [timestamp]
+  (t/>> constants/TIMESTAMP-REFERENCE-DATE (t/new-period (dec timestamp) :days)))
 
 (defn remove-leading-zeroes [s]
   (cstr/replace s #"^0+" ""))
 
-(def HOLIDAY-STRING-LENGTH 7)
+(def WEEKEND-STRING-LENGTH 4)
+(def HOLIDAY-STRING-LENGTH 6)
 (def HOLIDAY-STRING-TIMESTAMP-BEGIN 0)
-(def HOLIDAY-STRING-TIMESTAMP-LENGTH 5)
+(def HOLIDAY-STRING-TIMESTAMP-LENGTH 4)
 
 (defn hex->int [s]
   #?(:clj (Integer/parseInt s 16) :cljs (js/parseInt s 16)))
@@ -52,14 +53,15 @@
   (-> (subs holiday-string HOLIDAY-STRING-TIMESTAMP-BEGIN HOLIDAY-STRING-TIMESTAMP-LENGTH)
       remove-leading-zeroes
       hex->int
-      ms-timestamp->date))
+      timestamp->date))
 
 (def read-calendar
   (fn [calendar]
     (let [lines (some-> (holiday-datelists calendar)
                         (cstr/split #"\n"))
+          partition-size (if (= calendar constants/WEEKEND-FILE-NAME) WEEKEND-STRING-LENGTH HOLIDAY-STRING-LENGTH)
           holiday-strings (some->> (first lines)
-                                   (partition HOLIDAY-STRING-LENGTH)
+                                   (partition partition-size)
                                    (map cstr/join))]
       (when holiday-strings
         (map parse-date holiday-strings)))))
