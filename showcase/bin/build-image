@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+ENV_NAME=${1?Empty env name}
+APP_VERSION=${2?Empty app version}
+APP_NAME='holi-showcase'
+
+BUILD_FOLDER="${ENV_NAME}-build"
+
+set -x
+
+docker build --build-arg BUILD_FOLDER="$BUILD_FOLDER" -t "${APP_NAME}:${APP_VERSION}" .

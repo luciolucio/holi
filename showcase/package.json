@@ -1,0 +1,30 @@
+{
+  "name": "holi-showcase",
+  "version": "0.0.1",
+  "description": "A simple application to showcase holi's holiday calendars",
+  "private": true,
+  "scripts": {
+    "shadow-dev": "clojure -M:dev:shadow-cli --config-merge \"{:profile :dev}\"",
+    "watch:app": "yarn shadow-dev watch app",
+    "watch:workspaces": "yarn shadow-dev watch workspaces",
+    "watch-all": "run-p watch:**",
+    "test": "yarn shadow-dev compile test && karma start --single-run"
+  },
+  "devDependencies": {
+    "emotion": "10.0.27",
+    "karma": "^5.0.9",
+    "karma-chrome-launcher": "^3.1.0",
+    "karma-cljs-test": "^0.1.0",
+    "karma-jasmine": "^3.3.1",
+    "shadow-cljs": "2.10.15",
+    "yarn-run-all": "3.1.1"
+  },
+  "dependencies": {
+    "highlight.js": "^9.12.0",
+    "react": "16.9.0",
+    "react-dom": "16.9.0",
+    "react-grid-layout": "^0.16.6",
+    "react-icons": "^2.2.7",
+    "reakit": "^0.11.1"
+  }
+}
