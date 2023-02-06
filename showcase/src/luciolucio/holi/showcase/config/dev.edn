@@ -1,0 +1,2 @@
+#deep-merge [#include "luciolucio/holi/showcase/config/base.edn"
+             {:version "DEVELOPMENT"}]

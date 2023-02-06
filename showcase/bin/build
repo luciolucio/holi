@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+ENV_NAME=${1?Empty env name}
+
+if [ "$ENV_NAME" != "stag" ] && [ "$ENV_NAME" != "prod" ]
+then
+    echo "Env name must be one of the following: stag, prod"
+    exit
+fi
+
+export APP_VERSION=${2?Empty version} # This is used by config files at build time
+
+set -x
+
+BUILD_FOLDER="${ENV_NAME}-build"
+
+# Clean build folder
+rm -Rf "$BUILD_FOLDER"
+mkdir "$BUILD_FOLDER"
+
+# Copy basic assets
+cp -R public/css "$BUILD_FOLDER"/css
+
+# Install dependencies
+yarn install
+
+# Build ClojureScript assets
+clojure -A:shadow-cli --config-merge "{:module-hash-names true :output-dir \"${BUILD_FOLDER}/js\" :profile :${ENV_NAME}}" release app
+
+# Copy index.html and point it to the generated js file
+MANIFEST_FILE="./${BUILD_FOLDER}/js/manifest.edn"
+MAIN_BUNDLE=$(grep -Eo ':output-name "[^"]*"' < "$MANIFEST_FILE" | sed 's/:output-name "\([^"]*\)"/\1/')
+sed "s/app-main.js/$MAIN_BUNDLE/g" public/index.html > "$BUILD_FOLDER"/index.html
