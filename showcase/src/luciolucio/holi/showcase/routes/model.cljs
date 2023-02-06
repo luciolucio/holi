@@ -12,11 +12,7 @@
 
    ["/"
     {:name  :routes/home
-     :title "holi-showcase"}]
-
-   ["/version"
-    {:name  :routes/version
-     :title "version"}]])
+     :title "Showcase of holi's calendars"}]])
 
 (def router (reitit.frontend/router routes {:data {:coercion reitit.spec/coercion}}))
 
