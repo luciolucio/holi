@@ -1,7 +1,7 @@
 # Changes
 
-* UNRELEASED
-  * Date lists are now about 55% smaller. Great for the bundle, and it also links dates and holiday names
+* 0.14.0
+  * Date lists are now about 55% smaller - great for js bundles. They also link dates and holiday names now
   * Added a new API function to list holidays
 
 * 0.13.3 - 19Jan2023
