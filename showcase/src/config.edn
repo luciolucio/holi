@@ -1,3 +1,0 @@
-#profile {:dev  #include "luciolucio/holi/showcase/config/dev.edn"
-          :stag #include "luciolucio/holi/showcase/config/stag.edn"
-          :prod #include "luciolucio/holi/showcase/config/prod.edn"}

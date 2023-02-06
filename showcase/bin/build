@@ -1,18 +1,10 @@
 #!/usr/bin/env bash
 
-ENV_NAME=${1?Empty env name}
-
-if [ "$ENV_NAME" != "stag" ] && [ "$ENV_NAME" != "prod" ]
-then
-    echo "Env name must be one of the following: stag, prod"
-    exit
-fi
-
-export APP_VERSION=${2?Empty version} # This is used by config files at build time
+export APP_VERSION=${1?Empty version}
 
 set -x
 
-BUILD_FOLDER="${ENV_NAME}-build"
+BUILD_FOLDER="build"
 
 # Clean build folder
 rm -Rf "$BUILD_FOLDER"

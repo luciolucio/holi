@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 
 ACTION=${1:-'check'}
-clojure -A:cljfmt "$ACTION" src test
+clojure -M:cljfmt "$ACTION" src

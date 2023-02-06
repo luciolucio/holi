@@ -1,20 +1,8 @@
 {:deps     true
- :dev-http {8080 "public"
-            3689 {:roots         ["public/workspaces" "public"]
-                  :resource-root "."}}
+ :dev-http {8080 "public"}
  :nrepl    {:port 11011}
- :builds   {:app        {:target      :browser
-                         :output-dir  "public/js"
-                         :modules     {:app-main {:entries [luciolucio.holi.showcase.main.core]
-                                                  :init-fn luciolucio.holi.showcase.main.core/init}}
-                         :devtools    {:after-load luciolucio.holi.showcase.main.core/init}
-                         :build-hooks [(luciolucio.holi.showcase.commons.build/load-config)]}
-
-            :test       {:target      :karma
-                         :output-to   "out/karma_tests.js"
-                         :ns-regexp   "^.*-test$"
-                         :build-hooks [(luciolucio.holi.showcase.commons.build/load-config)]}
-
-            :workspaces {:target     nubank.workspaces.shadow-cljs.target
-                         :output-dir "public/workspaces/js"
-                         :ns-regexp  "(cards|workspace)$"}}}
+ :builds   {:app {:target     :browser
+                  :output-dir "public/js"
+                  :modules    {:app-main {:entries [luciolucio.holi.showcase.main.core]
+                                          :init-fn luciolucio.holi.showcase.main.core/init}}
+                  :devtools   {:after-load luciolucio.holi.showcase.main.core/init}}}}

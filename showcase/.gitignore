@@ -2,6 +2,5 @@
 .shadow-cljs/
 node_modules/
 public/js/
-public/workspaces/js
 out/
-*-build/
+build/

@@ -20,21 +20,13 @@ yarn install
 Then to run, execute this:
 
 ```
-yarn watch-all
-```
-
-or individually
-
-```
 yarn watch:app
-yarn watch:workspaces
 ```
 
 Wait for the build to complete, then navigate to:
 
 ```
-http://localhost:8080 - for the app
-http://localhost:3689 - for workspaces
+http://localhost:8080
 ``` 
 
 ### REPL
@@ -47,44 +39,22 @@ http://localhost:3689 - for workspaces
 (shadow.api/nrepl-select :app)
 ```
 
-# Lint
+# Code formatting
 
 ```
-bin/lint
+bin/fmt
 ```
 
 Autofix with
 
 ```
-bin/lint fix
-```
-
-### Running tests
-
-```
-bin/run-tests
+bin/fmt fix
 ```
 
 ### Building
 
-To use `stag.edn`
 ```
-bin/build stag <version-name>
-```
-
-To use `prod.edn`
-```
-bin/build prod <version-name>
+bin/build <version-number>
 ```
 
-This will output a package to `stag-build` or `prod-build`
-
-### Image
-
-To build a docker image, after having built
-
-```
-bin/build-image <env> <version-name>
-```
-
-Image will use the package under `<env>-build`, and get tagged as `[project-name]-[version-name]` 
+This will output a package to `build`
