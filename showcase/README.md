@@ -2,6 +2,9 @@
 
 A simple application to showcase holi's holiday calendars
 
+When releasing, showcase gets built and moved to the `docs/` folder. Do not mix with the `doc/` folder, where the rest
+of the documentation lives. The name `docs/` is required by GitHub Pages.
+
 ### Installation
 
 Make sure you have these prerequisites
@@ -59,4 +62,4 @@ bin/fmt fix
 bin/build
 ```
 
-This will output a package to the `build` directory
+This will output a package to the `build` folder

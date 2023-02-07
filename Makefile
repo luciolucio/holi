@@ -119,4 +119,5 @@ release: jar
 
 showcase:
 	@cd showcase && bin/build
-	@mv showcase/build/** doc/showcase
+	@rm -rf docs && mkdir docs
+	@mv showcase/build/** docs
