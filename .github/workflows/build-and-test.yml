@@ -6,6 +6,7 @@ on:
         - main
       paths-ignore:
         - 'showcase/**'
+        - 'doc/**'
   workflow_dispatch:
 
 jobs:
