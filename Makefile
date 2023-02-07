@@ -10,7 +10,7 @@ CLJ_TEST_LIB_TARGET="${CLJ_TEST_LIB_HOME}/target"
 CLJS_TEST_LIB_HOME="test-lib/cljs"
 CLJS_TEST_LIB_TARGET="${CLJS_TEST_LIB_HOME}/target"
 
-.PHONY: clean test yarn-install test-cljs repl-cljs perftest watch fmt-check fix gen-holidays jar install release
+.PHONY: clean test yarn-install test-cljs repl-cljs perftest watch fmt-check fix gen-holidays jar install release showcase
 SRC_AND_TEST := src test
 
 
@@ -30,6 +30,7 @@ install:       ## Build jar and install it to the local Maven cache
 prepare:       ## Prepare the release by updating the version number in the right places
 tag:           ## Tag a version (Note: this will trigger a release)
 release:       ## Build jar and push it to Clojars
+showcase:      ## Build showcase and save to publishing dir
 help:          ## Show this help
 	@fgrep -h "##" ${MAKEFILE_LIST} | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
@@ -115,3 +116,7 @@ tag:
 
 release: jar
 	@mvn deploy:deploy-file -Dfile="${BUILD_ROOT}/${JAR_NAME}" -DpomFile="${BUILD_ROOT}/pom.xml" -DrepositoryId=clojars -Durl=https://clojars.org/repo
+
+showcase:
+	@cd showcase && bin/build
+	@mv showcase/build/** doc/showcase
