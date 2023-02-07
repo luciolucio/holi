@@ -1,0 +1,18 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    max-width: 100%;
+    overflow-x: hidden;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    color: #003;
+}
+
+a {
+    text-decoration: none;
+    color: steelblue;
+}
+
+a:hover {
+    text-decoration: underline;
+}
