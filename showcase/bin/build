@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-export APP_VERSION=${1?Empty version}
-
 set -x
 
 BUILD_FOLDER="build"
@@ -17,7 +15,7 @@ cp -R public/css "$BUILD_FOLDER"/css
 yarn install
 
 # Build ClojureScript assets
-clojure -A:shadow-cli --config-merge "{:module-hash-names true :output-dir \"${BUILD_FOLDER}/js\" :profile :${ENV_NAME}}" release app
+clojure -M:shadow-cli --config-merge "{:module-hash-names true :output-dir \"${BUILD_FOLDER}/js\"}" release app
 
 # Copy index.html and point it to the generated js file
 MANIFEST_FILE="./${BUILD_FOLDER}/js/manifest.edn"
