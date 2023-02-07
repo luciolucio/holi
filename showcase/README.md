@@ -54,7 +54,7 @@ bin/fmt fix
 ### Building
 
 ```
-bin/build <version-number>
+bin/build
 ```
 
-This will output a package to `build`
+This will output a package to the `build` directory
