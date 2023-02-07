@@ -99,7 +99,7 @@ like exclude dates, add a comment or include other files.
 ## How holi checks whether a date is a weekend
 
 It checks the date against the special `WEEKEND.datelist` file. If it's there, it's a weekend. This file
-gets generated at the time holi builds.
+gets generated at the time holi builds. The weekend datelist is special in that it does not have holiday indicators.
 
 ## How holi checks whether a date is a holiday
 
