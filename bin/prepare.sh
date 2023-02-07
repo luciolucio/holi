@@ -29,6 +29,11 @@ sed "s|holi/.*/api|holi/$VERSION_NUMBER/api|g" new-custom-1.md > new-custom.md
 rm new-custom-1.md
 mv new-custom.md doc/04-CUSTOM.md
 
+print "Updating showcase..."
+sed "s|\[version \".*\"\]|\[version \"$VERSION_NUMBER\"\]|g" showcase/src/luciolucio/holi/showcase/pages/home/core.cljs > new-core.cljs
+mv new-core.cljs showcase/src/luciolucio/holi/showcase/pages/home/core.cljs
+make showcase
+
 print "Updating readmes..."
 sed "s|holi/.*/doc|holi/$VERSION_NUMBER/doc|g" README.md > new-readme.md
 mv new-readme.md README.md
@@ -50,7 +55,8 @@ if (echo "$NAMES" | grep build.clj) \
    && (echo "$NAMES" | grep doc/04-CUSTOM.md) \
    && (echo "$NAMES" | grep resources/holi-template.zip) \
    && (echo "$NAMES" | grep README.md) \
-   && (echo "$NAMES" | grep doc/01-README.md)
+   && (echo "$NAMES" | grep doc/01-README.md) \
+   && (echo "$NAMES" | grep showcase/src/luciolucio/holi/showcase/pages/home/core.cljs)
 then
   print "...DONE"
   exit 0
