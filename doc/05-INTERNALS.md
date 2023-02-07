@@ -61,7 +61,7 @@ the fact that there could be many more records on each side):
 > The reference date 1939-12-31 is chosen to be just over 80 years in the past because that's the bracket size used to
 > build holi
 
-> This timestamp is inspired in what is known as the Microsoft Timestamp, the number of days since 1899-12-31
+> This timestamp format is inspired in what is known as the Microsoft Timestamp, the number of days since 1899-12-31
 
 ### Goals for the date encoding and alternatives considered
 
