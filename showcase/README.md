@@ -20,7 +20,7 @@ yarn install
 Then to run, execute this:
 
 ```
-yarn watch:app
+yarn watch
 ```
 
 Wait for the build to complete, then navigate to:
@@ -28,6 +28,8 @@ Wait for the build to complete, then navigate to:
 ```
 http://localhost:8080
 ``` 
+
+Changes will auto-load
 
 ### REPL
 * For IntelliJ, create a remote nREPL connecting to localhost to the port under `shadow-cljs.edn` (11011 as of this writing)  

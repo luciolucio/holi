@@ -4,8 +4,7 @@
   "description": "A simple application to showcase holi's holiday calendars",
   "private": true,
   "scripts": {
-    "shadow-dev": "clojure -M:shadow-cli --config-merge \"{:profile :dev}\"",
-    "watch:app": "yarn shadow-dev watch app"
+    "watch": "clojure -M:shadow-cli watch app"
   },
   "devDependencies": {
     "emotion": "10.0.27",
