@@ -4,6 +4,7 @@
             [luciolucio.holi.showcase.components.layout.inline-container.core :refer [inline-container]]
             [luciolucio.holi :as holi]
             [goog.string :as gstr]
+            goog.string.format
             [reagent.core :as r]
             [tick.core :as t]
             [tick.locale-en-us]))
