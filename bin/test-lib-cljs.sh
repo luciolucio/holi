@@ -2,5 +2,5 @@
 
 cd test-lib/cljs || exit
 yarn install
-clojure -M:shadow-cljs compile test
+clojure -M:shadow-cljs release test
 node out/tests.js
