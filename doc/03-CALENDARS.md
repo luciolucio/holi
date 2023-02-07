@@ -1,5 +1,7 @@
 # Available holiday calendars
 
+For specifics of each calendar, check out the latest [calendar showcase](https://luciolucio.github.io/holi/)!
+
 ## Countries
 
 | Holiday calendar | Description            |

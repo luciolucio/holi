@@ -52,6 +52,7 @@ To contribute a new calendar:
 * Add tests for a few years' worth of holidays in the `luciolucio.holi.generate-test.holidays-locations-test` namespace
 * Add one holiday for every added file in both `test-lib/clj/src/holi_test.clj` and `test-lib/cljs/src/holi_test.cljs`
 * Add it to the `Available holiday calendars` section of the [README](README.md#available-holiday-calendars)
+* Add an entry to the calendar showcase menu at `luciolucio.holi.showcase.pages.home.core/sidebar`
 * Send a pull request
 
 > NOTE: If you'd like to contribute a new calendar or a correction to an existing one, please
