@@ -9,6 +9,8 @@
             [tick.core :as t]
             [tick.locale-en-us]))
 
+(def separator-color "#C0C0C0")
+
 (def container-style
   (style/gen {:label         :route-container-style
               :display       "flex"
@@ -27,7 +29,7 @@
 
 (def horizontal-line-style (style/gen {:height          "1px"
                                        :width           "100%"
-                                       :backgroundColor "black"}))
+                                       :backgroundColor separator-color}))
 
 (defn horizontal-line []
   [:div {:class horizontal-line-style :role "separator"}])
@@ -42,7 +44,7 @@
               :display            :flex
               :flexDirection      :row
               "& > *:first-child" {:flexShrink  0
-                                   :borderRight "1px solid black"
+                                   :borderRight (str "1px solid " separator-color)
                                    :width       "25%"
                                    :marginRight "1em"}
               "& > *:last-child"  {:flexGrow  1
@@ -86,7 +88,7 @@
   [:div {:class header-style}
    [inline-container {:spacing "0em" :justify "space-between"}
     [:div "Holi calendar showcase" [version "0.14.0"]]
-    [:a {:href "https://cljdoc.org/d/io.github.luciolucio/holi/CURRENT"} "Docs"]]])
+    [:a {:href "https://cljdoc.org/d/io.github.luciolucio/holi/CURRENT"} "Back to docs"]]])
 
 (defn view []
   [:div {:class container-style}
