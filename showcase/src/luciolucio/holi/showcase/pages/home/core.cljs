@@ -62,19 +62,25 @@
 (defn holiday [h]
   [:p (gstr/format "%s - %s" (t/format "dd/MMM/YYYY" (:date h)) (:name h))])
 
-(defn main-calendar-view [calendar description]
+(defn main-calendar-view [year next-year previous-year calendar description]
   [:div
    [:h1 (gstr/format "%s Holiday Calendar (%s)" calendar description)]
-   [:p "2023"]
+   [inline-container {:spacing "1em" :justify :center}
+    [:button {:on-click #(previous-year)} "<"]
+    [:span (str year)]
+    [:button {:on-click #(next-year)} ">"]]
    (into [:<>]
-         (mapv holiday (holi/list-holidays 2023 calendar)))])
+         (mapv holiday (holi/list-holidays year calendar)))])
 
-(defn sidebar-and-main [calendar-info]
+(defn sidebar-and-main [calendar-info year]
   (let [[calendar description] @calendar-info
-        change-calendar (fn [calendar description] (reset! calendar-info [calendar description]))]
+        change-calendar (fn [calendar description] (reset! calendar-info [calendar description]))
+        selected-year @year
+        next-year #(swap! year inc)
+        previous-year #(swap! year dec)]
     [:div {:class sidebar-and-main-style}
      [sidebar change-calendar]
-     [main-calendar-view calendar description]]))
+     [main-calendar-view selected-year next-year previous-year calendar description]]))
 
 (defn header []
   [:div {:class header-style}
@@ -87,4 +93,4 @@
    [stack-container {:spacing "0em"}
     [header]
     [horizontal-line]
-    [sidebar-and-main (r/atom ["US" "United States"])]]])
+    [sidebar-and-main (r/atom ["US" "United States"]) (r/atom (-> (t/year) int))]]])
