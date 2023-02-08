@@ -29,8 +29,8 @@ become dispensable once the jar gets built.
 
 ### .datelist file format
 
-A single date is first encoded in a timestamp that is the number of days since 1939-12-31, and then converted to
-hexadecimal and padded to 4 characters with zeros if needed. For example:
+A single date is first encoded in a timestamp that is the number of days since 1939-12-31 (see note below), and then
+converted to hexadecimal and padded to 4 characters with zeros if needed. For example:
 
 ```
 ISO date: 1940-04-20

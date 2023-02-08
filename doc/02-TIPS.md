@@ -17,8 +17,8 @@ Use `n = 0` to get _same or next_ semantics, that is:
 (holi/add (t/date "2022-07-08") 0 :business-days) ; -> 2022-07-08, as it's a regular Monday
 ```
 
-One situation where this is useful is, say, when something is "due next month, on the same day of the month, but in case
-that's a weekend then it's only due the following business day":
+This is useful in cases where you have something that relies on the day of the month, but want to avoid weekends. For
+example: an invoice due date is every 10th of the month. If it's a weekend, then it's due on the next business day.
 
 ```clojure
 (-> (t/date "2022-06-06")

@@ -41,8 +41,8 @@ utilities: `add`, `weekend?`, `holiday?`, `business-day?` and `non-business-day?
 
 ## A note on terminology
 
-The term `holiday calendar` does not mean a calendar proper, as in "The 2022 calendar". For example, the
+A `holiday calendar` is not a collection of dates, but **a set of rules that specify certain dates as holidays on any
+given year**. The term `holiday calendar` does not mean a calendar proper, as in "The 2022 calendar". For example, the
 `US holiday calendar` contains a rule that says "July 4th is a holiday, unless it falls on a weekend.
-If it's a Saturday (Sunday), the holiday will be observed the previous Friday (next Monday)". Apply that to 2022 and
-you get July 4th proper as a holiday, but for 2021 you'll get July 5th. A `holiday calendar` is not a collection of
-dates, but **a set of rules that specify certain dates as holidays on any given year**.
+If it's a Saturday (Sunday), the holiday will be observed the previous Friday (next Monday)". Apply that to 2022, and
+you get July 4th proper as a holiday, but for 2021 you'll get July 5th.
