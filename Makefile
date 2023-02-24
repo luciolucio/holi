@@ -10,7 +10,7 @@ CLJ_TEST_LIB_TARGET="${CLJ_TEST_LIB_HOME}/target"
 CLJS_TEST_LIB_HOME="test-lib/cljs"
 CLJS_TEST_LIB_TARGET="${CLJS_TEST_LIB_HOME}/target"
 
-.PHONY: clean test yarn-install test-cljs repl-cljs perftest perftest-quick watch fmt-check fix gen-holidays jar install release showcase
+.PHONY: clean test yarn-install test-cljs repl-cljs perftest watch fmt-check fix gen-holidays jar install release showcase
 SRC_AND_TEST := src test
 
 
@@ -20,7 +20,6 @@ test:           ## Run tests
 test-cljs:      ## Run cljs tests
 repl-cljs:      ## Start a ClojureScript REPL
 perftest:       ## Run performance tests
-perftest-quick: ## Run quick version of performance tests (higher uncertainty)
 watch:          ## Run tests and start watch
 fmt-check:      ## Check code formatting
 fix:            ## Fix code formatting automatically
@@ -66,9 +65,6 @@ repl-cljs: yarn-install gen-holidays
 
 perftest:
 	@bin/kaocha :performance
-
-perftest-quick:
-	@QUICK_PERF_TESTS=true && bin/kaocha :performance
 
 watch:
 	@bin/kaocha :unit --watch --fail-fast --no-randomize
