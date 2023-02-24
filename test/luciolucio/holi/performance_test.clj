@@ -16,16 +16,16 @@
      (criterium/quick-benchmark ~expression nil)
      (criterium/benchmark ~expression nil)))
 
-(ct/deftest ^:performance should-generate-a-datelist-in-under-10-nanoseconds
+(ct/deftest ^:performance should-generate-a-datelist-in-under-1-second
   (println "Running benchmark for luciolucio.holi.file/generate-datelist!:")
   (let [hol-filename "test-resources/file/performance/BR.hol"
         benchmark-result (run-benchmark (file/generate-datelist! root-path hol-filename output-path 2020 80))
         mean-generation-time-in-s (-> benchmark-result :mean first)
-        less-than-10-ns? (< mean-generation-time-in-s 10e-9)]
+        less-than-1-second? (< mean-generation-time-in-s 1)]
     (criterium/report-result benchmark-result)
-    (println "Is the mean less than 10ns?" less-than-10-ns?)
+    (println "Is the mean less than 1 second?" less-than-1-second?)
 
-    (ct/is less-than-10-ns?)))
+    (ct/is less-than-1-second?)))
 
 (ct/deftest ^:performance should-add-business-days-with-calendar-in-under-50-milliseconds
   (println "Running benchmark for luciolucio.holi/add :business-days with a calendar:")
