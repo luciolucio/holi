@@ -25,6 +25,12 @@ To run cljs tests, run `make test-cljs`.
 
 To run tests against the candidate jar, run `make test-all-libs`.
 
+#### Performance tests
+
+Run `QUICK_PERF_TESTS=true make perftest` for a quicker but higher uncertainty performance test.
+
+Use just `make perftest` for a longer, more precise measurement.
+
 ### Code formatting
 
 Run `make fmt-check` to see if code formatting is ok, and `make fix` to fix formatting automatically.
