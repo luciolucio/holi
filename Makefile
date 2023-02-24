@@ -10,28 +10,29 @@ CLJ_TEST_LIB_TARGET="${CLJ_TEST_LIB_HOME}/target"
 CLJS_TEST_LIB_HOME="test-lib/cljs"
 CLJS_TEST_LIB_TARGET="${CLJS_TEST_LIB_HOME}/target"
 
-.PHONY: clean test yarn-install test-cljs repl-cljs perftest watch fmt-check fix gen-holidays jar install release showcase
+.PHONY: clean test yarn-install test-cljs repl-cljs perftest perftest-quick watch fmt-check fix gen-holidays jar install release showcase
 SRC_AND_TEST := src test
 
 
-clean:         ## Clean up CP cache and generated files
-clean-prepare: ## Clean up files changed via prepare.sh
-test:          ## Run tests
-test-cljs:     ## Run cljs tests
-repl-cljs:     ## Start a ClojureScript REPL
-perftest:      ## Run performance tests
-watch:         ## Run tests and start watch
-fmt-check:     ## Check code formatting
-fix:           ## Fix code formatting automatically
-lint:          ## Run clj-kondo for linting
-jar:           ## Build jar
-test-all-libs: ## Run clj and cljs tests against generated jar
-install:       ## Build jar and install it to the local Maven cache
-prepare:       ## Prepare the release by updating the version number in the right places
-tag:           ## Tag a version (Note: this will trigger a release)
-release:       ## Build jar and push it to Clojars
-showcase:      ## Build showcase and save to publishing dir
-help:          ## Show this help
+clean:          ## Clean up CP cache and generated files
+clean-prepare:  ## Clean up files changed via prepare.sh
+test:           ## Run tests
+test-cljs:      ## Run cljs tests
+repl-cljs:      ## Start a ClojureScript REPL
+perftest:       ## Run performance tests
+perftest-quick: ## Run quick version of performance tests (higher uncertainty)
+watch:          ## Run tests and start watch
+fmt-check:      ## Check code formatting
+fix:            ## Fix code formatting automatically
+lint:           ## Run clj-kondo for linting
+jar:            ## Build jar
+test-all-libs:  ## Run clj and cljs tests against generated jar
+install:        ## Build jar and install it to the local Maven cache
+prepare:        ## Prepare the release by updating the version number in the right places
+tag:            ## Tag a version (Note: this will trigger a release)
+release:        ## Build jar and push it to Clojars
+showcase:       ## Build showcase and save to publishing dir
+help:           ## Show this help
 	@fgrep -h "##" ${MAKEFILE_LIST} | fgrep -v fgrep | sed -e 's/\\$$//' | sed -e 's/##//'
 
 clean:
@@ -65,6 +66,9 @@ repl-cljs: yarn-install gen-holidays
 
 perftest:
 	@bin/kaocha :performance
+
+perftest-quick:
+	@QUICK_PERF_TESTS=true && bin/kaocha :performance
 
 watch:
 	@bin/kaocha :unit --watch --fail-fast --no-randomize
