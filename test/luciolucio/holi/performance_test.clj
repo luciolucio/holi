@@ -8,8 +8,8 @@
 (def root-path "test-resources/file/performance")
 (def output-path "test-output")
 
-; Use for manual runs
-(def run-quick? false)
+; Set to true for manual runs
+(def run-quick? (boolean (System/getenv "QUICK_PERF_TESTS")))
 
 (defmacro run-benchmark [expression]
   `(if run-quick?
