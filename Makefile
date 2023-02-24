@@ -64,7 +64,7 @@ repl-cljs: yarn-install gen-holidays
 	@clojure -M:test:shadow-cljs watch repl
 
 perftest:
-	@bin/kaocha :performance
+	@bin/kaocha :performance --no-capture-output
 
 watch:
 	@bin/kaocha :unit --watch --fail-fast --no-randomize
