@@ -32,6 +32,9 @@ jobs:
       - name: Run clj and cljs tests against generated jar
         run: make test-all-libs
 
+      - name: Run performance tests
+        run: make perftest
+
       - name: Release
         run: make release
         shell: bash
