@@ -2,7 +2,6 @@
 
 * Change `is-date-in-list?` and related data structures so that a binary search is executed
 * Add boundary checks against the .datelist limits (incl. showcase)
-* Make it so performance tests are more useful and actually checked during builds
 * Adicionar uma fn holidays na api, pra retornar holidays daquela data 
 * Improve docs to show how to use the holi api with strings instead of LocalDate instances (except for `add`)
 * Non-saturday/sunday weekends

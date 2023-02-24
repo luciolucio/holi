@@ -1,4 +1,4 @@
-(ns luciolucio.holi.generate-test.generate-performance-test
+(ns luciolucio.holi.performance-test
   (:require [clojure.test :as ct]
             [criterium.core :as criterium]
             [luciolucio.holi :as holi]
