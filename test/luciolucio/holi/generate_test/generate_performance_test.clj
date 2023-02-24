@@ -23,7 +23,7 @@
         mean-generation-time-in-s (-> benchmark-result :mean first)
         less-than-10-ns? (< mean-generation-time-in-s 10e-9)]
     (criterium/report-result benchmark-result)
-    (println "Did it take less than 10ns?" less-than-10-ns?)
+    (println "Is the mean less than 10ns?" less-than-10-ns?)
 
     (ct/is less-than-10-ns?)))
 
@@ -33,7 +33,7 @@
         mean-in-s (-> benchmark-result :mean first)
         less-than-50ms? (< mean-in-s 50e-3)]
     (criterium/report-result benchmark-result)
-    (println "Did it take less than 50ms?" less-than-50ms?)
+    (println "Is the mean less than 50ms?" less-than-50ms?)
 
     (ct/is less-than-50ms?)))
 
@@ -43,7 +43,7 @@
         mean-in-s (-> benchmark-result :mean first)
         less-than-50ms? (< mean-in-s 50e-3)]
     (criterium/report-result benchmark-result)
-    (println "Did it take less than 50ms?" less-than-50ms?)
+    (println "Is the mean less than 50ms?" less-than-50ms?)
 
     (ct/is less-than-50ms?)))
 
@@ -53,6 +53,16 @@
         mean-in-s (-> benchmark-result :mean first)
         less-than-100-ns? (< mean-in-s 100e-9)]
     (criterium/report-result benchmark-result)
-    (println "Did it take less than 100ns?" less-than-100-ns?)
+    (println "Is the mean less than 100ns?" less-than-100-ns?)
 
     (ct/is less-than-100-ns?)))
+
+(ct/deftest ^:performance should-check-holiday-in-under-10-milliseconds
+  (println "Running benchmark for luciolucio.holi/holiday?:")
+  (let [benchmark-result (run-benchmark (holi/holiday? (LocalDate/of 2023 2 16) "BR"))
+        mean-in-s (-> benchmark-result :mean first)
+        less-than-10-ms? (< mean-in-s 10e-3)]
+    (criterium/report-result benchmark-result)
+    (println "Is the mean less than 10ms?" less-than-10-ms?)
+
+    (ct/is less-than-10-ms?)))
