@@ -1,8 +1,8 @@
 (ns ^:no-doc luciolucio.holi.core
   (:require [clojure.string :as cstr]
             [luciolucio.holi.constants :as constants]
-            [tick.core :as t]
-            [luciolucio.holi.util :as util :include-macros true]))
+            [luciolucio.holi.util :as util :include-macros true]
+            [tick.core :as t]))
 
 (def unit->tick-unit {:days          :days
                       :weeks         :weeks
@@ -81,8 +81,7 @@
   (fn [calendars]
     (->> calendars
          (keep read-dates-single)
-         flatten
-         sort
+         (apply util/merge-sorted-lists)
          dedupe)))
 
 (defn read-dates [cal-or-cals]
