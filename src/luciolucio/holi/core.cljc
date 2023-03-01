@@ -81,8 +81,7 @@
   (fn [calendars]
     (->> calendars
          (keep read-dates-single)
-         (apply util/merge-sorted-lists)
-         dedupe)))
+         (apply util/merge-sorted-lists))))
 
 (defn read-dates [cal-or-cals]
   (if (string? cal-or-cals)
