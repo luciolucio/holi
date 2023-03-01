@@ -7,6 +7,8 @@
 
 (defn merge-sorted-lists
   "Returns a sorted list created by merging lists that are themselves already sorted"
+  ([x]
+   (or x []))
   ([x y]
    (cond
      (empty? x)
