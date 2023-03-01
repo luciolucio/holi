@@ -5,16 +5,20 @@
    (defmacro slurp-resource [file]
      (slurp (io/resource file))))
 
-(defn merge-sorted-lists [a b]
-  (cond
-    (empty? a)
-    (or b [])
+(defn merge-sorted-lists
+  "Returns a sorted list created by merging lists that are themselves already sorted"
+  ([x y]
+   (cond
+     (empty? x)
+     (or y [])
 
-    (empty? b)
-    (or a [])
+     (empty? y)
+     (or x [])
 
-    (< (first a) (first b))
-    (concat [(first a)] (merge-sorted-lists (rest a) b))
+     (< (first x) (first y))
+     (concat [(first x)] (merge-sorted-lists (rest x) y))
 
-    :else
-    (concat [(first b)] (merge-sorted-lists a (rest b)))))
+     :else
+     (concat [(first y)] (merge-sorted-lists x (rest y)))))
+  ([x y & zs]
+   (reduce merge-sorted-lists (merge-sorted-lists x y) zs)))
