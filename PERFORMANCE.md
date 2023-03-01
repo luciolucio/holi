@@ -1,6 +1,73 @@
 ## Performance
 
-### Performance test run - 2023-03-01
+### Performance test run - 2023-03-01.2
+
+Memoized `read-dates-multi` and `read-dates-single`
+
+luciolucio.holi.file/generate-datelist!
+663.092213 ms -> 686.140175 ms
+
+luciolucio.holi/add :business-days with no calendar
+22.556061 ms -> 3.834684 ms
+
+luciolucio.holi/holiday?
+2.674918 ms -> 96.906469 µs
+
+luciolucio.holi/add days without calendars
+73.415091 ns -> 73.313833 ns
+
+luciolucio.holi/add :business-days with a calendar
+29.196367 ms -> 6.243130 ms
+
+```
+[(Running benchmark for luciolucio.holi/add :business-days with no calendar:
+Evaluation count : 144 in 6 samples of 24 calls.
+             Execution time mean : 3.834684 ms
+    Execution time std-deviation : 69.377836 µs
+   Execution time lower quantile : 3.795662 ms ( 2.5%)
+   Execution time upper quantile : 3.948472 ms (97.5%)
+                   Overhead used : 6.824377 ns
+
+Found 1 outliers in 6 samples (16.6667 %)
+	low-severe	 1 (16.6667 %)
+ Variance from outliers : 13.8889 % Variance is moderately inflated by outliers
+Is the mean less than 50ms? true
+.Running benchmark for luciolucio.holi/add :business-days with a calendar:
+Evaluation count : 102 in 6 samples of 17 calls.
+             Execution time mean : 6.243130 ms
+    Execution time std-deviation : 145.193179 µs
+   Execution time lower quantile : 6.118988 ms ( 2.5%)
+   Execution time upper quantile : 6.439452 ms (97.5%)
+                   Overhead used : 6.824377 ns
+Is the mean less than 50ms? true
+.Running benchmark for luciolucio.holi.file/generate-datelist!:
+Evaluation count : 6 in 6 samples of 1 calls.
+             Execution time mean : 686.140175 ms
+    Execution time std-deviation : 39.073101 ms
+   Execution time lower quantile : 659.329411 ms ( 2.5%)
+   Execution time upper quantile : 740.938395 ms (97.5%)
+                   Overhead used : 6.824377 ns
+Is the mean less than 1 second? true
+.Running benchmark for luciolucio.holi/holiday?:
+Evaluation count : 6138 in 6 samples of 1023 calls.
+             Execution time mean : 96.906469 µs
+    Execution time std-deviation : 1.584701 µs
+   Execution time lower quantile : 95.720082 µs ( 2.5%)
+   Execution time upper quantile : 99.143902 µs (97.5%)
+                   Overhead used : 6.824377 ns
+Is the mean less than 10ms? true
+.Running benchmark for luciolucio.holi/add days without calendars:
+Evaluation count : 7771452 in 6 samples of 1295242 calls.
+             Execution time mean : 73.313833 ns
+    Execution time std-deviation : 2.671164 ns
+   Execution time lower quantile : 70.700549 ns ( 2.5%)
+   Execution time upper quantile : 77.386017 ns (97.5%)
+                   Overhead used : 6.824377 ns
+Is the mean less than 100ns? true
+.)]
+```
+
+### Performance test run - 2023-03-01.1
 
 Replaced flatten+sort with merge-sorted-lists
 
