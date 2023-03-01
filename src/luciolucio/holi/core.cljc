@@ -2,7 +2,9 @@
   (:require [clojure.string :as cstr]
             [luciolucio.holi.constants :as constants]
             [luciolucio.holi.util :as util :include-macros true]
-            [tick.core :as t]))
+            [tick.core :as t])
+  #?(:clj
+     (:import (java.util Collections))))
 
 (def unit->tick-unit {:days          :days
                       :weeks         :weeks
@@ -113,8 +115,31 @@
     0
     (sign n)))
 
+#?(:cljs
+   (defn binary-search [item coll]
+     (letfn [(middle [coll]
+               (quot (count coll) 2))]
+       (loop [c coll
+              current-offset 0]
+         (if (seq c)
+           (let [mid (middle c)
+                 mid-value (nth c mid)
+                 comparison (compare item mid-value)]
+             (cond
+               (zero? comparison) (+ current-offset mid)
+               (neg? comparison) (recur (take mid c) current-offset)
+               (pos? comparison) (recur (drop (inc mid) c) (+ current-offset (inc mid)))))
+           -100)))))
+
+(defn find-in-list [list date]
+  (let [date-as-date (t/date date)]
+    (nat-int? #?(:clj  (Collections/binarySearch list date-as-date)
+                 :cljs (binary-search date-as-date list)))))
+
 (defn is-date-in-list? [date list]
-  (boolean (some #{(t/date date)} list)))
+  (if (seq list)
+    (find-in-list list date)
+    false))
 
 (defn- inc-unless-holiday [date non-business-days days-added n]
   (if (is-date-in-list? date non-business-days)
