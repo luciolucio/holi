@@ -28,6 +28,12 @@
     ["A" "C"] ["B" "D"] ["A" "B" "C" "D"]
     [(t/date "2020-10-10") (t/date "2022-10-10")] [(t/date "2021-10-10") (t/date "2023-10-10")] [(t/date "2020-10-10") (t/date "2021-10-10") (t/date "2022-10-10") (t/date "2023-10-10")]))
 
+(ct/deftest should-merge-a-large-list-when-merge-sorted-lists
+  (let [full (vec (take 80000 (range)))
+        first-half (subvec full 0 40000)
+        second-half (subvec full 40000)]
+    (ct/is (= full (util/merge-sorted-lists first-half second-half)))))
+
 (ct/deftest should-merge-correctly-when-merge-sorted-lists-with-more-than-two-lists
   (ct/is (= [1 2 3 5 9 10 15 20 20] (util/merge-sorted-lists [5 10 15] [2 3 20] [1 9 20])))
   (ct/is (= [1 2 3 5 9 10 15 20 20] (util/merge-sorted-lists [5 10] [2 3 20] [1 9] [15 20])))
