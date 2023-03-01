@@ -1,6 +1,7 @@
 (ns luciolucio.holi.util-test
   (:require [clojure.test :as ct]
-            [luciolucio.holi.util :as util]))
+            [luciolucio.holi.util :as util]
+            [tick.core :as t]))
 
 (ct/deftest should-merge-correctly-when-merge-sorted-lists-with-two-lists
   (ct/are [a b expected]
@@ -20,6 +21,12 @@
     nil [] []
     [] nil []
     nil nil []))
+
+(ct/deftest should-merge-correctly-when-merge-sorted-lists-with-two-lists-of-non-numbers
+  (ct/are [a b expected]
+          (= expected (util/merge-sorted-lists a b))
+    ["A" "C"] ["B" "D"] ["A" "B" "C" "D"]
+    [(t/date "2020-10-10") (t/date "2022-10-10")] [(t/date "2021-10-10") (t/date "2023-10-10")] [(t/date "2020-10-10") (t/date "2021-10-10") (t/date "2022-10-10") (t/date "2023-10-10")]))
 
 (ct/deftest should-merge-correctly-when-merge-sorted-lists-with-more-than-two-lists
   (ct/is (= [1 2 3 5 9 10 15 20 20] (util/merge-sorted-lists [5 10 15] [2 3 20] [1 9 20])))

@@ -17,7 +17,7 @@
      (empty? y)
      (or x [])
 
-     (< (first x) (first y))
+     (< (compare (first x) (first y)) 0)
      (concat [(first x)] (merge-sorted-lists (rest x) y))
 
      :else
