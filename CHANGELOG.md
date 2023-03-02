@@ -1,6 +1,9 @@
 # Changes
 
-* 0.14.0
+* UNRELEASED
+  * Improved performance of main api functions to be 5 to 10 times faster
+
+* 0.14.0 - 6Feb2023
   * Date lists are now about 55% smaller - great for js bundles. They also link dates and holiday names now
   * Added a new API function to list holidays
 
