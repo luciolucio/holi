@@ -169,7 +169,7 @@ luciolucio.holi/add :business-days with a calendar
 36.883344 ms
 
 ```
-.Running benchmark for luciolucio.holi.file/generate-datelist!:
+[(Running benchmark for luciolucio.holi.file/generate-datelist!:
 Evaluation count : 6 in 6 samples of 1 calls.
              Execution time mean : 675.161286 ms
     Execution time std-deviation : 36.466377 ms
@@ -213,4 +213,5 @@ Evaluation count : 24 in 6 samples of 4 calls.
    Execution time upper quantile : 38.252743 ms (97.5%)
                    Overhead used : 6.886692 ns
 Is the mean less than 50ms? true
+.)]
 ```
