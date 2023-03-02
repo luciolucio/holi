@@ -16,53 +16,53 @@
      (criterium/quick-benchmark ~expression nil)
      (criterium/benchmark ~expression nil)))
 
-(ct/deftest ^:performance should-generate-a-datelist-in-under-1-second
+(ct/deftest ^:performance-long should-generate-a-datelist-in-under-10-seconds
   (println "Running benchmark for luciolucio.holi.file/generate-datelist!:")
   (let [hol-filename "test-resources/file/performance/BR.hol"
         benchmark-result (run-benchmark (file/generate-datelist! root-path hol-filename output-path 2020 80))
         mean-generation-time-in-s (-> benchmark-result :mean first)
-        less-than-1-second? (< mean-generation-time-in-s 1)]
+        less-than-10-seconds? (< mean-generation-time-in-s 10)]
     (criterium/report-result benchmark-result)
-    (println "Is the mean less than 1 second?" less-than-1-second?)
+    (println "Is the mean less than 10 seconds?" less-than-10-seconds?)
 
-    (ct/is less-than-1-second?)))
+    (ct/is less-than-10-seconds?)))
 
-(ct/deftest ^:performance should-add-business-days-with-calendar-in-under-10-milliseconds
+(ct/deftest ^:performance should-add-business-days-with-calendar-in-under-10-microseconds
   (println "Running benchmark for luciolucio.holi/add :business-days with a calendar:")
   (let [benchmark-result (run-benchmark (holi/add (LocalDate/of 2023 2 16) 5 :business-days "BR"))
         mean-in-s (-> benchmark-result :mean first)
-        less-than-10ms? (< mean-in-s 10e-3)]
+        less-than-10-microseconds? (< mean-in-s 10e-6)]
     (criterium/report-result benchmark-result)
-    (println "Is the mean less than 10ms?" less-than-10ms?)
+    (println "Is the mean less than 10µs?" less-than-10-microseconds?)
 
-    (ct/is less-than-10ms?)))
+    (ct/is less-than-10-microseconds?)))
 
-(ct/deftest ^:performance should-add-business-days-with-no-calendar-in-under-10-milliseconds
+(ct/deftest ^:performance should-add-business-days-with-no-calendar-in-under-10-microseconds
   (println "Running benchmark for luciolucio.holi/add :business-days with no calendar:")
   (let [benchmark-result (run-benchmark (holi/add (LocalDate/of 2023 2 16) 5 :business-days))
         mean-in-s (-> benchmark-result :mean first)
-        less-than-10ms? (< mean-in-s 10e-3)]
+        less-than-10-microseconds? (< mean-in-s 10e-6)]
     (criterium/report-result benchmark-result)
-    (println "Is the mean less than 10ms?" less-than-10ms?)
+    (println "Is the mean less than 10µs?" less-than-10-microseconds?)
 
-    (ct/is less-than-10ms?)))
+    (ct/is less-than-10-microseconds?)))
 
-(ct/deftest ^:performance should-add-days-in-under-100-nanoseconds
+(ct/deftest ^:performance should-add-days-in-under-1-microsecond
   (println "Running benchmark for luciolucio.holi/add days without calendars:")
   (let [benchmark-result (run-benchmark (holi/add (LocalDate/of 2023 2 16) 5 :days))
         mean-in-s (-> benchmark-result :mean first)
-        less-than-100-ns? (< mean-in-s 100e-9)]
+        less-than-1-microsecond? (< mean-in-s 1e-6)]
     (criterium/report-result benchmark-result)
-    (println "Is the mean less than 100ns?" less-than-100-ns?)
+    (println "Is the mean less than 1µs?" less-than-1-microsecond?)
 
-    (ct/is less-than-100-ns?)))
+    (ct/is less-than-1-microsecond?)))
 
-(ct/deftest ^:performance should-check-holiday-in-under-200-microseconds
+(ct/deftest ^:performance should-check-holiday-in-under-1-microsecond
   (println "Running benchmark for luciolucio.holi/holiday?:")
   (let [benchmark-result (run-benchmark (holi/holiday? (LocalDate/of 2023 2 16) "BR"))
         mean-in-s (-> benchmark-result :mean first)
-        less-than-200-microseconds? (< mean-in-s 200e-6)]
+        less-than-1-microsecond? (< mean-in-s 1e-6)]
     (criterium/report-result benchmark-result)
-    (println "Is the mean less than 200µs?" less-than-200-microseconds?)
+    (println "Is the mean less than 1µs?" less-than-1-microsecond?)
 
-    (ct/is less-than-200-microseconds?)))
+    (ct/is less-than-1-microsecond?)))

@@ -78,14 +78,14 @@
      (let [partition-size (if (= calendar constants/WEEKEND-FILE-NAME) WEEKEND-STRING-LENGTH HOLIDAY-STRING-LENGTH)
            holiday-strings (read-holiday-strings calendar partition-size)]
        (when holiday-strings
-         (map parse-date holiday-strings))))))
+         (mapv parse-date holiday-strings))))))
 
 (def ^:private read-dates-multi
   (memoize
    (fn [calendars]
      (->> calendars
           (keep read-dates-single)
-          (apply util/merge-sorted-lists)))))
+          (apply util/merge-sorted-collections)))))
 
 (defn read-dates [cal-or-cals]
   (if (string? cal-or-cals)
