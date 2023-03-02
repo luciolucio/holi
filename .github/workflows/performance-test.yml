@@ -9,9 +9,3 @@ jobs:
     uses: ./.github/workflows/setup-and-run-script.yml
     with:
       script: make perftest
-
-  quick-performance-test:
-    name: 'Quick performance test'
-    uses: ./.github/workflows/setup-and-run-script.yml
-    with:
-      script: QUICK_PERF_TESTS=true make perftest

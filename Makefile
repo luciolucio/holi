@@ -63,7 +63,7 @@ test-cljs: yarn-install gen-holidays # Holidays are needed so that `luciolucio.h
 repl-cljs: yarn-install gen-holidays
 	@clojure -M:test:shadow-cljs watch repl
 
-perftest:
+perftest: gen-holidays
 	@bin/kaocha :performance --no-capture-output
 
 watch:
