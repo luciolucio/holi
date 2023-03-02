@@ -21,6 +21,5 @@ business-day?
 
 Usar luciolucio.holi.core/read-dates
 
-O retorno disso precisa ter ordem, e ser vetor. Aí é só pegar o primeiro e o último.
-Vale para o calendário em questão, quando tiver cal. Mas quando n tiver, tem que ser o menor entre o cal e weekend.
-Tem que pensar em memoization do read-dates de novo.
+O retorno disso precisa ter ordem, e ser vetor.
+Aí é só pegar o primeiro e o último: o limite baixo é 1Jan*Ano do primeiro*. O alto é 31Dec*Ano do último*
