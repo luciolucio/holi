@@ -1,4 +1,4 @@
-(ns luciolucio.holi.add-test.business-days-test
+(ns luciolucio.holi.add-test.business-days-no-calendar-test
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
             [luciolucio.holi.test-setup :as setup]
