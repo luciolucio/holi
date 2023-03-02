@@ -1,6 +1,6 @@
 # Changes
 
-* UNRELEASED
+* 0.15.0 - 2Mar2023
   * Improved performance of main api functions to be 5 to 10 times faster
 
 * 0.14.0 - 6Feb2023

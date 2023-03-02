@@ -48,5 +48,5 @@ Contribute a fix, or a new calendar to the project - see [CONTRIBUTING.md](CONTR
 
 ## I want a calendar that holi doesn't have
 
-Build yourself a [custom library](https://cljdoc.org/d/io.github.luciolucio/holi/0.14.0/doc/custom-holidays), with your
+Build yourself a [custom library](https://cljdoc.org/d/io.github.luciolucio/holi/0.15.0/doc/custom-holidays), with your
 own holiday calendars.
