@@ -28,7 +28,7 @@ fi
 
 echo ""
 echo "Downloading template..."
-curl -LO https://github.com/luciolucio/holi/raw/0.14.0/resources/holi-template.zip
+curl -LO https://github.com/luciolucio/holi/raw/0.15.0/resources/holi-template.zip
 
 echo ""
 echo "Decompressing template..."
