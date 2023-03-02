@@ -2,7 +2,9 @@
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
             [luciolucio.holi.test-setup :as setup]
-            [tick.core :as t]))
+            [tick.core :as t])
+  #?(:clj
+     (:import (clojure.lang ExceptionInfo))))
 
 (ct/use-fixtures :each setup/test-datelist-fixture)
 
@@ -27,3 +29,23 @@
     (t/date-time "2020-07-30T16:40") ["DAY-THREE"] true
     (t/date-time "2020-08-01T23:59:59") ["DAY-THREE"] false
     (t/date-time "2020-08-03T00:00:01") ["DAY-THREE"] false))
+
+(ct/deftest should-throw-exception-when-business-day?-with-date-beyond-limit-year
+  "This test relies on TEST-WEEKEND and/or DAY-THREE, both of which only list dates in 2020.
+  Any argument outside 2020 should raise an exception"
+  (ct/are [date calendars]
+          (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (apply holi/business-day? (t/date date) calendars))
+    "2021-01-01" []
+    "2021-01-01" ["DAY-THREE"]
+    "2019-12-31" []
+    "2019-12-31" ["DAY-THREE"]))
+
+(ct/deftest should-throw-exception-when-business-day?-with-date-time-beyond-limit-year
+  "This test relies on TEST-WEEKEND and/or DAY-THREE, both of which only list dates in 2020.
+  Any argument outside 2020 should raise an exception"
+  (ct/are [date calendars]
+          (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (apply holi/business-day? (t/date-time date) calendars))
+    "2021-01-01T00:00:00" []
+    "2021-01-01T00:00:00" ["DAY-THREE"]
+    "2019-12-31T23:59:59" []
+    "2019-12-31T23:59:59" ["DAY-THREE"]))
