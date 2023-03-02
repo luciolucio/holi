@@ -153,6 +153,8 @@
 
 (defn add-with-calendars [date n calendars]
   (let [non-business-days (read-dates (set (conj calendars constants/WEEKEND-FILE-NAME)))
+        low-limit (t/first-day-of-year (first non-business-days))
+        high-limit (t/last-day-of-year (last non-business-days))
         step (t/new-period (get-step n) :days)]
     (if (= n 0)
       (if (is-date-in-list? date non-business-days)
@@ -160,8 +162,17 @@
         date)
       (loop [candidate date
              days-added 0]
-        (if (= (absolute n) days-added)
+        (cond
+          (t/< (t/date candidate) low-limit)
+          (throw (ex-info "Resulting date is out of bounds" {:resulting-date candidate}))
+
+          (t/> (t/date candidate) high-limit)
+          (throw (ex-info "Resulting date is out of bounds" {:resulting-date candidate}))
+
+          (= (absolute n) days-added)
           candidate
+
+          :else
           (let [new-date (t/>> candidate step)
                 m (inc-unless-holiday new-date non-business-days days-added n)]
             (recur new-date m)))))))

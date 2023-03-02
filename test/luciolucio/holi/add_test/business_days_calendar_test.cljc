@@ -2,7 +2,9 @@
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
             [luciolucio.holi.test-setup :as setup]
-            [tick.core :as t]))
+            [tick.core :as t])
+  #?(:clj
+     (:import (clojure.lang ExceptionInfo))))
 
 (ct/use-fixtures :each setup/test-datelist-fixture)
 
@@ -75,3 +77,29 @@
 (ct/deftest should-calculate-correct-date-when-add-with-holiday-coinciding-with-weekend
   (ct/is (= (t/date "2020-01-22") (holi/add (t/date "2020-01-18") 3 :business-days "HOLIDAY-ON-WEEKEND")))
   (ct/is (= (t/date-time "2020-01-22T03:15") (holi/add (t/date-time "2020-01-18T03:15") 3 :business-days "HOLIDAY-ON-WEEKEND"))))
+
+(ct/deftest should-throw-exception-when-add-date-with-business-days-calendar-and-result-beyond-limit-years
+  "This test relies on DAY-THREE.datelist, which lists 3Aug20 as a holiday.
+  Any result outside 2020 should raise an exception"
+  (ct/are [date n]
+          (thrown-with-msg? ExceptionInfo #"Resulting date is out of bounds" (holi/add (t/date date) n :business-day "DAY-THREE"))
+    "2020-08-02" 109 ; Would be 31Dec20 without the holiday, but will be out of bounds with it
+    "2020-01-01" -1
+    "2020-01-01" -2
+    "2020-12-31" 1
+    "2020-12-31" 11
+    "2020-01-05" -4
+    "2020-12-26" 5))
+
+(ct/deftest should-throw-exception-when-add-date-time-with-business-days-calendar-and-result-beyond-limit-years
+  "This test relies on DAY-THREE.datelist, which lists 3Aug20 as a holiday.
+  Any result outside 2020 should raise an exception"
+  (ct/are [date n]
+          (thrown-with-msg? ExceptionInfo #"Resulting date is out of bounds" (holi/add (t/date-time (str date "T03:15")) n :business-day "DAY-THREE"))
+    "2020-08-02" 109 ; Would be 31Dec20 without the holiday, but will be out of bounds with it
+    "2020-01-01" -1
+    "2020-01-01" -2
+    "2020-12-31" 1
+    "2020-12-31" 11
+    "2020-01-05" -4
+    "2020-12-26" 5))
