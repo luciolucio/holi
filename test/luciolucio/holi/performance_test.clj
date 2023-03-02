@@ -27,25 +27,25 @@
 
     (ct/is less-than-1-second?)))
 
-(ct/deftest ^:performance should-add-business-days-with-calendar-in-under-50-milliseconds
+(ct/deftest ^:performance should-add-business-days-with-calendar-in-under-10-milliseconds
   (println "Running benchmark for luciolucio.holi/add :business-days with a calendar:")
   (let [benchmark-result (run-benchmark (holi/add (LocalDate/of 2023 2 16) 5 :business-days "BR"))
         mean-in-s (-> benchmark-result :mean first)
-        less-than-50ms? (< mean-in-s 50e-3)]
+        less-than-10ms? (< mean-in-s 10e-3)]
     (criterium/report-result benchmark-result)
-    (println "Is the mean less than 50ms?" less-than-50ms?)
+    (println "Is the mean less than 10ms?" less-than-10ms?)
 
-    (ct/is less-than-50ms?)))
+    (ct/is less-than-10ms?)))
 
-(ct/deftest ^:performance should-add-business-days-with-no-calendar-in-under-50-milliseconds
+(ct/deftest ^:performance should-add-business-days-with-no-calendar-in-under-10-milliseconds
   (println "Running benchmark for luciolucio.holi/add :business-days with no calendar:")
   (let [benchmark-result (run-benchmark (holi/add (LocalDate/of 2023 2 16) 5 :business-days))
         mean-in-s (-> benchmark-result :mean first)
-        less-than-50ms? (< mean-in-s 50e-3)]
+        less-than-10ms? (< mean-in-s 10e-3)]
     (criterium/report-result benchmark-result)
-    (println "Is the mean less than 50ms?" less-than-50ms?)
+    (println "Is the mean less than 10ms?" less-than-10ms?)
 
-    (ct/is less-than-50ms?)))
+    (ct/is less-than-10ms?)))
 
 (ct/deftest ^:performance should-add-days-in-under-100-nanoseconds
   (println "Running benchmark for luciolucio.holi/add days without calendars:")
@@ -57,12 +57,12 @@
 
     (ct/is less-than-100-ns?)))
 
-(ct/deftest ^:performance should-check-holiday-in-under-10-milliseconds
+(ct/deftest ^:performance should-check-holiday-in-under-200-microseconds
   (println "Running benchmark for luciolucio.holi/holiday?:")
   (let [benchmark-result (run-benchmark (holi/holiday? (LocalDate/of 2023 2 16) "BR"))
         mean-in-s (-> benchmark-result :mean first)
-        less-than-10-ms? (< mean-in-s 10e-3)]
+        less-than-200-microseconds? (< mean-in-s 200e-6)]
     (criterium/report-result benchmark-result)
-    (println "Is the mean less than 10ms?" less-than-10-ms?)
+    (println "Is the mean less than 200µs?" less-than-200-microseconds?)
 
-    (ct/is less-than-10-ms?)))
+    (ct/is less-than-200-microseconds?)))
