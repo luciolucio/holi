@@ -16,7 +16,7 @@
      (criterium/quick-benchmark ~expression nil)
      (criterium/benchmark ~expression nil)))
 
-(ct/deftest ^:performance-long should-generate-a-datelist-in-under-10-seconds
+(ct/deftest ^:performance should-generate-a-datelist-in-under-10-seconds
   (println "Running benchmark for luciolucio.holi.file/generate-datelist!:")
   (let [hol-filename "test-resources/file/performance/BR.hol"
         benchmark-result (run-benchmark (file/generate-datelist! root-path hol-filename output-path 2020 80))
