@@ -1,5 +1,8 @@
 # Changes
 
+* UNRELEASED
+  * Improved performance of API fns even more, up to 100x faster!
+
 * 0.15.0 - 2Mar2023
   * Improved performance of main api functions to be 5 to 10 times faster
 

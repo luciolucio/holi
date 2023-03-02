@@ -1,5 +1,71 @@
 ## Performance
 
+### Performance test run - 2023-03-02
+
+Actually taking advantage of the binary search by making the datelists be vectors
+
+luciolucio.holi/add :business-days with no calendar
+3.834684 ms -> 1.293036 µs
+
+luciolucio.holi/holiday?
+96.906469 µs -> 116.248213 ns
+
+luciolucio.holi/add days without calendars
+73.313833 ns -> 74.302447 ns
+
+luciolucio.holi/add :business-days with a calendar
+6.243130 ms -> 2.245936 µs
+
+```
+[(Running benchmark for luciolucio.holi/add days without calendars:
+Evaluation count : 748000740 in 60 samples of 12466679 calls.
+             Execution time mean : 74.302447 ns
+    Execution time std-deviation : 0.281434 ns
+   Execution time lower quantile : 73.820293 ns ( 2.5%)
+   Execution time upper quantile : 74.834634 ns (97.5%)
+                   Overhead used : 6.861412 ns
+Is the mean less than 100ns? true
+.Running benchmark for luciolucio.holi/holiday?:
+Evaluation count : 494160360 in 60 samples of 8236006 calls.
+             Execution time mean : 116.248213 ns
+    Execution time std-deviation : 1.026821 ns
+   Execution time lower quantile : 114.701839 ns ( 2.5%)
+   Execution time upper quantile : 118.062655 ns (97.5%)
+                   Overhead used : 6.861412 ns
+
+Found 2 outliers in 60 samples (3.3333 %)
+	low-severe	 1 (1.6667 %)
+	low-mild	 1 (1.6667 %)
+ Variance from outliers : 1.6389 % Variance is slightly inflated by outliers
+Is the mean less than 200µs? true
+.Running benchmark for luciolucio.holi/add :business-days with no calendar:
+Evaluation count : 47205540 in 60 samples of 786759 calls.
+             Execution time mean : 1.293036 µs
+    Execution time std-deviation : 4.919744 ns
+   Execution time lower quantile : 1.286463 µs ( 2.5%)
+   Execution time upper quantile : 1.303342 µs (97.5%)
+                   Overhead used : 6.861412 ns
+
+Found 2 outliers in 60 samples (3.3333 %)
+	low-severe	 2 (3.3333 %)
+ Variance from outliers : 1.6389 % Variance is slightly inflated by outliers
+Is the mean less than 10ms? true
+.Running benchmark for luciolucio.holi/add :business-days with a calendar:
+Evaluation count : 26540400 in 60 samples of 442340 calls.
+             Execution time mean : 2.245936 µs
+    Execution time std-deviation : 12.513776 ns
+   Execution time lower quantile : 2.229526 µs ( 2.5%)
+   Execution time upper quantile : 2.273790 µs (97.5%)
+                   Overhead used : 6.861412 ns
+
+Found 3 outliers in 60 samples (5.0000 %)
+	low-severe	 2 (3.3333 %)
+	low-mild	 1 (1.6667 %)
+ Variance from outliers : 1.6389 % Variance is slightly inflated by outliers
+Is the mean less than 10ms? true
+.)]
+```
+
 ### Performance test run - 2023-03-01.2
 
 Memoized `read-dates-multi` and `read-dates-single`
