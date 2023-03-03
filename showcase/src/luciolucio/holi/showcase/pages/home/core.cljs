@@ -87,7 +87,7 @@
 (defn header []
   [:div {:class header-style}
    [inline-container {:spacing "0em" :justify "space-between"}
-    [:div "Holi calendar showcase" [version "0.15.0"]]
+    [:div "Holi calendar showcase" [version "0.16.0"]]
     [:a {:href "https://cljdoc.org/d/io.github.luciolucio/holi/CURRENT"} "Back to docs"]]])
 
 (defn view []
