@@ -9,7 +9,8 @@
             [tick.core :as t]
             [tick.locale-en-us]))
 
-(def separator-color "#C0C0C0")
+(def SEPARATOR-COLOR "#C0C0C0")
+(def KEYCODE-ENTER 13)
 
 (def container-style
   (style/gen {:label         :route-container-style
@@ -29,7 +30,7 @@
 
 (def horizontal-line-style (style/gen {:height          "1px"
                                        :width           "100%"
-                                       :backgroundColor separator-color}))
+                                       :backgroundColor SEPARATOR-COLOR}))
 
 (defn horizontal-line []
   [:div {:class horizontal-line-style :role "separator"}])
@@ -44,7 +45,7 @@
               :display            :flex
               :flexDirection      :row
               "& > *:first-child" {:flexShrink  0
-                                   :borderRight (str "1px solid " separator-color)
+                                   :borderRight (str "1px solid " SEPARATOR-COLOR)
                                    :width       "25%"
                                    :marginRight "1em"}
               "& > *:last-child"  {:flexGrow  1
@@ -78,24 +79,26 @@
 
 (defn current-year [current-year set-year!]
   (r/with-let [year-input (r/atom current-year)
-               label-or-field (r/atom :label)]
+               label-or-field (r/atom :label)
+               submit (fn [_]
+                        (try
+                          (set-year! @year-input)
+                          (catch js/Error _
+                            (reset! year-input current-year))
+                          (finally
+                            (reset! label-or-field :label))))]
     (condp = @label-or-field
       :label
       [:span {:on-click #(reset! label-or-field :field)} (str current-year)]
 
       :field
-      [:input {:type       :text
-               :class      year-field-style
-               :auto-focus true
-               :value      @year-input
-               :on-change  (fn [e] (reset! year-input (-> e .-target .-value)))
-               :on-blur    (fn [_]
-                             (try
-                               (set-year! @year-input)
-                               (catch js/Error _
-                                 (reset! year-input current-year))
-                               (finally
-                                 (reset! label-or-field :label))))}])))
+      [:input {:type        :text
+               :class       year-field-style
+               :auto-focus  true
+               :value       @year-input
+               :on-key-down (fn [e] (when (= KEYCODE-ENTER (.-keyCode e)) (submit)))
+               :on-change   (fn [e] (reset! year-input (-> e .-target .-value)))
+               :on-blur     submit}])))
 
 (defn main-calendar-view [year set-year! change-to-next! change-to-previous! calendar description]
   [:div
