@@ -119,7 +119,7 @@ tag:
 release: jar
 	@mvn deploy:deploy-file -Dfile="${BUILD_ROOT}/${JAR_NAME}" -DpomFile="${BUILD_ROOT}/pom.xml" -DrepositoryId=clojars -Durl=https://clojars.org/repo
 
-showcase:
+showcase: install # Must install for showcase to build with the new version even prior to it being published to clojars
 	@cd showcase && bin/build
 	@rm -rf docs && mkdir docs
 	@mv showcase/build/** docs
