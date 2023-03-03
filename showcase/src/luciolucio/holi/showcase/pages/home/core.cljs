@@ -50,6 +50,10 @@
               "& > *:last-child"  {:flexGrow  1
                                    :textAlign :center}}))
 
+(def year-field-style
+  (style/gen {:label :year-field-style
+              :width "6ch"}))
+
 (defn sidebar [change-calendar]
   (letfn [(calendar-button [calendar description]
             [:a {:on-click #(change-calendar calendar description)} (gstr/format "%s (%s)" description calendar)])]
@@ -64,13 +68,42 @@
 (defn holiday [h]
   [:p (gstr/format "%s - %s" (t/format "dd/MMM/YYYY" (:date h)) (:name h))])
 
-(defn main-calendar-view [year next-year previous-year calendar description]
+(defn change-button [year-to-check calendar caption change-fn]
+  (try
+    ; Provided this doesn't throw, we can show a clickable button
+    (holi/list-holidays year-to-check calendar)
+    [:button {:on-click #(change-fn)} caption]
+    (catch ExceptionInfo _
+      [:button {:disabled true} caption])))
+
+(defn current-year [current-year set-year!]
+  (r/with-let [year-input (r/atom current-year)
+               label-or-field (r/atom :label)]
+    (condp = @label-or-field
+      :label
+      [:span {:on-click #(reset! label-or-field :field)} (str current-year)]
+
+      :field
+      [:input {:type       :text
+               :class      year-field-style
+               :auto-focus true
+               :value      @year-input
+               :on-change  (fn [e] (reset! year-input (-> e .-target .-value)))
+               :on-blur    (fn [_]
+                             (try
+                               (set-year! @year-input)
+                               (catch js/Error _
+                                 (reset! year-input current-year))
+                               (finally
+                                 (reset! label-or-field :label))))}])))
+
+(defn main-calendar-view [year set-year! change-to-next! change-to-previous! calendar description]
   [:div
    [:h1 (gstr/format "%s Holiday Calendar (%s)" calendar description)]
    [inline-container {:spacing "1em" :justify :center}
-    [:button {:on-click #(previous-year)} "<"]
-    [:span (str year)]
-    [:button {:on-click #(next-year)} ">"]]
+    [change-button (dec year) calendar "<" change-to-previous!]
+    [current-year year set-year!]
+    [change-button (inc year) calendar ">" change-to-next!]]
    (into [:<>]
          (mapv holiday (holi/list-holidays year calendar)))])
 
@@ -78,11 +111,14 @@
   (let [[calendar description] @calendar-info
         change-calendar (fn [calendar description] (reset! calendar-info [calendar description]))
         selected-year @year
-        next-year #(swap! year inc)
-        previous-year #(swap! year dec)]
+        set-year! (fn [y]
+                    (holi/list-holidays y calendar) ; Throws if no holidays for that year
+                    (reset! year (-> (t/year y) int)))
+        change-to-next! #(swap! year inc)
+        change-to-previous! #(swap! year dec)]
     [:div {:class sidebar-and-main-style}
      [sidebar change-calendar]
-     [main-calendar-view selected-year next-year previous-year calendar description]]))
+     [main-calendar-view selected-year set-year! change-to-next! change-to-previous! calendar description]]))
 
 (defn header []
   [:div {:class header-style}
