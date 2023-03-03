@@ -97,6 +97,8 @@
 (defn list-holidays
   "Returns a collection of maps of the form `{:name \"Name\" :date LocalDate}`
   where every item of the collection represents a holiday in the given year according
-  to the given holiday calendar"
+  to the given holiday calendar
+
+  Throws an ex-info if holi has no record of weekends or holidays for the given year"
   [year calendar]
   (core/read-calendar calendar year))

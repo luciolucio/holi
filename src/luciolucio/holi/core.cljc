@@ -97,8 +97,23 @@
    :name (->> (subs holiday-string HOLIDAY-STRING-INDICATOR-BEGIN HOLIDAY-STRING-INDICATOR-END)
               (get holiday-names))})
 
+(defn- safe-year [calendar year]
+  (let [all-dates (read-dates calendar)
+        low-limit (t/year (first all-dates))
+        high-limit (t/year (last all-dates))]
+    (cond
+      (t/< (t/year year) low-limit)
+      (throw (ex-info "Year is out of bounds" {}))
+
+      (t/> (t/year year) high-limit)
+      (throw (ex-info "Year is out of bounds" {}))
+
+      :else
+      year)))
+
 (defn read-calendar [calendar year]
-  (let [lines (read-holiday-lines calendar)
+  (let [checked-year (safe-year calendar year)
+        lines (read-holiday-lines calendar)
         holiday-strings (read-holiday-strings lines HOLIDAY-STRING-LENGTH)
         holiday-names (->> (rest lines)
                            (map (fn [s] [(subs s 0 HOLIDAY-STRING-INDICATOR-LENGTH) (subs s HOLIDAY-STRING-INDICATOR-LENGTH)]))
@@ -106,7 +121,7 @@
                            (apply hash-map))]
     (->> holiday-strings
          (map #(parse-date-with-holiday % holiday-names))
-         (filter #(= (t/year (:date %)) (t/year year)))
+         (filter #(= (t/year (:date %)) (t/year checked-year)))
          (sort-by :date))))
 
 (defn- sign [n]

@@ -2,11 +2,13 @@
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
             [luciolucio.holi.test-setup :as setup]
-            [tick.core :as t]))
+            [tick.core :as t])
+  #?(:clj
+     (:import (clojure.lang ExceptionInfo))))
 
 (ct/use-fixtures :each setup/test-datelist-fixture)
 
-(ct/deftest should-list-holidays-for-calendar-and-year
+(ct/deftest should-list-the-correct-holidays-for-calendar-and-year-when-list-holidays
   (ct/are [year expected]
           (= expected (holi/list-holidays year "TEST-US"))
     2021 [{:date (t/date "2021-01-01") :name "New Year's Day"}
@@ -56,3 +58,7 @@
           {:date (t/date "2024-11-11") :name "Veterans Day"}
           {:date (t/date "2024-11-28") :name "Thanksgiving"}
           {:date (t/date "2024-12-25") :name "Christmas"}]))
+
+(ct/deftest should-throw-when-list-holidays-with-year-beyond-limits
+  (ct/is (thrown-with-msg? ExceptionInfo #"Year is out of bounds" (holi/list-holidays 1942 "TEST-US")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"Year is out of bounds" (holi/list-holidays 2104 "TEST-US"))))
