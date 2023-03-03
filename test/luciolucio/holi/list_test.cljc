@@ -66,6 +66,7 @@
 (ct/deftest
   ^{:doc "These should say 'No such calendars' before
           checking that the year is out of bounds"}
-  should-throw-when-list-holidays-with-inexistent-calendar
+  should-throw-when-list-holidays-with-inexistent-calendar-or-WEEKEND
   (ct/is (thrown-with-msg? ExceptionInfo #"No such calendars: OMG" (holi/list-holidays 1930 "OMG")))
-  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendars: WATIZIT" (holi/list-holidays 2200 "WATIZIT"))))
+  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendars: WATIZIT" (holi/list-holidays 2200 "WATIZIT")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendar: WEEKEND" (holi/list-holidays 2200 "WEEKEND"))))

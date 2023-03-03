@@ -11,6 +11,9 @@
       calendars)))
 
 (defn- safe-calendar [calendar]
+  (when (= calendar constants/WEEKEND-FILE-NAME)
+    (throw (ex-info (str "No such calendar: " constants/WEEKEND-FILE-NAME) {})))
+
   (first (safe-calendars [calendar])))
 
 (defn add
@@ -23,7 +26,8 @@
   | `unit`      | Unit of `n`                                                                | `:days` `:weeks` `:months` `:years` or `:business-days` |
   | `calendars` | One or more strings representing holiday calendars (`:business-days` only) | `\"US\"`, `\"BR\"`                                      |
 
-  Throws an ex-info if unit is `:business-days` and holi has no record of holidays for the year of the resulting date
+  Throws an ex-info if unit is `:business-days` and holi has no record of holidays for the year of the resulting date,
+  or for any of the given calendars.
 
   **Notes**
   1. Types are preserved, i.e., passing a `LocalDate` in will return a `LocalDate`
@@ -74,7 +78,7 @@
   | `date`     | An instance of `LocalDate` or `LocalDateTime` | `(LocalDate/of 2020 10 9)` |
   | `calendar` | A string representing a holiday calendar      | `\"US\"`, `\"BR\"`         |
 
-  Throws an ex-info if holi has no record of holidays for the year of the given date"
+  Throws an ex-info if holi has no record of holidays for the year of the given date or for the given calendar"
   [date calendar]
   (let [holidays (core/read-dates (safe-calendar calendar))]
     (core/is-date-in-list? (safe-date holidays date) holidays)))
@@ -87,7 +91,7 @@
   | `date`      | An instance of `LocalDate` or `LocalDateTime`      | `(LocalDate/of 2020 10 9)` |
   | `calendars` | One or more strings representing holiday calendars | `\"US\"`, `\"BR\"`         |
 
-  Throws an ex-info if holi has no record of holidays or weekends for the year of the given date"
+  Throws an ex-info if holi has no record of holidays or weekends for the year of the given date or for any of the given calendars"
   [date & calendars]
   (let [non-business-days (core/read-dates (set (conj (safe-calendars calendars) constants/WEEKEND-FILE-NAME)))]
     (core/is-date-in-list? (safe-date non-business-days date) non-business-days)))
@@ -100,7 +104,7 @@
   | `date`      | An instance of `LocalDate` or `LocalDateTime`      | `(LocalDate/of 2020 10 9)` |
   | `calendars` | One or more strings representing holiday calendars | `\"US\"`, `\"BR\"`         |
 
-  Throws an ex-info if holi has no record of holidays or weekends for the year of the given date"
+  Throws an ex-info if holi has no record of holidays or weekends for the year of the given date or for the given calendar"
   [date & calendars]
   (not (apply non-business-day? date calendars)))
 
@@ -109,6 +113,25 @@
   where every item of the collection represents a holiday in the given year according
   to the given holiday calendar
 
-  Throws an ex-info if holi has no record of weekends or holidays for the given year"
+  Throws an ex-info if holi has no record of weekends or holidays for the given year or for the given calendar"
   [year calendar]
   (core/read-calendar (safe-calendar calendar) year))
+
+(defn holidays
+  "Returns a collection containing names of holidays in the given date, for example: `[\"New Year's Day\" \"Independence Day\"]`
+
+  If there are none, it will return an empty collection.
+
+  | Parameter  | Description                                   | Examples                   |
+  |------------|-----------------------------------------------|----------------------------|
+  | `date`     | An instance of `LocalDate` or `LocalDateTime` | `(LocalDate/of 2020 10 9)` |
+  | `calendar` | A string representing a holiday calendar      | `\"US\"`, `\"BR\"`         |
+
+  Throws an ex-info if holi has no record of holidays for the year of the given date or for the given calendar"
+  [date calendar]
+  (if (holiday? date calendar)
+    (->> calendar
+         (list-holidays (-> date t/date t/year))
+         (filter #(= (t/date date) (:date %)))
+         (map :name))
+    []))

@@ -3,6 +3,7 @@
 * UNRELEASED
   * API now throws if holi does not recognize a calendar name
   * Fixed a bug in the calendar showcase
+  * Added an API function to list the names of holidays in a particular date
 
 * 0.16.0 - 3Mar2023
   * API now throws when holi has no record of holidays for given year
