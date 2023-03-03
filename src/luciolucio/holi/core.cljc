@@ -87,6 +87,10 @@
           (keep read-dates-single)
           (apply util/merge-sorted-collections)))))
 
+(defn missing-calendars [calendars]
+  (let [available-calendars (set (keys holiday-datelists))]
+    (reduce #(if (contains? available-calendars %2) %1 (conj %1 %2)) [] calendars)))
+
 (defn read-dates [cal-or-cals]
   (if (string? cal-or-cals)
     (read-dates-single cal-or-cals)

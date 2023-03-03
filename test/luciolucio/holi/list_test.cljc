@@ -62,3 +62,10 @@
 (ct/deftest should-throw-when-list-holidays-with-year-beyond-limits
   (ct/is (thrown-with-msg? ExceptionInfo #"Year is out of bounds" (holi/list-holidays 1942 "TEST-US")))
   (ct/is (thrown-with-msg? ExceptionInfo #"Year is out of bounds" (holi/list-holidays 2104 "TEST-US"))))
+
+(ct/deftest
+  ^{:doc "These should say 'No such calendars' before
+          checking that the year is out of bounds"}
+  should-throw-when-list-holidays-with-inexistent-calendar
+  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendars: OMG" (holi/list-holidays 1930 "OMG")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendars: WATIZIT" (holi/list-holidays 2200 "WATIZIT"))))

@@ -1,7 +1,17 @@
 (ns luciolucio.holi
-  (:require [luciolucio.holi.core :as core]
+  (:require [clojure.string :as cstr]
+            [luciolucio.holi.core :as core]
             [luciolucio.holi.constants :as constants]
             [tick.core :as t]))
+
+(defn- safe-calendars [calendars]
+  (let [missing-calendars (core/missing-calendars calendars)]
+    (if (seq missing-calendars)
+      (throw (ex-info (str "No such calendars: " (cstr/join ", " missing-calendars)) {}))
+      calendars)))
+
+(defn- safe-calendar [calendar]
+  (first (safe-calendars [calendar])))
 
 (defn add
   "Adds `n` of `unit` to `date` and returns a new date. Skips any holidays in `calendars` when `unit` is `:business-days`.
@@ -23,7 +33,7 @@
   [date n unit & calendars]
   (core/validate-input date n unit)
   (if (contains? #{:business-days :business-day} unit)
-    (core/add-with-calendars date n calendars)
+    (core/add-with-calendars date n (safe-calendars calendars))
     (t/>> date (t/new-period n (get core/unit->tick-unit unit)))))
 
 (defn- safe-date
@@ -66,7 +76,7 @@
 
   Throws an ex-info if holi has no record of holidays for the year of the given date"
   [date calendar]
-  (let [holidays (core/read-dates calendar)]
+  (let [holidays (core/read-dates (safe-calendar calendar))]
     (core/is-date-in-list? (safe-date holidays date) holidays)))
 
 (defn non-business-day?
@@ -79,7 +89,7 @@
 
   Throws an ex-info if holi has no record of holidays or weekends for the year of the given date"
   [date & calendars]
-  (let [non-business-days (core/read-dates (set (conj calendars constants/WEEKEND-FILE-NAME)))]
+  (let [non-business-days (core/read-dates (set (conj (safe-calendars calendars) constants/WEEKEND-FILE-NAME)))]
     (core/is-date-in-list? (safe-date non-business-days date) non-business-days)))
 
 (defn business-day?
@@ -101,4 +111,4 @@
 
   Throws an ex-info if holi has no record of weekends or holidays for the given year"
   [year calendar]
-  (core/read-calendar calendar year))
+  (core/read-calendar (safe-calendar calendar) year))
