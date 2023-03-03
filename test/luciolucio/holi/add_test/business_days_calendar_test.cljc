@@ -84,7 +84,7 @@
   should-throw-exception-when-add-date-with-business-days-calendar-and-result-beyond-limit-years
   (ct/are [date n]
           (thrown-with-msg? ExceptionInfo #"Resulting date is out of bounds" (holi/add (t/date date) n :business-day "DAY-THREE"))
-    "2020-08-02" 109                                        ; Would be 31Dec20 without the holiday, but will be out of bounds with it
+    "2020-08-02" 109 ; Would be 31Dec20 without the holiday, but will be out of bounds with it
     "2020-01-01" -1
     "2020-01-01" -2
     "2020-12-31" 1
