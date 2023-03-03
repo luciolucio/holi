@@ -89,7 +89,7 @@
                             (reset! label-or-field :label))))]
     (condp = @label-or-field
       :label
-      [:span {:on-click #(reset! label-or-field :field)} (str current-year)]
+      [:span {:on-click #(do (reset! label-or-field :field) (reset! year-input current-year))} (str current-year)]
 
       :field
       [:input {:type        :text
