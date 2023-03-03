@@ -72,7 +72,7 @@
 (defn change-button [year-to-check calendar caption change-fn]
   (try
     ; Provided this doesn't throw, we can show a clickable button
-    (holi/list-holidays year-to-check calendar)
+    (holi/holidays-in-year year-to-check calendar)
     [:button {:on-click #(change-fn)} caption]
     (catch ExceptionInfo _
       [:button {:disabled true} caption])))
@@ -108,14 +108,14 @@
     [current-year year set-year!]
     [change-button (inc year) calendar ">" change-to-next!]]
    (into [:<>]
-         (mapv holiday (holi/list-holidays year calendar)))])
+         (mapv holiday (holi/holidays-in-year year calendar)))])
 
 (defn sidebar-and-main [calendar-info year]
   (let [[calendar description] @calendar-info
         change-calendar (fn [calendar description] (reset! calendar-info [calendar description]))
         selected-year @year
         set-year! (fn [y]
-                    (holi/list-holidays y calendar) ; Throws if no holidays for that year
+                    (holi/holidays-in-year y calendar) ; Throws if no holidays for that year
                     (reset! year (-> (t/year y) int)))
         change-to-next! #(swap! year inc)
         change-to-previous! #(swap! year dec)]
@@ -126,7 +126,7 @@
 (defn header []
   [:div {:class header-style}
    [inline-container {:spacing "0em" :justify "space-between"}
-    [:div "Holi calendar showcase" [version "0.16.0"]]
+    [:div "Holi calendar showcase" [version "0.17.0"]]
     [:a {:href "https://cljdoc.org/d/io.github.luciolucio/holi/CURRENT"} "Back to docs"]]])
 
 (defn view []
