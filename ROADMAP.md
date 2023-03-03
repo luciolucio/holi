@@ -1,6 +1,5 @@
  ## Roadmap
 
-* Add tests and checks for oddball arguments to api fns, including throwing when calendar does not exist (add, holiday?, non-business-day? business-day?)
 * Fix showcase bug
   * Open page
   * Click the year, field appears

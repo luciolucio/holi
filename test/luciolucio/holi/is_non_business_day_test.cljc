@@ -51,3 +51,6 @@
     "2021-01-01T00:00:00" ["DAY-THREE"]
     "2019-12-31T23:59:59" []
     "2019-12-31T23:59:59" ["DAY-THREE"]))
+
+(ct/deftest should-throw-when-non-business-day?-with-inexistent-calendar
+  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendars: NOT-A-CALENDAR!" (holi/non-business-day? (t/date "2020-10-10") "NOT-A-CALENDAR!"))))
