@@ -1,6 +1,5 @@
  ## Roadmap
 
-* Add boundary checks to the showcase
 * Add tests and checks for oddball arguments to api fns, including throwing when calendar does not exist (add, holiday?, non-business-day? business-day?)
 * Add a cljs perftest run
 * Adicionar uma fn holidays na api, pra retornar holidays daquela data 

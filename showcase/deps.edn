@@ -2,7 +2,7 @@
  :extra-paths ["resources"]
 
  :deps        {org.clojure/clojurescript {:mvn/version "1.11.60"}
-               reagent/reagent           {:mvn/version "1.1.1"}
+               reagent/reagent           {:mvn/version "1.2.0"}
                tick/tick                 {:mvn/version "0.5.0"}
                io.github.luciolucio/holi {:mvn/version "0.16.0"}}
 
