@@ -3,14 +3,15 @@
 * UNRELEASED
   * API now throws if holi does not recognize a calendar name
   * Fixed a bug in the calendar showcase
-  * Added an API function to list the names of holidays in a particular date
+  * Added the `holidays-in-date` API fn to list the names of holidays in a particular date
+  * The `list-holidays` API fn is now called `holidays-in-year`
 
 * 0.16.0 - 3Mar2023
   * API now throws when holi has no record of holidays for given year
   * Improved performance of API fns even more, up to 100x faster!
 
 * 0.15.0 - 2Mar2023
-  * Improved performance of main api functions to be 5 to 10 times faster
+  * Improved performance of main API functions to be 5 to 10 times faster
 
 * 0.14.0 - 6Feb2023
   * Date lists are now about 55% smaller - great for js bundles. They also link dates and holiday names now

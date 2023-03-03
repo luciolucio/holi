@@ -1,4 +1,4 @@
-(ns luciolucio.holi.list-test
+(ns luciolucio.holi.holidays-in-year-test
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
             [luciolucio.holi.test-setup :as setup]
@@ -8,9 +8,9 @@
 
 (ct/use-fixtures :each setup/test-datelist-fixture)
 
-(ct/deftest should-list-the-correct-holidays-for-calendar-and-year-when-list-holidays
+(ct/deftest should-list-the-correct-holidays-for-calendar-and-year-when-holidays-in-year
   (ct/are [year expected]
-          (= expected (holi/list-holidays year "TEST-US"))
+          (= expected (holi/holidays-in-year year "TEST-US"))
     2021 [{:date (t/date "2021-01-01") :name "New Year's Day"}
           {:date (t/date "2021-01-18") :name "Martin Luther King Jr. Day"}
           {:date (t/date "2021-02-15") :name "President's Day"}
@@ -59,14 +59,14 @@
           {:date (t/date "2024-11-28") :name "Thanksgiving"}
           {:date (t/date "2024-12-25") :name "Christmas"}]))
 
-(ct/deftest should-throw-when-list-holidays-with-year-beyond-limits
-  (ct/is (thrown-with-msg? ExceptionInfo #"Year is out of bounds" (holi/list-holidays 1942 "TEST-US")))
-  (ct/is (thrown-with-msg? ExceptionInfo #"Year is out of bounds" (holi/list-holidays 2104 "TEST-US"))))
+(ct/deftest should-throw-when-holidays-in-year-with-year-beyond-limits
+  (ct/is (thrown-with-msg? ExceptionInfo #"Year is out of bounds" (holi/holidays-in-year 1942 "TEST-US")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"Year is out of bounds" (holi/holidays-in-year 2104 "TEST-US"))))
 
 (ct/deftest
   ^{:doc "These should say 'No such calendars' before
           checking that the year is out of bounds"}
-  should-throw-when-list-holidays-with-inexistent-calendar-or-WEEKEND
-  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendars: OMG" (holi/list-holidays 1930 "OMG")))
-  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendars: WATIZIT" (holi/list-holidays 2200 "WATIZIT")))
-  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendar: WEEKEND" (holi/list-holidays 2200 "WEEKEND"))))
+  should-throw-when-holidays-in-year-with-inexistent-calendar-or-WEEKEND
+  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendars: OMG" (holi/holidays-in-year 1930 "OMG")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendars: WATIZIT" (holi/holidays-in-year 2200 "WATIZIT")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendar: WEEKEND" (holi/holidays-in-year 2200 "WEEKEND"))))
