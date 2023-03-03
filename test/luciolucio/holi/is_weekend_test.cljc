@@ -27,7 +27,7 @@
 (ct/deftest
   ^{:doc "This test relies on TEST-WEEKEND.datelist, which lists weekends in 2020.
           Any argument outside 2020 should raise an exception"}
-  should-throw-exception-when-weekend?-with-date-beyond-limit-year
+  should-throw-when-weekend?-with-date-beyond-limit-year
   (ct/are [date]
           (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (holi/weekend? (t/date date)))
     "2021-01-01"
@@ -36,7 +36,7 @@
 (ct/deftest
   ^{:doc "This test relies on TEST-WEEKEND.datelist, which lists weekends in 2020.
           Any argument outside 2020 should raise an exception"}
-  should-throw-exception-when-weekend?-with-date-time-beyond-limit-year
+  should-throw-when-weekend?-with-date-time-beyond-limit-year
   (ct/are [date]
           (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (holi/weekend? (t/date-time date)))
     "2021-01-01T00:00:00"
