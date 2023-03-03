@@ -31,7 +31,7 @@
 (ct/deftest
   ^{:doc "This test relies on TEST-WEEKEND and DAY-THREE, which only list dates in 2020.
           Any argument outside 2020 should raise an exception"}
-  should-throw-exception-when-holiday?-with-date-beyond-limit-year
+  should-throw-when-holiday?-with-date-beyond-limit-year
   (ct/are [date calendar]
           (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (holi/holiday? (t/date date) calendar))
     "2021-08-03" "DAY-THREE"
@@ -40,7 +40,7 @@
 (ct/deftest
   ^{:doc "This test relies on TEST-WEEKEND and DAY-THREE, which only list dates in 2020.
           Any argument outside 2020 should raise an exception"}
-  should-throw-exception-when-holiday?-with-date-time-beyond-limit-year
+  should-throw-when-holiday?-with-date-time-beyond-limit-year
   (ct/are [date calendar]
           (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (holi/holiday? (t/date-time date) calendar))
     "2021-08-03T10:10:10" "DAY-THREE"

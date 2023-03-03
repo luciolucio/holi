@@ -33,7 +33,7 @@
 (ct/deftest
   ^{:doc "This test relies on TEST-WEEKEND and/or DAY-THREE, both of which only list dates in 2020.
           Any argument outside 2020 should raise an exception"}
-  should-throw-exception-when-business-day?-with-date-beyond-limit-year
+  should-throw-when-business-day?-with-date-beyond-limit-year
   (ct/are [date calendars]
           (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (apply holi/business-day? (t/date date) calendars))
     "2021-01-01" []
@@ -44,7 +44,7 @@
 (ct/deftest
   ^{:doc "This test relies on TEST-WEEKEND and/or DAY-THREE, both of which only list dates in 2020.
           Any argument outside 2020 should raise an exception"}
-  should-throw-exception-when-business-day?-with-date-time-beyond-limit-year
+  should-throw-when-business-day?-with-date-time-beyond-limit-year
   (ct/are [date calendars]
           (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (apply holi/business-day? (t/date-time date) calendars))
     "2021-01-01T00:00:00" []

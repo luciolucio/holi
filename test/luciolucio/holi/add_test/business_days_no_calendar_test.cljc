@@ -77,7 +77,7 @@
 (ct/deftest
   ^{:doc "This test relies on TEST-WEEKEND.datelist, which lists weekends in 2020.
           Any result outside 2020 should raise an exception"}
-  should-throw-exception-when-add-date-with-business-days-and-result-beyond-limit-years
+  should-throw-when-add-date-with-business-days-and-result-beyond-limit-years
   (ct/are [date n]
           (thrown-with-msg? ExceptionInfo #"Resulting date is out of bounds" (holi/add (t/date date) n :business-day))
     "2020-01-01" -1
@@ -90,7 +90,7 @@
 (ct/deftest
   ^{:doc "This test relies on TEST-WEEKEND.datelist, which lists weekends in 2020.
           Any result outside 2020 should raise an exception"}
-  should-throw-exception-when-add-date-time-with-business-days-and-result-beyond-limit-years
+  should-throw-when-add-date-time-with-business-days-and-result-beyond-limit-years
   (ct/are [date n]
           (thrown-with-msg? ExceptionInfo #"Resulting date is out of bounds" (holi/add (t/date-time (str date "T03:15")) n :business-day))
     "2020-01-01" -1

@@ -81,7 +81,7 @@
 (ct/deftest
   ^{:doc "This test relies on DAY-THREE.datelist, which lists 3Aug20 as a holiday.
           Any result outside 2020 should raise an exception"}
-  should-throw-exception-when-add-date-with-business-days-calendar-and-result-beyond-limit-years
+  should-throw-when-add-date-with-business-days-calendar-and-result-beyond-limit-years
   (ct/are [date n]
           (thrown-with-msg? ExceptionInfo #"Resulting date is out of bounds" (holi/add (t/date date) n :business-day "DAY-THREE"))
     "2020-08-02" 109 ; Would be 31Dec20 without the holiday, but will be out of bounds with it
@@ -95,7 +95,7 @@
 (ct/deftest
   ^{:doc "This test relies on DAY-THREE.datelist, which lists 3Aug20 as a holiday.
           Any result outside 2020 should raise an exception"}
-  should-throw-exception-when-add-date-time-with-business-days-calendar-and-result-beyond-limit-years
+  should-throw-when-add-date-time-with-business-days-calendar-and-result-beyond-limit-years
   (ct/are [date n]
           (thrown-with-msg? ExceptionInfo #"Resulting date is out of bounds" (holi/add (t/date-time (str date "T03:15")) n :business-day "DAY-THREE"))
     "2020-08-02" 109 ; Would be 31Dec20 without the holiday, but will be out of bounds with it
