@@ -80,9 +80,10 @@
     "2020-08-03" "2020-08-04"
     "2020-08-04" "2020-08-04"))
 
-(ct/deftest should-throw-exception-when-add-date-with-business-days-multi-calendar-and-result-beyond-limit-years
-  "This test relies on datelists DAY-THREE and DAY-TWENTY-NINE-2021, which list 3Aug20 and 29Jul21 as holidays, respectively.
-  Any result before 2020 or after 2021 should raise an exception"
+(ct/deftest
+  ^{:doc "This test relies on datelists DAY-THREE and DAY-TWENTY-NINE-2021, which list 3Aug20 and 29Jul21 as holidays, respectively.
+          Any result before 2020 or after 2021 should raise an exception"}
+  should-throw-exception-when-add-date-with-business-days-multi-calendar-and-result-beyond-limit-years
   (ct/are [date n]
           (thrown-with-msg? ExceptionInfo #"Resulting date is out of bounds" (holi/add (t/date date) n :business-day "DAY-THREE" "DAY-TWENTY-NINE-2021"))
     "2021-08-02" 152 ; Would be 31Dec21 without the holiday, but will be out of bounds with it (note: 152 is because TEST-WEEKEND has no weekends for 2021)
@@ -93,9 +94,10 @@
     "2020-01-05" -4
     "2021-12-26" 6))
 
-(ct/deftest should-throw-exception-when-add-date-time-with-business-days-multi-calendar-and-result-beyond-limit-years
-  "This test relies on datelists DAY-THREE and DAY-TWENTY-NINE-2021, which list 3Aug20 and 29Jul21 as holidays, respectively.
-  Any result before 2020 or after 2021 should raise an exception"
+(ct/deftest
+  ^{:doc "This test relies on datelists DAY-THREE and DAY-TWENTY-NINE-2021, which list 3Aug20 and 29Jul21 as holidays, respectively.
+          Any result before 2020 or after 2021 should raise an exception"}
+  should-throw-exception-when-add-date-time-with-business-days-multi-calendar-and-result-beyond-limit-years
   (ct/are [date n]
           (thrown-with-msg? ExceptionInfo #"Resulting date is out of bounds" (holi/add (t/date-time (str date "T03:15")) n :business-day "DAY-THREE" "DAY-TWENTY-NINE-2021"))
     "2021-08-02" 152 ; Would be 31Dec21 without the holiday, but will be out of bounds with it (note: 152 is because TEST-WEEKEND has no weekends for 2021)

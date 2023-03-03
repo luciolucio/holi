@@ -30,9 +30,10 @@
     (t/date-time "2020-08-01T23:59:59") ["DAY-THREE"] true
     (t/date-time "2020-08-03T00:00:01") ["DAY-THREE"] true))
 
-(ct/deftest should-throw-exception-when-non-business-day?-with-date-beyond-limit-year
-  "This test relies on TEST-WEEKEND and/or DAY-THREE, both of which only list dates in 2020.
-  Any argument outside 2020 should raise an exception"
+(ct/deftest
+  ^{:doc "This test relies on TEST-WEEKEND and/or DAY-THREE, both of which only list dates in 2020.
+          Any argument outside 2020 should raise an exception"}
+  should-throw-exception-when-non-business-day?-with-date-beyond-limit-year
   (ct/are [date calendars]
           (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (apply holi/non-business-day? (t/date date) calendars))
     "2021-01-01" []
@@ -40,9 +41,10 @@
     "2019-12-31" []
     "2019-12-31" ["DAY-THREE"]))
 
-(ct/deftest should-throw-exception-when-non-business-day?-with-date-time-beyond-limit-year
-  "This test relies on TEST-WEEKEND and/or DAY-THREE, both of which only list dates in 2020.
-  Any argument outside 2020 should raise an exception"
+(ct/deftest
+  ^{:doc "This test relies on TEST-WEEKEND and/or DAY-THREE, both of which only list dates in 2020.
+          Any argument outside 2020 should raise an exception"}
+  should-throw-exception-when-non-business-day?-with-date-time-beyond-limit-year
   (ct/are [date calendars]
           (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (apply holi/non-business-day? (t/date-time date) calendars))
     "2021-01-01T00:00:00" []
