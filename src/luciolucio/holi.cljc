@@ -108,7 +108,7 @@
   [date & calendars]
   (not (apply non-business-day? date calendars)))
 
-(defn list-holidays
+(defn holidays-in-year
   "Returns a collection of maps of the form `{:name \"Name\" :date LocalDate}`
   where every item of the collection represents a holiday in the given year according
   to the given holiday calendar
@@ -117,7 +117,7 @@
   [year calendar]
   (core/read-calendar (safe-calendar calendar) year))
 
-(defn holidays
+(defn holidays-in-date
   "Returns a collection containing names of holidays in the given date, for example: `[\"New Year's Day\" \"Independence Day\"]`
 
   If there are none, it will return an empty collection.
@@ -131,7 +131,7 @@
   [date calendar]
   (if (holiday? date calendar)
     (->> calendar
-         (list-holidays (-> date t/date t/year))
+         (holidays-in-year (-> date t/date t/year))
          (filter #(= (t/date date) (:date %)))
          (map :name))
     []))

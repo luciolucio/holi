@@ -16,5 +16,8 @@
 (defn business-day? [date & calendars]
   (apply holi/business-day? date calendars))
 
-(defn list-holidays [year calendar]
-  (holi/list-holidays year calendar))
+(defn holidays-in-year [year calendar]
+  (holi/holidays-in-year year calendar))
+
+(defn holidays-in-date [date calendar]
+  (holi/holidays-in-date date calendar))
