@@ -71,9 +71,11 @@ watch:
 
 fmt-check:
 	@clojure -M:cljfmt -- check ${SRC_AND_TEST}
+	@cd showcase && bin/fmt
 
 fix:
 	@clojure -M:cljfmt -- fix ${SRC_AND_TEST}
+	@cd showcase && bin/fmt fix
 
 lint:
 	@clojure -M:lint ${SRC_AND_TEST}
