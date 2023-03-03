@@ -32,6 +32,8 @@ mv new-custom.md doc/04-CUSTOM.md
 print "Updating showcase..."
 sed "s|\[version \".*\"\]|\[version \"$VERSION_NUMBER\"\]|g" showcase/src/luciolucio/holi/showcase/pages/home/core.cljs > new-core.cljs
 mv new-core.cljs showcase/src/luciolucio/holi/showcase/pages/home/core.cljs
+sed "s|io.github.luciolucio/holi {:mvn/version \".*\"}}|io.github.luciolucio/holi {:mvn/version \"$VERSION_NUMBER\"}}|g" showcase/deps.edn > new-deps.edn
+mv new-deps.edn showcase/deps.edn
 make showcase
 
 print "Updating readmes..."
