@@ -58,7 +58,8 @@ if (echo "$NAMES" | grep build.clj) \
    && (echo "$NAMES" | grep resources/holi-template.zip) \
    && (echo "$NAMES" | grep README.md) \
    && (echo "$NAMES" | grep doc/01-README.md) \
-   && (echo "$NAMES" | grep showcase/src/luciolucio/holi/showcase/pages/home/core.cljs)
+   && (echo "$NAMES" | grep showcase/src/luciolucio/holi/showcase/pages/home/core.cljs) \
+   && (echo "$NAMES" | grep showcase/deps.edn)
 then
   print "...DONE"
   exit 0
