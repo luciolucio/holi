@@ -48,7 +48,7 @@ clean:
 	@rm -rf "${CLJS_TEST_LIB_HOME}/out"
 
 clean-prepare:
-	@git checkout -- build.clj new-holi-project.sh resources/holi-template/resources/deps.edn doc/04-CUSTOM.md resources/holi-template.zip README.md doc/01-README.md
+	@git checkout -- build.clj new-holi-project.sh resources/holi-template/resources/deps.edn doc/04-CUSTOM.md resources/holi-template.zip README.md doc/01-README.md showcase/src/luciolucio/holi/showcase/pages/home/core.cljs showcase/deps.edn docs
 
 test: gen-holidays # Holidays are needed so that `luciolucio.holi.core/holiday-datelists` can load, but are not used in tests
 	@bin/kaocha :unit
