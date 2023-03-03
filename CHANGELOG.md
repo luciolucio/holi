@@ -1,5 +1,8 @@
 # Changes
 
+* UNRELEASED
+  * API now throws if holi does not recognize a calendar name
+
 * 0.16.0 - 3Mar2023
   * API now throws when holi has no record of holidays for given year
   * Improved performance of API fns even more, up to 100x faster!
