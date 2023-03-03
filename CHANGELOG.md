@@ -1,7 +1,7 @@
 # Changes
 
 * UNRELEASED
-  * API now throws if results would fall outside of years for which holi has a record of holidays
+  * API now throws when holi has no record of holidays for given year
   * Improved performance of API fns even more, up to 100x faster!
 
 * 0.15.0 - 2Mar2023
