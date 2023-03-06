@@ -75,7 +75,7 @@
     "2020-08-04" "2020-08-04"))
 
 (ct/deftest
-  ^{:doc "This test relies on TEST-WEEKEND.datelist, which lists weekends in 2020.
+  ^{:doc "This test relies on TEST-WEEKEND-SAT-SUN.datelist, which lists weekends in 2020.
           Any result outside 2020 should raise an exception"}
   should-throw-when-add-date-with-business-days-and-result-beyond-limit-years
   (ct/are [date n]
@@ -88,7 +88,7 @@
     "2020-12-26" 5))
 
 (ct/deftest
-  ^{:doc "This test relies on TEST-WEEKEND.datelist, which lists weekends in 2020.
+  ^{:doc "This test relies on TEST-WEEKEND-SAT-SUN.datelist, which lists weekends in 2020.
           Any result outside 2020 should raise an exception"}
   should-throw-when-add-date-time-with-business-days-and-result-beyond-limit-years
   (ct/are [date n]

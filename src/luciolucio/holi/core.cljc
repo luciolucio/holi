@@ -75,7 +75,7 @@
 (def ^:private read-dates-single
   (memoize
    (fn [calendar]
-     (let [partition-size (if (= calendar constants/WEEKEND-FILE-NAME) WEEKEND-STRING-LENGTH HOLIDAY-STRING-LENGTH)
+     (let [partition-size (if (contains? constants/ALL-WEEKEND-FILE-NAMES calendar) WEEKEND-STRING-LENGTH HOLIDAY-STRING-LENGTH)
            holiday-strings (read-holiday-strings calendar partition-size)]
        (when holiday-strings
          (mapv parse-date holiday-strings))))))
