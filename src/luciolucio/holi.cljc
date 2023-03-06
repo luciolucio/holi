@@ -58,9 +58,9 @@
 (defn weekend?
   "Returns true if date is in a weekend, and false otherwise
 
-  | Parameter | Description                                   | Examples                   |
-  |-----------|-----------------------------------------------|----------------------------|
-  | `date`    | An instance of `LocalDate` or `LocalDateTime` | `(LocalDate/of 2020 10 9)` |
+  | Parameter | Description                                                                         | Examples                                     |
+  |-----------|-------------------------------------------------------------------------------------|----------------------------------------------|
+  | `date`    | An instance of `LocalDate`/`LocalDateTime` or a string that can be parsed as a date | `(LocalDate/of 2020 10 9)`, `\"2020-10-10\"` |
 
   Throws an ex-info if holi has no record of weekends for the year of the given date
 
@@ -73,10 +73,10 @@
 (defn holiday?
   "Returns true if date is a holiday in the given calendar, and false otherwise
 
-  | Parameter  | Description                                   | Examples                   |
-  |------------|-----------------------------------------------|----------------------------|
-  | `date`     | An instance of `LocalDate` or `LocalDateTime` | `(LocalDate/of 2020 10 9)` |
-  | `calendar` | A string representing a holiday calendar      | `\"US\"`, `\"BR\"`         |
+  | Parameter  | Description                                                                         | Examples                                     |
+  |------------|-------------------------------------------------------------------------------------|----------------------------------------------|
+  | `date`     | An instance of `LocalDate`/`LocalDateTime` or a string that can be parsed as a date | `(LocalDate/of 2020 10 9)`, `\"2020-10-09\"` |
+  | `calendar` | A string representing a holiday calendar                                            | `\"US\"`, `\"BR\"`                           |
 
   Throws an ex-info if holi has no record of holidays for the year of the given date or for the given calendar"
   [date calendar]
@@ -86,10 +86,10 @@
 (defn non-business-day?
   "Returns true only if date is whether in a weekend or a holiday in one of the given calendars. Returns false otherwise.
 
-  | Parameter   | Description                                        | Examples                   |
-  |-------------|----------------------------------------------------|----------------------------|
-  | `date`      | An instance of `LocalDate` or `LocalDateTime`      | `(LocalDate/of 2020 10 9)` |
-  | `calendars` | One or more strings representing holiday calendars | `\"US\"`, `\"BR\"`         |
+  | Parameter   | Description                                                                         | Examples                                     |
+  |-------------|-------------------------------------------------------------------------------------|----------------------------------------------|
+  | `date`      | An instance of `LocalDate`/`LocalDateTime` or a string that can be parsed as a date | `(LocalDate/of 2020 10 9)`, `\"2020-10-09\"` |
+  | `calendars` | One or more strings representing holiday calendars                                  | `\"US\"`, `\"BR\"`                           |
 
   Throws an ex-info if holi has no record of holidays or weekends for the year of the given date or for any of the given calendars"
   [date & calendars]
@@ -99,10 +99,10 @@
 (defn business-day?
   "Returns true only if date is not in a weekend and also not a holiday in any of the given calendars. Returns false otherwise.
 
-  | Parameter   | Description                                        | Examples                   |
-  |-------------|----------------------------------------------------|----------------------------|
-  | `date`      | An instance of `LocalDate` or `LocalDateTime`      | `(LocalDate/of 2020 10 9)` |
-  | `calendars` | One or more strings representing holiday calendars | `\"US\"`, `\"BR\"`         |
+  | Parameter   | Description                                                                         | Examples                                     |
+  |-------------|-------------------------------------------------------------------------------------|----------------------------------------------|
+  | `date`      | An instance of `LocalDate`/`LocalDateTime` or a string that can be parsed as a date | `(LocalDate/of 2020 10 9)`, `\"2020-10-09\"` |
+  | `calendars` | One or more strings representing holiday calendars                                  | `\"US\"`, `\"BR\"`                           |
 
   Throws an ex-info if holi has no record of holidays or weekends for the year of the given date or for the given calendar"
   [date & calendars]
@@ -113,6 +113,11 @@
   where every item of the collection represents a holiday in the given year according
   to the given holiday calendar
 
+  | Parameter  | Description                                   | Examples                   |
+  |------------|-----------------------------------------------|----------------------------|
+  | `year`     | An integer or string that represents a year   | `2030`, `\"1982\"`         |
+  | `calendar` | A string representing a holiday calendar      | `\"US\"`, `\"BR\"`         |
+
   Throws an ex-info if holi has no record of weekends or holidays for the given year or for the given calendar"
   [year calendar]
   (core/read-calendar (safe-calendar calendar) year))
@@ -122,10 +127,10 @@
 
   If there are none, it will return an empty collection.
 
-  | Parameter  | Description                                   | Examples                   |
-  |------------|-----------------------------------------------|----------------------------|
-  | `date`     | An instance of `LocalDate` or `LocalDateTime` | `(LocalDate/of 2020 10 9)` |
-  | `calendar` | A string representing a holiday calendar      | `\"US\"`, `\"BR\"`         |
+  | Parameter  | Description                                                                         | Examples                                     |
+  |------------|-------------------------------------------------------------------------------------|----------------------------------------------|
+  | `date`     | An instance of `LocalDate`/`LocalDateTime` or a string that can be parsed as a date | `(LocalDate/of 2020 10 9)`, `\"2020-10-09\"` |
+  | `calendar` | A string representing a holiday calendar                                            | `\"US\"`, `\"BR\"`                           |
 
   Throws an ex-info if holi has no record of holidays for the year of the given date or for the given calendar"
   [date calendar]
