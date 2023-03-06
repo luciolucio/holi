@@ -58,17 +58,20 @@
 (defn weekend?
   "Returns true if date is in a weekend, and false otherwise
 
-  | Parameter | Description                                                                         | Examples                                     |
-  |-----------|-------------------------------------------------------------------------------------|----------------------------------------------|
-  | `date`    | An instance of `LocalDate`/`LocalDateTime` or a string that can be parsed as a date | `(LocalDate/of 2020 10 9)`, `\"2020-10-10\"` |
+  | Parameter        | Description                                                                         | Examples                                     |
+  |------------------|-------------------------------------------------------------------------------------|----------------------------------------------|
+  | `date`           | An instance of `LocalDate`/`LocalDateTime` or a string that can be parsed as a date | `(LocalDate/of 2020 10 9)`, `\"2020-10-10\"` |
+  | `weekend-option` | Choice of days considered weekend days. Optional, defaults to :sat-sun              | `:sat-sun`, `:fri-sat`                       |
 
   Throws an ex-info if holi has no record of weekends for the year of the given date
 
   **Notes**
   1. Weekend days are assumed to be Saturday and Sunday"
-  [date]
-  (let [weekend-days (core/read-dates constants/WEEKEND-FILE-NAME)]
-    (core/is-date-in-list? (safe-date weekend-days date) weekend-days)))
+  ([date]
+   (weekend? date :sat-sun))
+  ([date weekend-option]
+   (let [weekend-days (core/read-dates (get constants/WEEKEND-FILE-NAMES weekend-option))]
+     (core/is-date-in-list? (safe-date weekend-days date) weekend-days))))
 
 (defn holiday?
   "Returns true if date is a holiday in the given calendar, and false otherwise
