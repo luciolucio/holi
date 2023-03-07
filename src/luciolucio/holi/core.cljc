@@ -31,7 +31,7 @@
   "Map from holiday name to datelists
 
   Run `make gen-holidays` to generate these files"
-  {"WEEKEND"          (util/slurp-resource "calendars-generated/WEEKEND.datelist")
+  {"WEEKEND"          (util/slurp-resource "calendars-generated/WEEKEND-SAT-SUN.datelist")
    "US"               (util/slurp-resource "calendars-generated/US.datelist")
    "GB"               (util/slurp-resource "calendars-generated/GB.datelist")
    "BR"               (util/slurp-resource "calendars-generated/BR.datelist")
