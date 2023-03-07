@@ -23,9 +23,10 @@
     "INCLUDE-ROOT-FROM-SUBDIR-EXPECTED.datelist" "subdir/INCLUDE" 2020 1
     "INCLUDE-SUBDIR-FROM-SUBDIR-EXPECTED.datelist" "subdir/INCLUDE-SUBDIR" 2020 1))
 
-(ct/deftest should-generate-weekend-file-when-generate-weekend-datelist!
-  (file/generate-weekend-datelist! output-path 2020 2)
-  (ct/is (= (slurp "test-resources/file/WEEKEND-EXPECTED.datelist") (slurp "test-output/WEEKEND.datelist"))))
+(ct/deftest should-generate-weekend-files-when-generate-weekend-datelists!
+  (file/generate-weekend-datelists! output-path 2020 2)
+  (ct/is (= (slurp "test-resources/file/WEEKEND-SAT-SUN-EXPECTED.datelist") (slurp "test-output/WEEKEND-SAT-SUN.datelist")))
+  (ct/is (= (slurp "test-resources/file/WEEKEND-FRI-SAT-EXPECTED.datelist") (slurp "test-output/WEEKEND-FRI-SAT.datelist"))))
 
 (ct/deftest should-not-allow-files-called-weekend-dot-hol-when-generate-datelist!
   (ct/is (thrown? ExceptionInfo (file/generate-datelist! root-path "test-resources/file/WEEKEND.hol" output-path 2020 1)))
