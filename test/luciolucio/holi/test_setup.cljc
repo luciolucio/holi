@@ -4,6 +4,7 @@
 
 (def holiday-datelists
   {"WEEKEND"              (util/slurp-resource "TEST-WEEKEND-SAT-SUN.datelist")
+   "WEEKEND-FRI-SAT"      (util/slurp-resource "TEST-WEEKEND-FRI-SAT.datelist")
    "WEEKEND-SAT-SUN"      (util/slurp-resource "TEST-WEEKEND-SAT-SUN.datelist")
    "DAY-THREE"            (util/slurp-resource "DAY-THREE.datelist")
    "DAY-TWENTY-NINE"      (util/slurp-resource "DAY-TWENTY-NINE.datelist")

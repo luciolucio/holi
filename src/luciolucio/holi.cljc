@@ -63,10 +63,7 @@
   | `date`           | An instance of `LocalDate`/`LocalDateTime` or a string that can be parsed as a date | `(LocalDate/of 2020 10 9)`, `\"2020-10-10\"` |
   | `weekend-option` | Choice of days considered weekend days. Optional, defaults to :sat-sun              | `:sat-sun`, `:fri-sat`                       |
 
-  Throws an ex-info if holi has no record of weekends for the year of the given date
-
-  **Notes**
-  1. Weekend days are assumed to be Saturday and Sunday"
+  Throws an ex-info if holi has no record of weekends for the year of the given date"
   ([date]
    (weekend? date :sat-sun))
   ([date weekend-option]
