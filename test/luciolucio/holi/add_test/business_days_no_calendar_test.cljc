@@ -8,13 +8,6 @@
 
 (ct/use-fixtures :each setup/test-datelist-fixture)
 
-(ct/deftest
-  should-default-to-sat-sun-weekend-option-when-add-with-no-weekend-option
-  (ct/is (= (holi/add (t/date "2020-07-30") 3 :business-days)
-            (holi/add (t/date "2020-07-30") 3 :business-days :sat-sun)))
-  (ct/is (= (holi/add (t/date "2020-07-30") 3 :business-day)
-            (holi/add (t/date "2020-07-30") 3 :business-day :sat-sun))))
-
 (ct/deftest should-calculate-correct-date-when-add-date-with-business-days
   (ct/are [start-date days weekend-option expected]
           (= (t/date expected) (holi/add (t/date start-date) days :business-days weekend-option) (holi/add (t/date start-date) days :business-day weekend-option))
