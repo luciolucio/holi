@@ -16,15 +16,21 @@
 
   (first (safe-calendars [calendar])))
 
+(defn- solve-weekend-option-and-calendars [weekend-option-or-calendar calendars]
+  (if (contains? constants/ALL-WEEKEND-OPTIONS weekend-option-or-calendar)
+    [weekend-option-or-calendar calendars]
+    [:sat-sun (conj calendars weekend-option-or-calendar)]))
+
 (defn add
   "Adds `n` of `unit` to `date` and returns a new date. Skips any holidays in `calendars` when `unit` is `:business-days`.
 
-  | Parameter   | Description                                                                | Examples                                                |
-  |-------------|----------------------------------------------------------------------------|---------------------------------------------------------|
-  | `date`      | An instance of `LocalDate` or `LocalDateTime`                              | `(LocalDate/of 2020 10 9)`                              |
-  | `n`         | An integer                                                                 | `2`, `-1`, `0`                                          |
-  | `unit`      | Unit of `n`                                                                | `:days` `:weeks` `:months` `:years` or `:business-days` |
-  | `calendars` | One or more strings representing holiday calendars (`:business-days` only) | `\"US\"`, `\"BR\"`                                      |
+  | Parameter        | Description                                                                | Examples                                                |
+  |------------------|----------------------------------------------------------------------------|---------------------------------------------------------|
+  | `date`           | An instance of `LocalDate` or `LocalDateTime`                              | `(LocalDate/of 2020 10 9)`                              |
+  | `n`              | An integer                                                                 | `2`, `-1`, `0`                                          |
+  | `unit`           | Unit of `n`                                                                | `:days` `:weeks` `:months` `:years` or `:business-days` |
+  | `weekend-option` | Choice of days considered weekend days. Optional, defaults to :sat-sun     | `:sat-sun`, `:fri-sat`                                  |
+  | `calendars`      | One or more strings representing holiday calendars (`:business-days` only) | `\"US\"`, `\"BR\"`                                      |
 
   Throws an ex-info if unit is `:business-days` and holi has no record of holidays for the year of the resulting date,
   or for any of the given calendars.
@@ -34,11 +40,14 @@
   2. The time portion is never altered on a `LocalDateTime` instance
   3. `LocalDate` and `LocalDateTime` refer whether to java.time or js-joda
   4. `unit` will accept both `:weeks` and `:week` etc. That way you can write `1 :week` or `1 :business-day`."
-  [date n unit & calendars]
-  (core/validate-input date n unit)
-  (if (contains? #{:business-days :business-day} unit)
-    (core/add-with-calendars date n (safe-calendars calendars))
-    (t/>> date (t/new-period n (get core/unit->tick-unit unit)))))
+  ([date n unit]
+   (add date n unit :sat-sun))
+  ([date n unit weekend-option & calendars]
+   (let [[weekend-option calendars] (solve-weekend-option-and-calendars weekend-option calendars)]
+     (core/validate-input date n unit)
+     (if (contains? #{:business-days :business-day} unit)
+       (core/add-with-calendars date n (safe-calendars calendars) weekend-option)
+       (t/>> date (t/new-period n (get core/unit->tick-unit unit)))))))
 
 (defn- safe-date
   "Returns `date` if it's within the boundaries of `all-dates` and throws otherwise"
