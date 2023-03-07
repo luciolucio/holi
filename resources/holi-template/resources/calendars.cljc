@@ -4,8 +4,11 @@
 (defn add [date n unit & calendars]
   (apply holi/add date n unit calendars))
 
-(defn weekend? [date]
-  (holi/weekend? date))
+(defn weekend?
+  ([date]
+   (holi/weekend? date))
+  ([date weekend-option]
+   (holi/weekend? date weekend-option)))
 
 (defn holiday? [date calendar]
   (holi/holiday? date calendar))
