@@ -48,16 +48,19 @@
                           (map cstr/join))]
     (str encoded-dates "\n" (cstr/join "\n" holiday-keys))))
 
-(defn get-weekends [year]
+(def weekend-set {:sat-sun #{t/SATURDAY t/SUNDAY}
+                  :fri-sat #{t/FRIDAY t/SATURDAY}})
+
+(defn get-weekends [year weekend-option]
   (let [start (t/new-date year 1 1)
         days (if (common/leap-year? year) 366 365)
         interval (iterate #(t/>> % (t/new-period 1 :days)) start)
-        weekends (filter #(#{t/SATURDAY t/SUNDAY} (t/day-of-week %)) (take days interval))]
+        weekends (filter #((get weekend-set weekend-option) (t/day-of-week %)) (take days interval))]
     (map #(encode-holiday {:date %} nil) weekends)))
 
-(defn gen-bracketed-weekends [year bracket-size]
+(defn gen-bracketed-weekends [year bracket-size weekend-option]
   (let [years (range (- year bracket-size) (+ year (inc bracket-size)))]
-    (-> (map get-weekends years) flatten sort cstr/join)))
+    (-> (map #(get-weekends % weekend-option) years) flatten sort cstr/join)))
 
 (defn generate-datelist! [root-path holiday-file output-path central-year bracket-size]
   (if (cstr/ends-with? (cstr/lower-case holiday-file) "weekend.hol")
@@ -66,7 +69,8 @@
           path (make-datelist-file-path! root-path holiday-file output-path)]
       (spit path file-contents))))
 
-(defn generate-weekend-datelist! [output-path year bracket-size]
-  (let [weekends (gen-bracketed-weekends year bracket-size)
-        weekend-path (make-datelist-path! constants/WEEKEND-FILE-NAME output-path)]
-    (spit weekend-path weekends)))
+(defn generate-weekend-datelists! [output-path year bracket-size]
+  (doseq [weekend-option constants/ALL-WEEKEND-OPTIONS]
+    (let [weekends (gen-bracketed-weekends year bracket-size weekend-option)
+          weekend-path (make-datelist-path! (get constants/WEEKEND-FILE-NAMES weekend-option) output-path)]
+      (spit weekend-path weekends))))

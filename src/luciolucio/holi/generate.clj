@@ -24,6 +24,6 @@
             (println "ERROR: WEEKEND.hol is not an allowed file name, please use another name")
             (System/exit 1))
           (throw e))))
-    (file/generate-weekend-datelist! output-path current-year bracket-size)
+    (file/generate-weekend-datelists! output-path current-year bracket-size)
     (println "Holiday generation finished")
     (println "-----------------------------------------------------------")))
