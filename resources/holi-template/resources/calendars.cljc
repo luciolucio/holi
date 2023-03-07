@@ -1,8 +1,11 @@
 (ns {{lib-ns}}.{{lib-name}}
   (:require [luciolucio.holi :as holi]))
 
-(defn add [date n unit & calendars]
-  (apply holi/add date n unit calendars))
+(defn add
+  ([date n unit]
+   (holi/add date n unit))
+  ([date n unit weekend-option & calendars]
+   (apply holi/add date n unit weekend-option calendars)))
 
 (defn weekend?
   ([date]

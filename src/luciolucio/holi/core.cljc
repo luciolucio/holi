@@ -170,14 +170,14 @@
 (defn- absolute [n]
   (if pos? n (- n)))
 
-(defn add-with-calendars [date n calendars]
-  (let [non-business-days (read-dates (set (conj calendars constants/WEEKEND-FILE-NAME)))
+(defn add-with-calendars [date n calendars weekend-option]
+  (let [non-business-days (read-dates (set (conj calendars (get constants/WEEKEND-FILE-NAMES weekend-option))))
         low-limit (t/first-day-of-year (first non-business-days))
         high-limit (t/last-day-of-year (last non-business-days))
         step (t/new-period (get-step n) :days)]
     (if (= n 0)
       (if (is-date-in-list? date non-business-days)
-        (add-with-calendars date 1 calendars)
+        (add-with-calendars date 1 calendars weekend-option)
         date)
       (loop [candidate date
              days-added 0]
