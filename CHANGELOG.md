@@ -1,5 +1,8 @@
 # Changes
 
+* UNRELEASED
+  * Now supports friday/saturday weekends for `weekend?`
+
 * 0.17.0 - 3Mar2023
   * API now throws if holi does not recognize a calendar name
   * Fixed a bug in the calendar showcase
