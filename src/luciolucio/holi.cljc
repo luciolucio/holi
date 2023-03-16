@@ -40,6 +40,7 @@
   2. The time portion is never altered on a `LocalDateTime` instance
   3. `LocalDate` and `LocalDateTime` refer whether to java.time or js-joda
   4. `unit` will accept both `:weeks` and `:week` etc. That way you can write `1 :week` or `1 :business-day`."
+  {:arglists '([date n unit] [date n unit & calendars] [date n unit weekend-option] [date n unit weekend-option & calendars])}
   ([date n unit]
    (add date n unit :sat-sun))
   ([date n unit weekend-option & calendars]

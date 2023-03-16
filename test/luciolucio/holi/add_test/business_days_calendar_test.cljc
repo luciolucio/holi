@@ -8,100 +8,101 @@
 
 (ct/use-fixtures :each setup/test-datelist-fixture)
 
-(ct/deftest should-calculate-correct-date-when-add-date-with-business-days-calendar
-  (ct/are [days expected]
-          (= expected (holi/add (t/date "2020-07-30") days :business-days "DAY-THREE"))
-    2 (t/date "2020-08-04")
-    1 (t/date "2020-07-31")
-    5 (t/date "2020-08-07")
-    -5 (t/date "2020-07-23")))
+(defn- ->d [s] (t/date s))
+(defn- ->dt [s] (t/date-time (str s "T11:11:00")))
 
-(ct/deftest should-calculate-correct-date-when-add-date-time-with-business-days-calendar
-  (ct/are [days expected]
-          (= expected (holi/add (t/date-time "2020-07-30T11:11:00") days :business-days "DAY-THREE"))
-    2 (t/date-time "2020-08-04T11:11:00")
-    1 (t/date-time "2020-07-31T11:11:00")
-    5 (t/date-time "2020-08-07T11:11:00")
-    -5 (t/date-time "2020-07-23T11:11:00")))
+(defn- all-cases-pass? [date days expected-sat-sun expected-fri-sat]
+  (and
+    ; date + sat-sun
+   (= (->d expected-sat-sun) (holi/add (->d date) days :business-days :sat-sun "DAY-THREE"))
+    ; date + fri-sat
+   (= (->d expected-fri-sat) (holi/add (->d date) days :business-days :fri-sat "DAY-THREE"))
+    ; date-time + sat-sun
+   (= (->dt expected-sat-sun) (holi/add (->dt date) days :business-days :sat-sun "DAY-THREE"))
+    ; date-time + fri-sat
+   (= (->dt expected-fri-sat) (holi/add (->dt date) days :business-days :fri-sat "DAY-THREE"))))
 
-(ct/deftest should-calculate-correct-date-when-add-saturday-date-with-business-days-calendar
-  (ct/are [days expected]
-          (= expected (holi/add (t/date "2020-08-01") days :business-days "DAY-THREE"))
-    1 (t/date "2020-08-04")
-    7 (t/date "2020-08-12")
-    -1 (t/date "2020-07-31")
-    -5 (t/date "2020-07-27")))
+(ct/deftest should-calculate-correct-date-when-add-with-business-days-calendar
+  (ct/are [days expected-sat-sun expected-fri-sat]
+          (all-cases-pass? "2020-07-30" days expected-sat-sun expected-fri-sat)
+    2 "2020-08-04" "2020-08-04"
+    1 "2020-07-31" "2020-08-02"
+    5 "2020-08-07" "2020-08-09"
+    -5 "2020-07-23" "2020-07-23"))
 
-(ct/deftest should-calculate-correct-date-when-add-saturday-date-time-with-business-days-calendar
-  (ct/are [days expected]
-          (= expected (holi/add (t/date-time "2020-08-01T22:15:09") days :business-days "DAY-THREE"))
-    1 (t/date-time "2020-08-04T22:15:09")
-    7 (t/date-time "2020-08-12T22:15:09")
-    -1 (t/date-time "2020-07-31T22:15:09")
-    -5 (t/date-time "2020-07-27T22:15:09")))
+(ct/deftest should-calculate-correct-date-when-add-friday-with-business-days-calendar
+  (ct/are [days expected-sat-sun expected-fri-sat]
+          (all-cases-pass? "2020-07-31" days expected-sat-sun expected-fri-sat)
+    1 "2020-08-04" "2020-08-02"
+    7 "2020-08-12" "2020-08-11"
+    -1 "2020-07-30" "2020-07-30"
+    -5 "2020-07-24" "2020-07-26"))
 
-(ct/deftest should-calculate-correct-date-when-add-sunday-date-with-business-days-calendar
-  (ct/are [days expected]
-          (= expected (holi/add (t/date "2020-08-02") days :business-days "DAY-THREE"))
-    1 (t/date "2020-08-04")
-    7 (t/date "2020-08-12")
-    -1 (t/date "2020-07-31")
-    -5 (t/date "2020-07-27")))
+(ct/deftest should-calculate-correct-date-when-add-saturday-with-business-days-calendar
+  (ct/are [days expected-sat-sun expected-fri-sat]
+          (all-cases-pass? "2020-08-01" days expected-sat-sun expected-fri-sat)
+    1 "2020-08-04" "2020-08-02"
+    7 "2020-08-12" "2020-08-11"
+    -1 "2020-07-31" "2020-07-30"
+    -5 "2020-07-27" "2020-07-26"))
 
-(ct/deftest should-calculate-correct-date-when-add-sunday-date-time-with-business-days-calendar
-  (ct/are [days expected]
-          (= expected (holi/add (t/date-time "2020-08-02T03:15") days :business-days "DAY-THREE"))
-    1 (t/date-time "2020-08-04T03:15")
-    7 (t/date-time "2020-08-12T03:15")
-    -1 (t/date-time "2020-07-31T03:15")
-    -5 (t/date-time "2020-07-27T03:15")))
+(ct/deftest should-calculate-correct-date-when-add-sunday-with-business-days-calendar
+  (ct/are [days expected-sat-sun expected-fri-sat]
+          (all-cases-pass? "2020-08-02" days expected-sat-sun expected-fri-sat)
+    1 "2020-08-04" "2020-08-04"
+    7 "2020-08-12" "2020-08-12"
+    -1 "2020-07-31" "2020-07-30"
+    -5 "2020-07-27" "2020-07-26"))
 
 (ct/deftest should-go-to-next-business-day-or-stay-when-add-zero-days-with-business-days-calendar
-  (ct/are [start-date expected-end-date]
-          (= (t/date expected-end-date) (holi/add (t/date start-date) 0 :business-days "DAY-THREE"))
-    "2020-07-31" "2020-07-31"
-    "2020-08-01" "2020-08-04"
-    "2020-08-02" "2020-08-04"
-    "2020-08-03" "2020-08-04"
-    "2020-08-04" "2020-08-04"))
-
-(ct/deftest should-go-to-next-business-day-or-stay-when-add-zero-days-date-time-with-business-days-calendar
-  (ct/are [start-date expected-end-date]
-          (= (t/date-time (str expected-end-date "T03:15")) (holi/add (t/date-time (str start-date "T03:15")) 0 :business-days "DAY-THREE"))
-    "2020-07-31" "2020-07-31"
-    "2020-08-01" "2020-08-04"
-    "2020-08-02" "2020-08-04"
-    "2020-08-03" "2020-08-04"
-    "2020-08-04" "2020-08-04"))
+  (ct/are [date expected-sat-sun expected-fri-sat]
+          (all-cases-pass? date 0 expected-sat-sun expected-fri-sat)
+    "2020-07-31" "2020-07-31" "2020-08-02"
+    "2020-08-01" "2020-08-04" "2020-08-02"
+    "2020-08-02" "2020-08-04" "2020-08-02"
+    "2020-08-03" "2020-08-04" "2020-08-04"
+    "2020-08-04" "2020-08-04" "2020-08-04"))
 
 (ct/deftest should-calculate-correct-date-when-add-with-holiday-coinciding-with-weekend
-  (ct/is (= (t/date "2020-01-22") (holi/add (t/date "2020-01-18") 3 :business-days "HOLIDAY-ON-WEEKEND")))
-  (ct/is (= (t/date-time "2020-01-22T03:15") (holi/add (t/date-time "2020-01-18T03:15") 3 :business-days "HOLIDAY-ON-WEEKEND"))))
+  (ct/testing "date"
+    (ct/testing "sat-sun"
+      (ct/is (= (->d "2020-01-22") (holi/add (->d "2020-01-18") 3 :business-days :sat-sun "HOLIDAY-ON-SAT-SUN-WEEKEND"))))
+    (ct/testing "fri-sat"
+      (ct/is (= (->d "2020-01-21") (holi/add (->d "2020-01-17") 3 :business-days :fri-sat "HOLIDAY-ON-FRI-SAT-WEEKEND")))))
+  (ct/testing "date-time"
+    (ct/testing "sat-sun"
+      (ct/is (= (->dt "2020-01-22") (holi/add (->dt "2020-01-18") 3 :business-days :sat-sun "HOLIDAY-ON-SAT-SUN-WEEKEND"))))
+    (ct/testing "fri-sat"
+      (ct/is (= (->dt "2020-01-21") (holi/add (->dt "2020-01-17") 3 :business-days :fri-sat "HOLIDAY-ON-FRI-SAT-WEEKEND"))))))
 
 (ct/deftest
-  ^{:doc "This test relies on DAY-THREE.datelist, which lists 3Aug20 as a holiday.
+  ^{:doc "This test relies on DAY-THREE.datelist, in which 3Aug20 is a holiday.
           Any result outside 2020 should raise an exception"}
-  should-throw-when-add-date-with-business-days-calendar-and-result-beyond-limit-years
-  (ct/are [date n]
-          (thrown-with-msg? ExceptionInfo #"Resulting date is out of bounds" (holi/add (t/date date) n :business-day "DAY-THREE"))
-    "2020-08-02" 109 ; Would be 31Dec20 without the holiday, but will be out of bounds with it
-    "2020-01-01" -1
-    "2020-01-01" -2
-    "2020-12-31" 1
-    "2020-12-31" 11
-    "2020-01-05" -4
-    "2020-12-26" 5))
+  should-throw-when-add-with-business-days-calendar-and-result-beyond-limit-years
+  (ct/testing "date"
+    (ct/testing "sat-sun"
+      (ct/are [date n]
+              (thrown-with-msg? ExceptionInfo #"Resulting date is out of bounds" (holi/add (->d date) n :business-days :sat-sun "DAY-THREE"))
+        "2020-08-02" 109 ; Would be 31Dec20 without the holiday, but will be out of bounds with it
+        "2020-01-01" -1
+        "2020-12-31" 1))
+    (ct/testing "fri-sat"
+      (ct/are [date n]
+              (thrown-with-msg? ExceptionInfo #"Resulting date is out of bounds" (holi/add (->d date) n :business-days :fri-sat "DAY-THREE"))
+        "2020-08-02" 109
+        "2020-01-01" -1
+        "2020-12-31" 1)))
 
-(ct/deftest
-  ^{:doc "This test relies on DAY-THREE.datelist, which lists 3Aug20 as a holiday.
-          Any result outside 2020 should raise an exception"}
-  should-throw-when-add-date-time-with-business-days-calendar-and-result-beyond-limit-years
-  (ct/are [date n]
-          (thrown-with-msg? ExceptionInfo #"Resulting date is out of bounds" (holi/add (t/date-time (str date "T03:15")) n :business-day "DAY-THREE"))
-    "2020-08-02" 109 ; Would be 31Dec20 without the holiday, but will be out of bounds with it
-    "2020-01-01" -1
-    "2020-01-01" -2
-    "2020-12-31" 1
-    "2020-12-31" 11
-    "2020-01-05" -4
-    "2020-12-26" 5))
+  (ct/testing "date-time"
+    (ct/testing "sat-sun"
+      (ct/are [date n]
+              (thrown-with-msg? ExceptionInfo #"Resulting date is out of bounds" (holi/add (->dt date) n :business-days :sat-sun "DAY-THREE"))
+        "2020-08-02" 109
+        "2020-01-01" -1
+        "2020-12-31" 1))
+    (ct/testing "fri-sat"
+      (ct/are [date n]
+              (thrown-with-msg? ExceptionInfo #"Resulting date is out of bounds" (holi/add (->dt date) n :business-days :fri-sat "DAY-THREE"))
+        "2020-08-02" 109
+        "2020-01-01" -1
+        "2020-12-31" 1))))
