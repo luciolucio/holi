@@ -96,27 +96,36 @@
 (defn non-business-day?
   "Returns true only if date is whether in a weekend or a holiday in one of the given calendars. Returns false otherwise.
 
-  | Parameter   | Description                                                                         | Examples                                     |
-  |-------------|-------------------------------------------------------------------------------------|----------------------------------------------|
-  | `date`      | An instance of `LocalDate`/`LocalDateTime` or a string that can be parsed as a date | `(LocalDate/of 2020 10 9)`, `\"2020-10-09\"` |
-  | `calendars` | One or more strings representing holiday calendars                                  | `\"US\"`, `\"BR\"`                           |
+  | Parameter        | Description                                                                         | Examples                                     |
+  |------------------|-------------------------------------------------------------------------------------|----------------------------------------------|
+  | `date`           | An instance of `LocalDate`/`LocalDateTime` or a string that can be parsed as a date | `(LocalDate/of 2020 10 9)`, `\"2020-10-09\"` |
+  | `weekend-option` | Choice of days considered weekend days. Optional, defaults to :sat-sun              | `:sat-sun`, `:fri-sat`                       |
+  | `calendars`      | One or more strings representing holiday calendars                                  | `\"US\"`, `\"BR\"`                           |
 
   Throws an ex-info if holi has no record of holidays or weekends for the year of the given date or for any of the given calendars"
-  [date & calendars]
-  (let [non-business-days (core/read-dates (set (conj (safe-calendars calendars) constants/WEEKEND-FILE-NAME)))]
-    (core/is-date-in-list? (safe-date non-business-days date) non-business-days)))
+  {:arglists '([date] [date & calendars] [date weekend-option] [date weekend-option & calendars])}
+  ([date]
+   (non-business-day? date :sat-sun))
+  ([date weekend-option & calendars]
+   (let [[weekend-option calendars] (solve-weekend-option-and-calendars weekend-option calendars)
+         non-business-days (core/read-dates (set (conj (safe-calendars calendars) (get constants/WEEKEND-FILE-NAMES weekend-option))))]
+     (core/is-date-in-list? (safe-date non-business-days date) non-business-days))))
 
 (defn business-day?
   "Returns true only if date is not in a weekend and also not a holiday in any of the given calendars. Returns false otherwise.
 
-  | Parameter   | Description                                                                         | Examples                                     |
-  |-------------|-------------------------------------------------------------------------------------|----------------------------------------------|
-  | `date`      | An instance of `LocalDate`/`LocalDateTime` or a string that can be parsed as a date | `(LocalDate/of 2020 10 9)`, `\"2020-10-09\"` |
-  | `calendars` | One or more strings representing holiday calendars                                  | `\"US\"`, `\"BR\"`                           |
+  | Parameter        | Description                                                                         | Examples                                     |
+  |------------------|-------------------------------------------------------------------------------------|----------------------------------------------|
+  | `date`           | An instance of `LocalDate`/`LocalDateTime` or a string that can be parsed as a date | `(LocalDate/of 2020 10 9)`, `\"2020-10-09\"` |
+  | `weekend-option` | Choice of days considered weekend days. Optional, defaults to :sat-sun              | `:sat-sun`, `:fri-sat`                       |
+  | `calendars`      | One or more strings representing holiday calendars                                  | `\"US\"`, `\"BR\"`                           |
 
   Throws an ex-info if holi has no record of holidays or weekends for the year of the given date or for the given calendar"
-  [date & calendars]
-  (not (apply non-business-day? date calendars)))
+  {:arglists '([date] [date & calendars] [date weekend-option] [date weekend-option & calendars])}
+  ([date]
+   (business-day? date :sat-sun))
+  ([date weekend-option & calendars]
+   (not (apply non-business-day? date weekend-option calendars))))
 
 (defn holidays-in-year
   "Returns a collection of maps of the form `{:name \"Name\" :date LocalDate}`
