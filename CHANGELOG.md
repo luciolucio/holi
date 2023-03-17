@@ -1,7 +1,7 @@
 # Changes
 
 * UNRELEASED
-  * Now supports friday/saturday weekends for `weekend?` and `add`
+  * Now supports friday/saturday weekends for `weekend?`, `add`, `non-business-day?` and `business-day?`
 
 * 0.17.0 - 3Mar2023
   * API now throws if holi does not recognize a calendar name
