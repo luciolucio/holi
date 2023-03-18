@@ -67,5 +67,5 @@ know on [Slack](http://clojurians.slack.com): `@Lucio Assis` and I'll try my bes
 ## I want custom holidays
 
 Learn how
-to [build yourself a custom library](https://cljdoc.org/d/io.github.luciolucio/holi/0.17.0/doc/custom-holidays), with
+to [build yourself a custom library](https://cljdoc.org/d/io.github.luciolucio/holi/1.0.0/doc/custom-holidays), with
 your own holiday calendars.

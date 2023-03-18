@@ -1,7 +1,7 @@
 (ns build
   (:require [clojure.tools.build.api :as b]))
 
-(def version "0.17.0")
+(def version "1.0.0")
 
 (def lib 'io.github.luciolucio/holi)
 (def basis (b/create-basis {:project "deps.edn"}))

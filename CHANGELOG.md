@@ -1,6 +1,6 @@
 # Changes
 
-* UNRELEASED
+* 1.0.0 - 18Mar2023
   * Now supports friday/saturday weekends for `weekend?`, `add`, `non-business-day?` and `business-day?`
   * Removed "carnival monday" from the `BR` calendar since it's not an official holiday
 
