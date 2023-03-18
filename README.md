@@ -39,6 +39,14 @@ Use of [juxt/tick](https://github.com/juxt/tick) is not required (but highly rec
 * Clojure and ClojureScript
 * Customize holidays if needed
 
+## Disclaimer
+
+Holidays in holi have been put together to the best of the author's knowledge, and are not guaranteed to be neither
+correct, complete nor historically accurate. You are encouraged to double-check
+the [calendar showcase](https://luciolucio.github.io/holi/), the `.hol` files and perhaps the source to see if the
+calendar you want to use fits your use case. If you think there's a mistake in a calendar,
+see [I found a problem](#i-found-a-problem) below.
+
 ## Install
 
 Import the latest version from [Clojars](https://clojars.org/io.github.luciolucio/holi) into your project dependencies.
@@ -53,9 +61,11 @@ on [Slack](http://clojurians.slack.com): `@Lucio Assis`
 
 ## I found a problem
 
-Contribute a fix, or a new calendar to the project - see [CONTRIBUTING.md](CONTRIBUTING.md).
+Contribute a fix, or a new calendar to the project - see [CONTRIBUTING.md](CONTRIBUTING.md). You can also just let me
+know on [Slack](http://clojurians.slack.com): `@Lucio Assis` and I'll try my best to fix it timely.
 
 ## I want custom holidays
 
-Learn how to [build yourself a custom library](https://cljdoc.org/d/io.github.luciolucio/holi/0.17.0/doc/custom-holidays), with your
-own holiday calendars.
+Learn how
+to [build yourself a custom library](https://cljdoc.org/d/io.github.luciolucio/holi/0.17.0/doc/custom-holidays), with
+your own holiday calendars.
