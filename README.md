@@ -44,7 +44,7 @@ Use of [juxt/tick](https://github.com/juxt/tick) is not required (but highly rec
 Import the latest version from [Clojars](https://clojars.org/io.github.luciolucio/holi) into your project dependencies.
 
 ClojureScript is supported, but holi has only been tested when built with shadow-cljs and run on a
-browser. It should still work otherwise, but if you have issues with other setups, feel free to hit me up
+browser. It should still work otherwise, but if you have issues with other setups feel free to hit me up
 on [Slack](http://clojurians.slack.com): `@Lucio Assis`
 
 ## Docs
