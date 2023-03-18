@@ -9,7 +9,7 @@
 (ct/use-fixtures :each setup/test-datelist-fixture)
 
 (ct/deftest should-default-weekend-option-to-sat-sun-when-weekend?-with-no-weekend-option
-  (= (holi/weekend? (t/date "2020-08-01")) (holi/weekend? (t/date "2020-08-01") :sat-sun)))
+  (ct/is (= (holi/weekend? (t/date "2020-08-01")) (holi/weekend? (t/date "2020-08-01") :sat-sun))))
 
 (ct/deftest should-identify-weekends-when-weekend?
   (ct/are [date expected-sat-sun expected-fri-sat]
