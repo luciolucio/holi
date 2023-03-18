@@ -46,6 +46,8 @@
     "2021-08-03T10:10:10" "DAY-THREE"
     "2019-08-03T23:59:59" "DAY-THREE"))
 
-(ct/deftest should-throw-when-holiday?-with-inexistent-calendar-or-WEEKEND
-  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendars: C-A-L" (holi/holiday? (t/date "2020-10-10") "C-A-L")))
-  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendar: WEEKEND" (holi/holiday? (t/date "2020-10-10") "WEEKEND"))))
+(ct/deftest should-throw-when-holiday?-with-inexistent-calendar-or-starting-with-WEEKEND
+  (ct/is (thrown-with-msg? ExceptionInfo #"Unknown calendar\(s\): C-A-L" (holi/holiday? (t/date "2020-10-10") "C-A-L")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"Unknown calendar\(s\): WEEKEND" (holi/holiday? (t/date "2020-10-10") "WEEKEND")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"Unknown calendar\(s\): WEEKENDO" (holi/holiday? (t/date "2020-10-10") "WEEKENDO")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"Unknown calendar\(s\): WEEKEND-SAT-SUN" (holi/holiday? (t/date "2020-10-10") "WEEKEND-SAT-SUN"))))

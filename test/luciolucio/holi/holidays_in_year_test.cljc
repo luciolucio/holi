@@ -64,9 +64,11 @@
   (ct/is (thrown-with-msg? ExceptionInfo #"Year is out of bounds" (holi/holidays-in-year 2104 "TEST-US"))))
 
 (ct/deftest
-  ^{:doc "These should say 'No such calendars' before
+  ^{:doc "These should say 'Unknown calendar(s)' before
           checking that the year is out of bounds"}
-  should-throw-when-holidays-in-year-with-inexistent-calendar-or-WEEKEND
-  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendars: OMG" (holi/holidays-in-year 1930 "OMG")))
-  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendars: WATIZIT" (holi/holidays-in-year 2200 "WATIZIT")))
-  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendar: WEEKEND" (holi/holidays-in-year 2200 "WEEKEND"))))
+  should-throw-when-holidays-in-year-with-inexistent-calendar-or-starting-with-WEEKEND
+  (ct/is (thrown-with-msg? ExceptionInfo #"Unknown calendar\(s\): OMG" (holi/holidays-in-year 1930 "OMG")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"Unknown calendar\(s\): WATIZIT" (holi/holidays-in-year 2200 "WATIZIT")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"Unknown calendar\(s\): WEEKEND" (holi/holidays-in-year 2200 "WEEKEND")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"Unknown calendar\(s\): WEEKENDO" (holi/holidays-in-year 2200 "WEEKENDO")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"Unknown calendar\(s\): WEEKEND-SAT-SUN" (holi/holidays-in-year 2200 "WEEKEND-SAT-SUN"))))

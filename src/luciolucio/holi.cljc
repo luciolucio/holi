@@ -7,13 +7,10 @@
 (defn- safe-calendars [calendars]
   (let [missing-calendars (core/missing-calendars calendars)]
     (if (seq missing-calendars)
-      (throw (ex-info (str "No such calendars: " (cstr/join ", " missing-calendars)) {}))
+      (throw (ex-info (str "Unknown calendar(s): " (cstr/join ", " missing-calendars)) {}))
       calendars)))
 
 (defn- safe-calendar [calendar]
-  (when (= calendar constants/WEEKEND-FILE-NAME)
-    (throw (ex-info (str "No such calendar: " constants/WEEKEND-FILE-NAME) {})))
-
   (first (safe-calendars [calendar])))
 
 (defn- solve-weekend-option-and-calendars [weekend-option-or-calendar calendars]
@@ -33,7 +30,7 @@
   | `calendars`      | One or more strings representing holiday calendars (`:business-days` only) | `\"US\"`, `\"BR\"`                                      |
 
   Throws an ex-info if unit is `:business-days` and holi has no record of holidays for the year of the resulting date,
-  or for any of the given calendars.
+  or any of the given calendars is unknown.
 
   **Notes**
   1. Types are preserved, i.e., passing a `LocalDate` in will return a `LocalDate`
@@ -88,7 +85,7 @@
   | `date`     | An instance of `LocalDate`/`LocalDateTime` or a string that can be parsed as a date | `(LocalDate/of 2020 10 9)`, `\"2020-10-09\"` |
   | `calendar` | A string representing a holiday calendar                                            | `\"US\"`, `\"BR\"`                           |
 
-  Throws an ex-info if holi has no record of holidays for the year of the given date or for the given calendar"
+  Throws an ex-info if holi has no record of holidays for the year of the given date or the calendar is unknown"
   [date calendar]
   (let [holidays (core/read-dates (safe-calendar calendar))]
     (core/is-date-in-list? (safe-date holidays date) holidays)))
@@ -102,7 +99,7 @@
   | `weekend-option` | Choice of days considered weekend days. Optional, defaults to :sat-sun              | `:sat-sun`, `:fri-sat`                       |
   | `calendars`      | One or more strings representing holiday calendars                                  | `\"US\"`, `\"BR\"`                           |
 
-  Throws an ex-info if holi has no record of holidays or weekends for the year of the given date or for any of the given calendars"
+  Throws an ex-info if holi has no record of holidays or weekends for the year of the given date or any of the given calendars is unknown"
   {:arglists '([date] [date & calendars] [date weekend-option] [date weekend-option & calendars])}
   ([date]
    (non-business-day? date :sat-sun))
@@ -120,7 +117,7 @@
   | `weekend-option` | Choice of days considered weekend days. Optional, defaults to :sat-sun              | `:sat-sun`, `:fri-sat`                       |
   | `calendars`      | One or more strings representing holiday calendars                                  | `\"US\"`, `\"BR\"`                           |
 
-  Throws an ex-info if holi has no record of holidays or weekends for the year of the given date or for the given calendar"
+  Throws an ex-info if holi has no record of holidays or weekends for the year of the given date or the calendar is unknown"
   {:arglists '([date] [date & calendars] [date weekend-option] [date weekend-option & calendars])}
   ([date]
    (business-day? date :sat-sun))
@@ -137,7 +134,7 @@
   | `year`     | An integer or string that represents a year   | `2030`, `\"1982\"`         |
   | `calendar` | A string representing a holiday calendar      | `\"US\"`, `\"BR\"`         |
 
-  Throws an ex-info if holi has no record of weekends or holidays for the given year or for the given calendar"
+  Throws an ex-info if holi has no record of weekends or holidays for the given year or the calendar is unknown"
   [year calendar]
   (core/read-calendar (safe-calendar calendar) year))
 
@@ -151,7 +148,7 @@
   | `date`     | An instance of `LocalDate`/`LocalDateTime` or a string that can be parsed as a date | `(LocalDate/of 2020 10 9)`, `\"2020-10-09\"` |
   | `calendar` | A string representing a holiday calendar                                            | `\"US\"`, `\"BR\"`                           |
 
-  Throws an ex-info if holi has no record of holidays for the year of the given date or for the given calendar"
+  Throws an ex-info if holi has no record of holidays for the year of the given date or the calendar is unknown"
   [date calendar]
   (if (holiday? date calendar)
     (->> calendar
