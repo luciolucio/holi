@@ -1,7 +1,7 @@
 {
   "name": "holi",
   "version": "1.0.0",
-  "description": "Holi is a clojure library for working with non-business days",
+  "description": "A library for calendar operations that are aware of weekends and holidays",
   "main": "index.js",
   "directories": {
     "test": "test"

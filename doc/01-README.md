@@ -1,6 +1,6 @@
 # Holi
 
-Holi is a Clojure and ClojureScript library for working with non-business days
+A library for calendar operations that are aware of weekends and holidays
 
 ## Examples
 
@@ -25,6 +25,15 @@ Holi is a Clojure and ClojureScript library for working with non-business days
 ```
 
 Use of [juxt/tick](https://github.com/juxt/tick) is not required (but highly recommended).
+
+## Features
+
+* Standard calendar operations (e.g. `add 5 days`) that are aware of weekends and holidays to skip those when requested
+* Boolean fns that check individual dates (`weekend?`, `holiday?`, `business-day?` and `non-business-day?`)
+* List holidays for a certain year, or a specific date
+* Non-standard weekends (currently supports sat/sun and fri/sat)
+* Clojure and ClojureScript
+* Customize holidays if needed
 
 ## Install
 
