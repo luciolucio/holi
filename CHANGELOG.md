@@ -2,6 +2,7 @@
 
 * UNRELEASED
   * Now supports friday/saturday weekends for `weekend?`, `add`, `non-business-day?` and `business-day?`
+  * Removed "carnival monday" from the `BR` calendar since it's not an official holiday
 
 * 0.17.0 - 3Mar2023
   * API now throws if holi does not recognize a calendar name
