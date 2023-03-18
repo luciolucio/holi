@@ -1,4 +1,4 @@
-(ns luciolucio.holi.is-weekend-sat-sun-test
+(ns luciolucio.holi.is-weekend-test
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
             [luciolucio.holi.test-setup :as setup]
