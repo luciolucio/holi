@@ -1,6 +1,6 @@
 {:paths   ["src"]
  :deps    {org.clojure/clojure       {:mvn/version "1.11.1"}
-           io.github.luciolucio/holi {:mvn/version "0.17.0"}}
+           io.github.luciolucio/holi {:mvn/version "1.0.0"}}
  :aliases {:build    {:extra-deps {io.github.clojure/tools.build {:git/tag "v0.8.3" :git/sha "0d20256"}}
                       :ns-default build}
            :generate {:main-opts ["-m" "luciolucio.holi.generate"]}}}
