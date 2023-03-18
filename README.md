@@ -1,6 +1,6 @@
 # Holi
 
-Holi is a Clojure and ClojureScript library for working with non-business days
+A library for calendar operations that are aware of weekends and holidays
 
 [![build](https://github.com/luciolucio/holi/workflows/build-and-test/badge.svg)](https://github.com/luciolucio/holi/actions/workflows/build-and-test.yml)
 [![Clojars Project](https://img.shields.io/clojars/v/io.github.luciolucio/holi.svg)](https://clojars.org/io.github.luciolucio/holi)
@@ -30,6 +30,15 @@ Holi is a Clojure and ClojureScript library for working with non-business days
 
 Use of [juxt/tick](https://github.com/juxt/tick) is not required (but highly recommended).
 
+## Features
+
+* Standard calendar operations (e.g. `add 5 days`) that are aware of weekends and holidays to skip those when requested
+* Boolean fns that check individual dates (`weekend?`, `holiday?`, `business-day?` and `non-business-day?`)
+* List holidays for a certain year, or a specific date
+* Non-standard weekends (currently supports sat/sun and fri/sat)
+* Clojure and ClojureScript
+* Customize holidays if needed
+
 ## Install
 
 Import the latest version from [Clojars](https://clojars.org/io.github.luciolucio/holi) into your project dependencies.
@@ -46,7 +55,7 @@ on [Slack](http://clojurians.slack.com): `@Lucio Assis`
 
 Contribute a fix, or a new calendar to the project - see [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## I want a calendar that holi doesn't have
+## I want custom holidays
 
-Build yourself a [custom library](https://cljdoc.org/d/io.github.luciolucio/holi/0.17.0/doc/custom-holidays), with your
+Learn how to [build yourself a custom library](https://cljdoc.org/d/io.github.luciolucio/holi/0.17.0/doc/custom-holidays), with your
 own holiday calendars.
