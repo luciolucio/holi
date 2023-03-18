@@ -21,7 +21,7 @@
       (catch ExceptionInfo e
         (if (= (:error (ex-data e)) :weekend-dot-hol-present)
           (do
-            (println "ERROR: WEEKEND.hol is not an allowed file name, please use another name")
+            (println "ERROR: holiday file names cannot start with WEEKEND, please use another name")
             (System/exit 1))
           (throw e))))
     (file/generate-weekend-datelists! output-path current-year bracket-size)
