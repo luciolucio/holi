@@ -35,7 +35,7 @@ Use of [juxt/tick](https://github.com/juxt/tick) is not required (but highly rec
 * Standard calendar operations (e.g. `add 5 days`) that are aware of weekends and holidays to skip those when requested
 * Boolean fns that check individual dates (`weekend?`, `holiday?`, `business-day?` and `non-business-day?`)
 * List holidays for a certain year, or a specific date
-* Non-standard weekends (currently supports sat/sun and fri/sat)
+* Non-standard weekends (supports sat/sun and fri/sat)
 * Clojure and ClojureScript
 * Customize holidays if needed
 
