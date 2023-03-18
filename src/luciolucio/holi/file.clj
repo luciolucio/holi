@@ -63,8 +63,8 @@
     (-> (map #(get-weekends % weekend-option) years) flatten sort cstr/join)))
 
 (defn generate-datelist! [root-path holiday-file output-path central-year bracket-size]
-  (if (cstr/ends-with? (cstr/lower-case holiday-file) "weekend.hol")
-    (throw (ex-info "WEEKEND.hol is not allowed" {:error :weekend-dot-hol-present}))
+  (if (re-find #"\bweekend.*.hol$" (cstr/lower-case holiday-file))
+    (throw (ex-info "Datelists containing 'WEEKEND' are not allowed" {:error :weekend-dot-hol-present}))
     (let [file-contents (gen-file-contents root-path holiday-file central-year bracket-size)
           path (make-datelist-file-path! root-path holiday-file output-path)]
       (spit path file-contents))))

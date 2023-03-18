@@ -1,4 +1,4 @@
-(ns luciolucio.holi.generate-test.generate-file-test
+(ns luciolucio.holi.generate-test.generate-datelist-test
   (:require [clojure.test :as ct]
             [luciolucio.holi.file :as file])
   (:import (clojure.lang ExceptionInfo)))
@@ -28,6 +28,8 @@
   (ct/is (= (slurp "test-resources/file/WEEKEND-SAT-SUN-EXPECTED.datelist") (slurp "test-output/WEEKEND-SAT-SUN.datelist")))
   (ct/is (= (slurp "test-resources/file/WEEKEND-FRI-SAT-EXPECTED.datelist") (slurp "test-output/WEEKEND-FRI-SAT.datelist"))))
 
-(ct/deftest should-not-allow-files-called-weekend-dot-hol-when-generate-datelist!
+(ct/deftest should-not-allow-files-starting-with-weekend-when-generate-datelist!
   (ct/is (thrown? ExceptionInfo (file/generate-datelist! root-path "test-resources/file/WEEKEND.hol" output-path 2020 1)))
-  (ct/is (thrown? ExceptionInfo (file/generate-datelist! root-path "path/doesnt/matter/wEEkenD.hol" output-path 2020 1))))
+  (ct/is (thrown? ExceptionInfo (file/generate-datelist! root-path "path/and/case/dont/matter/wEEkenD.hol" output-path 2020 1)))
+  (ct/is (thrown? ExceptionInfo (file/generate-datelist! root-path "test-resources/file/WEEKEND-SAT-SUN.hol" output-path 2020 1)))
+  (ct/is (thrown? ExceptionInfo (file/generate-datelist! root-path "WEEKEND-SAT-SUN.hol" output-path 2020 1))))
