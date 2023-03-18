@@ -8,44 +8,44 @@
 
 (ct/use-fixtures :each setup/test-datelist-fixture)
 
-(ct/deftest should-identify-sat-sun-weekends-when-weekend?-with-date
-  (ct/are [date expected]
-          (= expected (holi/weekend? date) (holi/weekend? date :sat-sun))
-    (t/date "2020-07-31") false
-    (t/date "2020-08-01") true
-    (t/date "2020-08-02") true
-    (t/date "2020-08-03") false))
+(ct/deftest should-default-weekend-option-to-sat-sun-when-weekend?-with-no-weekend-option
+  (= (holi/weekend? (t/date "2020-08-01")) (holi/weekend? (t/date "2020-08-01") :sat-sun)))
 
-(ct/deftest should-identify-sat-sun-weekends-when-weekend?-with-date-time
-  (ct/are [date-time expected]
-          (= expected (holi/weekend? date-time) (holi/weekend? date-time :sat-sun))
-    (t/date-time "2020-07-31T00:00:00") false
-    (t/date-time "2020-08-01T11:11:11") true
-    (t/date-time "2020-08-02T22:22:22") true
-    (t/date-time "2020-08-03T23:59:59") false))
+(ct/deftest should-identify-weekends-when-weekend?
+  (ct/are [date expected-sat-sun expected-fri-sat]
+          (and (= expected-sat-sun (holi/weekend? (t/date date) :sat-sun))
+               (= expected-fri-sat (holi/weekend? (t/date date) :fri-sat))
+               (= expected-sat-sun (holi/weekend? (t/date-time (str date "T11:11:00")) :sat-sun))
+               (= expected-fri-sat (holi/weekend? (t/date-time (str date "T11:11:00")) :fri-sat)))
+    "2020-07-30" false false
+    "2020-07-31" false true
+    "2020-08-01" true true
+    "2020-08-02" true false
+    "2020-08-03" false false))
 
 (ct/deftest
-  ^{:doc "This test relies on TEST-WEEKEND-SAT-SUN.datelist, which lists weekends in 2020.
+  ^{:doc "This test relies on TEST-WEEKEND-SAT-SUN and TEST-WEEKEND-FRI-SAT datelists, which list weekends in 2020.
           Any argument outside 2020 should raise an exception"}
   should-throw-when-weekend?-with-date-beyond-limit-year
-  (ct/are [date]
-          (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (holi/weekend? (t/date date)))
-    "2021-01-01"
-    "2019-12-31")
-  (ct/are [date]
-          (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (holi/weekend? (t/date date) :sat-sun))
-    "2021-01-01"
-    "2019-12-31"))
-
-(ct/deftest
-  ^{:doc "This test relies on TEST-WEEKEND-SAT-SUN.datelist, which lists weekends in 2020.
-          Any argument outside 2020 should raise an exception"}
-  should-throw-when-weekend?-with-date-time-beyond-limit-year
-  (ct/are [date]
-          (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (holi/weekend? (t/date-time date)))
-    "2021-01-01T00:00:00"
-    "2019-12-31T23:59:59")
-  (ct/are [date]
-          (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (holi/weekend? (t/date-time date) :sat-sun))
-    "2021-01-01T00:00:00"
-    "2019-12-31T23:59:59"))
+  (ct/testing "date"
+    (ct/testing "sat-sun"
+      (ct/are [date]
+              (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (holi/weekend? (t/date date) :sat-sun))
+        "2021-01-01"
+        "2019-12-31"))
+    (ct/testing "fri-sat"
+      (ct/are [date]
+              (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (holi/weekend? (t/date date) :fri-sat))
+        "2021-01-01"
+        "2019-12-31")))
+  (ct/testing "datetime"
+    (ct/testing "sat-sun"
+      (ct/are [date]
+              (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (holi/weekend? (t/date-time (str date "T11:11:00")) :sat-sun))
+        "2021-01-01"
+        "2019-12-31"))
+    (ct/testing "fri-sat"
+      (ct/are [date]
+              (thrown-with-msg? ExceptionInfo #"Date is out of bounds" (holi/weekend? (t/date-time (str date "T11:11:00")) :fri-sat))
+        "2021-01-01"
+        "2019-12-31"))))
