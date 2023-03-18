@@ -1,6 +1,6 @@
 # How holi works
 
-Holi uses regular calendar operations, such as `add 5 days`, but it's aware of weekends and holidays
+Holi uses standard calendar operations, such as `add 5 days`, but it's aware of weekends and holidays
 to be able to skip those when requested.
 
 ## .hol files
