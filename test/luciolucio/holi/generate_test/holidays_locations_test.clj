@@ -12,7 +12,6 @@
   (ct/are [country-name year expected]
           (= expected (gen/holidays-for-year year LOCATIONS-TEST-ROOT (calendar-filename country-name)))
     "BR" 2012 [{:name "Confraternização Universal / Ano Novo" :date (t/date "2012-01-01")}
-               {:name "Segunda-feira de carnaval" :date (t/date "2012-02-20")}
                {:name "Terça-feira de carnaval" :date (t/date "2012-02-21")}
                {:name "Sexta-feira da Paixão" :date (t/date "2012-04-06")}
                {:name "Tiradentes" :date (t/date "2012-04-21")}
@@ -24,7 +23,6 @@
                {:name "Proclamação da República" :date (t/date "2012-11-15")}
                {:name "Natal" :date (t/date "2012-12-25")}]
     "BR" 2019 [{:name "Confraternização Universal / Ano Novo" :date (t/date "2019-01-01")}
-               {:name "Segunda-feira de carnaval" :date (t/date "2019-03-04")}
                {:name "Terça-feira de carnaval" :date (t/date "2019-03-05")}
                {:name "Sexta-feira da Paixão" :date (t/date "2019-04-19")}
                {:name "Tiradentes" :date (t/date "2019-04-21")}
@@ -94,7 +92,6 @@
   (ct/are [city-name year expected]
           (= expected (gen/holidays-for-year year LOCATIONS-TEST-ROOT (calendar-filename city-name)))
     "brazil/sao-paulo" 2012 [{:name "Confraternização Universal / Ano Novo" :date (t/date "2012-01-01")}
-                             {:name "Segunda-feira de carnaval" :date (t/date "2012-02-20")}
                              {:name "Terça-feira de carnaval" :date (t/date "2012-02-21")}
                              {:name "Sexta-feira da Paixão" :date (t/date "2012-04-06")}
                              {:name "Tiradentes" :date (t/date "2012-04-21")}
@@ -109,7 +106,6 @@
                              {:name "Revolução Constitucionalista" :date (t/date "2012-07-09")}
                              {:name "Dia da Consciência Negra" :date (t/date "2012-11-20")}]
     "brazil/sao-paulo" 2020 [{:name "Confraternização Universal / Ano Novo" :date (t/date "2020-01-01")}
-                             {:name "Segunda-feira de carnaval" :date (t/date "2020-02-24")}
                              {:name "Terça-feira de carnaval" :date (t/date "2020-02-25")}
                              {:name "Sexta-feira da Paixão" :date (t/date "2020-04-10")}
                              {:name "Tiradentes" :date (t/date "2020-04-21")}
