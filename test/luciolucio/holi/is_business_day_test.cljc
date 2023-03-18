@@ -83,6 +83,8 @@
         "2019-12-31" []
         "2019-12-31" ["DAY-THREE"]))))
 
-(ct/deftest should-throw-when-business-day?-with-inexistent-calendar
-  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendars: NOT-A-CALENDAR!" (holi/business-day? (t/date "2020-10-10") :sat-sun "NOT-A-CALENDAR!")))
-  (ct/is (thrown-with-msg? ExceptionInfo #"No such calendars: NOT-A-CALENDAR!" (holi/business-day? (t/date "2020-10-10") :fri-sat "NOT-A-CALENDAR!"))))
+(ct/deftest should-throw-when-business-day?-with-inexistent-calendar-or-starting-with-WEEKEND
+  (ct/is (thrown-with-msg? ExceptionInfo #"Unknown calendar\(s\): NOT-A-CALENDAR!" (holi/business-day? (t/date "2020-10-10") :sat-sun "NOT-A-CALENDAR!")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"Unknown calendar\(s\): NOT-A-CALENDAR!" (holi/business-day? (t/date "2020-10-10") :fri-sat "NOT-A-CALENDAR!")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"Unknown calendar\(s\): WEEKEND" (holi/business-day? (t/date "2020-10-10") :fri-sat "WEEKEND")))
+  (ct/is (thrown-with-msg? ExceptionInfo #"Unknown calendar\(s\): WEEKEND-SAT-SUN" (holi/business-day? (t/date "2020-10-10") :fri-sat "WEEKEND-SAT-SUN"))))

@@ -31,7 +31,8 @@
   "Map from holiday name to datelists
 
   Run `make gen-holidays` to generate these files"
-  {"WEEKEND"          (util/slurp-resource "calendars-generated/WEEKEND-SAT-SUN.datelist")
+  {"WEEKEND-SAT-SUN"  (util/slurp-resource "calendars-generated/WEEKEND-SAT-SUN.datelist")
+   "WEEKEND-FRI-SAT"  (util/slurp-resource "calendars-generated/WEEKEND-FRI-SAT.datelist")
    "US"               (util/slurp-resource "calendars-generated/US.datelist")
    "GB"               (util/slurp-resource "calendars-generated/GB.datelist")
    "BR"               (util/slurp-resource "calendars-generated/BR.datelist")
@@ -88,7 +89,9 @@
           (apply util/merge-sorted-collections)))))
 
 (defn missing-calendars [calendars]
-  (let [available-calendars (set (keys holiday-datelists))]
+  (let [available-calendars (->> (keys holiday-datelists)
+                                 (filter #(not (cstr/starts-with? % constants/WEEKEND-FILE-NAME-PREFIX)))
+                                 set)]
     (reduce #(if (contains? available-calendars %2) %1 (conj %1 %2)) [] calendars)))
 
 (defn read-dates [cal-or-cals]
