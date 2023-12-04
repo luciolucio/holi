@@ -53,7 +53,7 @@ on [Slack](http://clojurians.slack.com): `@Lucio Assis`
 
 ## Usage
 
-See the [API docs](https://cljdoc.org/d/io.github.luciolucio/holi/1.0.0/api/luciolucio.holi) for detail on holi's
+See the [API docs](https://cljdoc.org/d/io.github.luciolucio/holi/1.0.1/api/luciolucio.holi) for detail on holi's
 utilities: `add`, `weekend?`, `holiday?`, `business-day?` and `non-business-day?`.
 
 ## A note on terminology
