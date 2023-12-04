@@ -4,7 +4,7 @@
  :deps        {org.clojure/clojurescript {:mvn/version "1.11.60"}
                reagent/reagent           {:mvn/version "1.2.0"}
                tick/tick                 {:mvn/version "0.7.5"}
-               io.github.luciolucio/holi {:mvn/version "1.0.0"}}
+               io.github.luciolucio/holi {:mvn/version "1.0.1"}}
 
  :aliases     {:shadow-cli {:extra-deps {thheller/shadow-cljs {:mvn/version "2.26.2"}}
                             :main-opts  ["-m" "shadow.cljs.devtools.cli"]}
