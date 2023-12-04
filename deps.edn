@@ -1,22 +1,22 @@
 {:paths   ["src" "resources"]
  :deps    {org.clojure/clojure   {:mvn/version "1.11.1"}
            instaparse/instaparse {:mvn/version "1.4.12"}
-           tick/tick             {:mvn/version "0.5.0"}     ; This version is compatible with the js-joda fork below
+           tick/tick             {:mvn/version "0.7.5"}
            easter-day/easter-day {:mvn/version "0.1.1"}}
  :aliases {:test        {:extra-paths ["test" "test-resources"]
-                         :extra-deps  {lambdaisland/kaocha {:mvn/version "1.72.1136"}
+                         :extra-deps  {lambdaisland/kaocha {:mvn/version "1.87.1366"}
                                        criterium/criterium {:mvn/version "0.4.6"}}}
 
            :cljfmt      {:main-opts  ["-m" "cljfmt.main"]
-                         :extra-deps {lein-cljfmt/lein-cljfmt {:mvn/version "0.9.0"}}}
+                         :extra-deps {dev.weavejester/cljfmt {:mvn/version "0.11.2"}}}
 
            :lint        {:main-opts  ["-m" "clj-kondo.main" "--lint"]
-                         :extra-deps {clj-kondo/clj-kondo {:mvn/version "2022.08.03"}}}
+                         :extra-deps {clj-kondo/clj-kondo {:mvn/version "2023.10.20"}}}
 
-           :build       {:extra-deps {io.github.clojure/tools.build {:git/tag "v0.8.3" :git/sha "0d20256"}}
+           :build       {:extra-deps {io.github.clojure/tools.build {:git/tag "v0.9.6" :git/sha "8e78bcc"}}
                          :ns-default build}
 
-           :shadow-cljs {:extra-deps {thheller/shadow-cljs {:mvn/version "2.20.18"}}
+           :shadow-cljs {:extra-deps {thheller/shadow-cljs {:mvn/version "2.26.2"}}
                          :main-opts  ["-m" "shadow.cljs.devtools.cli"]}
 
            :generate    {:main-opts ["-m" "luciolucio.holi.generate"]}}}

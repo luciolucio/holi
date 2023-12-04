@@ -1,4 +1,4 @@
 {:paths   ["src"]
  :deps    {io.github.luciolucio/holi {:local/root "target/holi.jar"}
-           tick/tick                 {:mvn/version "0.5.0"}}
+           tick/tick                 {:mvn/version "0.7.5"}}
  :aliases {:run {:main-opts ["-m" "holi-test"]}}}
