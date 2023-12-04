@@ -29,7 +29,7 @@ To run tests against the candidate jar, run `make test-all-libs`.
 
 Run `QUICK_PERF_TESTS=true make perftest` for a quicker but higher uncertainty performance test.
 
-Use just `make perftest` for a longer, more precise measurement.
+Use `make perftest` for a longer, more precise measurement.
 
 ### Code formatting
 
