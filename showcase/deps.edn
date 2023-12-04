@@ -3,10 +3,10 @@
 
  :deps        {org.clojure/clojurescript {:mvn/version "1.11.60"}
                reagent/reagent           {:mvn/version "1.2.0"}
-               tick/tick                 {:mvn/version "0.5.0"}
+               tick/tick                 {:mvn/version "0.7.5"}
                io.github.luciolucio/holi {:mvn/version "1.0.0"}}
 
- :aliases     {:shadow-cli {:extra-deps {thheller/shadow-cljs {:mvn/version "2.20.20"}}
+ :aliases     {:shadow-cli {:extra-deps {thheller/shadow-cljs {:mvn/version "2.26.2"}}
                             :main-opts  ["-m" "shadow.cljs.devtools.cli"]}
-               :cljfmt     {:extra-deps {lein-cljfmt/lein-cljfmt {:mvn/version "0.9.2"}}
+               :cljfmt     {:extra-deps {dev.weavejester/cljfmt {:mvn/version "0.11.2"}}
                             :main-opts  ["-m" "cljfmt.main"]}}}
