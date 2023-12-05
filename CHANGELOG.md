@@ -1,5 +1,8 @@
 # Changes
 
+* 1.1.0 - 4Dec2023
+  * Fixed a problem that prevented holi to be included in an uberjar
+
 * 1.0.1 - 3Dec2023
   * Bump dependencies to more recent versions
 
