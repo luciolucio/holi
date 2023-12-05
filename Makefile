@@ -4,7 +4,8 @@ JAR_NAME="holi.jar"
 CALENDAR_SOURCE_DIR="resources/calendars-source"
 CALENDAR_OUTPUT_DIR="resources/calendars-generated"
 BUILD_ROOT="target"
-DEFAULT_BRACKET=80
+# WARNING! Do not increase this bracket beyond 75! This keeps the size of `WEEKEND*.datelist` < 65k to allow slurping when uberjarring
+DEFAULT_BRACKET=75
 CLJ_TEST_LIB_HOME="test-lib/clj"
 CLJ_TEST_LIB_TARGET="${CLJ_TEST_LIB_HOME}/target"
 CLJS_TEST_LIB_HOME="test-lib/cljs"
