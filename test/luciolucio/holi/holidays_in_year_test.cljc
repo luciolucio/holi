@@ -1,14 +1,12 @@
 (ns luciolucio.holi.holidays-in-year-test
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
-            [luciolucio.holi.test-setup :as setup]
+            [luciolucio.holi.test-setup :refer [defcalendartest]]
             [tick.core :as t])
   #?(:clj
      (:import (clojure.lang ExceptionInfo))))
 
-(ct/use-fixtures :each setup/test-datelist-fixture)
-
-(ct/deftest should-list-the-correct-holidays-for-calendar-and-year-when-holidays-in-year
+(defcalendartest should-list-the-correct-holidays-for-calendar-and-year-when-holidays-in-year
   (ct/are [year expected]
           (= expected (holi/holidays-in-year year "TEST-US"))
     2021 [{:date (t/date "2021-01-01") :name "New Year's Day"}
@@ -59,11 +57,11 @@
           {:date (t/date "2024-11-28") :name "Thanksgiving"}
           {:date (t/date "2024-12-25") :name "Christmas"}]))
 
-(ct/deftest should-throw-when-holidays-in-year-with-year-beyond-limits
+(defcalendartest should-throw-when-holidays-in-year-with-year-beyond-limits
   (ct/is (thrown-with-msg? ExceptionInfo #"Year is out of bounds" (holi/holidays-in-year 1942 "TEST-US")))
   (ct/is (thrown-with-msg? ExceptionInfo #"Year is out of bounds" (holi/holidays-in-year 2104 "TEST-US"))))
 
-(ct/deftest
+(defcalendartest
   ^{:doc "These should say 'Unknown calendar(s)' before
           checking that the year is out of bounds"}
   should-throw-when-holidays-in-year-with-inexistent-calendar-or-starting-with-WEEKEND

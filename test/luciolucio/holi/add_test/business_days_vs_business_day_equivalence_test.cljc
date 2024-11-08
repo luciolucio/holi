@@ -1,12 +1,10 @@
 (ns luciolucio.holi.add-test.business-days-vs-business-day-equivalence-test
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
-            [luciolucio.holi.test-setup :as setup]
+            [luciolucio.holi.test-setup :refer [defcalendartest]]
             [tick.core :as t]))
 
-(ct/use-fixtures :each setup/test-datelist-fixture)
-
-(ct/deftest should-calculate-the-same-result-when-add-with-business-days-or-business-day
+(defcalendartest should-calculate-the-same-result-when-add-with-business-days-or-business-day
   (ct/testing "date"
     (ct/testing "[date n unit]"
       (ct/is (= (holi/add (t/date "2020-07-30") 3 :business-days)
