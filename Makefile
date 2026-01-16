@@ -18,6 +18,7 @@ SRC_AND_TEST := src test
 clean:         ## Clean up CP cache and generated files
 clean-prepare: ## Clean up files changed via prepare.sh
 test:          ## Run tests
+repl:          ## Start a REPL
 test-cljs:     ## Run cljs tests
 repl-cljs:     ## Start a ClojureScript REPL
 perftest:      ## Run performance tests
@@ -56,6 +57,9 @@ test: gen-holidays # Holidays are needed so that `luciolucio.holi.core/holiday-d
 
 yarn-install:
 	@yarn install
+
+repl: gen-holidays
+	@clojure -M:dev:test:repl
 
 test-cljs: yarn-install gen-holidays # Holidays are needed so that `luciolucio.holi.core/holiday-datelists` can load, but are not used in tests
 	@clojure -M:test:shadow-cljs compile test

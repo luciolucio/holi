@@ -1,1 +1,2 @@
-{:output  {:progress true}}
+{:output  {:progress true}
+ :lint-as {luciolucio.holi.test-setup/defcalendartest clojure.test/deftest}}

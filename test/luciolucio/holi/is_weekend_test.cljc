@@ -1,17 +1,15 @@
 (ns luciolucio.holi.is-weekend-test
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
-            [luciolucio.holi.test-setup :as setup]
+            [luciolucio.holi.test-setup :refer [defcalendartest]]
             [tick.core :as t])
   #?(:clj
      (:import (clojure.lang ExceptionInfo))))
 
-(ct/use-fixtures :each setup/test-datelist-fixture)
-
-(ct/deftest should-default-weekend-option-to-sat-sun-when-weekend?-with-no-weekend-option
+(defcalendartest should-default-weekend-option-to-sat-sun-when-weekend?-with-no-weekend-option
   (ct/is (= (holi/weekend? (t/date "2020-08-01")) (holi/weekend? (t/date "2020-08-01") :sat-sun))))
 
-(ct/deftest should-identify-weekends-when-weekend?
+(defcalendartest should-identify-weekends-when-weekend?
   (ct/are [date expected-sat-sun expected-fri-sat]
           (and (= expected-sat-sun (holi/weekend? (t/date date) :sat-sun))
                (= expected-fri-sat (holi/weekend? (t/date date) :fri-sat))
@@ -23,7 +21,7 @@
     "2020-08-02" true false
     "2020-08-03" false false))
 
-(ct/deftest
+(defcalendartest
   ^{:doc "This test relies on TEST-WEEKEND-SAT-SUN and TEST-WEEKEND-FRI-SAT datelists, which list weekends in 2020.
           Any argument outside 2020 should raise an exception"}
   should-throw-when-weekend?-with-date-beyond-limit-year

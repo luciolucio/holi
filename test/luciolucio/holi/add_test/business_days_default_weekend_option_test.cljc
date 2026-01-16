@@ -1,12 +1,10 @@
 (ns luciolucio.holi.add-test.business-days-default-weekend-option-test
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
-            [luciolucio.holi.test-setup :as setup]
+            [luciolucio.holi.test-setup :refer [defcalendartest]]
             [tick.core :as t]))
 
-(ct/use-fixtures :each setup/test-datelist-fixture)
-
-(ct/deftest should-default-weekend-option-to-sat-sun-when-add-with-no-weekend-option
+(defcalendartest should-default-weekend-option-to-sat-sun-when-add-with-no-weekend-option
   (ct/testing "date"
     (ct/testing "[date n unit]"
       (ct/is (= (holi/add (t/date "2020-07-30") 3 :business-days)

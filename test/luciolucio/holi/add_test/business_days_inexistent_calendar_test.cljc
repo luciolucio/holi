@@ -1,14 +1,12 @@
 (ns luciolucio.holi.add-test.business-days-inexistent-calendar-test
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
-            [luciolucio.holi.test-setup :as setup]
+            [luciolucio.holi.test-setup :refer [defcalendartest]]
             [tick.core :as t])
   #?(:clj
      (:import (clojure.lang ExceptionInfo))))
 
-(ct/use-fixtures :each setup/test-datelist-fixture)
-
-(ct/deftest should-throw-when-add-date-with-inexistent-calendar-or-starting-with-WEEKEND
+(defcalendartest should-throw-when-add-date-with-inexistent-calendar-or-starting-with-WEEKEND
   (ct/testing "date"
     (ct/testing "[date n unit calendar]"
       (ct/is (thrown-with-msg? ExceptionInfo #"Unknown calendar\(s\): X" (holi/add (t/date "2020-08-03") 1 :business-days "X"))))

@@ -1,5 +1,6 @@
 (ns luciolucio.holi.test-setup
-  (:require [luciolucio.holi.core]
+  (:require [clojure.test :as ct]
+            [luciolucio.holi.core]
             [luciolucio.holi.util :as util :include-macros true]))
 
 (def holiday-datelists
@@ -12,6 +13,9 @@
    "HOLIDAY-ON-SAT-SUN-WEEKEND" (util/slurp-resource "HOLIDAY-ON-SAT-SUN-WEEKEND.datelist")
    "TEST-US"                    (util/slurp-resource "TEST-US.datelist")})
 
-(defn test-datelist-fixture [f]
-  (with-redefs [luciolucio.holi.core/holiday-datelists holiday-datelists]
-    (f)))
+(defmacro with-test-calendars [& body]
+  `(with-redefs [luciolucio.holi.core/holiday-datelists holiday-datelists]
+     ~@body))
+
+(defmacro defcalendartest [name & body]
+ `(ct/deftest ~name (with-test-calendars ~@body)))

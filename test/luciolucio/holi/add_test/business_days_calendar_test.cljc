@@ -1,12 +1,10 @@
 (ns luciolucio.holi.add-test.business-days-calendar-test
   (:require [clojure.test :as ct]
             [luciolucio.holi :as holi]
-            [luciolucio.holi.test-setup :as setup]
+            [luciolucio.holi.test-setup :refer [defcalendartest]]
             [tick.core :as t])
   #?(:clj
      (:import (clojure.lang ExceptionInfo))))
-
-(ct/use-fixtures :each setup/test-datelist-fixture)
 
 (defn- ->d [s] (t/date s))
 (defn- ->dt [s] (t/date-time (str s "T11:11:00")))
@@ -22,7 +20,7 @@
     ; date-time + fri-sat
    (= (->dt expected-fri-sat) (holi/add (->dt date) days :business-days :fri-sat "DAY-THREE"))))
 
-(ct/deftest should-calculate-correct-date-when-add-with-business-days-calendar
+(defcalendartest should-calculate-correct-date-when-add-with-business-days-calendar
   (ct/are [days expected-sat-sun expected-fri-sat]
           (all-cases-pass? "2020-07-30" days expected-sat-sun expected-fri-sat)
     2 "2020-08-04" "2020-08-04"
@@ -30,7 +28,7 @@
     5 "2020-08-07" "2020-08-09"
     -5 "2020-07-23" "2020-07-23"))
 
-(ct/deftest should-calculate-correct-date-when-add-friday-with-business-days-calendar
+(defcalendartest should-calculate-correct-date-when-add-friday-with-business-days-calendar
   (ct/are [days expected-sat-sun expected-fri-sat]
           (all-cases-pass? "2020-07-31" days expected-sat-sun expected-fri-sat)
     1 "2020-08-04" "2020-08-02"
@@ -38,7 +36,7 @@
     -1 "2020-07-30" "2020-07-30"
     -5 "2020-07-24" "2020-07-26"))
 
-(ct/deftest should-calculate-correct-date-when-add-saturday-with-business-days-calendar
+(defcalendartest should-calculate-correct-date-when-add-saturday-with-business-days-calendar
   (ct/are [days expected-sat-sun expected-fri-sat]
           (all-cases-pass? "2020-08-01" days expected-sat-sun expected-fri-sat)
     1 "2020-08-04" "2020-08-02"
@@ -46,7 +44,7 @@
     -1 "2020-07-31" "2020-07-30"
     -5 "2020-07-27" "2020-07-26"))
 
-(ct/deftest should-calculate-correct-date-when-add-sunday-with-business-days-calendar
+(defcalendartest should-calculate-correct-date-when-add-sunday-with-business-days-calendar
   (ct/are [days expected-sat-sun expected-fri-sat]
           (all-cases-pass? "2020-08-02" days expected-sat-sun expected-fri-sat)
     1 "2020-08-04" "2020-08-04"
@@ -54,7 +52,7 @@
     -1 "2020-07-31" "2020-07-30"
     -5 "2020-07-27" "2020-07-26"))
 
-(ct/deftest should-go-to-next-business-day-or-stay-when-add-zero-days-with-business-days-calendar
+(defcalendartest should-go-to-next-business-day-or-stay-when-add-zero-days-with-business-days-calendar
   (ct/are [date expected-sat-sun expected-fri-sat]
           (all-cases-pass? date 0 expected-sat-sun expected-fri-sat)
     "2020-07-31" "2020-07-31" "2020-08-02"
@@ -63,7 +61,7 @@
     "2020-08-03" "2020-08-04" "2020-08-04"
     "2020-08-04" "2020-08-04" "2020-08-04"))
 
-(ct/deftest should-calculate-correct-date-when-add-with-holiday-coinciding-with-weekend
+(defcalendartest should-calculate-correct-date-when-add-with-holiday-coinciding-with-weekend
   (ct/testing "date"
     (ct/testing "sat-sun"
       (ct/is (= (->d "2020-01-22") (holi/add (->d "2020-01-18") 3 :business-days :sat-sun "HOLIDAY-ON-SAT-SUN-WEEKEND"))))
@@ -75,7 +73,7 @@
     (ct/testing "fri-sat"
       (ct/is (= (->dt "2020-01-21") (holi/add (->dt "2020-01-17") 3 :business-days :fri-sat "HOLIDAY-ON-FRI-SAT-WEEKEND"))))))
 
-(ct/deftest
+(defcalendartest
   ^{:doc "This test relies on DAY-THREE.datelist, in which 3Aug20 is a holiday.
           Any result outside 2020 should raise an exception"}
   should-throw-when-add-with-business-days-calendar-and-result-beyond-limit-years
